@@ -362,6 +362,20 @@ td small{display:block; color:var(--muted); font-size:14px}
 .orr.t{border-top:1px solid var(--line); margin-top:4px; padding-top:6px; font-weight:700}
 .onote{margin:8px 0 0; font:400 12px var(--f-mono); color:var(--muted)}
 
+#pz-close{position:fixed; left:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); z-index:50; border:1px solid var(--accent); background:var(--surface); color:var(--accent); border-radius:2px; padding:10px 14px; font:700 12.5px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; box-shadow:0 2px 10px rgba(0,0,0,.35)}
+#pz-close[hidden]{display:none}
+.pzf{margin:0 0 14px; border:1px solid var(--line); background:var(--surface); border-radius:2px}
+.pzf>summary{cursor:pointer; list-style:none; padding:11px 14px; display:flex; justify-content:space-between; gap:10px; align-items:baseline}
+.pzf>summary::-webkit-details-marker{display:none}
+.pzf>summary b{font:italic 600 22px var(--f-display)}
+.pzf>summary span{font:400 12px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.pzf-b{padding:2px 14px 14px; display:grid; gap:12px}
+.pzf-b .chips{display:flex; flex-wrap:wrap; gap:6px}
+.pzf-uniq{border-color:var(--accent); font-weight:600}
+.pzf-foot{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font:400 13px var(--f-mono); color:var(--muted)}
+.pzf-foot b{color:var(--ink)}
+.pzf select{width:100%}
+
 </style>
 
 <div class="app" id="app">
@@ -412,6 +426,7 @@ td small{display:block; color:var(--muted); font-size:14px}
           <input id="pz-q" type="search" placeholder="Örn. aventus, oud, tobacco" autocomplete="off"></label>
         <button type="button" class="add" id="pz-refresh" hidden>Canlı fiyatları yenile</button>
       </div>
+      <div id="pz-filters"></div>
       <div id="pz-list"></div>
     </section>
 
@@ -574,6 +589,7 @@ td small{display:block; color:var(--muted); font-size:14px}
   <footer class="foot" id="sync"></footer>
 </div>
 
+<button type="button" id="pz-close" hidden aria-label="Açık satıcı listelerini kapat">▲ Listeleri kapat</button>
 <button type="button" id="pzc-fab" aria-label="Sepeti aç">Sepet <span class="badge" id="pzc-count" hidden>0</span></button>
 <div id="pzc-panel" hidden><div class="pzc-sheet" role="dialog" aria-modal="true" aria-label="Sepet">
   <div class="pzc-top"><h2>Sepet</h2><div><button type="button" class="ghost" id="pzc-clear" hidden>Temizle</button> <button type="button" class="ghost" data-pzclose="1">Kapat</button></div></div>
@@ -1052,14 +1068,15 @@ function pzCard(s,si,k,n){
     (s.base?'<a class="add" href="'+esc(s.base+p[4])+'" target="_blank" rel="noopener">Sitede aç</a>':'')+'</div></li>';
 }
 function renderSellers(q){
-  var h='';
+  var h='', fon=pzFilterOn(); PZ_STAT={items:0,sellers:0}; PZI=pzIndex();
   PAZAR2.forEach(function(s,si){
     var brand=s.name||brandFromUrl(s.base), ix=[];
-    s.items.forEach(function(p,k){ if(!q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0)) ix.push(k); });
-    if(q && !ix.length) return;
+    s.items.forEach(function(p,k){ if((!q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0)) && pzPass(p)) ix.push(k); });
+    if((q||fon) && !ix.length) return;
+    PZ_STAT.items+=ix.length; PZ_STAT.sellers++;
     var np=s.items.filter(function(p){ return p[1]==null; }).length;
     var meta=s.items.length?ix.length+' parfüm'+(np===s.items.length?' · yalnızca ad':''):'veri yok';
-    h+='<details class="pz-seller" data-base="'+esc(s.base)+'"'+((q||PZ_OPEN[s.base])?' open':'')+'><summary><h2>Satıcı: '+esc(brand)+'</h2><span>'+meta+'</span></summary><div class="pz-body">';
+    h+='<details class="pz-seller" data-base="'+esc(s.base)+'"'+((q||fon||PZ_OPEN[s.base])?' open':'')+'><summary><h2>Satıcı: '+esc(brand)+'</h2><span>'+meta+'</span></summary><div class="pz-body">';
     h+='<div class="card pz-info"><p><b>Hacim seçenekleri:</b> '+esc(s.sizes||'—')+'</p><p><b>Kampanya / fiyat politikası:</b> '+esc(s.policy||'—')+'</p>'+
       (s.shipping?'<p><b>Kargo:</b> '+esc(pzShipTxt(s.shipping))+'</p>':'')+
       ((s.campaigns&&s.campaigns.length)?'<p><b>Sepet kampanyası:</b> '+s.campaigns.map(function(c){ return esc(c.label||c.type); }).join(' · ')+'</p>':'')+
@@ -1075,6 +1092,63 @@ function renderSellers(q){
   return h;
 }
 var PZC_DONE=null;
+
+/* ---------- pazar: filtreler (marka, hacim, cinsiyet, benzersiz ürün) ---------- */
+var PF={brand:'', ml:{}, g:{}, uniq:false}, PF_OPEN=true, PZ_STAT={items:0,sellers:0}, PZI={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0};
+var PF_BRANDS=[['Tom Ford'],['Parfums de Marly','Parfum de Marly','Pdm'],['Giorgio Armani','Armani Prive','Armani'],['Emporio Armani'],['Yves Saint Laurent','Ysl'],['Jean Paul Gaultier','Jpg'],['Louis Vuitton','Lv'],['Paco Rabanne','Rabanne'],['By Kilian','Kilian'],['Amouage'],['Burberry'],['Carolina Herrera'],['Creed'],['Gucci'],['Nishane'],['Hugo Boss','Boss'],['Chanel'],['Dior','Christian Dior'],['Maison Francis Kurkdjian','Mfk'],['Prada'],['Versace'],['Lancôme','Lancome'],['Frédéric Malle','Frederic Malle'],['Givenchy'],['Initio'],['Tiziana Terenzi'],['Dolce&Gabbana','Dolce Gabbana'],['Bvlgari','Bulgari'],['Mugler','Thierry Mugler'],['Orto Parisi'],['Chloé','Chloe'],['Ex Nihilo'],['Guerlain'],['Mancera'],['Memo Paris','Memo'],['Montale'],["Penhaligon's",'Penhaligons'],['Marc-Antoine Barrois'],['Byredo'],['Hermès','Hermes'],['Issey Miyake'],['Narciso Rodriguez'],['Nasomatto'],['Valentino'],["Victoria's Secret",'Victoria Secret'],['Bond No. 9','Bond No 9'],['Viktor&Rolf','Viktor Rolf'],['Azzaro'],['Lattafa'],['Kayali'],['Roja Parfums','Roja'],['Jo Malone London','Jo Malone'],['Maison Margiela','Maison Martin Margiela'],['Acqua di Parma'],['Clive Christian'],['Le Labo'],['Diptyque'],['Atkinsons'],['Escentric Molecules'],['Sospiro'],['Stéphane Humbert Lucas','Stephane Humbert Lucas'],['Xerjoff'],['Maison Crivelli'],['Matière Première','Matiere Premiere'],['BDK Parfums','Bdk'],['Essential Parfums'],['Atelier Rebul'],['Calvin Klein'],['Davidoff'],['Kenzo'],['Lacoste'],['Montblanc','Mont Blanc'],['Diesel'],['Fabergé','Faberge'],['Clinique'],['Zadig&Voltaire','Zadig Voltaire'],['Profumum Roma'],['Serge Lutens'],['Jovoy'],['Franck Boclet'],['Argos'],['Abdul Samad Al Qurashi'],['Lorenzo Pazzaglia'],['Thameen'],['Zoologist'],['Boadicea the Victorious'],['Giardini di Toscana'],['Dr Van Not'],['Ormonde Jayne'],['Balenciaga'],['Bourjois'],['Genyum'],['Nicolai'],['Floraiku'],['Gritti'],['Kajal'],['Armaf'],['Afnan'],['Rasasi'],['Ajmal'],['Swiss Arabian'],['Al Haramain'],['Emre Boslu'],['Bogu'],['Reni'],['Locc'],['Unilux'],['Aj'],['Tvmvlvs'],['Aervm'],['Aqvamare'],['Born to Stand Out']];
+var PF_BTOK=null, PF_BCACHE={};
+function pzTok(x){ return norm(x).split(/[^a-z0-9]+/).filter(Boolean); }
+function pzBrand(name){
+  if(PF_BCACHE[name]) return PF_BCACHE[name];
+  if(!PF_BTOK){ PF_BTOK=[]; PF_BRANDS.forEach(function(b){ b.forEach(function(a){ PF_BTOK.push({t:pzTok(a), d:b[0]}); }); }); PF_BTOK.sort(function(a,b){ return b.t.length-a.t.length; }); }
+  var nt=pzTok(name), r='';
+  for(var i=0;i<PF_BTOK.length && !r;i++){ var t=PF_BTOK[i].t, ok=t.length<=nt.length; for(var j=0;ok&&j<t.length;j++) if(t[j]!==nt[j]) ok=false; if(ok) r=PF_BTOK[i].d; }
+  if(!r){ r=String(name).trim().split(/\s+/)[0]||'Diğer'; }
+  return (PF_BCACHE[name]=r);
+}
+function pzKey(name){ return norm(name).replace(/[^a-z0-9]/g,''); }
+function pzIsSet(p){ return /\b(seti?|deneme|kesif|tester)\b/.test(norm(p[0])); }
+function pzMls(p){ var m={}; pzVars(p).forEach(function(v){ if(v.ml && !v.label) m[v.ml]=1; }); if(p[3]) m[p[3]]=1; return Object.keys(m).map(Number); }
+function pzGen(p){ var g=p[8]; return (g==='Erkek'||g==='Kadın'||g==='Unisex')?g:''; }
+function pzIndex(){
+  var I={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0}, sellersOf={}, bseen={};
+  PAZAR2.forEach(function(s){ var sk=pzSk(s); s.items.forEach(function(p){
+    var k=pzKey(p[0]); if(!k) return;
+    if(!pzIsSet(p)){ (sellersOf[k]=sellersOf[k]||{})[sk]=1; }
+    var b=pzBrand(p[0]); if(!bseen[b+'|'+k]){ bseen[b+'|'+k]=1; I.brands[b]=(I.brands[b]||0)+1; }
+    pzMls(p).forEach(function(m){ I.mls[m]=(I.mls[m]||0)+1; });
+    var g=pzGen(p); if(g) I.gens[g]=(I.gens[g]||0)+1; else I.nogen++;
+  }); });
+  Object.keys(sellersOf).forEach(function(k){ var n=Object.keys(sellersOf[k]).length; I.cnt[k]=n; if(n===1) I.uniq++; });
+  return I;
+}
+function pzFilterOn(){ return !!(PF.brand || PF.uniq || Object.keys(PF.ml).length || Object.keys(PF.g).length); }
+function pzPass(p){
+  if(PF.brand && pzBrand(p[0])!==PF.brand) return false;
+  var mk=Object.keys(PF.ml); if(mk.length){ var ms=pzMls(p); if(!ms.some(function(m){ return PF.ml[m]; })) return false; }
+  var gk=Object.keys(PF.g); if(gk.length){ var g=pzGen(p)||'—'; if(!PF.g[g]) return false; }
+  if(PF.uniq){ if(pzIsSet(p)) return false; if(PZI.cnt[pzKey(p[0])]!==1) return false; }
+  return true;
+}
+function renderPzFilters(){
+  var el=$('pz-filters'); if(!el) return;
+  if(!PAZAR2.length || !PAZAR2.some(function(s){ return s.items.length; })){ el.innerHTML=''; return; }
+  var I=PZI, bl=Object.keys(I.brands).sort(function(a,b){ return a.localeCompare(b,'tr'); });
+  var mls=Object.keys(I.mls).map(Number).sort(function(a,b){ return a-b; });
+  var act=(PF.brand?1:0)+Object.keys(PF.ml).length+Object.keys(PF.g).length+(PF.uniq?1:0);
+  var h='<details class="pzf" id="pzf-d"'+(PF_OPEN?' open':'')+'><summary><b>Filtrele</b><span>'+(act?act+' filtre açık':'marka · hacim · cinsiyet · benzersiz')+'</span></summary><div class="pzf-b">';
+  h+='<div><button type="button" class="chip pzf-uniq" data-pzf="uniq" aria-pressed="'+PF.uniq+'">★ Benzersiz ürünler<small>'+I.uniq+'</small></button><p class="hint" style="margin:6px 0 0;font-size:13px">Yalnızca tek satıcıda bulunan kokular. Birden fazla satıcıda olanlar ve deneme setleri listelenmez.</p></div>';
+  h+='<label class="field"><span>Marka</span><select id="pzf-brand"><option value="">Tüm markalar</option>'+bl.map(function(b){ return '<option value="'+esc(b)+'"'+(PF.brand===b?' selected':'')+'>'+esc(b)+' ('+I.brands[b]+')</option>'; }).join('')+'</select></label>';
+  h+='<div class="field"><span>Hacim</span><div class="chips">'+mls.map(function(m){ return '<button type="button" class="chip" data-pzf="ml" data-v="'+m+'" aria-pressed="'+!!PF.ml[m]+'">'+nf0.format(m)+' ml<small>'+I.mls[m]+'</small></button>'; }).join('')+'</div></div>';
+  var gs=['Erkek','Kadın','Unisex'].filter(function(g){ return I.gens[g]; }); if(I.nogen) gs.push('—');
+  h+='<div class="field"><span>Cinsiyet</span><div class="chips">'+gs.map(function(g){ return '<button type="button" class="chip" data-pzf="g" data-v="'+esc(g)+'" aria-pressed="'+!!PF.g[g]+'">'+(g==='—'?'Belirtilmemiş':g)+'<small>'+(g==='—'?I.nogen:I.gens[g])+'</small></button>'; }).join('')+'</div></div>';
+  h+='<div class="pzf-foot"><span><b>'+PZ_STAT.items+'</b> ürün · <b>'+PZ_STAT.sellers+'</b> satıcı</span>'+(act?'<button type="button" class="ghost" data-pzf="clear">Filtreleri temizle</button>':'')+'</div></div></details>';
+  el.innerHTML=h;
+}
+function pzCloseVis(){
+  var b=$('pz-close'); if(!b) return;
+  b.hidden = !(tabNow==='pazar' && document.querySelector('#pz-list details.pz-seller[open]'));
+}
 function pzcBadge(){
   var q=0; PZC.forEach(function(e){ if(pzcFind(e)) q+=e.q; });
   var b=$('pzc-count'); b.textContent=q; b.hidden=!q;
@@ -1136,7 +1210,12 @@ function renderPazar(){
   }).join('')+'</ol>';
   var shown=all.length;
   var bh=any?'<details class="pz-seller" data-base="'+BARRONI_BASE+'"'+((q||PZ_OPEN[BARRONI_BASE])?' open':'')+'><summary><h2>Satıcı: Barroni</h2><span>'+shown+' parfüm</span></summary><div class="pz-body"><div class="card pz-info"><p><b>Hacim seçenekleri:</b> 50 ml; 5 ml test serisi.</p><p><b>Kampanya / fiyat politikası:</b> —</p><p class="muted">'+esc(leadTxt)+'</p><p style="margin:8px 0 0"><a class="add" href="'+BARRONI_BASE+'" target="_blank" rel="noopener">Siteyi aç</a></p></div>'+h+'</div></details>':'';
-  pzcBadge(); $('pz-list').innerHTML = pzBar() + bh + renderSellers(q) + (LIVE_ENABLED ? renderLive(q) : '');
+  if(pzFilterOn()) bh='';
+  var sh=renderSellers(q);
+  renderPzFilters();
+  pzcBadge(); $('pz-list').innerHTML = pzBar() + bh + sh + (LIVE_ENABLED ? renderLive(q) : '');
+  if(pzFilterOn() && !PZ_STAT.items) $('pz-list').innerHTML+='<div class="card"><p class="empty">Bu filtrelere uyan ürün yok.</p></div>';
+  pzCloseVis();
 }
 
 /* ---------- sade: en ucuzlar ---------- */
@@ -1433,6 +1512,7 @@ function renderPane(){
   else if(tabNow==='plan') renderPlan();
   else if(tabNow==='puan') renderPuan();
   else if(tabNow==='veri') renderVeri();
+  pzCloseVis();
 }
 function refresh(){ build(); renderTabs(); renderHeader(); renderPane(); }
 function renderAll(){
@@ -1509,8 +1589,24 @@ $('pform').addEventListener('submit', function(e){ e.preventDefault(); savePForm
 $('rvform').addEventListener('submit', function(e){ e.preventDefault(); saveRv(); });
 $('pz-q').addEventListener('input', function(){ renderPazar(); });
 $('pz-refresh').addEventListener('click', function(){ LIVE={}; liveStartAll(); renderPazar(); });
-$('pz-list').addEventListener('toggle', function(e){ var d=e.target; if(d&&d.classList&&d.classList.contains('pz-seller')&&!$('pz-q').value.trim()) PZ_OPEN[d.getAttribute('data-base')]=d.open; }, true);
-$('pz-list').addEventListener('click', function(e){ var b=e.target.closest&&e.target.closest('[data-pz-all]'); if(!b) return; var on=b.getAttribute('data-pz-all')==='1'; PZ_OPEN[BARRONI_BASE]=on; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=on; }); Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=on; }); });
+$('pz-list').addEventListener('toggle', function(e){ var d=e.target; if(d&&d.classList&&d.classList.contains('pz-seller')&&!$('pz-q').value.trim()) PZ_OPEN[d.getAttribute('data-base')]=d.open; if(d&&d.classList&&d.classList.contains('pz-seller')) pzCloseVis(); }, true);
+$('pz-list').addEventListener('click', function(e){ var b=e.target.closest&&e.target.closest('[data-pz-all]'); if(!b) return; var on=b.getAttribute('data-pz-all')==='1'; PZ_OPEN[BARRONI_BASE]=on; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=on; }); Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=on; }); pzCloseVis(); });
+
+$('pz-close').addEventListener('click', function(){
+  PZ_OPEN[BARRONI_BASE]=false; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=false; });
+  Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=false; });
+  pzCloseVis(); var r=$('pz-filters').getBoundingClientRect(); window.scrollTo({top:Math.max(0,window.pageYOffset+r.top-60)});
+});
+$('pz-filters').addEventListener('click', function(e){
+  var b=e.target.closest&&e.target.closest('[data-pzf]'); if(!b) return; var k=b.getAttribute('data-pzf'), v=b.getAttribute('data-v');
+  if(k==='uniq') PF.uniq=!PF.uniq;
+  else if(k==='ml'){ if(PF.ml[v]) delete PF.ml[v]; else PF.ml[v]=1; }
+  else if(k==='g'){ if(PF.g[v]) delete PF.g[v]; else PF.g[v]=1; }
+  else if(k==='clear') PF={brand:'',ml:{},g:{},uniq:false};
+  renderPazar();
+});
+$('pz-filters').addEventListener('change', function(e){ if(e.target.id==='pzf-brand'){ PF.brand=e.target.value; renderPazar(); } });
+$('pz-filters').addEventListener('toggle', function(e){ if(e.target.id==='pzf-d') PF_OPEN=e.target.open; }, true);
 $('u-q').addEventListener('input', function(){ SS.n=10; renderUcuz(); });
 $('u-budget').addEventListener('input', function(){ SS.n=10; renderUcuz(); });
 $('q').addEventListener('input', function(){ F.q=this.value; renderHeader(); renderPane(); });
