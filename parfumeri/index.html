@@ -299,6 +299,32 @@ td small{display:block; color:var(--muted); font-size:14px}
 [data-mode="simple"] .adv-only{display:none!important}
 @media (max-width:520px){ .opt{grid-template-columns:1fr} .opt > div:last-child{display:flex; justify-content:space-between; align-items:center; gap:10px} }
 @media (prefers-reduced-motion: no-preference){ .hb-track i{transition:width .25s ease} }
+.ucard .act{gap:8px; flex-wrap:wrap; align-items:center}
+.pz-vs{font:400 12.5px var(--f-mono); color:var(--ink); background:var(--surface-2); border:1px solid var(--line); border-radius:2px; padding:6px 8px; max-width:100%}
+.add:disabled{opacity:.45; cursor:not-allowed}
+#pzc-fab{position:fixed; right:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); z-index:50; border:1px solid var(--accent); background:var(--accent); color:var(--accent-ink); border-radius:2px; padding:10px 16px; font:700 12.5px var(--f-mono); letter-spacing:.1em; text-transform:uppercase; box-shadow:0 4px 18px rgba(0,0,0,.35)}
+#pzc-fab .badge{background:var(--accent-ink); color:var(--accent)}
+#pzc-panel{position:fixed; inset:0; z-index:60; display:flex; justify-content:flex-end; background:rgba(0,0,0,.55)}
+#pzc-panel[hidden]{display:none}
+.pzc-sheet{width:min(520px,100%); height:100%; overflow:auto; background:var(--bg); color:var(--ink); border-left:1px solid var(--line); padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px))}
+.pzc-top{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px}
+.pzc-top h2{margin:0; font:italic 600 28px var(--f-display)}
+.pzc-g,.pzc-sum{background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:14px; margin:0 0 4px}
+.pzc-g h3,.pzc-sum h3{margin:0 0 8px; font:italic 600 22px var(--f-display); color:var(--accent)}
+.pzc-sep{border:0; border-top:1px dashed var(--line); margin:12px 4px}
+.pzc-l{list-style:none; margin:0 0 8px; padding:0}
+.pzc-l li{display:grid; grid-template-columns:minmax(0,1fr) auto auto auto; gap:6px 10px; align-items:center; padding:8px 0; border-bottom:1px solid var(--line-soft)}
+.pzc-n b{font:600 17px/1.2 var(--f-display); overflow-wrap:anywhere}
+.pzc-n small{display:block; font:400 12px var(--f-mono); color:var(--muted)}
+.pzc-q{display:flex; align-items:center; gap:6px; font:700 13px var(--f-mono)}
+.pzc-q button,.pzc-x{border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:2px; width:28px; height:28px; font:700 15px/1 var(--f-mono)}
+.pzc-p{font:700 13px var(--f-mono); text-align:right; white-space:nowrap}
+.pzc-r{display:flex; justify-content:space-between; gap:12px; padding:3px 0; font:400 13px var(--f-mono)}
+.pzc-r b{font-weight:700; text-align:right}
+.pzc-d b{color:var(--c-l)}
+.pzc-t{border-top:1px solid var(--line); margin-top:6px; padding-top:8px; font-size:14px}
+.pzc-gt{border-top:2px solid var(--accent); margin-top:8px; padding-top:10px; font-size:16px; color:var(--accent)}
+.pzc-h{margin:4px 0 0; font:400 12px var(--f-mono); color:var(--muted)}
 </style>
 
 <div class="app" id="app">
@@ -510,6 +536,11 @@ td small{display:block; color:var(--muted); font-size:14px}
   <footer class="foot" id="sync"></footer>
 </div>
 
+<button type="button" id="pzc-fab" aria-label="Sepeti aç">Sepet <span class="badge" id="pzc-count" hidden>0</span></button>
+<div id="pzc-panel" hidden><div class="pzc-sheet" role="dialog" aria-modal="true" aria-label="Sepet">
+  <div class="pzc-top"><h2>Sepet</h2><div><button type="button" class="ghost" id="pzc-clear" hidden>Temizle</button> <button type="button" class="ghost" data-pzclose="1">Kapat</button></div></div>
+  <div id="pzc-body"></div>
+</div></div>
 <script>
 (function(){
 'use strict';
@@ -924,7 +955,7 @@ var PAZAR2=[];
   function get(u){ return fetch(u,{cache:'no-cache'}).then(function(r){ if(!r.ok) throw new Error(u+' '+r.status); return r.json(); }); }
   function merge(t,a){
     (a.items||[]).forEach(function(p){ var k=nk(p), i=-1; t.items.forEach(function(q,j){ if(i<0&&nk(q)===k) i=j; }); if(i>=0) t.items[i]=p; else t.items.push(p); });
-    ['note','sizes','policy'].forEach(function(f){ if(a[f]) t[f]=a[f]; });
+    ['note','sizes','policy','shipping','campaigns'].forEach(function(f){ if(a[f]) t[f]=a[f]; });
   }
   get('data/index.json').then(function(m){
     if(m.date) PAZAR2_DATE=m.date;
@@ -943,32 +974,79 @@ var PZ_OPEN={};
 var BARRONI_BASE='https://barroniprofumo.com';
 function pzBar(){ return '<p class="pz-bar"><button type="button" class="add" data-pz-all="1">Tümünü aç</button> <button type="button" class="add" data-pz-all="0">Tümünü kapat</button></p>'; }
 function pzPrice(v){ return typeof v==='string' ? v : nfp.format(v)+' TL'; }
+/*PZC*/
+
+function pzCard(s,si,k,n){
+  var p=s.items[k], brand=s.name||brandFromUrl(s.base), vs=pzVars(p), v=pzCur(si,k,p), multi=vs.length>1;
+  var ml=v?v.ml:p[3], price=v?v.price:p[1], oldp=v?v.old:p[2], hasPrice=price!=null;
+  var opts=(!multi && p[6])?p[6]:'';
+  var sel=multi?'<select class="pz-vs" data-pzvs="'+si+'|'+k+'" aria-label="Hacim seç">'+vs.map(function(x){ return '<option value="'+esc(x.id)+'"'+(v&&x.id===v.id?' selected':'')+'>'+(x.label?x.label:(x.ml?nf0.format(x.ml)+' ml':'Hacim yok'))+' · '+nfp.format(x.price)+' TL</option>'; }).join('')+'</select>':'';
+  return '<li class="ucard"><span class="n">'+n+'</span>'+
+    '<div class="m"><b>'+esc(p[0])+'</b><small>'+esc(brand)+(ml?' · '+nf0.format(ml)+' ml'+(typeof price==='number'?' · '+f2(price/ml)+' TL/ml':''):'')+(opts?' · seçenekler: '+esc(opts):'')+(p[8]?' · '+esc(p[8]):'')+'</small></div>'+
+    '<div class="pr">'+(hasPrice?'<strong>'+esc(pzPrice(price))+'</strong>'+(oldp?'<s>'+nfp.format(oldp)+' TL</s>':''):'<span class="muted">Fiyat yok</span>')+'</div>'+
+    '<div class="act">'+sel+(v?'<button type="button" class="add pz-cartbtn" data-pzadd="'+si+'|'+k+'">Sepete ekle</button>':'<button type="button" class="add" disabled title="Fiyat olmadığı için sepete eklenemez">Sepete ekle</button>')+
+    (s.base?'<a class="add" href="'+esc(s.base+p[4])+'" target="_blank" rel="noopener">Sitede aç</a>':'')+'</div></li>';
+}
 function renderSellers(q){
   var h='';
-  PAZAR2.forEach(function(s){
-    var brand=s.name||brandFromUrl(s.base), list=s.items.filter(function(p){ return !q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0); });
-    if(q && !list.length) return;
+  PAZAR2.forEach(function(s,si){
+    var brand=s.name||brandFromUrl(s.base), ix=[];
+    s.items.forEach(function(p,k){ if(!q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0)) ix.push(k); });
+    if(q && !ix.length) return;
     var np=s.items.filter(function(p){ return p[1]==null; }).length;
-    var meta=s.items.length?list.length+' parfüm'+(np===s.items.length?' · yalnızca ad':''):'veri yok';
+    var meta=s.items.length?ix.length+' parfüm'+(np===s.items.length?' · yalnızca ad':''):'veri yok';
     h+='<details class="pz-seller" data-base="'+esc(s.base)+'"'+((q||PZ_OPEN[s.base])?' open':'')+'><summary><h2>Satıcı: '+esc(brand)+'</h2><span>'+meta+'</span></summary><div class="pz-body">';
     h+='<div class="card pz-info"><p><b>Hacim seçenekleri:</b> '+esc(s.sizes||'—')+'</p><p><b>Kampanya / fiyat politikası:</b> '+esc(s.policy||'—')+'</p>'+
+      (s.shipping?'<p><b>Kargo:</b> '+esc(pzShipTxt(s.shipping))+'</p>':'')+
+      ((s.campaigns&&s.campaigns.length)?'<p><b>Sepet kampanyası:</b> '+s.campaigns.map(function(c){ return esc(c.label||c.type); }).join(' · ')+'</p>':'')+
       (s.items.length?'<p class="muted">'+esc(s.note)+'</p>':'<p class="empty" style="padding:10px 0 4px">Veri çekilemedi<br><small>'+esc(s.note)+'</small></p>')+
       (s.base?'<p style="margin:8px 0 0"><a class="add" href="'+esc(s.base)+'" target="_blank" rel="noopener">Siteyi aç</a></p>':'')+'</div>';
     if(s.items.length){
       h+='<ol class="ulist pz-live">';
-      list.forEach(function(p,i){
-        var ml=p[3], sold=p[5]==='x', opts=p[6], hasPrice=p[1]!=null;
-        h+='<li class="ucard"><span class="n">'+(i+1)+'</span>'+
-          '<div class="m"><b>'+esc(p[0])+'</b><small>'+esc(brand)+(ml?' · '+nf0.format(ml)+' ml'+(typeof p[1]==='number'?' · '+f2(p[1]/ml)+' TL/ml':''):'')+(opts?' · seçenekler: '+esc(opts):'')+(p[8]?' · '+esc(p[8]):'')+''+'</small></div>'+
-          '<div class="pr">'+(hasPrice?'<strong>'+esc(pzPrice(p[1]))+'</strong>'+(p[2]?'<s>'+nfp.format(p[2])+' TL</s>':''):'<span class="muted">Fiyat yok</span>')+'</div>'+
-          (s.base?'<div class="act"><a class="add" href="'+esc(s.base+p[4])+'" target="_blank" rel="noopener">Sitede aç</a></div>':'')+'</li>';
-      });
+      ix.forEach(function(k,i){ h+=pzCard(s,si,k,i+1); });
       h+='</ol>';
     }
     h+='</div></details>';
   });
   return h;
 }
+function pzcBadge(){
+  var q=0; PZC.forEach(function(e){ if(pzcFind(e)) q+=e.q; });
+  var b=$('pzc-count'); b.textContent=q; b.hidden=!q;
+}
+function pzcRender(){
+  var T=pzcCalc(), el=$('pzc-body'), h='';
+  pzcBadge();
+  if(!T.groups.length){ el.innerHTML='<p class="empty">Sepet boş. Pazar sekmesinde bir kartın sağındaki “Sepete ekle” düğmesine bas.</p>'; $('pzc-clear').hidden=true; return; }
+  $('pzc-clear').hidden=false;
+  T.groups.forEach(function(g,gi){
+    if(gi) h+='<hr class="pzc-sep">';
+    h+='<section class="pzc-g"><h3>'+esc(g.s.name||brandFromUrl(g.s.base))+'</h3><ul class="pzc-l">';
+    g.lines.forEach(function(l){
+      h+='<li><div class="pzc-n"><b>'+esc(l.p[0])+'</b><small>'+(l.v.ml?nf0.format(l.v.ml)+' ml · ':'')+tl(l.v.price)+'</small></div>'+
+        '<div class="pzc-q"><button type="button" data-pzq="-1" data-i="'+l.i+'" aria-label="Azalt">−</button><span>'+l.e.q+'</span><button type="button" data-pzq="1" data-i="'+l.i+'" aria-label="Artır">+</button></div>'+
+        '<div class="pzc-p">'+tl(l.sum)+'</div><button type="button" class="pzc-x" data-pzdel="'+l.i+'" aria-label="Sil">×</button></li>';
+    });
+    h+='</ul><div class="pzc-r"><span>Ürünler</span><b>'+tl(g.sub)+'</b></div>';
+    if(g.camp) h+='<div class="pzc-r pzc-d"><span>Kampanya: '+esc(g.camp.c.label||g.camp.c.type)+'</span><b>− '+tl(g.disc)+'</b></div>';
+    h+='<div class="pzc-r"><span>Kargo</span><b>'+(g.ship.t==='free'?'Ücretsiz kargo':(g.ship.t==='paid'?tl(g.ship.cost):'Bilgi yok'))+'</b></div>';
+    g.gifts.forEach(function(c){ h+='<div class="pzc-r pzc-d"><span>Hediye: '+esc(c.label||'Hediye')+'</span><b>'+(c.n>1?'× '+c.n:'Kazandın')+'</b></div>'; });
+    if(g.ship.t==='paid' && g.ship.need>0) h+='<p class="pzc-h">Ücretsiz kargo için '+tl(g.ship.need)+' daha ekle.</p>';
+    h+='<div class="pzc-r pzc-t"><span>'+esc(g.s.name||'Satıcı')+' toplamı</span><b>'+tl(g.total)+'</b></div></section>';
+  });
+  h+='<section class="pzc-sum"><h3>Sepet özeti</h3>';
+  T.groups.forEach(function(g){
+    var nm=esc(g.s.name||brandFromUrl(g.s.base));
+    h+='<div class="pzc-r"><span>'+nm+' · ürünler'+(g.disc?' (indirimli)':'')+'</span><b>'+tl(g.net)+'</b></div>'+
+       '<div class="pzc-r"><span>'+nm+' · kargo</span><b>'+(g.ship.t==='free'?'Ücretsiz':(g.ship.t==='paid'?tl(g.ship.cost):'Bilgi yok'))+'</b></div>';
+  });
+  h+='<div class="pzc-r pzc-gt"><span>Genel toplam</span><b>'+tl(T.total)+'</b></div>';
+  if(T.unknown.length) h+='<p class="pzc-h">Kargo bilgisi olmadığı için toplama dahil değil: '+esc(T.unknown.join(', '))+'.</p>';
+  h+='<p class="pzc-h">Ödeme her satıcının kendi sitesinde yapılır. Bu sepet fiyat hesabı içindir.</p></section>';
+  el.innerHTML=h;
+}
+function pzcOpen(on){ $('pzc-panel').hidden=!on; if(on) pzcRender(); }
+
 var nfp=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:2});
 
 function renderPazar(){
@@ -988,7 +1066,7 @@ function renderPazar(){
   }).join('')+'</ol>';
   var shown=all.length;
   var bh=any?'<details class="pz-seller" data-base="'+BARRONI_BASE+'"'+((q||PZ_OPEN[BARRONI_BASE])?' open':'')+'><summary><h2>Satıcı: Barroni</h2><span>'+shown+' parfüm</span></summary><div class="pz-body"><div class="card pz-info"><p><b>Hacim seçenekleri:</b> 50 ml; 5 ml test serisi.</p><p><b>Kampanya / fiyat politikası:</b> —</p><p class="muted">'+esc(leadTxt)+'</p><p style="margin:8px 0 0"><a class="add" href="'+BARRONI_BASE+'" target="_blank" rel="noopener">Siteyi aç</a></p></div>'+h+'</div></details>':'';
-  $('pz-list').innerHTML = pzBar() + bh + renderSellers(q) + (LIVE_ENABLED ? renderLive(q) : '');
+  pzcBadge(); $('pz-list').innerHTML = pzBar() + bh + renderSellers(q) + (LIVE_ENABLED ? renderLive(q) : '');
 }
 
 /* ---------- sade: en ucuzlar ---------- */
@@ -1377,6 +1455,109 @@ $('scatter').addEventListener('mouseover', function(e){ var c=e.target.closest('
 $('scatter').addEventListener('click', function(e){ var c=e.target.closest('circle[data-i]'); if(c) showPoint(+c.getAttribute('data-i')); });
 function showPoint(i){ var r=scatterList[i]; if(r) $('ptinfo').textContent=r.s+' · '+nf0.format(r.b)+' ml şişe × '+r.n+' · paket '+mlf(r.v)+' · '+tl(r.c)+' · '+f2(r.u)+' TL/ml'; }
 var rz; window.addEventListener('resize', function(){ clearTimeout(rz); rz=setTimeout(function(){ if(tabNow==='grafik') drawScatter(filtered()); },150); });
+
+/*PZC-CALC-START*/
+var PZ_SEL={}, PZC_KEY='pzcart1';
+var PZC=(function(){ var a=LS.get(PZC_KEY); return Array.isArray(a)?a:[]; })();
+function pzcSave(){ LS.set(PZC_KEY,PZC); }
+function pzSk(s){ return (s.base||'')+'|'+(s.name||''); }
+function pzVars(p){
+  if(Array.isArray(p[9]) && p[9].length) return p[9].filter(function(v){ return typeof v[1]==='number'; }).map(function(v){ return {ml:v[0],price:v[1],old:v[2]||null,label:v[3]||'',id:String(v[3]||v[0])}; });
+  if(typeof p[1]==='number') return [{ml:p[3],price:p[1],old:p[2]||null,label:'',id:String(p[3])}];
+  return [];
+}
+function pzCur(si,k,p){
+  var vs=pzVars(p); if(!vs.length) return null;
+  var sel=PZ_SEL[si+'|'+k], i;
+  if(sel!==undefined) for(i=0;i<vs.length;i++) if(vs[i].id===String(sel)) return vs[i];
+  for(i=0;i<vs.length;i++) if(vs[i].id===String(p[3])) return vs[i];
+  return vs[0];
+}
+function pzcFind(e){
+  for(var si=0;si<PAZAR2.length;si++){
+    var s=PAZAR2[si]; if(pzSk(s)!==e.s) continue;
+    for(var k=0;k<s.items.length;k++){
+      var p=s.items[k]; if(p[0]!==e.n) continue;
+      var vs=pzVars(p);
+      for(var j=0;j<vs.length;j++) if(vs[j].id===String(e.ml)) return {s:s,si:si,p:p,k:k,v:vs[j]};
+    }
+  }
+  return null;
+}
+function r2(x){ return Math.round(x*100)/100; }
+function pzcCampaign(g){
+  var best=null;
+  (g.s.campaigns||[]).forEach(function(c){
+    var d=0, u, free, i;
+    var qn=g.units.length, us;
+    if(c.type==='percent'){ if(g.sub>=(c.min||0) && !(c.maxQty && qn>c.maxQty) && !(c.minQty && qn<c.minQty)) d=g.sub*c.value/100; }
+    else if(c.type==='nthPercent'){ us=g.units.map(function(x){ return x.p; }).sort(function(a,b){ return b-a; }); for(i=c.n-1;i<us.length;i+=c.n) d+=us[i]*c.value/100; }
+    else if(c.type==='seqPercent'){ us=g.units.map(function(x){ return x.p; }).sort(function(a,b){ return b-a; }); for(i=0;i<us.length;i++) d+=us[i]*c.percents[i%c.percents.length]/100; }
+    else if(c.type==='amountOff'){ if(g.sub>=(c.min||0)) d=Math.min(c.value,g.sub); }
+    else if(c.type==='buyXPayY'){
+      var pool=g.units.filter(function(x){ return !c.ml || c.ml.indexOf(x.ml)>=0; }), sets=[pool];
+      if(c.perMl){ var m={}; sets=[]; pool.forEach(function(x){ (m[x.ml]=m[x.ml]||[]).push(x); }); for(var kk in m) sets.push(m[kk]); }
+      sets.forEach(function(st){ u=st.map(function(x){ return x.p; }).sort(function(a,b){ return a-b; }); free=Math.floor(u.length/c.buy)*(c.buy-c.pay); for(i=0;i<free;i++) d+=u[i]; });
+    }
+    d=r2(d);
+    if(d>0 && (!best||d>best.d)) best={c:c,d:d};
+  });
+  return best;
+}
+function pzcCalc(){
+  var groups=[], idx={};
+  PZC.forEach(function(e,i){
+    var r=pzcFind(e); if(!r) return;
+    var g=idx[e.s];
+    if(!g){ g=idx[e.s]={s:r.s,lines:[],sub:0,units:[]}; groups.push(g); }
+    g.lines.push({i:i,e:e,p:r.p,v:r.v,sum:r2(r.v.price*e.q)});
+    g.sub=r2(g.sub+r.v.price*e.q);
+    for(var n=0;n<e.q;n++) g.units.push({p:r.v.price,ml:r.v.ml});
+  });
+  var T={groups:groups,sub:0,disc:0,ship:0,total:0,unknown:[],qty:0};
+  groups.forEach(function(g){
+    var cp=pzcCampaign(g); g.camp=cp; g.disc=cp?cp.d:0; g.net=r2(g.sub-g.disc);
+    var sh=g.s.shipping;
+    if(sh && ((sh.freeOver!=null && g.net>=sh.freeOver) || sh.cost===0)) g.ship={t:'free',cost:0};
+    else if(sh && typeof sh.cost==='number') g.ship={t:'paid',cost:sh.cost,need:(sh.freeOver!=null? r2(sh.freeOver-g.net):null)};
+    else g.ship={t:'unknown',cost:0};
+    g.gifts=[]; (g.s.campaigns||[]).forEach(function(c){ if(c.type!=='gift') return; var n=1; if(c.per){ n=Math.floor(g.net/c.per); } else if(g.net<(c.min||0)) n=0; if(n>0) g.gifts.push({label:c.label,n:n}); });
+    g.total=r2(g.net+g.ship.cost);
+    T.sub=r2(T.sub+g.sub); T.disc=r2(T.disc+g.disc); T.ship=r2(T.ship+g.ship.cost); T.total=r2(T.total+g.total);
+    if(g.ship.t==='unknown') T.unknown.push(g.s.name||g.s.base);
+    g.lines.forEach(function(l){ T.qty+=l.e.q; });
+  });
+  return T;
+}
+function pzShipTxt(sh){
+  if(sh.cost===0) return 'Ücretsiz kargo';
+  var t=(typeof sh.cost==='number')?tl(sh.cost):'';
+  if(sh.freeOver!=null) t+=(t?' · ':'')+tl(sh.freeOver)+' ve üzeri ücretsiz';
+  return t;
+}
+/*PZC-CALC-END*/
+
+document.addEventListener('click', function(e){
+  var t=e.target, b;
+  if(t.closest && (b=t.closest('[data-pzadd]'))){
+    var a=b.getAttribute('data-pzadd').split('|'), si=+a[0], k=+a[1], s=PAZAR2[si], p=s&&s.items[k], v=p&&pzCur(si,k,p); if(!v) return;
+    var key=pzSk(s), f=null; PZC.forEach(function(x){ if(x.s===key&&x.n===p[0]&&String(x.ml)===v.id) f=x; });
+    if(f){ if(f.q<99) f.q++; } else PZC.push({s:key,n:p[0],ml:v.id,q:1});
+    pzcSave(); pzcBadge(); b.textContent='Eklendi ✓'; setTimeout(function(){ b.textContent='Sepete ekle'; },1200); return;
+  }
+  if(t.closest && t.closest('#pzc-fab')){ pzcOpen(true); return; }
+  if(t.closest && t.closest('[data-pzclose]')){ pzcOpen(false); return; }
+  if(t.closest && (b=t.closest('[data-pzq]'))){ var e1=PZC[+b.getAttribute('data-i')]; if(e1){ e1.q=Math.max(1,Math.min(99,e1.q+(+b.getAttribute('data-pzq')))); pzcSave(); pzcRender(); } return; }
+  if(t.closest && (b=t.closest('[data-pzdel]'))){ PZC.splice(+b.getAttribute('data-pzdel'),1); pzcSave(); pzcRender(); return; }
+  if(t.closest && t.closest('#pzc-clear')){ PZC.length=0; pzcSave(); pzcRender(); return; }
+});
+document.addEventListener('change', function(e){
+  var sl=e.target.closest && e.target.closest('select[data-pzvs]'); if(!sl) return;
+  var a=sl.getAttribute('data-pzvs').split('|'), si=+a[0], k=+a[1], li=sl.closest('li');
+  PZ_SEL[si+'|'+k]=sl.value;
+  li.outerHTML=pzCard(PAZAR2[si],si,k,li.querySelector('.n').textContent);
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- başlat ---------- */
 loadLocal();
