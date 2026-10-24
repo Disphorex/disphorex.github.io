@@ -1,5 +1,6 @@
 {
 "base": "https://www.famakdefragancia.com",
+"name": "Famak de Fragancia",
 "note": "Sitenin listesi (kodlar, \"MUADİL\", \"En Yeniler / Klasikler / Çok Satanlar\" etiketleri ve \"3 AL 2 ÖDE\" kart yazıları alınmadı; tekrar eden satırlar tek kayda indirildi). Kategori Famak kodundan alındı: FM erkek, FW kadın. Hangi hacmin fiyatı olduğu kartlarda yazmadığı için hacim boş, seçenekler satıcı bilgisinde (50 / 100 ml). Yeni eklenen ürünlerde \"Sitede aç\" ana sayfaya gider.",
 "sizes": "50 ml ve 100 ml (sitedeki boyut filtresi). Kartta hangi boyutun fiyatı olduğu yazmıyor; filtrede fiyat aralığı ₺899 – ₺1.099.",
 "policy": "Ürünlerin hepsinde \"3 al 2 öde\" etiketi. %25 esans oranı. Deneme seti: \"İmza Koku\" 5x10 ml, 999 TL.",

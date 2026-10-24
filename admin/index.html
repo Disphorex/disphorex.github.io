@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Pazar yönetimi</title>
+<style>
+:root{--bg:#100D0B;--card:#1B1511;--ink:#EADFC8;--mut:#A99A83;--line:#3D3128;--acc:#C9A45C;--acc-ink:#1A130D;--bad:#E07B6A;--ok:#8DBF8A;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:light){:root{--bg:#F6F1E7;--card:#FFFDF8;--ink:#2A2118;--mut:#6F6252;--line:#D9CDB8;--acc:#8A6A2A;--acc-ink:#fff;--bad:#B3402F;--ok:#3E7A3B;color-scheme:light}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+.w{max-width:760px;margin:0 auto;padding:14px 14px 30px}
+h1{font:italic 400 24px/1.2 Georgia,serif;margin:6px 0 4px}h2{font-size:17px;margin:18px 0 8px}
+.m{color:var(--mut);font-size:14px;margin:4px 0 12px}.err{color:var(--bad)}.ok{color:var(--ok)}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:8px;align-items:center;justify-content:space-between;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1*env(safe-area-inset-top,0px))}
+.top b{font:italic 400 18px Georgia,serif}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 0}
+input,textarea,select{width:100%;margin-top:4px;padding:11px 12px;font:16px inherit;font-family:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px}
+textarea{min-height:90px;resize:vertical}input:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:0}
+.b{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 16px;border-radius:6px;font:600 14px inherit;font-family:inherit;cursor:pointer;min-height:44px}
+.b.p{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}.b.d{color:var(--bad)}.b.s{padding:8px 12px;min-height:36px;font-size:13px}
+.row{display:flex;width:100%;justify-content:space-between;gap:10px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;margin:0 0 8px;color:var(--ink);font:inherit;cursor:pointer}
+.row small{display:block;color:var(--mut);font-size:13px;margin-top:2px}.row .r{white-space:nowrap;text-align:right}
+.row.nw{background:transparent;border-style:dashed;justify-content:center;color:var(--acc);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:12px 0}summary{cursor:pointer;font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--acc);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;justify-content:space-between}
+.bar span{font-size:14px}.bar div{display:flex;gap:8px}
+.ov{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:640px;max-height:92vh;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom,0px));border:1px solid var(--line)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.acts .b{flex:1}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:14px;display:none;max-width:90%}
+ol{padding-left:20px;margin:8px 0}li{margin:4px 0}
+</style></head><body>
+<div id="app"></div><div id="toast"></div>
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var LS={g:function(k){try{return localStorage.getItem(k)}catch(e){return null}},s:function(k,v){try{localStorage.setItem(k,v)}catch(e){}},d:function(k){try{localStorage.removeItem(k)}catch(e){}}};
+var MONTHS=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+function guess(){
+  var c={owner:'',repo:'',branch:'',dir:'parfumeri/data'},h=location.hostname,p=location.pathname.split('/').filter(Boolean);
+  if(/\.github\.io$/.test(h)){c.owner=h.split('.')[0];c.repo=(p[0]&&p[0]!=='admin')?p[0]:c.owner+'.github.io';}
+  return c;
+}
+var cfg=guess();try{var sv=JSON.parse(LS.g('op_adm_cfg')||'{}');for(var k in sv)if(sv[k])cfg[k]=sv[k];}catch(e){}
+var tok=LS.g('op_adm_tok')||'';
+var S={view:tok?'list':'login',sellers:[],man:{date:'',files:[]},head:'',gone:[],dirty:false,cur:null,q:'',iq:'',lim:60,msg:'',setDate:true,busy:false};
+var dl=['Erkek','Kadın','Unisex','Kadın + Erkek','Deneme seti'];
+
+/* ---------- GitHub ---------- */
+function api(path,o){o=o||{};
+  return fetch('https://api.github.com'+path,{method:o.method||'GET',cache:'no-store',
+    headers:Object.assign({Authorization:'Bearer '+tok,Accept:o.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},o.body?{'Content-Type':'application/json'}:{}),
+    body:o.body?JSON.stringify(o.body):undefined}).then(function(r){
+      if(!r.ok){var e=new Error('GitHub '+r.status+({401:' — anahtar geçersiz veya süresi dolmuş',403:' — bu depoya yazma yetkisi yok',404:' — bulunamadı (depo adı, dal veya klasör yolu yanlış olabilir)',409:' — çakışma, yenileyip tekrar dene',422:' — istek reddedildi'}[r.status]||''));e.status=r.status;throw e;}
+      return o.raw?r.text():r.json();});
+}
+var rp=function(p){return '/repos/'+cfg.owner+'/'+cfg.repo+p};
+function readFile(n){return api(rp('/contents/'+cfg.dir+'/'+n+'?ref='+encodeURIComponent(cfg.branch)),{raw:true}).then(JSON.parse)}
+function ni(p){var d=['',null,null,null,'','','','',''];for(var i=0;i<9;i++)if(p[i]!==undefined&&p[i]!==null)d[i]=p[i];if(p[1]===null)d[1]=null;if(p[2]===null)d[2]=null;if(p[3]===null)d[3]=null;return d}
+function nk(p){return String(p[0]||'').toLowerCase()+'|'+(p[3]||'')}
+function merge(t,a){(a.items||[]).forEach(function(p){p=ni(p);var k=nk(p),i=-1;t.items.forEach(function(q,j){if(i<0&&nk(q)===k)i=j});if(i>=0)t.items[i]=p;else t.items.push(p)});['note','sizes','policy'].forEach(function(f){if(a[f])t[f]=a[f]})}
+function load(){
+  S.msg='Veriler okunuyor…';render();
+  var b=cfg.branch?Promise.resolve():api(rp('')).then(function(r){cfg.branch=r.default_branch});
+  return b.then(function(){return api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch)))}).then(function(r){S.head=r.object.sha;return readFile('index.json').catch(function(e){
+      if(e.status===404&&cfg.dir.indexOf('docs/')!==0){cfg.dir='docs/'+cfg.dir;return readFile('index.json');}throw e;})})
+  .then(function(m){S.man=m;return Promise.all(m.files.map(readFile)).then(function(list){
+      S.sellers=[];list.forEach(function(d,i){var f=m.files[i];
+        d.items=(d.items||[]).map(ni);
+        if(d.append){var t=S.sellers.filter(function(x){return x.data.base===d.base&&(x.data.name||'')===(d.name||'')})[0];if(t){merge(t.data,d);t.extra.push(f);return;}}
+        S.sellers.push({file:f,extra:[],data:d,dirty:false});});
+      S.gone=[];S.dirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));
+      if(S.view==='login')S.view='list';render();});})
+  .catch(function(e){S.msg='Hata: '+e.message;if(S.view!=='login'&&e.status===401){S.view='login';}render();});
+}
+
+/* ---------- yardımcılar ---------- */
+function pp(v){v=String(v||'').trim();if(!v)return null;var t=v.replace(/\s|TL|₺/gi,'');
+  if(/^[\d.,]+$/.test(t)){if(t.indexOf(',')>=0)t=t.replace(/\./g,'').replace(',','.');else if(/^\d{1,3}(\.\d{3})+$/.test(t))t=t.replace(/\./g,'');var n=parseFloat(t);if(!isNaN(n))return n;}
+  return v}
+var nf=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:2});
+var fp=function(v){return v==null||v===''?'':typeof v==='number'?nf.format(v):String(v)};
+function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
+function sname(s){return s.data.name||host(s.data.base)||'(adsız)'}
+function slug(n){return n.toLowerCase().replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'satici'}
+function ser(d){var h=['"base": '+JSON.stringify(d.base||'')];['name','note','sizes','policy'].forEach(function(k){if(d[k]!==undefined&&d[k]!=='')h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});
+  var its=d.items.map(function(p){var a=p.slice();while(a.length>5&&(a[a.length-1]===''||a[a.length-1]===null))a.pop();return JSON.stringify(a)});
+  return '{\n'+h.join(',\n')+',\n"items": [\n'+its.join(',\n')+'\n]\n}\n'}
+function mark(){S.dirty=true;if(S.cur!==null)S.sellers[S.cur].dirty=true;var b=$('#savebar');if(b)b.outerHTML=bar()}
+function toast(t){var e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
+function bar(){return S.dirty?'<div class="bar" id="savebar"><span>Kaydedilmemiş değişiklik var</span><div><button class="b s" data-a="discard">Vazgeç</button><button class="b p" data-a="save">'+(S.busy?'Kaydediliyor…':'GitHub\'a kaydet')+'</button></div></div>':'<span id="savebar"></span>'}
+
+/* ---------- görünümler ---------- */
+function render(){var h;
+  if(S.view==='login')h=vLogin();else if(S.view==='seller')h=vSeller();else h=vList();
+  $('#app').innerHTML=h+bar();if(S.view==='seller')items();}
+function vLogin(){return '<main class="w"><h1>Pazar yönetimi</h1><p class="m">Satıcıları ve ürün kartlarını buradan düzenleyip doğrudan GitHub deposuna kaydedebilirsin.</p>'+
+  '<label>GitHub erişim anahtarı (token)<input id="tok" type="password" autocomplete="off" placeholder="github_pat_…" value="'+esc(tok)+'"></label>'+
+  '<details><summary>Depo ayarları (genelde dokunma)</summary><label>Kullanıcı adı<input id="c-owner" value="'+esc(cfg.owner)+'"></label><label>Depo adı<input id="c-repo" value="'+esc(cfg.repo)+'"></label><label>Dal (boşsa otomatik)<input id="c-branch" value="'+esc(cfg.branch)+'"></label><label>Veri klasörü<input id="c-dir" value="'+esc(cfg.dir)+'"></label></details>'+
+  '<div class="acts"><button class="b p" data-a="login">Giriş yap</button></div><p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>'+
+  '<details><summary>Anahtarı nasıl alırım?</summary><ol><li>GitHub → profil resmin → <b>Settings</b></li><li><b>Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</b></li><li><b>Repository access:</b> Only select repositories → sitenin deposunu seç</li><li><b>Permissions → Repository permissions → Contents: Read and write</b></li><li>Bitiş tarihi koy (ör. 90 gün), oluştur, anahtarı kopyalayıp buraya yapıştır</li></ol><p class="m">Anahtar yalnızca bu cihazın tarayıcısında saklanır. Kimseyle paylaşma.</p></details></main>'}
+function vList(){var q=S.q.toLowerCase(),n=0;
+  var rows=S.sellers.map(function(s,i){var t=sname(s);if(q&&t.toLowerCase().indexOf(q)<0)return '';n++;
+    return '<button class="row" data-a="open" data-i="'+i+'"><span>'+esc(t)+'<small>'+esc(host(s.data.base)||'site adresi yok')+'</small></span><span class="r">'+s.data.items.length+' ürün'+(s.dirty?'<small class="ok">değişti</small>':'')+'</span></button>'}).join('');
+  return '<div class="top"><b>Pazar yönetimi</b><span><button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
+  (S.msg?'<p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>':'')+
+  '<label>Satıcı ara<input id="sq" value="'+esc(S.q)+'" placeholder="satıcı adı"></label><h2>Satıcılar ('+S.sellers.length+')</h2>'+rows+
+  '<button class="row nw" data-a="newseller">+ Satıcı ekle</button>'+
+  '<label style="display:flex;gap:8px;align-items:center;margin-top:18px"><input type="checkbox" id="sd" style="width:auto;margin:0"'+(S.setDate?' checked':'')+'> Kaydederken Pazar tarihini bugüne güncelle</label></main>'}
+function vSeller(){var s=S.sellers[S.cur],d=s.data;
+  return '<div class="top"><button class="b s" data-a="back">← Satıcılar</button><b>'+esc(sname(s))+'</b><span></span></div><main class="w">'+
+  '<h2>Satıcı bilgileri</h2><label>Satıcı adı (kartlarda bu görünür)<input data-f="name" value="'+esc(d.name||'')+'"></label>'+
+  '<label>Site adresi (ürün yolları buna eklenir)<input data-f="base" value="'+esc(d.base||'')+'" placeholder="https://ornek.com"></label>'+
+  '<label>Hacim seçenekleri<input data-f="sizes" value="'+esc(d.sizes||'')+'"></label><label>Kampanya / fiyat politikası<input data-f="policy" value="'+esc(d.policy||'')+'"></label>'+
+  '<label>Not (satıcı kutusunda görünür)<textarea data-f="note">'+esc(d.note||'')+'</textarea></label>'+
+  '<h2>Ürünler (<span id="cnt"></span>)</h2><input id="iq" placeholder="ürün ara" value="'+esc(S.iq)+'"><div style="height:10px"></div><div id="items"></div>'+
+  '<div class="acts"><button class="b" data-a="bulk">Toplu ekle</button><button class="b d" data-a="delseller">Satıcıyı sil</button></div></main>'}
+function items(){var s=S.sellers[S.cur],q=S.iq.toLowerCase(),out=[],n=0;
+  s.data.items.forEach(function(p,i){if(q&&String(p[0]).toLowerCase().indexOf(q)<0)return;n++;if(out.length>=S.lim)return;
+    var info=[p[3]?p[3]+' ml':'',p[8]||'',p[6]?'seçenekler: '+p[6]:''].filter(Boolean).join(' · ');
+    out.push('<button class="row" data-a="edit" data-i="'+i+'"><span>'+esc(p[0])+'<small>'+esc(info||'—')+'</small></span><span class="r">'+(p[1]==null?'<small>fiyat yok</small>':esc(fp(p[1]))+(typeof p[1]==='number'?' TL':''))+(p[2]?'<small><s>'+esc(fp(p[2]))+'</s></small>':'')+'</span></button>')});
+  $('#items').innerHTML='<button class="row nw" data-a="newitem">+ Ürün ekle</button>'+out.join('')+(n>out.length?'<button class="row nw" data-a="more">Daha fazla göster ('+(n-out.length)+')</button>':'')+(n===0?'<p class="m">Eşleşen ürün yok.</p>':'');
+  $('#cnt').textContent=q?n+' / '+s.data.items.length:s.data.items.length}
+
+/* ---------- pencereler ---------- */
+function modal(h){var o=document.createElement('div');o.className='ov';o.id='ov';o.innerHTML='<div class="sheet">'+h+'</div>';document.body.appendChild(o);o.addEventListener('mousedown',function(e){if(e.target===o)closeM()})}
+function closeM(){var o=$('#ov');if(o)o.remove()}
+function f(id,l,v,extra){return '<label>'+l+'<input id="'+id+'" value="'+esc(v)+'" '+(extra||'')+'></label>'}
+function itemForm(idx){var p=idx>=0?S.sellers[S.cur].data.items[idx]:ni(['']);
+  modal('<h2 style="margin-top:0">'+(idx>=0?'Ürünü düzenle':'Yeni ürün')+'</h2>'+f('i-name','Ürün adı',p[0])+
+  '<div class="grid">'+f('i-price','Güncel fiyat (TL)',p[1]==null?'':fp(p[1]),'inputmode="decimal"')+f('i-old','Eski fiyat (üstü çizili)',p[2]?fp(p[2]):'','inputmode="decimal"')+'</div>'+
+  '<div class="grid">'+f('i-ml','Şişe hacmi (ml)',p[3]==null?'':p[3],'inputmode="decimal"')+'<label>Kategori<input id="i-g" list="dl" value="'+esc(p[8])+'"></label></div><datalist id="dl">'+dl.map(function(x){return '<option value="'+x+'">'}).join('')+'</datalist>'+
+  f('i-opts','Diğer şişe seçenekleri (ör. 3 · 5 · 15 · 50 · 100 ml)',p[6])+f('i-path','Ürün bağlantısı (tam adres veya satıcı sitesindeki yol)',p[4])+f('i-alias','Arama takma adı (isteğe bağlı)',p[7])+
+  '<p class="m" id="i-err" style="min-height:20px"></p><div class="acts"><button class="b p" data-a="itemok" data-i="'+idx+'">Tamam</button>'+(idx>=0?'<button class="b" data-a="itemdup" data-i="'+idx+'">Çoğalt</button><button class="b d" data-a="itemdel" data-i="'+idx+'">Sil</button>':'')+'<button class="b" data-a="closem">İptal</button></div>');
+  setTimeout(function(){var e=$('#i-name');if(e&&idx<0)e.focus()},50)}
+function itemOk(idx){var v=function(i){return $(i).value.trim()};
+  if(!v('#i-name')){$('#i-err').textContent='Ürün adı boş olamaz.';$('#i-err').className='err';return}
+  var d=S.sellers[S.cur].data,path=v('#i-path'),warn='';
+  if(/^https?:\/\//i.test(path)){var h2=host(path),h1=host(d.base);if(h1&&h2===h1){try{var u=new URL(path);path=u.pathname+u.search+u.hash}catch(e){}}else warn='Bağlantı bu satıcının sitesine ait görünmüyor.'}
+  var ml=v('#i-ml').replace(',','.');ml=ml?parseFloat(ml):null;if(isNaN(ml))ml=null;
+  var old=idx>=0?d.items[idx]:ni(['']),p=old.slice();
+  p[0]=v('#i-name');p[1]=pp(v('#i-price'));p[2]=pp(v('#i-old'));p[3]=ml;p[4]=path;p[6]=v('#i-opts');p[7]=v('#i-alias');p[8]=v('#i-g');
+  if(idx>=0)d.items[idx]=p;else d.items.unshift(p);
+  mark();closeM();items();toast(warn||'Ürün güncellendi (henüz kaydedilmedi)')}
+function bulkForm(){modal('<h2 style="margin-top:0">Toplu ürün ekle</h2><p class="m">Her satıra bir ürün. Alanları <b>;</b> ile ayır: <br><b>Ad ; fiyat ; hacim(ml) ; kategori ; bağlantı</b><br>Fiyat, hacim, kategori ve bağlantı boş bırakılabilir.</p><textarea id="b-t" style="min-height:160px" placeholder="Aventus ; 899 ; 50 ; Erkek&#10;Layton ; 999 ; 50 ; Erkek"></textarea><div class="acts"><button class="b p" data-a="bulkok">Ekle</button><button class="b" data-a="closem">İptal</button></div>')}
+function bulkOk(){var d=S.sellers[S.cur].data,n=0;$('#b-t').value.split('\n').forEach(function(l){l=l.trim();if(!l)return;var a=l.split(/;|\t/).map(function(x){return x.trim()});if(!a[0])return;
+  var ml=a[2]?parseFloat(a[2].replace(',','.')):null;d.items.push(ni([a[0],pp(a[1]),null,isNaN(ml)?null:ml,a[4]||'','','','',a[3]||'']));n++});
+  if(n){mark();items();}closeM();toast(n+' ürün eklendi (henüz kaydedilmedi)')}
+function sellerForm(){modal('<h2 style="margin-top:0">Yeni satıcı</h2>'+f('n-name','Satıcı adı','')+f('n-base','Site adresi','','placeholder="https://ornek.com"')+'<div class="acts"><button class="b p" data-a="sellerok">Oluştur</button><button class="b" data-a="closem">İptal</button></div>')}
+function sellerOk(){var n=$('#n-name').value.trim(),b=$('#n-base').value.trim().replace(/\/+$/,'');if(!n)return;
+  var fn=slug(n)+'.json',all=S.sellers.reduce(function(a,s){return a.concat(s.file,s.extra)},[]).concat(S.gone.map(function(g){return g.split('/').pop()})),k=2,base=fn;
+  while(all.indexOf(fn)>=0)fn=base.replace('.json','-'+(k++)+'.json');
+  S.sellers.push({file:fn,extra:[],dirty:true,isNew:true,data:{base:b,name:n,note:'',sizes:'',policy:'',items:[]}});S.dirty=true;S.cur=S.sellers.length-1;S.iq='';S.lim=60;closeM();S.view='seller';render();window.scrollTo(0,0)}
+
+/* ---------- kaydet ---------- */
+function today(){var d=new Date();return d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()}
+function save(){if(S.busy)return;var dir=cfg.dir,ch=[],mf=[];
+  S.sellers.forEach(function(s){mf.push(s.file);if(s.dirty){ch.push({path:dir+'/'+s.file,mode:'100644',type:'blob',content:ser(s.data)});s.extra.forEach(function(x){S.gone.push(dir+'/'+x)})}else s.extra.forEach(function(x){mf.push(x)})});
+  S.gone.filter(function(g,i,a){return a.indexOf(g)===i}).forEach(function(g){ch.push({path:g,mode:'100644',type:'blob',sha:null})});
+  var man={date:S.setDate?today():S.man.date,files:mf};ch.push({path:dir+'/index.json',mode:'100644',type:'blob',content:JSON.stringify(man,null,1)+'\n'});
+  S.busy=true;render();
+  api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch))).then(function(r){
+    if(r.object.sha!==S.head&&!confirm('Depo, sen veriyi açtıktan sonra değişmiş. Yine de bu değişikliklerle üzerine yazılsın mı? (İptal: önce Yenile)'))throw new Error('İptal edildi');
+    return api(rp('/git/commits/'+r.object.sha)).then(function(c){
+      return api(rp('/git/trees'),{method:'POST',body:{base_tree:c.tree.sha,tree:ch}}).then(function(t){
+        return api(rp('/git/commits'),{method:'POST',body:{message:'Pazar güncellemesi (yönetim paneli)',tree:t.sha,parents:[r.object.sha]}}).then(function(nc){
+          return api(rp('/git/refs/heads/'+encodeURIComponent(cfg.branch)),{method:'PATCH',body:{sha:nc.sha}});});});});})
+  .then(function(){S.busy=false;S.view='list';S.cur=null;toast('Kaydedildi. Site 1–2 dakika içinde güncellenir.');return load()})
+  .catch(function(e){S.busy=false;S.gone=S.gone.filter(function(g,i,a){return a.indexOf(g)===i});S.msg='Hata: '+e.message;render();toast('Kaydedilemedi: '+e.message)});}
+
+/* ---------- olaylar ---------- */
+var A={
+ login:function(){tok=$('#tok').value.trim();cfg.owner=$('#c-owner').value.trim();cfg.repo=$('#c-repo').value.trim();cfg.branch=$('#c-branch').value.trim();cfg.dir=($('#c-dir').value.trim()||'parfumeri/data').replace(/\/+$/,'');
+   if(!tok||!cfg.owner||!cfg.repo){S.msg='Hata: anahtar, kullanıcı adı ve depo adı gerekli';render();return}LS.s('op_adm_tok',tok);load()},
+ logout:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Çıkılsın mı?'))return;LS.d('op_adm_tok');tok='';S.view='login';S.dirty=false;S.sellers=[];S.msg='';render()},
+ reload:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Yenilensin mi?'))return;load()},
+ discard:function(){if(confirm('Tüm kaydedilmemiş değişiklikler silinsin mi?')){S.view='list';S.cur=null;load()}},
+ open:function(b){S.cur=+b.dataset.i;S.iq='';S.lim=60;S.view='seller';render();window.scrollTo(0,0)},
+ back:function(){S.view='list';S.cur=null;render()},
+ edit:function(b){itemForm(+b.dataset.i)},newitem:function(){itemForm(-1)},more:function(){S.lim+=100;items()},
+ itemok:function(b){itemOk(+b.dataset.i)},closem:closeM,
+ itemdup:function(b){var d=S.sellers[S.cur].data,i=+b.dataset.i;d.items.splice(i+1,0,d.items[i].slice());mark();closeM();items();toast('Ürün çoğaltıldı')},
+ itemdel:function(b){if(!confirm('Bu ürün silinsin mi?'))return;S.sellers[S.cur].data.items.splice(+b.dataset.i,1);mark();closeM();items();toast('Ürün silindi (henüz kaydedilmedi)')},
+ bulk:bulkForm,bulkok:bulkOk,newseller:sellerForm,sellerok:sellerOk,
+ delseller:function(){var s=S.sellers[S.cur];if(!confirm('"'+sname(s)+'" satıcısı ve tüm ürünleri silinsin mi?'))return;
+   if(!s.isNew){S.gone.push(cfg.dir+'/'+s.file);s.extra.forEach(function(x){S.gone.push(cfg.dir+'/'+x)})}S.sellers.splice(S.cur,1);S.dirty=true;S.cur=null;S.view='list';render()},
+ save:save};
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b)});
+document.addEventListener('input',function(e){var t=e.target;
+  if(t.dataset&&t.dataset.f&&S.cur!==null){S.sellers[S.cur].data[t.dataset.f]=t.value;mark();if(t.dataset.f==='name'){var h=document.querySelector('.top b');if(h)h.textContent=sname(S.sellers[S.cur])}}
+  else if(t.id==='iq'){S.iq=t.value;S.lim=60;items()}
+  else if(t.id==='sq'){S.q=t.value;var p=t.selectionStart;render();var n=$('#sq');n.focus();n.setSelectionRange(p,p)}
+  else if(t.id==='sd')S.setDate=t.checked});
+window.addEventListener('beforeunload',function(e){if(S.dirty){e.preventDefault();e.returnValue=''}});
+if(tok&&cfg.owner&&cfg.repo)load();else{S.view='login';render()}
+})();
+</script></body></html>

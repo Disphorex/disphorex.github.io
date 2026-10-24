@@ -1,5 +1,6 @@
 {
 "base": "https://www.patronusparfum.com/tr",
+"name": "Patronus Parfum",
 "note": "Verdiğin listedeki tüm Patronus ürünleri (kodlar adlardan çıkarıldı, stok ibareleri dikkate alınmadı). Listede fiyat ve ürün adresi yoktu; sitenin yönlendirme hatası yüzünden de fiyat çekilemedi. \"Sitede aç\" ana sayfaya gider. Alt satırda cinsiyet ve Niche/Designer bilgisi var.",
 "sizes": "Doğrulanamadı (16 × 3 ml deneme paketi adresten anlaşılıyor; arama sonucunda 50 ml Extrait ürün görüldü).",
 "policy": "Doğrulanamadı.",

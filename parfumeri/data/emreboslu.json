@@ -1,5 +1,6 @@
 {
 "base": "https://emreboslu.com",
+"name": "Emre Boslu",
 "note": "Sitenin tam ürün listesi (stok ibareleri ve \"Ürüne Git\" alınmadı). Listede fiyat, hacim ve kategori yoktu; kategori (Erkek / Kadın / Unisex) orijinal parfümün resmi sınıflandırmasına göre yazıldı, belirsiz olanlarda boş bırakıldı. Fiyatlar sitede JavaScript ile yüklendiği için çekilemedi. Sonda duran ürünler önceki kayıttan (hacimli, ürün bağlantılı) korundu. \"Sitede aç\" listeden gelen ürünlerde ana sayfaya gider.",
 "sizes": "10 ml, 25 ml, 50 ml (sitede \"55 ml\" adıyla da geçiyor) ve 100 ml. Aynı koku farklı boylarda ayrı ürün olarak listeleniyor (örn. Yevm 10/25/50/100 ml). Extrait ve \"Premium\" serileri var.",
 "policy": "2.000 TL ve üzeri ücretsiz kargo; siparişler 2 iş günü içinde kargoda; Havale/EFT ödemede %2 indirim.",

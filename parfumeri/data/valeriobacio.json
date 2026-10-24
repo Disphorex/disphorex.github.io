@@ -1,5 +1,6 @@
 {
 "base": "https://valeriobacio.com",
+"name": "Valerio Bacio",
 "note": "Sitenin erkek parfüm listesi (ürün kodları, \"Erkek Parfüm\" eki ve \"2. üründe %50 indirim / Sepete Ekle\" yazıları alınmadı). Ürün adları sitedeki yazımıyla bırakıldı. Boyut listede yoktu; ürün bağlantılarında görülen 50 ml kabul edildi. Sonda duran, fiyatı olmayan ürünler önceki kayıttan korundu. Yeni eklenenlerde \"Sitede aç\" ana sayfaya gider.",
 "sizes": "Ürün bağlantılarında 50 ml seçeneği görülüyor (?boyut=50-ml); diğer boyutlar doğrulanamadı.",
 "policy": "1.000 TL üzeri ücretsiz kargo; 1. parfümde %12, 2. parfümde %50 indirim kampanyası.",

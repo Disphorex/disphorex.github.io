@@ -1,5 +1,6 @@
 {
 "base": "https://membarafragrances.com",
+"name": "Membara Fragrances",
 "note": "Sitenin tam ürün listesi (MA ürün kodları ve \"Ürüne Git\" alınmadı). Listede fiyat, hacim ve kategori yoktu; kategori orijinal parfümün resmi sınıflandırmasına göre yazıldı (sitenin erkek sayfasından gelen ürünler Erkek), belirsiz olanlar boş bırakıldı. Fiyatlar sitede JavaScript ile yüklendiği için çekilemedi. Bağlantısı önceki kayıtta olan ürünlerde \"Sitede aç\" ürüne gider, diğerlerinde ana sayfaya.",
 "sizes": "Sayfada boyut belirtilmemiş (ürün sayfasında seçilebilir olabilir).",
 "policy": "1.250 TL ve üzeri ücretsiz kargo; Havale/EFT ödemede %5 indirim; 1.500 TL üzeri siparişlerde refill şişe hediye.",

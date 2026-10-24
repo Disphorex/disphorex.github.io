@@ -5,7 +5,10 @@
 - `parfumeri/` : fiyat paneli (arayüz kodu `index.html`)
 - `parfumeri/data/` : Pazar sekmesinin satıcı verileri
 
-## Güncelleme
+## Yönetim paneli
+`/admin/` adresinden (ör. `siteadresi/admin/`) GitHub erişim anahtarıyla girilir; satıcı ve ürün ekleme / silme / düzenleme yapılıp tek tuşla depoya kaydedilir. Anahtar: Fine-grained token, yalnızca bu depo, *Contents: Read and write*.
+
+## Güncelleme (elle)
 Pazar verisini değiştirmek için yalnızca `parfumeri/data/` içindeki ilgili dosya yüklenir. Kodu değiştirmek gerekmez.
 
 - **Satıcıyı tamamen yenilemek:** `famakdefragancia.json` gibi dosyanın üzerine yazın.

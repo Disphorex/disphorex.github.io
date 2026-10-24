@@ -1,5 +1,6 @@
 {
 "base": "https://hanesans.com",
+"name": "Hanesans",
 "note": "Verdiğin listedeki tüm Hanesans ürünleri (204 satır: 201 parfüm + 3 deneme seti). Listede fiyat ve ürün adresi yoktu; ana sayfadaki 8 ürünün fiyatı ve bağlantısı önceki kayıttan korundu, diğerlerinde \"Fiyat yok\" görünür ve \"Sitede aç\" ana sayfaya gider. Ad olarak listedeki gerçek parfüm adı yazıldı (Hanesans'ın kendi adı yerine). Harf başlıkları ve \"Ürüne git\" ibareleri alınmadı. Deneme setleri 6'lı, fiyat aralığı ana sayfadan.",
 "sizes": "Ürün kartlarında boyut belirtilmemiş. Deneme setleri 5 ml ve 10 ml seçenekli (6'lı set 1.100–1.200 TL).",
 "policy": "1.500 TL ve üzeri alışverişte kargo bedava; 1.000 TL üzeri her siparişe 5 ml parfüm hediye; saat 15:00'e kadar aynı gün kargo. Kartlarda \"İndirimli fiyat / Normal fiyat\" gösteriliyor. Tüm kokular %30 esans (Extrait de Parfum).",

@@ -1,5 +1,6 @@
 {
 "base": "https://www.viadoraparfum.com",
+"name": "Viadora Parfum",
 "note": "Verdiğin listedeki tüm Viadora ürünleri (130 parfüm + 5'li deneme seti). Ad olarak listedeki gerçek parfüm adı yazıldı; listede muadil adı olmayan 2 üründe (Atlantide, Gentleman Réserve Privée) Viadora'nın kendi adı duruyor. Büyük fiyat güncel fiyattır, üstü çizili olan normal fiyat; indirimi görünmeyenlerde tek fiyat var. \"Kod\" Viadora'nın ürün kodudur. Ürün bağlantıları bu koddan türetildi (/products/viadora-<kod>), ilk 22 ürünün bağlantısı siteden alınmıştı. Stok ibareleri dikkate alınmadı. Listede olmayan, ana sayfadan daha önce alınan 13 ürün (F kodlu, kadın parfümleri ağırlıklı) sonda duruyor; bunlarda Viadora'nın kendi adı yazıyor.",
 "sizes": "Ürün kartlarında boyut belirtilmemiş. 5'li parfüm deneme seti 690 TL.",
 "policy": "\"%65'e varan indirim + ücretsiz kargo\" ve \"Çok al az öde\" kampanyası; kartlarda %7–15 arası indirim etiketleri.",
