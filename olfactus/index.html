@@ -1,0 +1,599 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Olfactus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Hanken+Grotesk:wght@300;400;500&display=swap">
+<style>
+/* Layout: saf editoryal sayfa. Desen, ızgara, çizgi ve çubuk yok. Ayrımı boşluk ve tipografi yapar: Bodoni ile italik puanlar, Hanken ile geniş aralıklı küçük etiketler. Zemin tek parça mat koyu degrade, kartlar kendi renk dünyasında. */
+:root {
+  --bg: #131110;
+  --bg2: #0E0C0B;
+  --fg: #EAE4D8;
+  --muted: #9A9184;
+  --gold: #B8935A;
+  --amber: #E8A93E;
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg);
+  background-image: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.7;
+  padding-block: 0 6rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(0rem, 4vw, 3.5rem); }
+a { color: inherit; }
+a:focus-visible { outline: 1px solid var(--amber); outline-offset: 6px; }
+
+/* Küçük etiketler: geniş harf aralıklı, küçük, sade */
+.eyebrow, .label { font-family: var(--body); font-weight: 500; font-size: 0.68rem; letter-spacing: 0.42em; text-transform: lowercase; color: var(--gold); }
+.label { color: var(--muted); letter-spacing: 0.3em; }
+
+/* Kapak */
+.cover { padding-block: clamp(3rem, 8vw, 6rem) clamp(6rem, 14vw, 11rem); display: flex; flex-direction: column; gap: clamp(2.5rem, 8vw, 5rem); }
+.cover-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; }
+.wordmark {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 13vw, 9rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(180deg, var(--fg) 15%, var(--gold) 105%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tagline { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(1.15rem, 3vw, 1.6rem); margin: 0; max-width: 30ch; text-wrap: balance; color: var(--muted); }
+
+/* Index */
+.index { padding-block: 0 clamp(7rem, 16vw, 12rem); }
+.index-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; margin-top: 2.5rem; }
+.index-item { display: flex; flex-direction: column; gap: 0.7rem; text-decoration: none; min-width: 0; }
+.index-item h3 { font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1.15; margin: 0; text-wrap: balance; transition: color 0.3s; }
+.index-item p { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 32ch; }
+.index-item:hover h3 { color: var(--amber); }
+.summary { margin: 4rem 0 0; font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--muted); }
+.summary b { color: var(--fg); font-weight: 400; }
+
+/* Bölümler: ayrım yalnızca boşluk */
+.section { padding-block: 0 clamp(7rem, 16vw, 12rem); }
+.section h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.6rem, 8vw, 5.4rem); line-height: 1.02; margin: 1.6rem 0 1.6rem; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 44ch; margin: 0 0 clamp(4rem, 9vw, 6.5rem); }
+
+/* Puan: büyük italik serif, sağ altında ince sans /10. Başka gösterge yok. */
+.score { display: inline-flex; align-items: baseline; gap: 0.3rem; }
+.score .num { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1; color: var(--amber); font-variant-numeric: tabular-nums; }
+.score .of { font-family: var(--body); font-weight: 300; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--muted); position: relative; top: 0.25em; }
+
+/* Alt kademeler */
+.tg { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1.2rem 2.5rem; padding-block: 2.6rem; }
+.tg .hd { display: flex; flex-direction: column; gap: 0.5rem; }
+.tg .numeral { font-family: var(--display); font-style: italic; font-size: 3.6rem; line-height: 1; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tg ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 3rem; align-content: start; }
+.tg li { display: flex; flex-direction: column; min-width: 0; font-size: 1.05rem; line-height: 1.4; }
+.tg li .h { font-family: var(--body); font-size: 0.66rem; letter-spacing: 0.24em; text-transform: lowercase; color: var(--muted); margin-top: 0.25rem; }
+
+/* Toplu kare: kademe bloğunun üstünde tam genişlikte, kendi kutusunda */
+.tg .shot { grid-column: 1 / -1; margin: 0 0 1.4rem; overflow: hidden; contain: paint; background: #14100C; }
+.tg .shot img { display: block; width: 100%; height: auto; }
+
+/* Bölüm 2: tasnif */
+.group { padding-block: 0 5rem; }
+.group > h3 { margin: 0 0 2.4rem; font-weight: 500; }
+.buckets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5rem; }
+.bucket h4 { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 1.8rem; margin: 0 0 0.4rem; }
+.bucket .ct { display: block; margin-bottom: 1.6rem; }
+.bucket ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.8rem; }
+.bucket li { display: flex; align-items: baseline; gap: 0.8rem; font-size: 1rem; line-height: 1.4; }
+.bucket li span:first-child { min-width: 0; }
+.bucket li .n { font-family: var(--display); font-style: italic; font-size: 1rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bucket li.hi .n { color: var(--amber); }
+.bucket .none { color: var(--muted); font-size: 0.9rem; }
+.unclass { margin: 1rem 0 0; color: var(--muted); font-size: 0.95rem; max-width: 70ch; }
+
+/* Bölüm 3: notlar */
+.essay { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 1.2rem 4rem; padding-block: 3rem; }
+.essay h3 { font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1.1; margin: 0 0 0.8rem; text-wrap: balance; }
+.essay .by { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.2rem; }
+.essay .by .score .num { font-size: 1.9rem; }
+.draft { font-family: var(--display); font-style: italic; font-size: 0.95rem; color: var(--gold); }
+.essay dl { margin: 0; display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+.essay dl > div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 0 1.4rem; align-items: baseline; }
+.essay dt { margin: 0; }
+.essay dd { margin: 0; font-size: 1.05rem; max-width: 52ch; }
+.pending { padding-top: 2rem; margin: 0; color: var(--muted); max-width: 60ch; }
+
+.colophon { padding-top: 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem 2rem; }
+
+/* Dergi sayfaları: 7 ve üzeri kokular tam genişlikte, fotoğraf ve yazı iç içe. Her sayfa kendi kutusunda kalır. */
+.spreads { display: flex; flex-direction: column; gap: clamp(3.5rem, 9vw, 7rem); margin-bottom: 6rem; }
+.spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  min-height: clamp(32rem, 48vw, 42rem);
+  overflow: hidden;
+  isolation: isolate;
+  contain: paint;
+  background: linear-gradient(150deg, var(--a), var(--b));
+}
+.spread.lead { min-height: clamp(38rem, 58vw, 52rem); }
+.sp-photo { position: relative; z-index: 1; min-width: 0; overflow: hidden; grid-row: 1; }
+.sp-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.sp-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.sp-photo .initial { position: absolute; left: 50%; top: 48%; transform: translate(-50%, -50%); font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(14rem, 26vw, 26rem); line-height: 1; color: rgba(234, 228, 216, 0.06); pointer-events: none; user-select: none; }
+.sp-body { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; gap: 2.4rem; min-width: 0; padding: clamp(1.6rem, 4vw, 3.6rem); grid-row: 1; }
+
+.spread .topline { display: flex; align-items: baseline; gap: 1.1rem; }
+.spread .rank { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--amber); }
+.spread .main { display: flex; flex-direction: column; gap: 0.8rem; min-width: 0; }
+.spread h3 { font-family: var(--display); font-weight: 400; font-size: clamp(2.4rem, 5.6vw, 4.8rem); line-height: 1.02; margin: 0; text-wrap: balance; overflow-wrap: anywhere; }
+.spread.lead h3 { font-size: clamp(3rem, 8vw, 6.6rem); }
+.sp-note { margin: 0.4rem 0 0; max-width: 20ch; font-family: var(--display); font-style: italic; font-size: clamp(1.2rem, 2.2vw, 1.6rem); line-height: 1.3; color: var(--fg); opacity: 0.88; text-wrap: balance; }
+.facts { margin: 0; display: flex; flex-wrap: wrap; gap: 1.6rem 2.8rem; }
+.facts > div { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.facts dt { margin: 0; font-family: var(--body); font-weight: 500; font-size: 0.62rem; letter-spacing: 0.4em; color: var(--gold); }
+.facts dd { margin: 0; font-size: 0.98rem; line-height: 1.4; color: var(--fg); }
+.spread .score .num { font-size: clamp(3.6rem, 8vw, 6.4rem); }
+.spread .score .of { font-size: 0.95rem; }
+.spread.lead .score .num { font-size: clamp(5rem, 12vw, 9rem); }
+
+/* a: fotoğraf sağda, yazı onun soluk kenarına girer */
+.s-a .sp-photo { grid-column: 6 / 13; -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.5) 18%, #000 42%); mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.5) 18%, #000 42%); }
+.s-a .sp-photo::after { background: linear-gradient(90deg, rgba(8, 6, 5, 0.6) 0, transparent 40%); }
+.s-a .sp-body { grid-column: 1 / 8; }
+
+/* b: fotoğraf solda, yazı sağda ve fotoğrafın soluk kenarına girer */
+.s-b .sp-photo { grid-column: 1 / 8; -webkit-mask-image: linear-gradient(270deg, transparent 0, rgba(0, 0, 0, 0.5) 18%, #000 42%); mask-image: linear-gradient(270deg, transparent 0, rgba(0, 0, 0, 0.5) 18%, #000 42%); }
+.s-b .sp-photo::after { background: linear-gradient(270deg, rgba(8, 6, 5, 0.6) 0, transparent 40%); }
+.s-b .sp-body { grid-column: 6 / 13; }
+
+/* c: geniş fotoğraf, üstüne binen yazı paneli */
+.s-c .sp-photo { grid-column: 1 / 9; }
+.s-c .sp-body { grid-column: 7 / 13; align-self: end; margin: clamp(1rem, 3vw, 2.6rem); background: linear-gradient(150deg, var(--a), var(--b)); box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5); }
+.s-c h3 { font-size: clamp(2.1rem, 4vw, 3.4rem); }
+.s-c .score .num { font-size: clamp(3rem, 6vw, 4.8rem); }
+
+
+/* Ek öğeler: sayfa başlığı, dikey ev adı, detay kare, not alanları */
+.folio { position: absolute; z-index: 4; bottom: 1rem; display: flex; gap: 0.9rem; font-family: var(--body); font-size: 0.6rem; letter-spacing: 0.32em; color: var(--muted); opacity: 0.8; pointer-events: none; }
+.s-a .folio { left: clamp(1.6rem, 4vw, 3.6rem); }
+.s-b .folio { right: clamp(1.6rem, 4vw, 3.6rem); }
+.s-c .folio { left: clamp(1rem, 3vw, 2.6rem); }
+.notes { display: flex; flex-direction: column; gap: 0.9rem; max-width: 40ch; padding: 1.1rem 1.3rem 1.2rem; background: rgba(0, 0, 0, 0.22); }
+.notes dl { margin: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+.notes .slot { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 0 1rem; align-items: baseline; }
+.notes dt { margin: 0; font-family: var(--body); font-weight: 500; font-size: 0.58rem; letter-spacing: 0.34em; color: var(--gold); }
+.notes dd { margin: 0; font-family: var(--display); font-style: italic; font-size: 0.98rem; line-height: 1.4; color: var(--muted); opacity: 0.6; }
+.notes .slot.on dd { font-style: normal; font-family: var(--body); font-size: 0.95rem; color: var(--fg); opacity: 0.92; }
+.notes .free { margin: 0.3rem 0 0; font-size: 0.95rem; line-height: 1.55; color: var(--fg); opacity: 0.9; }
+.notes .free::first-letter { font-family: var(--display); font-size: 2.6rem; float: left; line-height: 0.85; padding: 0.1rem 0.4rem 0 0; color: var(--amber); }
+
+/* Kompakt sayfalar: 6 ve altı */
+.tg.mt { grid-template-columns: minmax(0, 1fr); }
+.tg.mt .hd { flex-direction: row; align-items: baseline; gap: 1.2rem; }
+.minis { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.4rem, 3vw, 2.4rem); }
+.mini { display: flex; flex-direction: column; gap: 1.3rem; padding: clamp(1.3rem, 3vw, 1.9rem); background: linear-gradient(150deg, #1A1714, #14110F); }
+.mn-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.mini h4 { font-family: var(--display); font-weight: 400; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.08; margin: 0.3rem 0 0.35rem; text-wrap: balance; overflow-wrap: anywhere; }
+.mini .score .num { font-size: clamp(2.6rem, 4.4vw, 3.4rem); }
+.mn-empty { margin: 0; display: flex; gap: 1rem; align-items: baseline; font-family: var(--display); font-style: italic; font-size: 0.95rem; color: var(--muted); opacity: 0.6; }
+.mini .facts { gap: 1rem 1.8rem; }
+.mini .facts dd { font-size: 0.9rem; }
+.mini .notes { max-width: none; }
+
+@media (max-width: 860px) {
+  .spread { display: flex; flex-direction: column; min-height: 0; }
+  .spread .sp-photo { aspect-ratio: 5 / 6; width: 100%; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 60%, transparent 100%); }
+  .spread .sp-photo::after { background: linear-gradient(0deg, rgba(8, 6, 5, 0.7) 0, transparent 45%); }
+  .spread .sp-body { margin: 0; background: none; box-shadow: none; }
+  .spread .sp-photo { margin-bottom: -2rem; }
+  .s-c .sp-body { margin: 1rem 1rem 1rem; background: linear-gradient(150deg, var(--a), var(--b)); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
+  .spread.lead { min-height: 0; }
+  .spread .sp-body { padding-bottom: 3.4rem; }
+  .spread .folio { left: 1.6rem; right: auto; }
+  .minis { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .index-grid, .buckets { grid-template-columns: minmax(0, 1fr); gap: 2.6rem; }
+  .essay { grid-template-columns: minmax(0, 1fr); }
+  .essay dl > div { grid-template-columns: 5rem minmax(0, 1fr); }
+  .tg { grid-template-columns: minmax(0, 1fr); }
+  .tg .hd { flex-direction: row; align-items: baseline; gap: 1rem; }
+  .tg ul { grid-template-columns: minmax(0, 1fr); }
+  .eyebrow { letter-spacing: 0.34em; }
+}
+</style>
+
+<div class="wrap" lang="tr">
+
+  <header class="cover">
+    <div class="cover-top">
+      <span class="eyebrow">sayı 01</span>
+      <span class="eyebrow">ekim 2026</span>
+    </div>
+    <h1 class="wordmark">Olfactus</h1>
+    <p class="tagline">Niş parfümeri günlüğü. Puan, karar, iz.</p>
+  </header>
+
+  <nav class="index" aria-label="İçindekiler">
+    <span class="eyebrow">bu sayıda</span>
+    <div class="index-grid">
+      <a class="index-item" href="#vitrin">
+        <span class="eyebrow">bölüm 1</span>
+        <h3>Vitrin</h3>
+        <p>Şaheserden rezalete, puan sırasıyla tüm koku listesi.</p>
+      </a>
+      <a class="index-item" href="#tasnif">
+        <span class="eyebrow">bölüm 2</span>
+        <h3>Tasnif</h3>
+        <p>Mevsim, çizgi ve ortama göre dolap düzeni.</p>
+      </a>
+      <a class="index-item" href="#notlar">
+        <span class="eyebrow">bölüm 3</span>
+        <h3>Deneme Notları</h3>
+        <p>Açılış, kalıcılık, his. Üç cümle, fazlası yok.</p>
+      </a>
+    </div>
+    <p class="summary" id="summary"></p>
+  </nav>
+
+  <section class="section" id="vitrin">
+    <span class="eyebrow">bölüm 1</span>
+    <h2>Vitrin</h2>
+    <p class="lede">7 ve üzeri kendi sayfasında yaşar. Altısı ve altı kademeli listede toplanır.</p>
+    <div id="picks"></div>
+  </section>
+
+  <section class="section" id="tasnif">
+    <span class="eyebrow">bölüm 2</span>
+    <h2>Tasnif</h2>
+    <p class="lede">Aynı koku birden fazla rafa girebilir. Her rafta en yüksek puan en üstte durur. Sınıflandırma genel Fragrantica algısına göre bir taslaktır, sen düzeltirsin.</p>
+    <div id="groups"></div>
+  </section>
+
+  <section class="section" id="notlar">
+    <span class="eyebrow">bölüm 3</span>
+    <h2>Deneme Notları</h2>
+    <p class="lede">Notalar listesi değil, ilk izlenim. Buradaki satırlar taslaktır, kendi kulağınla yeniden yazılmayı bekler.</p>
+    <div id="essays"></div>
+  </section>
+
+  <footer class="colophon">
+    <span class="eyebrow">olfactus · sayı 01</span>
+    <span class="eyebrow">puanlar kişisel, 10 üzerinden</span>
+  </footer>
+
+</div>
+
+<script>
+/*
+  VERİ: Dergi tamamen bu listeden üretilir.
+  P(ad, ev, puan, mevsim[], çizgi, ortam[], not?)
+  Sınıflandırması boş olan koku "Sınıflandırılmayanlar" satırına düşer.
+  Not (açılış, kalıcılık, his) verilen kokular Bölüm 3'te görünür.
+*/
+var Y = "Yazlık", G = "Geçiş Mevsimi", K = "Kışlık";
+var M = "Maskülen", F = "Feminen", U = "Unisex";
+var D = "Günlük", R = "Randevu Gecesi", B = "İş / Formal";
+function P(name, house, score, season, line, occ, essay) {
+  return { name: name, house: house, score: score, season: season || [], line: line || "", occ: occ || [], essay: essay || null };
+}
+
+var PERFUMES = [
+  P("Y Intense EDP", "Yves Saint Laurent", 10, [G, K], M, [D, R]),
+
+  P("Le Beau Paradise Garden", "Jean Paul Gaultier", 9, [Y], M, [D]),
+  P("Afternoon Swim", "Louis Vuitton", 9, [Y], U, [D]),
+  P("Homme Marine", "Kenzo", 9, [Y], M, [D]),
+  P("Supremacy Collector's Edition", "Afnan", 9),
+  P("Jean Lowe Azure", "Maison Alhambra", 9, [Y], U, [B]),
+
+  P("Aventus Absolu", "Creed", 8, [G, K], M, [R], {
+    open: "Aventus'un tanıdık meyvesi, bu sefer daha koyu bir duman perdesinin ardında.",
+    last: "Orijinalden daha yoğun, daha uzun.",
+    feel: "Aynı özgüven, ama sesini yükseltmeden." }),
+  P("Tygar", "Bvlgari", 8, [Y, G], M, [D]),
+  P("Layton (Klasik)", "Parfums de Marly", 8, [G, K], M, [R, D], {
+    open: "Elma ve lavanta, temiz ve davetkâr.",
+    last: "Uzun, arkasında iz bırakır.",
+    feel: "Şık ama sokakta rahat." }),
+  P("Acqua di Sale", "Profumum Roma", 8, [Y], U, [D]),
+
+  P("Aventus", "Creed", 7, [G, Y], M, [B, D], {
+    open: "Ananas ve duman: parlak, kendinden emin.",
+    last: "Parti farkı var. İlk saatler en iyisi.",
+    feel: "Toplantıya ilk giren adamın özgüveni." }),
+  P("Terre d'Hermès", "Hermès", 7, [G], M, [B], {
+    open: "Portakal kabuğu ve taş: ince bir kuruluk.",
+    last: "Orta, tene yakın.",
+    feel: "Sakin otorite. Takım elbisenin altında doğru." }),
+  P("Layton Exclusif", "Parfums de Marly", 7, [G, K], M, [R]),
+  P("Blonde Amber", "Clive Christian", 7, [K], U, [R]),
+  P("Angels' Share On The Rocks", "By Kilian", 7, [G, K], U, [R]),
+  P("Y Iced Cologne (Patronus)", "Yves Saint Laurent", 7, [Y], M, [D]),
+  P("God of Fire", "Stéphane Humbert Lucas 777", 7, [K], U, [R]),
+
+  P("Luna Rossa Carbon", "Prada", 6, [G], M, [D, B]),
+  P("African Leather", "Memo Paris", 6, [G, K], U, [R]),
+  P("Reflection Man", "Amouage", 6, [G], M, [B]),
+  P("Ganymede", "Marc-Antoine Barrois", 6, [G, K], U, [R]),
+  P("Torino 21", "", 6, [Y, G], U, [D]),
+  P("Side Effect", "Initio", 6, [K], U, [R]),
+  P("İstanbul", "Rebul", 6),
+
+  P("Alexandria II", "Xerjoff", 5, [K], U, [R]),
+  P("Vanilla Powder", "", 5),
+  P("Babycat (Patronus)", "Yves Saint Laurent", 5),
+  P("Uomo Born in Roma", "Valentino", 5, [G, K], M, [R]),
+  P("Vinyle", "Yves Saint Laurent", 5),
+  P("Hawas for Him", "Rasasi", 5, [Y], M, [D]),
+  P("Y EDP", "Yves Saint Laurent", 5, [G], M, [D, B]),
+  P("Black Orchid", "Tom Ford", 5, [K, G], U, [R], {
+    open: "Trüf ve karanlık çiçek, ilk nefes ağır.",
+    last: "Uzun, odayı doldurur.",
+    feel: "Dramatik, ama biraz yorgun." }),
+
+  P("Naxos", "Xerjoff", 4, [K, G], U, [R]),
+  P("Dior Homme Intense", "Dior", 4, [K, G], M, [R, B]),
+  P("Stronger with You", "Emporio Armani", 4, [K, G], M, [R, D]),
+  P("Erba Pura", "Xerjoff", 4, [Y, G], U, [D]),
+  P("Hacivat", "Nishane", 4, [G], U, [D, B]),
+  P("Blue Talisman", "Ex Nihilo", 4),
+  P("Ombré Leather", "Tom Ford", 4, [K, G], U, [R]),
+  P("Imagination", "Louis Vuitton", 4, [Y, G], U, [D, B]),
+
+  P("Summer Hammer", "", 3),
+  P("Sauvage", "Dior", 3, [G], M, [D], {
+    open: "Biber ve bergamot, arkadan ambroxan duvarı geliyor.",
+    last: "Çok uzun, gerekenden fazla.",
+    feel: "Herkesin kolunda, kimsenin hatırında değil." }),
+  P("Stronger with You Absolutely", "Emporio Armani", 3, [K], M, [R]),
+
+  P("Black Afgano", "Nasomatto", 2, [K], U, [R]),
+  P("Bleu de Chanel", "Chanel", 2, [G], M, [B, D], {
+    open: "Narenciye ve nane, tanıdık ve temiz.",
+    last: "Orta.",
+    feel: "Güvenli ve ruhsuz." }),
+  P("Megamare", "Orto Parisi", 2, [Y], U, [D]),
+  P("Cashmeran", "Kimyager Ahmet", 2),
+  P("Spicebomb Metallic Musk", "Viktor&Rolf", 2),
+  P("Musc Ravageur", "Frédéric Malle", 2, [K], U, [R]),
+  P("Oud Satin Mood", "Maison Francis Kurkdjian", 2, [K], U, [R]),
+  P("Scandal Pour Homme", "Jean Paul Gaultier", 2, [K, G], M, [R]),
+
+  P("More Than Words", "Xerjoff", 1),
+  P("Neroli Portofino", "Tom Ford", 1, [Y], U, [D]),
+
+  P("Santal 33", "Le Labo", 0, [G, K], U, [D]),
+  P("Gingerol", "Kimyager Ahmet", 0),
+  P("Photolyase", "Kimyager Ahmet", 0),
+  P("Pacific Chill", "Louis Vuitton", 0, [Y], U, [D])
+];
+
+var LABELS = { 10: "Şaheser", 9: "Harika", 8: "Çok iyi", 7: "Güzel", 6: "İyi", 5: "Ortalama", 4: "Meh", 3: "Kötü", 2: "Çok kötü", 1: "İğrenç", 0: "Rezalet" };
+var GROUPS = [
+  { title: "Mevsim", key: "season", buckets: [Y, G, K] },
+  { title: "Çizgi", key: "line", buckets: [M, F, U] },
+  { title: "Ortam", key: "occ", buckets: [D, R, B] }
+];
+var FEATURED = 9;
+
+function fmt(n) { return String(n).replace(".", ","); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function full(p) { return p.house ? p.house + " " + p.name : p.name; }
+function scoreHtml(n) {
+  return '<span class="score"><span class="num">' + fmt(n) + '</span><span class="of">/10</span></span>';
+}
+
+var ranked = PERFUMES.slice().sort(function (a, b) { return b.score - a.score; });
+
+var avg = PERFUMES.reduce(function (a, p) { return a + p.score; }, 0) / PERFUMES.length;
+document.getElementById("summary").innerHTML =
+  "<b>" + PERFUMES.length + "</b> koku, ortalama <b>" + fmt(avg.toFixed(1)) + "</b> puan. Zirvede <b>" + esc(ranked[0].name) + "</b>.";
+
+/* ---------- Sayfa düzenleri: 7 ve üzeri her koku kendi dergi sayfasında ---------- */
+/* a,b: sayfanın kendi zemin degradesi (iki mat renk) */
+var WORLD = {
+  "Y Intense EDP":                 { a: "#0C141F", b: "#0F1B2C" },
+  "Le Beau Paradise Garden":       { a: "#151614", b: "#222421" },
+  "Afternoon Swim":                { a: "#242628", b: "#3C4043" },
+  "Homme Marine":                  { a: "#151412", b: "#23211E" },
+  "Supremacy Collector's Edition": { a: "#131210", b: "#201E1B" },
+  "Jean Lowe Azure":               { a: "#0E0F0B", b: "#171912" },
+  "Aventus Absolu":                { a: "#0D0C0B", b: "#151411" },
+  "Tygar":                         { a: "#120F0C", b: "#1E1814" },
+  "Layton (Klasik)":               { a: "#181411", b: "#28221B" },
+  "Acqua di Sale":                 { a: "#10100C", b: "#1B1A14" },
+  "Aventus":                       { a: "#0E0D0B", b: "#181612" },
+  "Terre d'Hermès":                { a: "#19140F", b: "#2A2119" },
+  "Layton Exclusif":               { a: "#1A1611", b: "#2B241B" },
+  "Blonde Amber":                  { a: "#1D1407", b: "#4A340F" },
+  "Angels' Share On The Rocks":    { a: "#1A0E08", b: "#3E2012" },
+  "Y Iced Cologne (Patronus)":     { a: "#08202A", b: "#164A5C" },
+  "God of Fire":                   { a: "#0C0505", b: "#2B0A08" }
+};
+
+/* Fotoğraf dosyası: <slug>_poster.jpg, tercihen dikey 2:3. Dosya yoksa sayfa kendi rengi ve baş harfiyle görünür.
+   Fotoğrafı bekleyenler: blonde_amber, angels_share_otr, y_iced_cologne, god_of_fire */
+var SLUG = {
+  "Y Intense EDP": "y_intense",
+  "Le Beau Paradise Garden": "le_beau_paradise_garden",
+  "Afternoon Swim": "afternoon_swim",
+  "Homme Marine": "kenzo_homme_marine",
+  "Supremacy Collector's Edition": "afnan_supremacy",
+  "Jean Lowe Azure": "jean_lowe_azure",
+  "Aventus Absolu": "aventus_absolu",
+  "Tygar": "tygar",
+  "Layton (Klasik)": "layton_klasik",
+  "Acqua di Sale": "acqua_di_sale",
+  "Aventus": "aventus",
+  "Terre d'Hermès": "terre_d_hermes",
+  "Layton Exclusif": "layton_exclusif",
+  "Blonde Amber": "blonde_amber",
+  "Angels' Share On The Rocks": "angels_share_otr",
+  "Y Iced Cologne (Patronus)": "y_iced_cologne",
+  "God of Fire": "god_of_fire"
+};
+
+/* Hazır kampanya fotoğrafı olan kokular */
+var POSTER = {
+  "Y Intense EDP": "img/y_intense_poster.jpg",
+  "Le Beau Paradise Garden": "img/le_beau_paradise_garden_poster.jpg",
+  "Afternoon Swim": "img/afternoon_swim_poster.jpg",
+  "Homme Marine": "img/kenzo_homme_marine_poster.jpg",
+  "Supremacy Collector's Edition": "img/afnan_supremacy_poster.jpg",
+  "Jean Lowe Azure": "img/jean_lowe_azure_poster.jpg",
+  "Aventus Absolu": "img/aventus_absolu_poster.jpg",
+  "Tygar": "img/tygar_poster.jpg",
+  "Layton (Klasik)": "img/layton_klasik_poster.jpg",
+  "Acqua di Sale": "img/acqua_di_sale_poster.jpg",
+  "Aventus": "img/aventus_poster.jpg",
+  "Terre d'Hermès": "img/terre_d_hermes_poster.jpg",
+  "Layton Exclusif": "img/layton_exclusif_poster.jpg"
+};
+
+/* Birden fazla kokunun tek karede göründüğü fotoğraflar: kademe puanı -> dosya */
+var GROUP_SHOT = {
+  5: { src: "img/group_tier5.jpg", alt: "Giyinme odasında ahşap bir masa üzerinde YSL Y EDP, YSL Babycat, Valentino Uomo Born in Roma, Rasasi Hawas for Him, Tom Ford Black Orchid, Xerjoff Alexandria II, YSL Vinyle ve Vanilla Powder" },
+  6: { src: "img/group_tier6.jpg", alt: "Koyu keten runner üzerinde Prada Luna Rossa Carbon, Memo African Leather, Amouage Reflection Man, Ganymede, Xerjoff Torino 21, Initio Side Effect, Atelier Rebul Istanbul ve Spicebomb Metallic Musk" }
+};
+
+/* Kendi sözlerinle yazdığın ortam notu. Varsa sayfada alıntı olarak görünür. */
+var MOMENT = {
+  "Afternoon Swim": "Lüks yaz tatili",
+  "Homme Marine": "Spor ve kıyı şeridi",
+  "Jean Lowe Azure": "Sıcak ofis günleri"
+};
+
+/* YORUMLARIN BURAYA: her kokunun sayfasında "notlarım" alanı var. Aşağıya kokunun adıyla bir kayıt eklemen yeterli.
+   open = açılış · last = kalıcılık · feel = his · free = serbest yazı (baş harfi büyük başlar). Hepsi isteğe bağlı.
+   Örnek:  "Aventus": { open: "…", last: "…", feel: "…", free: "…" } */
+var NOTES = {};
+
+/* Kendi fotoğrafı olmayan kompakt sayfalar için mevsim havası (soluk zemin fotoğrafı) ve mat renk çifti.
+   Bir koku için <slug>_poster.jpg eklersen POSTER'a yazman yeterli, bu zemin onun yerine geçer. */
+var MOOD = {
+  "Yazlık":        { img: "afternoon_swim_detail.jpg", a: "#102226", b: "#183A3F" },
+  "Geçiş Mevsimi": { img: "layton_klasik_detail.jpg",  a: "#181A18", b: "#2A2D29" },
+  "Kışlık":        { img: "layton_exclusif_detail.jpg", a: "#1E140D", b: "#35241A" },
+  "":              { img: "terre_d_hermes_detail.jpg",  a: "#171513", b: "#262320" }
+};
+
+/* Düzen: a = fotoğraf sağda, yazı onun soluk kenarına girer · b = fotoğraf solda, yazı sağda ve kenarına girer · c = geniş fotoğraf, üstüne binen yazı paneli */
+var LAYOUTS = ["a", "b", "c"];
+
+function rankOf(p) { return ranked.indexOf(p) + 1; }
+function pad2(n) { return String(n).padStart(2, "0"); }
+function folioHtml(p) { return '<div class="folio"><span>olfactus · vitrin</span><span>sf. ' + pad2(rankOf(p)) + " / " + PERFUMES.length + "</span></div>"; }
+function factsHtml(p) {
+  function row(label, list) { return list && list.length ? '<div><dt>' + label + '</dt><dd>' + esc([].concat(list).join(' · ')) + '</dd></div>' : ''; }
+  return '<dl class="facts">' + row('mevsim', p.season) + row('çizgi', p.line ? [p.line] : []) + row('ortam', p.occ) + '</dl>';
+}
+function notesHtml(p) {
+  var n = Object.assign({}, p.essay || {}, NOTES[p.name] || {});
+  function slot(l, t) { return '<div class="slot' + (t ? ' on' : '') + '"><dt>' + l + '</dt><dd>' + (t ? esc(t) : 'henüz yazılmadı') + '</dd></div>'; }
+  return '<div class="notes"><span class="label">notlarım</span><dl>' + slot('açılış', n.open) + slot('kalıcılık', n.last) + slot('his', n.feel) + '</dl>' +
+    (n.free ? '<p class="free">' + esc(n.free) + '</p>' : '') + '</div>';
+}
+
+function spreadHtml(p, idx) {
+  var w = WORLD[p.name], poster = POSTER[p.name], note = MOMENT[p.name];
+  var photo = poster
+    ? '<img src="' + poster + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.remove()">'
+    : '<span class="initial" aria-hidden="true">' + esc(p.name.charAt(0)) + '</span>';
+  var layout = idx === 0 ? "a" : LAYOUTS[idx % LAYOUTS.length];
+  return '<article class="spread s-' + layout + (idx === 0 ? ' lead' : '') + '" style="--a:' + w.a + ';--b:' + w.b + '">' +
+    '<div class="sp-photo">' + photo + '</div>' +
+    '<div class="sp-body">' +
+      '<div class="topline"><span class="rank">' + pad2(rankOf(p)) + '</span><span class="label">' + LABELS[p.score] + '</span></div>' +
+      '<div class="main"><h3>' + esc(p.name) + '</h3>' +
+        (p.house ? '<span class="label">' + esc(p.house) + '</span>' : '') +
+        (note ? '<p class="sp-note">“' + esc(note) + '”</p>' : '') + '</div>' +
+      factsHtml(p) + notesHtml(p) +
+      '<div>' + scoreHtml(p.score) + '</div>' +
+    '</div>' + folioHtml(p) + '</article>';
+}
+
+function miniHtml(p) {
+  var n = Object.assign({}, p.essay || {}, NOTES[p.name] || {});
+  var filled = n.open || n.last || n.feel || n.free;
+  return '<article class="mini">' +
+    '<div class="mn-head"><div><span class="rank label">' + pad2(rankOf(p)) + '</span><h4>' + esc(p.name) + '</h4>' +
+      (p.house ? '<span class="label">' + esc(p.house) + '</span>' : '') + '</div>' + scoreHtml(p.score) + '</div>' +
+    factsHtml(p) +
+    (filled ? notesHtml(p) : '<p class="mn-empty"><span class="label">notlarım</span> henüz yazılmadı</p>') +
+    '</article>';
+}
+
+// Bölüm 1: vitrin
+function inCards(p) { return p.score >= 7 && !!WORLD[p.name]; }
+var picks = '<div class="spreads">';
+ranked.filter(inCards).forEach(function (p, idx) { picks += spreadHtml(p, idx); });
+picks += '</div>';
+for (var sc = 10; sc >= 0; sc--) {
+  var items = ranked.filter(function (p) { return p.score === sc && !inCards(p); });
+  if (!items.length) continue;
+  picks += '<div class="tg mt">' +
+    '<div class="hd"><span class="numeral">' + sc + '</span><span class="label">' + LABELS[sc] + "</span></div>" +
+    (GROUP_SHOT[sc] ? '<figure class="shot"><img src="' + GROUP_SHOT[sc].src + '" alt="' + esc(GROUP_SHOT[sc].alt) + '" loading="lazy" onerror="this.closest(\'.shot\').remove()"></figure>' : '') +
+    '<div class="minis">' + items.map(miniHtml).join("") + "</div></div>";
+}
+document.getElementById("picks").innerHTML = picks;
+
+// Bölüm 2: tasnif
+var groupsHtml = "";
+GROUPS.forEach(function (g) {
+  var cols = "";
+  g.buckets.forEach(function (b) {
+    var list = ranked.filter(function (p) {
+      var v = p[g.key];
+      return Array.isArray(v) ? v.indexOf(b) !== -1 : v === b;
+    });
+    var body = list.length
+      ? "<ul>" + list.map(function (p) {
+          return '<li class="' + (p.score >= 7 ? "hi" : "") + '"><span>' + esc(p.name) + '</span><span class="n">' + p.score + "</span></li>";
+        }).join("") + "</ul>"
+      : '<p class="none">Henüz yok.</p>';
+    cols += '<div class="bucket"><h4>' + esc(b) + '</h4><span class="label ct">' + list.length + " koku</span>" + body + "</div>";
+  });
+  groupsHtml += '<div class="group"><h3 class="label">' + esc(g.title) + '</h3><div class="buckets">' + cols + "</div></div>";
+});
+var unclassified = ranked.filter(function (p) { return !p.season.length; });
+if (unclassified.length) {
+  groupsHtml += '<p class="unclass"><span class="label">Sınıflandırılmayanlar · ' + unclassified.length + "</span><br>" +
+    unclassified.map(function (p) { return esc(full(p)) + " (" + p.score + ")"; }).join(" · ") + "</p>";
+}
+document.getElementById("groups").innerHTML = groupsHtml;
+
+// Bölüm 3: notlar
+var withEssay = ranked.filter(function (p) { return p.essay; });
+var essays = withEssay.map(function (p) {
+  return '<article class="essay"><div>' +
+    "<h3>" + esc(p.name) + "</h3>" +
+    '<div class="by">' + (p.house ? '<span class="label">' + esc(p.house) + "</span>" : "") +
+    scoreHtml(p.score) +
+    '<span class="draft">taslak</span></div></div>' +
+    "<dl>" +
+    '<div><dt class="label">Açılış</dt><dd>' + esc(p.essay.open) + "</dd></div>" +
+    '<div><dt class="label">Kalıcılık</dt><dd>' + esc(p.essay.last) + "</dd></div>" +
+    '<div><dt class="label">His</dt><dd>' + esc(p.essay.feel) + "</dd></div>" +
+    "</dl></article>";
+}).join("");
+essays += '<p class="pending"><span class="label">Notu bekleyen · ' + (PERFUMES.length - withEssay.length) + " koku</span><br>Kalan kokuların açılış, kalıcılık ve his notları senin ağzından yazılacak.</p>";
+document.getElementById("essays").innerHTML = essays;
+</script>
+
+</body></html>

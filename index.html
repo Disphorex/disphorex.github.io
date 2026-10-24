@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olfactus &amp; Parfümeri</title>
+<style>
+:root{--bg:#100D0B;--bar:#17120F;--ink:#EADFC8;--muted:#A99A83;--line:#3D3128;--accent:#C9A45C;--accent-ink:#1A130D;
+--serif:"Bodoni Moda","Didot",Georgia,serif;--mono:"Courier New",ui-monospace,monospace;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#100D0B}}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bar);z-index:10}
+.bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px max(14px,env(safe-area-inset-left,0px)) 8px max(14px,env(safe-area-inset-left,0px));background:var(--bar);border-bottom:1px solid var(--line)}
+.brand{font:italic 400 18px/1 var(--serif);letter-spacing:.04em;white-space:nowrap}
+.brand small{display:block;margin-top:3px;font:400 9.5px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-style:normal}
+.sw{display:inline-flex;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.sw button{border:0;background:transparent;color:var(--muted);padding:9px 16px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+.sw button+button{border-left:1px solid var(--line)}
+.sw button:hover{color:var(--ink)}
+.sw button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);font-weight:700}
+.sw button:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+.stage{flex:1;position:relative;min-height:0}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#131110}
+iframe[hidden]{display:none}
+.load{position:absolute;inset:0;display:grid;place-items:center;font:italic 18px var(--serif);color:var(--muted)}
+@media (max-width:520px){.brand small{display:none}.sw button{padding:9px 12px}}
+</style></head><body>
+<header class="bar">
+  <div class="brand">Olfactus &amp; Parfümeri<small>Dergi · Fiyat panosu</small></div>
+  <div class="sw" role="tablist" aria-label="Proje seçimi">
+    <button type="button" role="tab" id="t-olfactus" data-k="olfactus" aria-selected="true" aria-controls="f-olfactus">Olfactus</button>
+    <button type="button" role="tab" id="t-parfumeri" data-k="parfumeri" aria-selected="false" aria-controls="f-parfumeri">Parfümeri</button>
+  </div>
+</header>
+<main class="stage" id="stage"></main>
+<script>
+(function(){
+var SRC={olfactus:"olfactus/",parfumeri:"parfumeri/"};
+var TITLE={olfactus:"Olfactus dergisi",parfumeri:"Parfümeri paneli"};
+var stage=document.getElementById("stage"),frames={},tabs=[].slice.call(document.querySelectorAll(".sw button"));
+function ensure(k){
+  if(frames[k])return frames[k];
+  var f=document.createElement("iframe");f.id="f-"+k;f.title=TITLE[k];f.setAttribute("role","tabpanel");f.setAttribute("aria-labelledby","t-"+k);
+  f.hidden=true;f.src=SRC[k];stage.appendChild(f);frames[k]=f;return f;
+}
+function show(k,skipHash){
+  if(!SRC[k])k="olfactus";
+  ensure(k);
+  Object.keys(frames).forEach(function(n){frames[n].hidden=(n!==k);});
+  tabs.forEach(function(b){var on=b.dataset.k===k;b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1;});
+  document.title=(k==="olfactus"?"Olfactus":"Parfümeri")+" · Olfactus & Parfümeri";
+  try{localStorage.setItem("op_last",k);}catch(e){}
+  if(!skipHash){try{history.replaceState(null,"","#"+k);}catch(e){try{location.hash=k;}catch(_){}}}
+}
+tabs.forEach(function(b,i){
+  b.addEventListener("click",function(){show(b.dataset.k);});
+  b.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="ArrowLeft"){var n=tabs[(i+1)%tabs.length];n.focus();show(n.dataset.k);e.preventDefault();}
+  });
+});
+window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(SRC[h])show(h,true);});
+var start=location.hash.slice(1);
+if(!SRC[start]){try{start=localStorage.getItem("op_last");}catch(e){}}
+show(SRC[start]?start:"olfactus",true);
+})();
+</script></body></html>
