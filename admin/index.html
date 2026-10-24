@@ -105,7 +105,7 @@ function vLogin(){return '<main class="w"><h1>Pazar yönetimi</h1><p class="m">S
 function vList(){var q=S.q.toLowerCase(),n=0;
   var rows=S.sellers.map(function(s,i){var t=sname(s);if(q&&t.toLowerCase().indexOf(q)<0)return '';n++;
     return '<button class="row" data-a="open" data-i="'+i+'"><span>'+esc(t)+'<small>'+esc(host(s.data.base)||'site adresi yok')+'</small></span><span class="r">'+s.data.items.length+' ürün'+(s.dirty?'<small class="ok">değişti</small>':'')+'</span></button>'}).join('');
-  return '<div class="top"><b>Pazar yönetimi</b><span><button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
+  return '<div class="top"><span><b>Pazar</b> · <a href="olfactus.html" style="color:var(--acc);text-decoration:none">Olfactus →</a></span><span><button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
   (S.msg?'<p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>':'')+
   '<label>Satıcı ara<input id="sq" value="'+esc(S.q)+'" placeholder="satıcı adı"></label><h2>Satıcılar ('+S.sellers.length+')</h2>'+rows+
   '<button class="row nw" data-a="newseller">+ Satıcı ekle</button>'+

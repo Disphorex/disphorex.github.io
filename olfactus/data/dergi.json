@@ -1,0 +1,140 @@
+{
+"texts": {
+ "cover.issue": "sayı 01",
+ "cover.date": "ekim 2026",
+ "cover.title": "Olfactus",
+ "cover.tagline": "Niş parfümeri günlüğü. Puan, karar, iz.",
+ "nav.eyebrow": "bu sayıda",
+ "idx1.eyebrow": "bölüm 1",
+ "idx1.title": "Vitrin",
+ "idx1.desc": "Şaheserden rezalete, puan sırasıyla tüm koku listesi.",
+ "vitrin.eyebrow": "bölüm 1",
+ "vitrin.title": "Vitrin",
+ "vitrin.lede": "7 ve üzeri kendi sayfasında yaşar. Altısı ve altı kademeli listede toplanır.",
+ "idx2.eyebrow": "bölüm 2",
+ "idx2.title": "Tasnif",
+ "idx2.desc": "Mevsim, çizgi ve ortama göre dolap düzeni.",
+ "tasnif.eyebrow": "bölüm 2",
+ "tasnif.title": "Tasnif",
+ "tasnif.lede": "Aynı koku birden fazla rafa girebilir. Her rafta en yüksek puan en üstte durur. Sınıflandırma genel Fragrantica algısına göre bir taslaktır, sen düzeltirsin.",
+ "idx3.eyebrow": "bölüm 3",
+ "idx3.title": "Deneme Notları",
+ "idx3.desc": "Açılış, kalıcılık, his. Üç cümle, fazlası yok.",
+ "notlar.eyebrow": "bölüm 3",
+ "notlar.title": "Deneme Notları",
+ "notlar.lede": "Notalar listesi değil, ilk izlenim. Buradaki satırlar taslaktır, kendi kulağınla yeniden yazılmayı bekler.",
+ "foot.1": "olfactus · sayı 01",
+ "foot.2": "puanlar kişisel, 10 üzerinden"
+},
+"labels": {
+ "0": "Rezalet",
+ "1": "İğrenç",
+ "2": "Çok kötü",
+ "3": "Kötü",
+ "4": "Meh",
+ "5": "Ortalama",
+ "6": "İyi",
+ "7": "Güzel",
+ "8": "Çok iyi",
+ "9": "Harika",
+ "10": "Şaheser"
+},
+"groups": [
+ {
+  "title": "Mevsim",
+  "key": "season",
+  "buckets": [
+   "Yazlık",
+   "Geçiş Mevsimi",
+   "Kışlık"
+  ]
+ },
+ {
+  "title": "Çizgi",
+  "key": "line",
+  "buckets": [
+   "Maskülen",
+   "Feminen",
+   "Unisex"
+  ]
+ },
+ {
+  "title": "Ortam",
+  "key": "occ",
+  "buckets": [
+   "Günlük",
+   "Randevu Gecesi",
+   "İş / Formal"
+  ]
+ }
+],
+"groupShots": {
+ "5": {
+  "src": "img/group_tier5.jpg",
+  "alt": "Giyinme odasında ahşap bir masa üzerinde YSL Y EDP, YSL Babycat, Valentino Uomo Born in Roma, Rasasi Hawas for Him, Tom Ford Black Orchid, Xerjoff Alexandria II, YSL Vinyle ve Vanilla Powder"
+ },
+ "6": {
+  "src": "img/group_tier6.jpg",
+  "alt": "Koyu keten runner üzerinde Prada Luna Rossa Carbon, Memo African Leather, Amouage Reflection Man, Ganymede, Xerjoff Torino 21, Initio Side Effect, Atelier Rebul Istanbul ve Spicebomb Metallic Musk"
+ }
+},
+"perfumes": [
+{"name": "Y Intense EDP", "house": "Yves Saint Laurent", "score": 10, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Maskülen", "occ": ["Günlük", "Randevu Gecesi"], "poster": "img/y_intense_poster.jpg", "world": {"a": "#0C141F", "b": "#0F1B2C"}},
+{"name": "Le Beau Paradise Garden", "house": "Jean Paul Gaultier", "score": 9, "season": ["Yazlık"], "line": "Maskülen", "occ": ["Günlük"], "poster": "img/le_beau_paradise_garden_poster.jpg", "world": {"a": "#151614", "b": "#222421"}},
+{"name": "Afternoon Swim", "house": "Louis Vuitton", "score": 9, "season": ["Yazlık"], "line": "Unisex", "occ": ["Günlük"], "moment": "Lüks yaz tatili", "poster": "img/afternoon_swim_poster.jpg", "world": {"a": "#242628", "b": "#3C4043"}},
+{"name": "Homme Marine", "house": "Kenzo", "score": 9, "season": ["Yazlık"], "line": "Maskülen", "occ": ["Günlük"], "moment": "Spor ve kıyı şeridi", "poster": "img/kenzo_homme_marine_poster.jpg", "world": {"a": "#151412", "b": "#23211E"}},
+{"name": "Supremacy Collector's Edition", "house": "Afnan", "score": 9, "poster": "img/afnan_supremacy_poster.jpg", "world": {"a": "#131210", "b": "#201E1B"}},
+{"name": "Jean Lowe Azure", "house": "Maison Alhambra", "score": 9, "season": ["Yazlık"], "line": "Unisex", "occ": ["İş / Formal"], "moment": "Sıcak ofis günleri", "poster": "img/jean_lowe_azure_poster.jpg", "world": {"a": "#0E0F0B", "b": "#171912"}},
+{"name": "Aventus Absolu", "house": "Creed", "score": 8, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Maskülen", "occ": ["Randevu Gecesi"], "essay": {"open": "Aventus'un tanıdık meyvesi, bu sefer daha koyu bir duman perdesinin ardında.", "last": "Orijinalden daha yoğun, daha uzun.", "feel": "Aynı özgüven, ama sesini yükseltmeden."}, "poster": "img/aventus_absolu_poster.jpg", "world": {"a": "#0D0C0B", "b": "#151411"}},
+{"name": "Tygar", "house": "Bvlgari", "score": 8, "season": ["Yazlık", "Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Günlük"], "poster": "img/tygar_poster.jpg", "world": {"a": "#120F0C", "b": "#1E1814"}},
+{"name": "Layton (Klasik)", "house": "Parfums de Marly", "score": 8, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Maskülen", "occ": ["Randevu Gecesi", "Günlük"], "essay": {"open": "Elma ve lavanta, temiz ve davetkâr.", "last": "Uzun, arkasında iz bırakır.", "feel": "Şık ama sokakta rahat."}, "poster": "img/layton_klasik_poster.jpg", "world": {"a": "#181411", "b": "#28221B"}},
+{"name": "Acqua di Sale", "house": "Profumum Roma", "score": 8, "season": ["Yazlık"], "line": "Unisex", "occ": ["Günlük"], "poster": "img/acqua_di_sale_poster.jpg", "world": {"a": "#10100C", "b": "#1B1A14"}},
+{"name": "Aventus", "house": "Creed", "score": 7, "season": ["Geçiş Mevsimi", "Yazlık"], "line": "Maskülen", "occ": ["İş / Formal", "Günlük"], "essay": {"open": "Ananas ve duman: parlak, kendinden emin.", "last": "Parti farkı var. İlk saatler en iyisi.", "feel": "Toplantıya ilk giren adamın özgüveni."}, "poster": "img/aventus_poster.jpg", "world": {"a": "#0E0D0B", "b": "#181612"}},
+{"name": "Terre d'Hermès", "house": "Hermès", "score": 7, "season": ["Geçiş Mevsimi"], "line": "Maskülen", "occ": ["İş / Formal"], "essay": {"open": "Portakal kabuğu ve taş: ince bir kuruluk.", "last": "Orta, tene yakın.", "feel": "Sakin otorite. Takım elbisenin altında doğru."}, "poster": "img/terre_d_hermes_poster.jpg", "world": {"a": "#19140F", "b": "#2A2119"}},
+{"name": "Layton Exclusif", "house": "Parfums de Marly", "score": 7, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Maskülen", "occ": ["Randevu Gecesi"], "poster": "img/layton_exclusif_poster.jpg", "world": {"a": "#1A1611", "b": "#2B241B"}},
+{"name": "Blonde Amber", "house": "Clive Christian", "score": 7, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"], "world": {"a": "#1D1407", "b": "#4A340F"}},
+{"name": "Angels' Share On The Rocks", "house": "By Kilian", "score": 7, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"], "world": {"a": "#1A0E08", "b": "#3E2012"}},
+{"name": "Y Iced Cologne (Patronus)", "house": "Yves Saint Laurent", "score": 7, "season": ["Yazlık"], "line": "Maskülen", "occ": ["Günlük"], "world": {"a": "#08202A", "b": "#164A5C"}},
+{"name": "God of Fire", "house": "Stéphane Humbert Lucas 777", "score": 7, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"], "world": {"a": "#0C0505", "b": "#2B0A08"}},
+{"name": "Luna Rossa Carbon", "house": "Prada", "score": 6, "season": ["Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Günlük", "İş / Formal"]},
+{"name": "African Leather", "house": "Memo Paris", "score": 6, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Reflection Man", "house": "Amouage", "score": 6, "season": ["Geçiş Mevsimi"], "line": "Maskülen", "occ": ["İş / Formal"]},
+{"name": "Ganymede", "house": "Marc-Antoine Barrois", "score": 6, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Torino 21", "house": "", "score": 6, "season": ["Yazlık", "Geçiş Mevsimi"], "line": "Unisex", "occ": ["Günlük"]},
+{"name": "Side Effect", "house": "Initio", "score": 6, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "İstanbul", "house": "Rebul", "score": 6},
+{"name": "Alexandria II", "house": "Xerjoff", "score": 5, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Vanilla Powder", "house": "", "score": 5},
+{"name": "Babycat (Patronus)", "house": "Yves Saint Laurent", "score": 5},
+{"name": "Uomo Born in Roma", "house": "Valentino", "score": 5, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Maskülen", "occ": ["Randevu Gecesi"]},
+{"name": "Vinyle", "house": "Yves Saint Laurent", "score": 5},
+{"name": "Hawas for Him", "house": "Rasasi", "score": 5, "season": ["Yazlık"], "line": "Maskülen", "occ": ["Günlük"]},
+{"name": "Y EDP", "house": "Yves Saint Laurent", "score": 5, "season": ["Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Günlük", "İş / Formal"]},
+{"name": "Black Orchid", "house": "Tom Ford", "score": 5, "season": ["Kışlık", "Geçiş Mevsimi"], "line": "Unisex", "occ": ["Randevu Gecesi"], "essay": {"open": "Trüf ve karanlık çiçek, ilk nefes ağır.", "last": "Uzun, odayı doldurur.", "feel": "Dramatik, ama biraz yorgun."}},
+{"name": "Naxos", "house": "Xerjoff", "score": 4, "season": ["Kışlık", "Geçiş Mevsimi"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Dior Homme Intense", "house": "Dior", "score": 4, "season": ["Kışlık", "Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Randevu Gecesi", "İş / Formal"]},
+{"name": "Stronger with You", "house": "Emporio Armani", "score": 4, "season": ["Kışlık", "Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Randevu Gecesi", "Günlük"]},
+{"name": "Erba Pura", "house": "Xerjoff", "score": 4, "season": ["Yazlık", "Geçiş Mevsimi"], "line": "Unisex", "occ": ["Günlük"]},
+{"name": "Hacivat", "house": "Nishane", "score": 4, "season": ["Geçiş Mevsimi"], "line": "Unisex", "occ": ["Günlük", "İş / Formal"]},
+{"name": "Blue Talisman", "house": "Ex Nihilo", "score": 4},
+{"name": "Ombré Leather", "house": "Tom Ford", "score": 4, "season": ["Kışlık", "Geçiş Mevsimi"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Imagination", "house": "Louis Vuitton", "score": 4, "season": ["Yazlık", "Geçiş Mevsimi"], "line": "Unisex", "occ": ["Günlük", "İş / Formal"]},
+{"name": "Summer Hammer", "house": "", "score": 3},
+{"name": "Sauvage", "house": "Dior", "score": 3, "season": ["Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Günlük"], "essay": {"open": "Biber ve bergamot, arkadan ambroxan duvarı geliyor.", "last": "Çok uzun, gerekenden fazla.", "feel": "Herkesin kolunda, kimsenin hatırında değil."}},
+{"name": "Stronger with You Absolutely", "house": "Emporio Armani", "score": 3, "season": ["Kışlık"], "line": "Maskülen", "occ": ["Randevu Gecesi"]},
+{"name": "Black Afgano", "house": "Nasomatto", "score": 2, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Bleu de Chanel", "house": "Chanel", "score": 2, "season": ["Geçiş Mevsimi"], "line": "Maskülen", "occ": ["İş / Formal", "Günlük"], "essay": {"open": "Narenciye ve nane, tanıdık ve temiz.", "last": "Orta.", "feel": "Güvenli ve ruhsuz."}},
+{"name": "Megamare", "house": "Orto Parisi", "score": 2, "season": ["Yazlık"], "line": "Unisex", "occ": ["Günlük"]},
+{"name": "Cashmeran", "house": "Kimyager Ahmet", "score": 2},
+{"name": "Spicebomb Metallic Musk", "house": "Viktor&Rolf", "score": 2},
+{"name": "Musc Ravageur", "house": "Frédéric Malle", "score": 2, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Oud Satin Mood", "house": "Maison Francis Kurkdjian", "score": 2, "season": ["Kışlık"], "line": "Unisex", "occ": ["Randevu Gecesi"]},
+{"name": "Scandal Pour Homme", "house": "Jean Paul Gaultier", "score": 2, "season": ["Kışlık", "Geçiş Mevsimi"], "line": "Maskülen", "occ": ["Randevu Gecesi"]},
+{"name": "More Than Words", "house": "Xerjoff", "score": 1},
+{"name": "Neroli Portofino", "house": "Tom Ford", "score": 1, "season": ["Yazlık"], "line": "Unisex", "occ": ["Günlük"]},
+{"name": "Santal 33", "house": "Le Labo", "score": 0, "season": ["Geçiş Mevsimi", "Kışlık"], "line": "Unisex", "occ": ["Günlük"]},
+{"name": "Gingerol", "house": "Kimyager Ahmet", "score": 0},
+{"name": "Photolyase", "house": "Kimyager Ahmet", "score": 0},
+{"name": "Pacific Chill", "house": "Louis Vuitton", "score": 0, "season": ["Yazlık"], "line": "Unisex", "occ": ["Günlük"]}
+]
+}

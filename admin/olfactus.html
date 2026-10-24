@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Olfactus yönetimi</title>
+<style>
+:root{--bg:#100D0B;--card:#1B1511;--ink:#EADFC8;--mut:#A99A83;--line:#3D3128;--acc:#C9A45C;--acc-ink:#1A130D;--bad:#E07B6A;--ok:#8DBF8A;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:light){:root{--bg:#F6F1E7;--card:#FFFDF8;--ink:#2A2118;--mut:#6F6252;--line:#D9CDB8;--acc:#8A6A2A;--acc-ink:#fff;--bad:#B3402F;--ok:#3E7A3B;color-scheme:light}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+.w{max-width:760px;margin:0 auto;padding:14px 14px 30px}
+h1{font:italic 400 24px/1.2 Georgia,serif;margin:6px 0 4px}h2{font-size:17px;margin:18px 0 8px}
+.m{color:var(--mut);font-size:14px;margin:4px 0 12px}.err{color:var(--bad)}.ok{color:var(--ok)}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:8px;align-items:center;justify-content:space-between;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1*env(safe-area-inset-top,0px))}
+.top b{font:italic 400 18px Georgia,serif}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 0}
+input,textarea,select{width:100%;margin-top:4px;padding:11px 12px;font:16px inherit;font-family:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px}
+textarea{min-height:90px;resize:vertical}input:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:0}
+.b{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 16px;border-radius:6px;font:600 14px inherit;font-family:inherit;cursor:pointer;min-height:44px}
+.b.p{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}.b.d{color:var(--bad)}.b.s{padding:8px 12px;min-height:36px;font-size:13px}
+.row{display:flex;width:100%;justify-content:space-between;gap:10px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;margin:0 0 8px;color:var(--ink);font:inherit;cursor:pointer}
+.row small{display:block;color:var(--mut);font-size:13px;margin-top:2px}.row .r{white-space:nowrap;text-align:right}
+.row.nw{background:transparent;border-style:dashed;justify-content:center;color:var(--acc);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:12px 0}summary{cursor:pointer;font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--acc);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;justify-content:space-between}
+.bar span{font-size:14px}.bar div{display:flex;gap:8px}
+.ov{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:640px;max-height:92vh;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom,0px));border:1px solid var(--line)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.acts .b{flex:1}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:14px;display:none;max-width:90%}
+ol{padding-left:20px;margin:8px 0}li{margin:4px 0}
+</style>
+<style>
+.tabs{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap}.tabs .b{flex:1;min-width:90px}.tabs .b.on{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.chips button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 12px;border-radius:20px;font:14px inherit;font-family:inherit;cursor:pointer;min-height:38px}
+.chips button[aria-pressed=true]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:600}
+.th{width:40px;height:60px;border-radius:4px;background:var(--line) center/cover;flex:none;display:grid;place-items:center;font:italic 20px Georgia,serif;color:var(--mut)}
+.row .l{display:flex;gap:10px;align-items:center;min-width:0}.row .l span{min-width:0}
+.pv{width:150px;aspect-ratio:2/3;border-radius:8px;border:1px solid var(--line);background:center/cover no-repeat;display:grid;place-items:center;font:italic 54px Georgia,serif;color:rgba(255,255,255,.55);margin-top:6px}
+.cols{display:flex;gap:10px;align-items:flex-end}.cols label{flex:1}input[type=color]{padding:3px;height:44px}
+.top a{color:var(--acc);font-size:14px;text-decoration:none}
+</style></head><body>
+<div id="app"></div><div id="toast"></div>
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var LS={g:function(k){try{return localStorage.getItem(k)}catch(e){return null}},s:function(k,v){try{localStorage.setItem(k,v)}catch(e){}},d:function(k){try{localStorage.removeItem(k)}catch(e){}}};
+function guess(){var c={owner:'',repo:'',branch:'',dir:'parfumeri/data'},h=location.hostname,p=location.pathname.split('/').filter(Boolean);
+  if(/\.github\.io$/.test(h)){c.owner=h.split('.')[0];c.repo=(p[0]&&p[0]!=='admin')?p[0]:c.owner+'.github.io';}return c}
+var cfg=guess();try{var sv=JSON.parse(LS.g('op_adm_cfg')||'{}');for(var k in sv)if(sv[k])cfg[k]=sv[k]}catch(e){}
+var tok=LS.g('op_adm_tok')||'',pre=cfg.dir&&cfg.dir.indexOf('docs/')===0?'docs/':'';
+var S={view:tok?'list':'login',tab:'k',D:null,head:'',dirty:false,cur:null,q:'',lim:80,imgs:{},trash:[],busy:false,msg:''};
+var SEASON=['Yazlık','Geçiş Mevsimi','Kışlık'],LINE=['Maskülen','Feminen','Unisex'],OCC=['Günlük','Randevu Gecesi','İş / Formal'];
+var TL={'cover.issue':'Kapak: sayı','cover.date':'Kapak: tarih','cover.title':'Kapak: dergi adı','cover.tagline':'Kapak: alt başlık','nav.eyebrow':'İçindekiler: üst etiket',
+ 'idx1.eyebrow':'İçindekiler 1: etiket','idx1.title':'İçindekiler 1: başlık','idx1.desc':'İçindekiler 1: açıklama','idx2.eyebrow':'İçindekiler 2: etiket','idx2.title':'İçindekiler 2: başlık','idx2.desc':'İçindekiler 2: açıklama','idx3.eyebrow':'İçindekiler 3: etiket','idx3.title':'İçindekiler 3: başlık','idx3.desc':'İçindekiler 3: açıklama',
+ 'vitrin.eyebrow':'Vitrin: etiket','vitrin.title':'Vitrin: başlık','vitrin.lede':'Vitrin: giriş yazısı','tasnif.eyebrow':'Tasnif: etiket','tasnif.title':'Tasnif: başlık','tasnif.lede':'Tasnif: giriş yazısı','notlar.eyebrow':'Deneme Notları: etiket','notlar.title':'Deneme Notları: başlık','notlar.lede':'Deneme Notları: giriş yazısı','foot.1':'Alt bilgi 1','foot.2':'Alt bilgi 2'};
+
+function api(path,o){o=o||{};return fetch('https://api.github.com'+path,{method:o.method||'GET',cache:'no-store',headers:Object.assign({Authorization:'Bearer '+tok,Accept:o.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},o.body?{'Content-Type':'application/json'}:{}),body:o.body?JSON.stringify(o.body):undefined}).then(function(r){
+  if(!r.ok){var e=new Error('GitHub '+r.status+({401:' — anahtar geçersiz veya süresi dolmuş',403:' — bu depoya yazma yetkisi yok',404:' — bulunamadı (depo adı, dal veya klasör yolu yanlış olabilir)',409:' — çakışma, yenileyip tekrar dene',422:' — istek reddedildi'}[r.status]||''));e.status=r.status;throw e}
+  return o.raw?r.text():r.json()})}
+var rp=function(p){return '/repos/'+cfg.owner+'/'+cfg.repo+p};
+var OD=function(){return pre+'olfactus'};
+function readData(){return api(rp('/contents/'+OD()+'/data/dergi.json?ref='+encodeURIComponent(cfg.branch)),{raw:true}).then(JSON.parse)}
+function norm(D){D.texts=D.texts||{};D.labels=D.labels||{};D.groupShots=D.groupShots||{};D.perfumes.forEach(function(p){p.season=p.season||[];p.occ=p.occ||[];p.line=p.line||'';p.house=p.house||'';p.notes=p.notes||{};p.essay=p.essay||{};p.moment=p.moment||'';p.poster=p.poster||''});return D}
+function load(){S.msg='Veriler okunuyor…';render();
+  var b=cfg.branch?Promise.resolve():api(rp('')).then(function(r){cfg.branch=r.default_branch});
+  return b.then(function(){return api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch)))}).then(function(r){S.head=r.object.sha;return readData().catch(function(e){if(e.status===404&&!pre){pre='docs/';return readData()}throw e})})
+  .then(function(D){S.D=norm(D);S.imgs={};S.trash=[];S.dirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));if(S.view==='login')S.view='list';render()})
+  .catch(function(e){S.msg='Hata: '+e.message;if(e.status===401)S.view='login';render()})}
+
+function slug(n){return n.toLowerCase().replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'gorsel'}
+function imgUrl(p){return !p?'':S.imgs[p]?S.imgs[p].url:'../olfactus/'+p}
+function shrink(file,max,cb){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);var x=c.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.86))};im.onerror=function(){toast('Görsel okunamadı')};im.src=r.result};r.readAsDataURL(file)}
+function setImg(old,name,url){if(old){if(S.imgs[old])delete S.imgs[old];else S.trash.push(old)}var p='img/'+slug(name)+'_'+Date.now().toString(36)+'.jpg';S.imgs[p]={url:url};return p}
+function dropImg(old){if(!old)return;if(S.imgs[old])delete S.imgs[old];else S.trash.push(old)}
+function toast(t){var e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
+function mark(){S.dirty=true;var b=$('#savebar');if(b)b.outerHTML=bar()}
+function bar(){return S.dirty?'<div class="bar" id="savebar"><span>Kaydedilmemiş değişiklik var</span><div><button class="b s" data-a="discard">Vazgeç</button><button class="b p" data-a="save">'+(S.busy?'Kaydediliyor…':'GitHub\'a kaydet')+'</button></div></div>':'<span id="savebar"></span>'}
+var nav='<a href="index.html">Pazar</a> · <b>Olfactus</b>';
+
+/* ---------- görünümler ---------- */
+function render(){var y=window.scrollY,h=S.view==='login'?vLogin():S.view==='edit'?vEdit():vList();$('#app').innerHTML=h+bar();window.scrollTo(0,S.keepY?y:0);S.keepY=false}
+function vLogin(){return '<main class="w"><h1>Olfactus yönetimi</h1><p class="m">Pazar paneliyle aynı GitHub erişim anahtarı kullanılır. Daha önce o panele girdiysen bu cihazda otomatik açılır.</p>'+
+ '<label>GitHub erişim anahtarı (token)<input id="tok" type="password" autocomplete="off" placeholder="github_pat_…" value="'+esc(tok)+'"></label>'+
+ '<details><summary>Depo ayarları</summary><label>Kullanıcı adı<input id="c-owner" value="'+esc(cfg.owner)+'"></label><label>Depo adı<input id="c-repo" value="'+esc(cfg.repo)+'"></label><label>Dal (boşsa otomatik)<input id="c-branch" value="'+esc(cfg.branch)+'"></label></details>'+
+ '<div class="acts"><button class="b p" data-a="login">Giriş yap</button></div><p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p></main>'}
+function vList(){var D=S.D;if(!D)return '<main class="w"><p class="m">'+esc(S.msg||'Yükleniyor…')+'</p></main>';
+  var t=function(k,l){return '<button class="b'+(S.tab===k?' on':'')+'" data-a="tab" data-k="'+k+'">'+l+'</button>'};
+  var h='<div class="top"><span>'+nav+'</span><span><button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+(S.msg?'<p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>':'')+
+   '<div class="tabs">'+t('k','Kokular ('+D.perfumes.length+')')+t('t','Dergi metinleri')+t('g','Grup fotoğrafları')+'</div>';
+  if(S.tab==='k'){var q=S.q.toLowerCase(),idx=D.perfumes.map(function(p,i){return i}).filter(function(i){var p=D.perfumes[i];return !q||(p.name+' '+p.house).toLowerCase().indexOf(q)>=0}).sort(function(a,b){return D.perfumes[b].score-D.perfumes[a].score||a-b}),n=idx.length;
+    h+='<input id="sq" placeholder="koku veya ev ara" value="'+esc(S.q)+'"><div style="height:10px"></div><button class="row nw" data-a="new">+ Koku ekle</button>';
+    idx.slice(0,S.lim).forEach(function(i){var p=D.perfumes[i],u=imgUrl(p.poster);
+      h+='<button class="row" data-a="edit" data-i="'+i+'"><span class="l"><span class="th" style="'+(u?'background-image:url('+esc(u)+')':'')+'">'+(u?'':esc(p.name.charAt(0)))+'</span><span>'+esc(p.name)+'<small>'+esc(p.house||'—')+(p.world?' · kendi sayfası':'')+'</small></span></span><span class="r">'+p.score+'/10</span></button>'});
+    if(n>S.lim)h+='<button class="row nw" data-a="more">Daha fazla göster ('+(n-S.lim)+')</button>'}
+  else if(S.tab==='t'){h+='<p class="m">Kapak, bölüm başlıkları ve giriş yazıları.</p>'+Object.keys(D.texts).map(function(k){var v=D.texts[k],long=v.length>60;return '<label>'+esc(TL[k]||k)+(long?'<textarea data-tx="'+esc(k)+'">'+esc(v)+'</textarea>':'<input data-tx="'+esc(k)+'" value="'+esc(v)+'">')+'</label>'}).join('')}
+  else{var ks=Object.keys(D.groupShots).sort(function(a,b){return b-a});h+='<p class="m">Birden fazla kokunun tek karede göründüğü fotoğraflar. Kademe = puan (ör. 5, 6).</p>';
+    ks.forEach(function(k){var g=D.groupShots[k];h+='<details open><summary>Kademe '+esc(k)+' ('+esc((D.labels[k]||''))+')</summary><div class="pv" style="width:100%;aspect-ratio:16/9;background-image:url('+esc(imgUrl(g.src))+')"></div><label>Fotoğrafı değiştir<input type="file" accept="image/*" data-up="shot" data-k="'+esc(k)+'"></label><label>Açıklama (erişilebilirlik)<textarea data-gs="'+esc(k)+'">'+esc(g.alt||'')+'</textarea></label><div class="acts"><button class="b d" data-a="shotdel" data-k="'+esc(k)+'">Bu fotoğrafı kaldır</button></div></details>'});
+    h+='<label>Yeni kademe fotoğrafı için puan (0–10)<input id="ns" inputmode="numeric" placeholder="ör. 4"></label><label>Fotoğraf<input type="file" accept="image/*" data-up="newshot"></label>'}
+  return h+'</main>'}
+function chips(key,vals,single,cur){return '<div class="chips">'+vals.map(function(v){var on=single?cur===v:cur.indexOf(v)>=0;return '<button type="button" data-a="chip" data-key="'+key+'" data-v="'+esc(v)+'" aria-pressed="'+on+'">'+esc(v)+'</button>'}).join('')+'</div>'}
+function tf(path,l,v,area){return '<label>'+l+(area?'<textarea data-p="'+path+'">'+esc(v)+'</textarea>':'<input data-p="'+path+'" value="'+esc(v)+'">')+'</label>'}
+function vEdit(){var p=S.D.perfumes[S.cur],u=imgUrl(p.poster),w=p.world;
+  var L=[];if(u)L.push('url('+esc(u)+')');if(w)L.push('linear-gradient(160deg,'+w.a+','+w.b+')');var pv='background-image:'+(L.length?L.join(','):'none');
+  return '<div class="top"><button class="b s" data-a="back">← Kokular</button><b>'+esc(p.name||'Yeni koku')+'</b><span></span></div><main class="w">'+
+  '<h2 style="margin-top:6px">Kart bilgileri</h2>'+tf('name','Koku adı',p.name)+tf('house','Ev / marka',p.house)+
+  '<label>Puan (0–10)<select data-p="score">'+[10,9,8,7,6,5,4,3,2,1,0].map(function(n){return '<option'+(+p.score===n?' selected':'')+' value="'+n+'">'+n+(S.D.labels[n]?' · '+esc(S.D.labels[n]):'')+'</option>'}).join('')+'</select></label>'+
+  '<label>Mevsim</label>'+chips('season',SEASON,false,p.season)+'<label>Çizgi</label>'+chips('line',LINE,true,p.line)+'<label>Ortam</label>'+chips('occ',OCC,false,p.occ)+
+  tf('moment','Ortam notu (alıntı olarak görünür, isteğe bağlı)',p.moment)+
+  '<h2>Kart görseli (arka plan)</h2><div class="cols"><div class="pv" style="'+pv+';background-size:cover;background-position:center">'+(u?'':esc((p.name||'?').charAt(0)))+'</div></div>'+
+  '<label>Görsel yükle / değiştir (dikey 2:3 önerilir, otomatik küçültülür)<input type="file" accept="image/*" data-up="poster"></label>'+(p.poster?'<div class="acts"><button class="b d" data-a="posterdel">Görseli kaldır</button></div>':'')+
+  '<label style="display:flex;gap:8px;align-items:center;margin-top:14px"><input type="checkbox" id="w-on" style="width:auto;margin:0"'+(w?' checked':'')+'> Vitrinde kendi sayfası olsun (puan 7 ve üzeri)</label>'+
+  (w?'<div class="cols"><label>Zemin rengi 1<input type="color" data-w="a" value="'+esc(w.a)+'"></label><label>Zemin rengi 2<input type="color" data-w="b" value="'+esc(w.b)+'"></label></div>':'')+
+  '<h2>Kendi notlarım</h2>'+tf('notes.open','Açılış',p.notes.open||'',true)+tf('notes.last','Kalıcılık',p.notes.last||'',true)+tf('notes.feel','His',p.notes.feel||'',true)+tf('notes.free','Serbest yazı',p.notes.free||'',true)+
+  '<details><summary>Taslak notlar (Deneme Notları bölümünde görünür)</summary><p class="m">Üçü de boşsa bu koku o bölümde yer almaz. Kendi notların doluysa kartta onlar görünür.</p>'+tf('essay.open','Açılış',p.essay.open||'',true)+tf('essay.last','Kalıcılık',p.essay.last||'',true)+tf('essay.feel','His',p.essay.feel||'',true)+'</details>'+
+  '<div class="acts"><button class="b" data-a="up">↑ Aynı puanda yukarı</button><button class="b" data-a="down">↓ Aşağı</button></div><div class="acts"><button class="b" data-a="dup">Çoğalt</button><button class="b d" data-a="del">Kokuyu sil</button></div></main>'}
+
+/* ---------- kaydet ---------- */
+function ref(){var s={};S.D.perfumes.forEach(function(p){if(p.poster)s[p.poster]=1});Object.keys(S.D.groupShots).forEach(function(k){s[S.D.groupShots[k].src]=1});return s}
+function clean(p){var o={name:p.name.trim(),house:p.house.trim(),score:+p.score};if(p.season.length)o.season=p.season;if(p.line)o.line=p.line;if(p.occ.length)o.occ=p.occ;
+  var e=p.essay;if(e.open||e.last||e.feel)o.essay={open:e.open||'',last:e.last||'',feel:e.feel||''};var n={};['open','last','feel','free'].forEach(function(k){if(p.notes[k])n[k]=p.notes[k]});if(Object.keys(n).length)o.notes=n;
+  if(p.moment)o.moment=p.moment;if(p.poster)o.poster=p.poster;if(p.world)o.world=p.world;return o}
+function ser(){var D=S.D,j=function(x){return JSON.stringify(x,null,1)};return '{\n"texts": '+j(D.texts)+',\n"labels": '+j(D.labels)+',\n"groups": '+j(D.groups)+',\n"groupShots": '+j(D.groupShots)+',\n"perfumes": [\n'+D.perfumes.map(function(p){return JSON.stringify(clean(p))}).join(',\n')+'\n]\n}\n'}
+function save(){if(S.busy)return;var names={},bad='';S.D.perfumes.forEach(function(p){var n=p.name.trim();if(!n)bad='Adı boş olan bir koku var.';else if(names[n.toLowerCase()])bad='"'+n+'" adı iki kez kullanılmış. Adlar benzersiz olmalı.';names[n.toLowerCase()]=1});
+  if(bad){S.msg='Hata: '+bad;render();toast(bad);return}
+  var R=ref(),od=OD(),ch=[{path:od+'/data/dergi.json',mode:'100644',type:'blob',content:ser()}],up=Object.keys(S.imgs).filter(function(p){return R[p]}),gone=S.trash.filter(function(p,i,a){return a.indexOf(p)===i&&!R[p]&&!S.imgs[p]});
+  gone.forEach(function(p){ch.push({path:od+'/'+p,mode:'100644',type:'blob',sha:null})});
+  S.busy=true;S.msg='';render();
+  api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch))).then(function(r){
+    if(r.object.sha!==S.head&&!confirm('Depo, sen veriyi açtıktan sonra değişmiş. Yine de bu değişikliklerle üzerine yazılsın mı? (İptal: önce Yenile)'))throw new Error('İptal edildi');
+    var chain=Promise.resolve();up.forEach(function(p){chain=chain.then(function(){return api(rp('/git/blobs'),{method:'POST',body:{content:S.imgs[p].url.split(',')[1],encoding:'base64'}}).then(function(b){ch.push({path:od+'/'+p,mode:'100644',type:'blob',sha:b.sha})})})});
+    return chain.then(function(){return api(rp('/git/commits/'+r.object.sha))}).then(function(c){return api(rp('/git/trees'),{method:'POST',body:{base_tree:c.tree.sha,tree:ch}})}).then(function(t){return api(rp('/git/commits'),{method:'POST',body:{message:'Olfactus güncellemesi (yönetim paneli)',tree:t.sha,parents:[r.object.sha]}})}).then(function(nc){return api(rp('/git/refs/heads/'+encodeURIComponent(cfg.branch)),{method:'PATCH',body:{sha:nc.sha}})})})
+  .then(function(){S.busy=false;S.view='list';S.cur=null;toast('Kaydedildi. Site 1–2 dakika içinde güncellenir.');return load()})
+  .catch(function(e){S.busy=false;S.msg='Hata: '+e.message;render();toast('Kaydedilemedi: '+e.message)})}
+
+/* ---------- olaylar ---------- */
+function setP(o,path,v){var a=path.split('.');for(var i=0;i<a.length-1;i++){o=o[a[i]]=o[a[i]]||{}}o[a[a.length-1]]=v}
+var A={
+ login:function(){tok=$('#tok').value.trim();cfg.owner=$('#c-owner').value.trim();cfg.repo=$('#c-repo').value.trim();cfg.branch=$('#c-branch').value.trim();if(!tok||!cfg.owner||!cfg.repo){S.msg='Hata: anahtar, kullanıcı adı ve depo adı gerekli';render();return}LS.s('op_adm_tok',tok);load()},
+ logout:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Çıkılsın mı?'))return;LS.d('op_adm_tok');tok='';S.view='login';S.dirty=false;S.D=null;S.msg='';render()},
+ reload:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Yenilensin mi?'))return;load()},
+ discard:function(){if(confirm('Tüm kaydedilmemiş değişiklikler silinsin mi?')){S.view='list';load()}},
+ tab:function(b){S.tab=b.dataset.k;render()},more:function(){S.lim+=100;render()},
+ edit:function(b){S.cur=+b.dataset.i;S.view='edit';render()},back:function(){S.view='list';render()},
+ new:function(){S.D.perfumes.push({name:'Yeni koku',house:'',score:5,season:[],occ:[],line:'',notes:{},essay:{},moment:'',poster:''});S.cur=S.D.perfumes.length-1;S.view='edit';mark();render()},
+ chip:function(b){var p=S.D.perfumes[S.cur],k=b.dataset.key,v=b.dataset.v;if(k==='line')p.line=p.line===v?'':v;else{var i=p[k].indexOf(v);if(i>=0)p[k].splice(i,1);else p[k].push(v)}mark();S.keepY=true;render()},
+ posterdel:function(){var p=S.D.perfumes[S.cur];dropImg(p.poster);p.poster='';mark();S.keepY=true;render()},
+ dup:function(){var D=S.D.perfumes,c=JSON.parse(JSON.stringify(D[S.cur]));c.name+=' (kopya)';D.push(c);S.cur=D.length-1;mark();render();toast('Çoğaltıldı. Adı değiştir.')},
+ del:function(){var p=S.D.perfumes[S.cur];if(!confirm('"'+p.name+'" silinsin mi?'))return;dropImg(p.poster);S.D.perfumes.splice(S.cur,1);S.cur=null;S.view='list';mark();render()},
+ up:function(){mv(-1)},down:function(){mv(1)},
+ shotdel:function(b){if(!confirm('Bu kademe fotoğrafı kaldırılsın mı?'))return;var k=b.dataset.k;dropImg(S.D.groupShots[k].src);delete S.D.groupShots[k];mark();S.keepY=true;render()},
+ save:save};
+function mv(d){var D=S.D.perfumes,i=S.cur,j=i+d;while(j>=0&&j<D.length&&D[j].score!==D[i].score)j+=d;if(j<0||j>=D.length){toast('Daha fazla taşınamaz');return}var t=D[i];D[i]=D[j];D[j]=t;S.cur=j;mark();toast('Taşındı')}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b)});
+document.addEventListener('input',function(e){var t=e.target;
+  if(t.dataset.p&&S.cur!==null){var p=S.D.perfumes[S.cur];setP(p,t.dataset.p,t.dataset.p==='score'?+t.value:t.value);mark();if(t.dataset.p==='name'){var h=document.querySelector('.top b');if(h)h.textContent=t.value||'Yeni koku'}}
+  else if(t.dataset.w){S.D.perfumes[S.cur].world[t.dataset.w]=t.value;mark();var pv=document.querySelector('.pv');if(pv){var w=S.D.perfumes[S.cur].world,u=imgUrl(S.D.perfumes[S.cur].poster);pv.style.backgroundImage=(u?'url('+u+'),':'')+'linear-gradient(160deg,'+w.a+','+w.b+')'}}
+  else if(t.dataset.tx){S.D.texts[t.dataset.tx]=t.value;mark()}
+  else if(t.dataset.gs){S.D.groupShots[t.dataset.gs].alt=t.value;mark()}
+  else if(t.id==='sq'){S.q=t.value;S.lim=80;var p2=t.selectionStart;render();var n=$('#sq');n.focus();n.setSelectionRange(p2,p2)}});
+document.addEventListener('change',function(e){var t=e.target;
+  if(t.id==='w-on'){var p=S.D.perfumes[S.cur];p.world=t.checked?{a:'#131210',b:'#201E1B'}:null;if(!t.checked)delete p.world;mark();S.keepY=true;render();return}
+  if(t.dataset.p==='score'){S.keepY=true;return}
+  var up=t.dataset.up;if(!up||!t.files[0])return;var f=t.files[0];
+  shrink(f,up==='poster'?1600:2000,function(url){
+    if(up==='poster'){var p=S.D.perfumes[S.cur];p.poster=setImg(p.poster,p.name||'koku',url)}
+    else if(up==='shot'){var g=S.D.groupShots[t.dataset.k];g.src=setImg(g.src,'grup_'+t.dataset.k,url)}
+    else{var k=$('#ns').value.trim();if(!/^(10|\d)$/.test(k)){toast('Önce 0–10 arası bir puan yaz');return}S.D.groupShots[k]={src:setImg('', 'grup_'+k,url),alt:''}}
+    mark();S.keepY=true;render();toast('Görsel hazır (henüz kaydedilmedi)')})});
+window.addEventListener('beforeunload',function(e){if(S.dirty){e.preventDefault();e.returnValue=''}});
+if(tok&&cfg.owner&&cfg.repo)load();else{S.view='login';render()}
+})();
+</script></body></html>
