@@ -602,6 +602,7 @@ td small{display:block; color:var(--muted); font-size:14px}
   <div class="pzc-top"><h2>Sepet</h2><div><button type="button" class="ghost" id="pzc-clear" hidden>Temizle</button> <button type="button" class="ghost" data-pzclose="1">Kapat</button></div></div>
   <div id="pzc-body"></div>
 </div></div>
+<script src="aliasMap.js"></script>
 <script>
 (function(){
 'use strict';
@@ -1055,7 +1056,7 @@ var PAZAR2=[];
   }).catch(function(e){
     PAZAR2.length=0;
     PAZAR2.push({base:'',name:'Veri yüklenemedi',note:'data/ klasörü okunamadı. Sayfayı dosya olarak değil, GitHub Pages adresinden aç. ('+e.message+')',items:[],sizes:'—',policy:'—'});
-  }).then(function(){ renderPane(); });
+  }).then(function(){ try{ if(window.PZAlias) PZAlias.apply(PAZAR2); }catch(e){ if(window.console) console.warn('aliasMap uygulanamadı', e); } renderPane(); });
 })();
 var PZ_OPEN={};
 var BARRONI_BASE='https://barroniprofumo.com';
@@ -1089,7 +1090,7 @@ function renderSellers(q){
   var h='', fon=pzFilterOn(); PZ_STAT={items:0,sellers:0}; PZI=pzIndex();
   PAZAR2.forEach(function(s,si){
     var brand=s.name||brandFromUrl(s.base), ix=[];
-    s.items.forEach(function(p,k){ if((!q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0)) && pzPass(p)) ix.push(k); });
+    s.items.forEach(function(p,k){ if((!q || norm(p[0]).indexOf(q)>=0 || (p.orig && norm(p.orig).indexOf(q)>=0) || (p[7] && norm(p[7]).indexOf(q)>=0)) && pzPass(p)) ix.push(k); });
     if((q||fon) && !ix.length) return;
     ix=pzSortIx(s,si,ix);
     PZ_STAT.items+=ix.length; PZ_STAT.sellers++;
@@ -1119,6 +1120,7 @@ var PF_BTOK=null, PF_BCACHE={};
 function pzTok(x){ return norm(x).split(/[^a-z0-9]+/).filter(Boolean); }
 function pzBrand(name){
   if(PF_BCACHE[name]) return PF_BCACHE[name];
+  var ab=window.PZAlias&&PZAlias.brandOf(name); if(ab) return (PF_BCACHE[name]=ab);
   if(!PF_BTOK){ PF_BTOK=[]; PF_BRANDS.forEach(function(b){ b.forEach(function(a){ PF_BTOK.push({t:pzTok(a), d:b[0]}); }); }); PF_BTOK.sort(function(a,b){ return b.t.length-a.t.length; }); }
   var nt=pzTok(name), r='';
   for(var i=0;i<PF_BTOK.length && !r;i++){ var t=PF_BTOK[i].t, ok=t.length<=nt.length; for(var j=0;ok&&j<t.length;j++) if(t[j]!==nt[j]) ok=false; if(ok) r=PF_BTOK[i].d; }
@@ -1219,6 +1221,7 @@ function renderPazar(){
   var total=0; Object.keys(PAZAR).forEach(function(k){ total+=PAZAR[k].length; });
   var leadTxt='Barroni (barroniprofumo.com) Erkek ve Unisex listesi, '+PAZAR_DATE+' tarihinde sitenin liste sayfalarından alındı. '+total+' parfüm. 790 TL\'lik kartlar 50 ml, 125 TL\'likler 5 ml test serisi fiyatıdır. Stok ve güncel fiyat için ürün sayfasına bak. Diğer satıcılar '+PAZAR2_DATE+' tarihinde ana sayfalarından alındı; fiyatı çekilemeyen satıcılar notla belirtildi.';
   var q=norm($('pz-q').value.trim()), h='', any=false;
+  if(window.PZAlias) q=PZAlias.query(q);
   $('pz-lead').textContent='';
   var all=[]; Object.keys(PAZAR).forEach(function(cat){ PAZAR[cat].forEach(function(p){ if(!q || norm(p[0]).indexOf(q)>=0) all.push([p,cat]); }); });
   if(PF.sort){ var sa=/asc$/.test(PF.sort), sp=PF.sort.indexOf('price')===0; all=all.map(function(x,i){ return {x:x,i:i,v:sp?x[0][1]:x[0][3]}; }).sort(function(a,b){ var an=typeof a.v!=='number', bn=typeof b.v!=='number'; if(an||bn) return an&&bn?a.i-b.i:(an?1:-1); return (sa?a.v-b.v:b.v-a.v)||(a.i-b.i); }).map(function(o){ return o.x; }); }
@@ -1673,7 +1676,7 @@ function pzcFind(e){
   for(var si=0;si<PAZAR2.length;si++){
     var s=PAZAR2[si]; if(pzSk(s)!==e.s) continue;
     for(var k=0;k<s.items.length;k++){
-      var p=s.items[k]; if(p[0]!==e.n) continue;
+      var p=s.items[k]; if(p[0]!==e.n && p.orig!==e.n) continue;
       var vs=pzVars(p);
       for(var j=0;j<vs.length;j++) if(vs[j].id===String(e.ml)) return {s:s,si:si,p:p,k:k,v:vs[j]};
     }
