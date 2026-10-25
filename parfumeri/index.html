@@ -336,15 +336,57 @@ td small{display:block; color:var(--muted); font-size:14px}
 .pzc-t{border-top:1px solid var(--line); margin-top:6px; padding-top:8px; font-size:14px}
 .pzc-gt{border-top:2px solid var(--accent); margin-top:8px; padding-top:10px; font-size:16px; color:var(--accent)}
 .pzc-h{margin:4px 0 0; font:400 12px var(--f-mono); color:var(--muted)}
+.primary.armed{background:var(--danger); border-color:var(--danger); color:#fff}
+.pzc-fin{margin-top:12px; width:100%}
+.pzc-done{text-align:center; padding:26px 12px}
+.pzc-done h3{font:italic 600 26px var(--f-display); color:var(--accent); margin:0 0 6px}
+.pzc-done p{margin:0 0 14px; color:var(--muted)}
+.pzc-done .row2{justify-content:center}
+.pbuys{margin:12px 0 4px; padding:10px 0 2px; border-top:1px solid var(--line)}
+.pbuys h4{margin:0 0 6px; font:400 11.5px var(--f-mono); letter-spacing:.13em; text-transform:uppercase; color:var(--muted)}
+.pbuys ul{list-style:none; margin:0; padding:0}
+.pbuys li{display:flex; justify-content:space-between; gap:4px 14px; flex-wrap:wrap; padding:6px 0; border-bottom:1px dotted var(--line-soft)}
+.pbuys li small{display:block; font:400 12px var(--f-mono); color:var(--muted)}
+.pbuys time{font:400 12px var(--f-mono); color:var(--muted); white-space:nowrap}
+.ownbtn{margin-left:auto}
+.ostats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:10px 0 4px}
+.ostats div{border:1px solid var(--line-soft); padding:10px 12px; background:var(--bg)}
+.ostats span{display:block; font:400 11px var(--f-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.ostats b{font:700 18px var(--f-mono)}
+.ord{padding:0}
+.ord > summary{list-style:none; cursor:pointer; display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 16px; padding:16px 20px; align-items:baseline}
+.ord > summary::-webkit-details-marker{display:none}
+.ord > summary h3{font-size:22px}
+.ord > summary .oi{font:400 12.5px var(--f-mono); color:var(--muted)}
+.ord .ob{padding:0 20px 16px}
+.og{border-top:1px dashed var(--line); padding:12px 0 4px}
+.og h4{margin:0 0 6px; font:italic 600 20px var(--f-display); color:var(--accent)}
+.ol{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; padding:6px 0; border-bottom:1px dotted var(--line-soft)}
+.ol small{display:block; font:400 12px var(--f-mono); color:var(--muted)}
+.ol .mono{font-weight:700; white-space:nowrap}
+.alt{grid-column:1/-1; margin:4px 0 2px; padding:6px 10px; background:var(--accent-soft); font:400 12.5px var(--f-mono)}
+.alt.ok{background:transparent; color:var(--c-l); padding-left:0}
+.alt b{color:var(--c-l)}
+.alt div{display:flex; justify-content:space-between; gap:10px; padding:2px 0}
+.orr{display:flex; justify-content:space-between; gap:12px; padding:2px 0; font:400 13px var(--f-mono)}
+.orr.d b{color:var(--c-l)}
+.orr.t{border-top:1px solid var(--line); margin-top:4px; padding-top:6px; font-weight:700}
+.onote{margin:8px 0 0; font:400 12px var(--f-mono); color:var(--muted)}
 
-#pzv-panel{position:fixed; inset:0; z-index:70; display:flex; align-items:flex-end; justify-content:center; background:rgba(0,0,0,.55)}
-#pzv-panel[hidden]{display:none}
-.pzv-sheet{width:min(460px,100%); max-height:85%; overflow:auto; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:2px 2px 0 0; padding:16px 16px calc(18px + env(safe-area-inset-bottom,0px))}
-.pzv-sheet h3{margin:0; font:italic 600 24px var(--f-display)}
-.pzv-sheet p{margin:2px 0 12px; font:400 12px var(--f-mono); color:var(--muted)}
-.pzv-o{display:flex; justify-content:space-between; align-items:center; width:100%; gap:12px; margin:0 0 8px; padding:14px; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:2px; font:700 14px var(--f-mono); text-align:left}
-.pzv-o b{font-weight:700} .pzv-o s{font-weight:400; color:var(--muted); margin-left:6px}
-.pzv-o.ok{border-color:var(--accent); color:var(--accent)}
+#pz-close{position:fixed; left:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); z-index:50; border:1px solid var(--accent); background:var(--surface); color:var(--accent); border-radius:2px; padding:10px 14px; font:700 12.5px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; box-shadow:0 2px 10px rgba(0,0,0,.35)}
+#pz-close[hidden]{display:none}
+.pzf{margin:0 0 14px; border:1px solid var(--line); background:var(--surface); border-radius:2px}
+.pzf>summary{cursor:pointer; list-style:none; padding:11px 14px; display:flex; justify-content:space-between; gap:10px; align-items:baseline}
+.pzf>summary::-webkit-details-marker{display:none}
+.pzf>summary b{font:italic 600 22px var(--f-display)}
+.pzf>summary span{font:400 12px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.pzf-b{padding:2px 14px 14px; display:grid; gap:12px}
+.pzf-b .chips{display:flex; flex-wrap:wrap; gap:6px}
+.pzf-uniq{border-color:var(--accent); font-weight:600}
+.pzf-foot{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font:400 13px var(--f-mono); color:var(--muted)}
+.pzf-foot b{color:var(--ink)}
+.pzf select{width:100%}
+
 </style>
 
 <div class="app" id="app">
@@ -395,6 +437,7 @@ td small{display:block; color:var(--muted); font-size:14px}
           <input id="pz-q" type="search" placeholder="Örn. aventus, oud, tobacco" autocomplete="off"></label>
         <button type="button" class="add" id="pz-refresh" hidden>Canlı fiyatları yenile</button>
       </div>
+      <div id="pz-filters"></div>
       <div id="pz-list"></div>
     </section>
 
@@ -493,6 +536,7 @@ td small{display:block; color:var(--muted); font-size:14px}
         <button type="button" class="ghost" data-act="cart-clear">Planı temizle</button>
       </div>
       <div class="fb" id="fb-cart" hidden></div>
+      <div id="orders"></div>
     </section>
 
     <!-- Puanlar -->
@@ -556,14 +600,11 @@ td small{display:block; color:var(--muted); font-size:14px}
   <footer class="foot" id="sync"></footer>
 </div>
 
+<button type="button" id="pz-close" hidden aria-label="Açık satıcı listelerini kapat">▲ Listeleri kapat</button>
 <button type="button" id="pzc-fab" aria-label="Sepeti aç">Sepet <span class="badge" id="pzc-count" hidden>0</span></button>
 <div id="pzc-panel" hidden><div class="pzc-sheet" role="dialog" aria-modal="true" aria-label="Sepet">
   <div class="pzc-top"><h2>Sepet</h2><div><button type="button" class="ghost" id="pzc-clear" hidden>Temizle</button> <button type="button" class="ghost" data-pzclose="1">Kapat</button></div></div>
   <div id="pzc-body"></div>
-</div></div>
-<div id="pzv-panel" hidden data-pzvclose="1"><div class="pzv-sheet" role="dialog" aria-modal="true" aria-label="Hacim seç">
-  <h3 id="pzv-title"></h3><p id="pzv-sub"></p><div id="pzv-list"></div>
-  <button type="button" class="ghost" data-pzvclose="1" style="width:100%">Vazgeç</button>
 </div></div>
 <script>
 (function(){
@@ -590,12 +631,13 @@ var LS={
 };
 
 /* ---------- kalıcı durum ---------- */
-var U = {perfumes:[], reviews:[], extra:[], cart:{}, budget:''};
+var U = {perfumes:[], reviews:[], extra:[], cart:{}, budget:'', orders:[]};
 function normalize(d){
-  var o={perfumes:[],reviews:[],extra:[],cart:{},budget:''};
+  var o={perfumes:[],reviews:[],extra:[],cart:{},budget:'',orders:[]};
   if(!d || typeof d!=='object') return o;
   if(Array.isArray(d.perfumes)) o.perfumes=d.perfumes.filter(function(p){ return p && p.id && p.name; }).map(function(p){
-    return {id:String(p.id), name:String(p.name), notes:String(p.notes||''), sellers:Array.isArray(p.sellers)?p.sellers.map(String):[]};
+    return {id:String(p.id), name:String(p.name), notes:String(p.notes||''), sellers:Array.isArray(p.sellers)?p.sellers.map(String):[], auto:!!p.auto,
+      buys:Array.isArray(p.buys)?p.buys.filter(function(b){ return b && b.seller; }).map(function(b){ return {oid:String(b.oid||''), seller:String(b.seller), ml:b.ml==null?null:+b.ml, label:String(b.label||''), qty:+b.qty>0?+b.qty:1, price:+b.price||0, ts:+b.ts||0}; }):[]};
   });
   if(Array.isArray(d.reviews)) o.reviews=d.reviews.filter(function(r){ return r && r.id && r.target && (r.type==='seller'||r.type==='perfume') && +r.score>=1 && +r.score<=10; }).map(function(r){
     return {id:String(r.id), type:r.type, target:String(r.target), via:String(r.via||''), score:+r.score, text:String(r.text||''), ts:+r.ts||0};
@@ -603,9 +645,10 @@ function normalize(d){
   if(Array.isArray(d.extra)) o.extra=d.extra.filter(function(a){ return Array.isArray(a) && a.length>=6 && +a[2]>0 && +a[4]>0 && +a[5]>0; });
   if(Array.isArray(d.cart)) d.cart.forEach(function(p){ if(Array.isArray(p) && p[0] && +p[1]>0) o.cart[String(p[0])]=+p[1]; });
   if(typeof d.budget==='string') o.budget=d.budget;
+  if(Array.isArray(d.orders)) o.orders=d.orders.filter(function(x){ return x && x.id && Array.isArray(x.groups); });
   return o;
 }
-function ser(st){ return {v:2, perfumes:st.perfumes, reviews:st.reviews, extra:st.extra, cart:Object.keys(st.cart).map(function(k){ return [k,st.cart[k]]; }), budget:st.budget}; }
+function ser(st){ return {v:3, perfumes:st.perfumes, reviews:st.reviews, extra:st.extra, cart:Object.keys(st.cart).map(function(k){ return [k,st.cart[k]]; }), budget:st.budget, orders:st.orders}; }
 function loadLocal(){
   var d=LS.get('mpf_state_v2');
   if(d){ U=normalize(d); return; }
@@ -630,7 +673,7 @@ function flush(){
   p.then(function(){ setSync('db'); }, function(){ setSync('err'); dirty=false; })
    .then(function(){ writing=false; if(dirty){ flush(); } else { pending=false; } });
 }
-function hasLocal(){ return U.perfumes.length||U.reviews.length||U.extra.length||Object.keys(U.cart).length||U.budget; }
+function hasLocal(){ return U.perfumes.length||U.reviews.length||U.extra.length||Object.keys(U.cart).length||U.budget||U.orders.length; }
 function connectDb(){
   if(!window.claude || !window.claude.use) return;
   window.claude.use('db').then(function(db){
@@ -702,7 +745,7 @@ function setTab(t){ tabNow=t; LS.set('mpf_tab', t); renderTabs(); renderPane(); 
 function setMode(m){ MODE=m; LS.set('mpf_mode', m); renderTabs(); renderPane(); renderHeader(); }
 
 /* ---------- parfümler ---------- */
-var PQ='', openSel={}, pEdit=null, pFormSel={};
+var PQ='', P_OWN=false, openSel={}, pEdit=null, pFormSel={};
 function perfumeMatches(p,q){
   if(!q) return true;
   var hay=norm(p.name+' '+p.notes+' '+p.sellers.join(' ')+' '+p.sellers.map(function(s){ return gOfS[s]||''; }).join(' '));
@@ -710,23 +753,27 @@ function perfumeMatches(p,q){
 }
 function renderParfum(){
   var q=norm(PQ.trim());
-  var list=U.perfumes.filter(function(p){ return perfumeMatches(p,q); }).sort(function(a,b){ return a.name.localeCompare(b.name,'tr'); });
-  $('pcount').innerHTML='<span>'+(U.perfumes.length ? (q ? '<b>'+list.length+'</b> / '+U.perfumes.length+' parfüm' : '<b>'+U.perfumes.length+'</b> parfüm kayıtlı') : '')+'</span>';
+  var nOwn=U.perfumes.filter(function(p){ return p.buys && p.buys.length; }).length;
+  var list=U.perfumes.filter(function(p){ return perfumeMatches(p,q) && (!P_OWN || (p.buys && p.buys.length)); }).sort(function(a,b){ return a.name.localeCompare(b.name,'tr'); });
+  $('pcount').innerHTML='<span>'+(U.perfumes.length ? (q||P_OWN ? '<b>'+list.length+'</b> / '+U.perfumes.length+' parfüm' : '<b>'+U.perfumes.length+'</b> parfüm kayıtlı')+(nOwn?' · <b>'+nOwn+'</b> tanesi sende':'') : '')+'</span>'+
+    (nOwn?'<button type="button" class="chip" data-act="p-own" aria-pressed="'+P_OWN+'">Sadece sahip olduklarım</button>':'');
   if(!U.perfumes.length){
     $('plist').innerHTML='<div class="card"><p class="empty">Henüz parfüm eklemedin. "Parfüm ekle" ile bir orijinal parfümü ve muadilini satan satıcıları kaydedebilirsin. Sonra parfüme göre arama yapınca satıcılar ve fiyatlar burada görünür.</p></div>';
     return;
   }
-  if(!list.length){ $('plist').innerHTML='<div class="card"><p class="empty">"'+esc(PQ)+'" ile eşleşen parfüm yok.</p></div>'; return; }
+  if(!list.length){ $('plist').innerHTML='<div class="card"><p class="empty">'+(PQ.trim()?'"'+esc(PQ)+'" ile eşleşen parfüm yok.':'Burada gösterilecek parfüm yok.')+'</p></div>'; return; }
   $('plist').innerHTML=list.map(function(p){
     var sel=p.sellers.map(function(s){ return {s:s, opts:rowsByS[s]||[]}; }).sort(function(a,b){
       var x=a.opts.length?a.opts[0].u:1e9, y=b.opts.length?b.opts[0].u:1e9; return x-y;
     });
     var best=null; sel.forEach(function(x){ if(x.opts.length && (!best || x.opts[0].u<best.u)) best=x.opts[0]; });
     var rs=avgFor('perfume',p.id);
-    var h='<article class="card pcard"><header><h3>'+esc(p.name)+'</h3>'+ratingHTML(rs)+'</header>';
+    var own=p.buys && p.buys.length;
+    var h='<article class="card pcard"><header><h3>'+esc(p.name)+(own?'<span class="stag">Sahibim</span>':'')+'</h3>'+ratingHTML(rs)+'</header>';
     if(p.notes) h+='<p class="pnotes">'+esc(p.notes)+'</p>';
     if(best) h+='<div class="pbest">En ucuz seçenek: <b>'+esc(best.s)+'</b>, '+f2(best.u)+' TL/ml ('+nf0.format(best.b)+' ml şişe × '+best.n+')</div>';
-    else h+='<div class="pbest noprice">'+(p.sellers.length?'Seçili satıcıların fiyat verisi yok.':'Bu parfüm için henüz satıcı seçilmedi.')+'</div>';
+    else if(!own) h+='<div class="pbest noprice">'+(p.sellers.length?'Seçili satıcıların fiyat verisi yok.':'Bu parfüm için henüz satıcı seçilmedi.')+'</div>';
+    if(own) h+=buysHTML(p);
     if(sel.length){
       h+='<ul class="srows">'+sel.map(function(x){
         var key=p.id+'|'+x.s, open=!!openSel[key], g=gOfS[x.s]||x.s;
@@ -746,6 +793,26 @@ function renderParfum(){
     h+='<div class="pfoot"><button type="button" class="link" data-act="p-rate" data-id="'+esc(p.id)+'">Puan ver</button><button type="button" class="link" data-act="p-edit" data-id="'+esc(p.id)+'">Düzenle</button><button type="button" class="link" data-act="p-del" data-id="'+esc(p.id)+'">Sil</button></div></article>';
     return h;
   }).join('');
+}
+function sellerTargets(){
+  var out=[], seen={};
+  function add(n){ n=String(n||'').trim(); if(!n) return; var k=norm(n).replace(/[^a-z0-9]/g,''); if(seen[k]) return; seen[k]=n; out.push(n); }
+  groups.forEach(function(g){ add(g.name); });
+  PAZAR2.forEach(function(x){ add(x.name||brandFromUrl(x.base||'')); });
+  U.orders.forEach(function(o){ o.groups.forEach(function(g){ add(g.seller); }); });
+  U.perfumes.forEach(function(p){ (p.buys||[]).forEach(function(b){ add(b.seller); }); });
+  out.canon=function(n){ return seen[norm(String(n||'')).replace(/[^a-z0-9]/g,'')]||n; };
+  return out;
+}
+function dateTime(ts){ return ts ? new Date(ts).toLocaleString('tr-TR',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'}) : ''; }
+function buysHTML(p){
+  var st=sellerTargets(), bs=p.buys.slice().sort(function(a,b){ return b.ts-a.ts; }), sel={}, sels=[];
+  var h='<div class="pbuys"><h4>Satın aldıklarım</h4><ul>'+bs.map(function(b){
+    var c=st.canon(b.seller), rt=avgFor('seller',c);
+    if(!sel[c]){ sel[c]=1; sels.push(c); }
+    return '<li><span><b>'+esc(b.seller)+'</b>'+(rt?'<span class="stag">'+f1(rt.avg)+'/10</span>':'')+'<small>'+(b.label?esc(b.label):(b.ml?nf0.format(b.ml)+' ml':'hacim yok'))+' × '+b.qty+' · '+tl(b.price*b.qty)+(b.ml&&b.price?' · '+f2(b.price/b.ml)+' TL/ml':'')+'</small></span><time>'+dateTR(b.ts)+'</time></li>';
+  }).join('')+'</ul><div class="pfoot">'+sels.map(function(c){ return '<button type="button" class="link" data-act="p-rate-s" data-s="'+esc(c)+'">Satıcıyı puanla: '+esc(c)+'</button>'; }).join('')+'</div></div>';
+  return h;
 }
 function openPForm(p){
   pEdit=p?p.id:null;
@@ -1016,9 +1083,9 @@ function pzCampList(s){
       (t==='gift'?gift:disc).push(l);
     });
   } else if(s.policy && s.policy!=='—'){
-    String(s.policy).replace(/\([^)]*\)/g,' ').replace(/(\d)\.(\s)/g,'$1\u0001$2').split(/[.!?;]+\s+|\s\+\s|\n/).forEach(function(x){
-      x=x.replace(/\u0001/g,'.').replace(/["“”]/g,'').replace(/\s+/g,' ').replace(/^[\s\-•:]+|[\s.,;:]+$/g,'');
-      if(!x || /kargo|esans|extrait/i.test(x) || !/\bal\s*(\d+\s*)?öde(?![a-zçğıöşü])|az\s*öde|%|indirim|hediye/i.test(x)) return;
+    String(s.policy).replace(/\([^)]*\)/g,' ').split(/[.!?;]+\s+|\n/).forEach(function(x){
+      x=x.replace(/\s+/g,' ').replace(/^[\s\-•:]+|[\s.,;:]+$/g,'');
+      if(!x || /kargo/i.test(x) || !/\bal\s*(\d+\s*)?öde(?![a-zçğıöşü])|%|indirim|hediye/i.test(x)) return;
       (/hediye/i.test(x)?gift:disc).push(x);
     });
   }
@@ -1040,8 +1107,8 @@ function pzPrice(v){ return typeof v==='string' ? v : nfp.format(v)+' TL'; }
 function pzCard(s,si,k,n){
   var p=s.items[k], brand=s.name||brandFromUrl(s.base), vs=pzVars(p), v=pzCur(si,k,p), multi=vs.length>1;
   var ml=v?v.ml:p[3], price=v?v.price:p[1], oldp=v?v.old:p[2], hasPrice=price!=null;
-  var opts=multi?vs.map(function(x){ return x.label||(x.ml?nf0.format(x.ml):'?'); }).join(' · ')+(vs.some(function(x){return x.label;})?'':' ml'):((p[6])?p[6]:'');
-  var sel='';
+  var opts=(!multi && p[6])?p[6]:'';
+  var sel=multi?'<select class="pz-vs" data-pzvs="'+si+'|'+k+'" aria-label="Hacim seç">'+vs.map(function(x){ return '<option value="'+esc(x.id)+'"'+(v&&x.id===v.id?' selected':'')+'>'+(x.label?x.label:(x.ml?nf0.format(x.ml)+' ml':'Hacim yok'))+' · '+nfp.format(x.price)+' TL</option>'; }).join('')+'</select>':'';
   return '<li class="ucard"><span class="n">'+n+'</span>'+
     '<div class="m"><b>'+esc(p[0])+'</b><small>'+esc(brand)+(ml?' · '+nf0.format(ml)+' ml'+(typeof price==='number'?' · '+f2(price/ml)+' TL/ml':''):'')+(opts?' · seçenekler: '+esc(opts):'')+(p[8]?' · '+esc(p[8]):'')+'</small></div>'+
     '<div class="pr">'+(hasPrice?'<strong>'+esc(pzPrice(price))+'</strong>'+(oldp?'<s>'+nfp.format(oldp)+' TL</s>':''):'<span class="muted">Fiyat yok</span>')+'</div>'+
@@ -1049,14 +1116,15 @@ function pzCard(s,si,k,n){
     (s.base?'<a class="add" href="'+esc(s.base+p[4])+'" target="_blank" rel="noopener">Sitede aç</a>':'')+'</div></li>';
 }
 function renderSellers(q){
-  var h='';
+  var h='', fon=pzFilterOn(); PZ_STAT={items:0,sellers:0}; PZI=pzIndex();
   PAZAR2.forEach(function(s,si){
     var brand=s.name||brandFromUrl(s.base), ix=[];
-    s.items.forEach(function(p,k){ if(!q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0)) ix.push(k); });
-    if(q && !ix.length) return;
+    s.items.forEach(function(p,k){ if((!q || norm(p[0]).indexOf(q)>=0 || (p[7] && norm(p[7]).indexOf(q)>=0)) && pzPass(p)) ix.push(k); });
+    if((q||fon) && !ix.length) return;
+    PZ_STAT.items+=ix.length; PZ_STAT.sellers++;
     var np=s.items.filter(function(p){ return p[1]==null; }).length;
     var meta=s.items.length?ix.length+' parfüm'+(np===s.items.length?' · yalnızca ad':''):'veri yok';
-    h+='<details class="pz-seller" data-base="'+esc(s.base)+'"'+((q||PZ_OPEN[s.base])?' open':'')+'><summary><h2>Satıcı: '+esc(brand)+'</h2><span>'+meta+'</span></summary><div class="pz-body">';
+    h+='<details class="pz-seller" data-base="'+esc(s.base)+'"'+((q||fon||PZ_OPEN[s.base])?' open':'')+'><summary><h2>Satıcı: '+esc(brand)+'</h2><span>'+meta+'</span></summary><div class="pz-body">';
     var inner='<p><b>Hacim seçenekleri:</b> '+esc(s.sizes||'—')+'</p><p><b>Kampanya / fiyat politikası:</b> '+esc(s.policy||'—')+'</p>'+
       (s.shipping?'<p><b>Kargo:</b> '+esc(pzShipTxt(s.shipping))+'</p>':'')+
       ((s.campaigns&&s.campaigns.length)?'<p><b>Sepet kampanyası:</b> '+s.campaigns.map(function(c){ return esc(c.label||c.type); }).join(' · ')+'</p>':'')+
@@ -1073,22 +1141,64 @@ function renderSellers(q){
   });
   return h;
 }
-function pzcAdd(si,k,v){
-  var s=PAZAR2[si], p=s.items[k], key=pzSk(s), f=null;
-  PZC.forEach(function(x){ if(x.s===key&&x.n===p[0]&&String(x.ml)===v.id) f=x; });
-  if(f){ if(f.q<99) f.q++; } else PZC.push({s:key,n:p[0],ml:v.id,q:1});
-  pzcSave(); pzcBadge();
+var PZC_DONE=null;
+
+/* ---------- pazar: filtreler (marka, hacim, cinsiyet, benzersiz ürün) ---------- */
+var PF={brand:'', ml:{}, g:{}, uniq:false}, PF_OPEN=true, PZ_STAT={items:0,sellers:0}, PZI={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0};
+var PF_BRANDS=[['Tom Ford'],['Parfums de Marly','Parfum de Marly','Pdm'],['Giorgio Armani','Armani Prive','Armani'],['Emporio Armani'],['Yves Saint Laurent','Ysl'],['Jean Paul Gaultier','Jpg'],['Louis Vuitton','Lv'],['Paco Rabanne','Rabanne'],['By Kilian','Kilian'],['Amouage'],['Burberry'],['Carolina Herrera'],['Creed'],['Gucci'],['Nishane'],['Hugo Boss','Boss'],['Chanel'],['Dior','Christian Dior'],['Maison Francis Kurkdjian','Mfk'],['Prada'],['Versace'],['Lancôme','Lancome'],['Frédéric Malle','Frederic Malle'],['Givenchy'],['Initio'],['Tiziana Terenzi'],['Dolce&Gabbana','Dolce Gabbana'],['Bvlgari','Bulgari'],['Mugler','Thierry Mugler'],['Orto Parisi'],['Chloé','Chloe'],['Ex Nihilo'],['Guerlain'],['Mancera'],['Memo Paris','Memo'],['Montale'],["Penhaligon's",'Penhaligons'],['Marc-Antoine Barrois'],['Byredo'],['Hermès','Hermes'],['Issey Miyake'],['Narciso Rodriguez'],['Nasomatto'],['Valentino'],["Victoria's Secret",'Victoria Secret'],['Bond No. 9','Bond No 9'],['Viktor&Rolf','Viktor Rolf'],['Azzaro'],['Lattafa'],['Kayali'],['Roja Parfums','Roja'],['Jo Malone London','Jo Malone'],['Maison Margiela','Maison Martin Margiela'],['Acqua di Parma'],['Clive Christian'],['Le Labo'],['Diptyque'],['Atkinsons'],['Escentric Molecules'],['Sospiro'],['Stéphane Humbert Lucas','Stephane Humbert Lucas'],['Xerjoff'],['Maison Crivelli'],['Matière Première','Matiere Premiere'],['BDK Parfums','Bdk'],['Essential Parfums'],['Atelier Rebul'],['Calvin Klein'],['Davidoff'],['Kenzo'],['Lacoste'],['Montblanc','Mont Blanc'],['Diesel'],['Fabergé','Faberge'],['Clinique'],['Zadig&Voltaire','Zadig Voltaire'],['Profumum Roma'],['Serge Lutens'],['Jovoy'],['Franck Boclet'],['Argos'],['Abdul Samad Al Qurashi'],['Lorenzo Pazzaglia'],['Thameen'],['Zoologist'],['Boadicea the Victorious'],['Giardini di Toscana'],['Dr Van Not'],['Ormonde Jayne'],['Balenciaga'],['Bourjois'],['Genyum'],['Nicolai'],['Floraiku'],['Gritti'],['Kajal'],['Armaf'],['Afnan'],['Rasasi'],['Ajmal'],['Swiss Arabian'],['Al Haramain'],['Emre Boslu'],['Bogu'],['Reni'],['Locc'],['Unilux'],['Aj'],['Tvmvlvs'],['Aervm'],['Aqvamare'],['Born to Stand Out']];
+var PF_BTOK=null, PF_BCACHE={};
+function pzTok(x){ return norm(x).split(/[^a-z0-9]+/).filter(Boolean); }
+function pzBrand(name){
+  if(PF_BCACHE[name]) return PF_BCACHE[name];
+  if(!PF_BTOK){ PF_BTOK=[]; PF_BRANDS.forEach(function(b){ b.forEach(function(a){ PF_BTOK.push({t:pzTok(a), d:b[0]}); }); }); PF_BTOK.sort(function(a,b){ return b.t.length-a.t.length; }); }
+  var nt=pzTok(name), r='';
+  for(var i=0;i<PF_BTOK.length && !r;i++){ var t=PF_BTOK[i].t, ok=t.length<=nt.length; for(var j=0;ok&&j<t.length;j++) if(t[j]!==nt[j]) ok=false; if(ok) r=PF_BTOK[i].d; }
+  if(!r){ r=String(name).trim().split(/\s+/)[0]||'Diğer'; }
+  return (PF_BCACHE[name]=r);
 }
-var PZV=null;
-function pzvOpen(si,k){
-  var s=PAZAR2[si], p=s.items[k], vs=pzVars(p); PZV={si:si,k:k,vs:vs};
-  $('pzv-title').textContent=p[0]; $('pzv-sub').textContent=(s.name||brandFromUrl(s.base));
-  $('pzv-list').innerHTML=vs.map(function(x,i){
-    return '<button type="button" class="pzv-o" data-pzpick="'+i+'"><span>'+esc(x.label||(x.ml?nf0.format(x.ml)+' ml':'Hacim yok'))+'</span><b>'+nfp.format(x.price)+' TL'+(x.old?' <s>'+nfp.format(x.old)+'</s>':'')+'</b></button>';
-  }).join('');
-  $('pzv-panel').hidden=false;
+function pzKey(name){ return norm(name).replace(/[^a-z0-9]/g,''); }
+function pzIsSet(p){ return /\b(seti?|deneme|kesif|tester)\b/.test(norm(p[0])); }
+function pzMls(p){ var m={}; pzVars(p).forEach(function(v){ if(v.ml && !v.label) m[v.ml]=1; }); if(p[3]) m[p[3]]=1; return Object.keys(m).map(Number); }
+function pzGen(p){ var g=p[8]; return (g==='Erkek'||g==='Kadın'||g==='Unisex')?g:''; }
+function pzIndex(){
+  var I={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0}, sellersOf={}, bseen={};
+  PAZAR2.forEach(function(s){ var sk=pzSk(s); s.items.forEach(function(p){
+    var k=pzKey(p[0]); if(!k) return;
+    if(!pzIsSet(p)){ (sellersOf[k]=sellersOf[k]||{})[sk]=1; }
+    var b=pzBrand(p[0]); if(!bseen[b+'|'+k]){ bseen[b+'|'+k]=1; I.brands[b]=(I.brands[b]||0)+1; }
+    pzMls(p).forEach(function(m){ I.mls[m]=(I.mls[m]||0)+1; });
+    var g=pzGen(p); if(g) I.gens[g]=(I.gens[g]||0)+1; else I.nogen++;
+  }); });
+  Object.keys(sellersOf).forEach(function(k){ var n=Object.keys(sellersOf[k]).length; I.cnt[k]=n; if(n===1) I.uniq++; });
+  return I;
 }
-function pzvClose(){ $('pzv-panel').hidden=true; PZV=null; }
+function pzFilterOn(){ return !!(PF.brand || PF.uniq || Object.keys(PF.ml).length || Object.keys(PF.g).length); }
+function pzPass(p){
+  if(PF.brand && pzBrand(p[0])!==PF.brand) return false;
+  var mk=Object.keys(PF.ml); if(mk.length){ var ms=pzMls(p); if(!ms.some(function(m){ return PF.ml[m]; })) return false; }
+  var gk=Object.keys(PF.g); if(gk.length){ var g=pzGen(p)||'—'; if(!PF.g[g]) return false; }
+  if(PF.uniq){ if(pzIsSet(p)) return false; if(PZI.cnt[pzKey(p[0])]!==1) return false; }
+  return true;
+}
+function renderPzFilters(){
+  var el=$('pz-filters'); if(!el) return;
+  if(!PAZAR2.length || !PAZAR2.some(function(s){ return s.items.length; })){ el.innerHTML=''; return; }
+  var I=PZI, bl=Object.keys(I.brands).sort(function(a,b){ return a.localeCompare(b,'tr'); });
+  var mls=Object.keys(I.mls).map(Number).sort(function(a,b){ return a-b; });
+  var act=(PF.brand?1:0)+Object.keys(PF.ml).length+Object.keys(PF.g).length+(PF.uniq?1:0);
+  var h='<details class="pzf" id="pzf-d"'+(PF_OPEN?' open':'')+'><summary><b>Filtrele</b><span>'+(act?act+' filtre açık':'marka · hacim · cinsiyet · benzersiz')+'</span></summary><div class="pzf-b">';
+  h+='<div><button type="button" class="chip pzf-uniq" data-pzf="uniq" aria-pressed="'+PF.uniq+'">★ Benzersiz ürünler<small>'+I.uniq+'</small></button><p class="hint" style="margin:6px 0 0;font-size:13px">Yalnızca tek satıcıda bulunan kokular. Birden fazla satıcıda olanlar ve deneme setleri listelenmez.</p></div>';
+  h+='<label class="field"><span>Marka</span><select id="pzf-brand"><option value="">Tüm markalar</option>'+bl.map(function(b){ return '<option value="'+esc(b)+'"'+(PF.brand===b?' selected':'')+'>'+esc(b)+' ('+I.brands[b]+')</option>'; }).join('')+'</select></label>';
+  h+='<div class="field"><span>Hacim</span><div class="chips">'+mls.map(function(m){ return '<button type="button" class="chip" data-pzf="ml" data-v="'+m+'" aria-pressed="'+!!PF.ml[m]+'">'+nf0.format(m)+' ml<small>'+I.mls[m]+'</small></button>'; }).join('')+'</div></div>';
+  var gs=['Erkek','Kadın','Unisex'].filter(function(g){ return I.gens[g]; }); if(I.nogen) gs.push('—');
+  h+='<div class="field"><span>Cinsiyet</span><div class="chips">'+gs.map(function(g){ return '<button type="button" class="chip" data-pzf="g" data-v="'+esc(g)+'" aria-pressed="'+!!PF.g[g]+'">'+(g==='—'?'Belirtilmemiş':g)+'<small>'+(g==='—'?I.nogen:I.gens[g])+'</small></button>'; }).join('')+'</div></div>';
+  h+='<div class="pzf-foot"><span><b>'+PZ_STAT.items+'</b> ürün · <b>'+PZ_STAT.sellers+'</b> satıcı</span>'+(act?'<button type="button" class="ghost" data-pzf="clear">Filtreleri temizle</button>':'')+'</div></div></details>';
+  el.innerHTML=h;
+}
+function pzCloseVis(){
+  var b=$('pz-close'); if(!b) return;
+  b.hidden = !(tabNow==='pazar' && document.querySelector('#pz-list details.pz-seller[open]'));
+}
 function pzcBadge(){
   var q=0; PZC.forEach(function(e){ if(pzcFind(e)) q+=e.q; });
   var b=$('pzc-count'); b.textContent=q; b.hidden=!q;
@@ -1096,7 +1206,11 @@ function pzcBadge(){
 function pzcRender(){
   var T=pzcCalc(), el=$('pzc-body'), h='';
   pzcBadge();
-  if(!T.groups.length){ el.innerHTML='<p class="empty">Sepet boş. Pazar sekmesinde bir kartın sağındaki “Sepete ekle” düğmesine bas.</p>'; $('pzc-clear').hidden=true; return; }
+  if(!T.groups.length){
+    $('pzc-clear').hidden=true;
+    if(PZC_DONE){ el.innerHTML='<div class="pzc-done"><h3>Sipariş kaydedildi</h3><p>'+PZC_DONE.n+' ürün · '+tl(PZC_DONE.total)+'<br>Ürünler Parfümler sekmesine, satın alma kaydı Planım sekmesine eklendi.</p><div class="row2"><button type="button" class="primary" data-pzgo="plan">Planım\'da gör</button><button type="button" class="ghost" data-pzgo="parfum">Parfümlerimi gör</button></div></div>'; return; }
+    el.innerHTML='<p class="empty">Sepet boş. Pazar sekmesinde bir kartın sağındaki “Sepete ekle” düğmesine bas.</p>'; return;
+  }
   $('pzc-clear').hidden=false;
   T.groups.forEach(function(g,gi){
     if(gi) h+='<hr class="pzc-sep">';
@@ -1121,7 +1235,8 @@ function pzcRender(){
   });
   h+='<div class="pzc-r pzc-gt"><span>Genel toplam</span><b>'+tl(T.total)+'</b></div>';
   if(T.unknown.length) h+='<p class="pzc-h">Kargo bilgisi olmadığı için toplama dahil değil: '+esc(T.unknown.join(', '))+'.</p>';
-  h+='<p class="pzc-h">Ödeme her satıcının kendi sitesinde yapılır. Bu sepet fiyat hesabı içindir.</p></section>';
+  h+='<p class="pzc-h">Ödeme her satıcının kendi sitesinde yapılır. Siparişi sitede verdikten sonra buradan tamamla: ürünler satıcı bilgisiyle Parfümler sekmesine, tarihli satın alma kaydı Planım sekmesine işlenir.</p>'+
+     '<button type="button" class="primary pzc-fin" data-pzfinish="1">Siparişi tamamla</button></section>';
   el.innerHTML=h;
 }
 function pzcOpen(on){ $('pzc-panel').hidden=!on; if(on) pzcRender(); }
@@ -1145,7 +1260,12 @@ function renderPazar(){
   }).join('')+'</ol>';
   var shown=all.length;
   var bh=any?'<details class="pz-seller" data-base="'+BARRONI_BASE+'"'+((q||PZ_OPEN[BARRONI_BASE])?' open':'')+'><summary><h2>Satıcı: Barroni</h2><span>'+shown+' parfüm</span></summary><div class="pz-body">'+pzDetUi(BARRONI_BASE, [], '<p><b>Hacim seçenekleri:</b> 50 ml; 5 ml test serisi.</p><p><b>Kampanya / fiyat politikası:</b> —</p><p class="muted">'+esc(leadTxt)+'</p><p style="margin:8px 0 0"><a class="add" href="'+BARRONI_BASE+'" target="_blank" rel="noopener">Siteyi aç</a></p>')+h+'</div></details>':'';
-  pzcBadge(); $('pz-list').innerHTML = pzBar() + bh + renderSellers(q) + (LIVE_ENABLED ? renderLive(q) : '');
+  if(pzFilterOn()) bh='';
+  var sh=renderSellers(q);
+  renderPzFilters();
+  pzcBadge(); $('pz-list').innerHTML = pzBar() + bh + sh + (LIVE_ENABLED ? renderLive(q) : '');
+  if(pzFilterOn() && !PZ_STAT.items) $('pz-list').innerHTML+='<div class="card"><p class="empty">Bu filtrelere uyan ürün yok.</p></div>';
+  pzCloseVis();
 }
 
 /* ---------- sade: en ucuzlar ---------- */
@@ -1288,6 +1408,7 @@ function cartText(){
   lines.push('Toplam: '+tl(ct.total)+' · '+mlf(ct.vol)+' · ortalama '+f2(ct.avg)+' TL/ml'); return lines.join('\n');
 }
 function renderPlan(){
+  renderOrders();
   var ct=cartTotals();
   $('cartsum').innerHTML='<div><span>Toplam</span><b>'+tl(ct.total)+'</b></div><div><span>Toplam hacim</span><b>'+mlf(ct.vol)+'</b></div><div><span>Ortalama TL/ml</span><b>'+(ct.vol?f2(ct.avg):'—')+'</b></div><div><span>Kalem / satıcı</span><b>'+ct.items.length+' / '+ct.sellers+'</b></div>';
   var bl=$('budgetline'), bv=parseFloat(U.budget);
@@ -1315,13 +1436,13 @@ function drawScorePick(){
 }
 function fillTargets(sel){
   var kind=RV.kind, opts='';
-  if(kind==='seller') opts=groups.map(function(g){ return '<option value="'+esc(g.name)+'">'+esc(g.name)+'</option>'; }).join('');
+  if(kind==='seller') opts=sellerTargets().map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join('');
   else opts=U.perfumes.slice().sort(function(a,b){return a.name.localeCompare(b.name,'tr');}).map(function(p){ return '<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>'; }).join('');
   $('rv-target').innerHTML=opts;
   if(sel) $('rv-target').value=sel;
   $('rv-target-l').textContent=kind==='seller'?'Satıcı':'Parfüm';
   $('rv-via-w').hidden = kind!=='perfume';
-  $('rv-via').innerHTML='<option value="">Belirtmek istemiyorum</option>'+sLabels.map(function(s){ return '<option value="'+esc(s)+'">'+esc(s)+'</option>'; }).join('');
+  $('rv-via').innerHTML='<option value="">Belirtmek istemiyorum</option>'+sellerTargets().map(function(s){ return '<option value="'+esc(s)+'">'+esc(s)+'</option>'; }).join('');
 }
 function openRvForm(target, review){
   if(RV.kind==='perfume' && !U.perfumes.length){ alert0('Önce Parfümler sekmesinden en az bir parfüm eklemelisin.'); return; }
@@ -1347,7 +1468,7 @@ function saveRv(){
 function dateTR(ts){ return ts ? new Date(ts).toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'}) : ''; }
 function renderPuan(){
   $('rk-seller').setAttribute('aria-checked', RV.kind==='seller'); $('rk-perfume').setAttribute('aria-checked', RV.kind==='perfume');
-  var targets=RV.kind==='seller' ? groups.map(function(g){ return {id:g.name, name:g.name}; }) : U.perfumes.map(function(p){ return {id:p.id, name:p.name}; });
+  var targets=RV.kind==='seller' ? sellerTargets().map(function(n){ return {id:n, name:n}; }) : U.perfumes.map(function(p){ return {id:p.id, name:p.name}; });
   var withR=[], without=[];
   targets.forEach(function(t){
     var rs=U.reviews.filter(function(r){ return r.type===RV.kind && r.target===t.id; }).sort(function(a,b){return b.ts-a.ts;});
@@ -1441,6 +1562,7 @@ function renderPane(){
   else if(tabNow==='plan') renderPlan();
   else if(tabNow==='puan') renderPuan();
   else if(tabNow==='veri') renderVeri();
+  pzCloseVis();
 }
 function refresh(){ build(); renderTabs(); renderHeader(); renderPane(); }
 function renderAll(){
@@ -1465,7 +1587,14 @@ var ACT={
   'p-cancel':function(){ $('pform').hidden=true; pEdit=null; },
   'p-edit':function(b){ var id=b.getAttribute('data-id'); U.perfumes.forEach(function(p){ if(p.id===id){ openPForm(p); } }); window.scrollTo({top:0}); },
   'p-del':function(b){ var id=b.getAttribute('data-id'); armDelete(b,function(){ U.perfumes=U.perfumes.filter(function(p){return p.id!==id;}); U.reviews=U.reviews.filter(function(r){ return !(r.type==='perfume'&&r.target===id); }); save(); refresh(); },'Emin misin? Sil'); },
-  'p-rate':function(b){ RV.kind='perfume'; tabNow='puan'; LS.set('mpf_tab','puan'); renderTabs(); renderPuan(); openRvForm(b.getAttribute('data-id')); },
+  'p-rate':function(b){ var id=b.getAttribute('data-id'); RV.kind='perfume'; tabNow='puan'; LS.set('mpf_tab','puan'); renderTabs(); renderPuan(); openRvForm(id);
+    U.perfumes.forEach(function(p){ if(p.id===id && p.buys && p.buys.length){ var last=p.buys.slice().sort(function(a,b){ return b.ts-a.ts; })[0], c=sellerTargets().canon(last.seller); if(Array.prototype.some.call($('rv-via').options,function(o){ return o.value===c; })) $('rv-via').value=c; } }); window.scrollTo({top:0}); },
+  'p-rate-s':function(b){ RV.kind='seller'; tabNow='puan'; LS.set('mpf_tab','puan'); renderTabs(); renderPuan(); openRvForm(b.getAttribute('data-s')); window.scrollTo({top:0}); },
+  'p-own':function(){ P_OWN=!P_OWN; renderParfum(); },
+  'o-del':function(b){ var id=b.getAttribute('data-id'); armDelete(b,function(){ U.orders=U.orders.filter(function(o){ return o.id!==id; });
+    U.perfumes.forEach(function(p){ p.buys=(p.buys||[]).filter(function(x){ return x.oid!==id; }); });
+    U.perfumes=U.perfumes.filter(function(p){ return !(p.auto && !(p.buys&&p.buys.length) && !p.sellers.length); });
+    save(); refresh(); },'Emin misin? Kaydı sil'); },
   'pf-chip':function(b){ var s=b.getAttribute('data-s'); if(pFormSel[s]) delete pFormSel[s]; else pFormSel[s]=1; b.setAttribute('aria-checked', !!pFormSel[s]); },
   'u-size':function(b){ SS.size=b.getAttribute('data-size'); SS.n=10; renderUcuz(); },
   'u-more':function(){ SS.n+=10; renderUcuz(); },
@@ -1510,8 +1639,9 @@ $('pform').addEventListener('submit', function(e){ e.preventDefault(); savePForm
 $('rvform').addEventListener('submit', function(e){ e.preventDefault(); saveRv(); });
 $('pz-q').addEventListener('input', function(){ renderPazar(); });
 $('pz-refresh').addEventListener('click', function(){ LIVE={}; liveStartAll(); renderPazar(); });
-$('pz-list').addEventListener('toggle', function(e){ var d=e.target; if(d&&d.classList&&d.classList.contains('pz-seller')&&!$('pz-q').value.trim()) PZ_OPEN[d.getAttribute('data-base')]=d.open; }, true);
-$('pz-list').addEventListener('click', function(e){ var b=e.target.closest&&e.target.closest('[data-pz-all]'); if(!b) return; var on=b.getAttribute('data-pz-all')==='1'; PZ_OPEN[BARRONI_BASE]=on; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=on; }); Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=on; }); });
+$('pz-list').addEventListener('toggle', function(e){ var d=e.target; if(d&&d.classList&&d.classList.contains('pz-seller')&&!$('pz-q').value.trim()) PZ_OPEN[d.getAttribute('data-base')]=d.open; if(d&&d.classList&&d.classList.contains('pz-seller')) pzCloseVis(); }, true);
+$('pz-list').addEventListener('click', function(e){ var b=e.target.closest&&e.target.closest('[data-pz-all]'); if(!b) return; var on=b.getAttribute('data-pz-all')==='1'; PZ_OPEN[BARRONI_BASE]=on; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=on; }); Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=on; }); pzCloseVis(); });
+
 $('pz-list').addEventListener('click', function(e){
   var b=e.target.closest&&e.target.closest('[data-pz-det]'); if(!b) return;
   var body=b.closest('.pz-body'), det=body&&body.querySelector('.pz-det'), top=body&&body.querySelector('.pz-sum .pz-detbtn'), sd=body&&body.parentNode;
@@ -1520,6 +1650,21 @@ $('pz-list').addEventListener('click', function(e){
   top.textContent=on?'Gizle':'Detaylı bilgi'; top.setAttribute('aria-expanded', on);
   if(!on && b!==top){ top.scrollIntoView({block:'nearest'}); }
 });
+$('pz-close').addEventListener('click', function(){
+  PZ_OPEN[BARRONI_BASE]=false; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=false; });
+  Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=false; });
+  pzCloseVis(); var r=$('pz-filters').getBoundingClientRect(); window.scrollTo({top:Math.max(0,window.pageYOffset+r.top-60)});
+});
+$('pz-filters').addEventListener('click', function(e){
+  var b=e.target.closest&&e.target.closest('[data-pzf]'); if(!b) return; var k=b.getAttribute('data-pzf'), v=b.getAttribute('data-v');
+  if(k==='uniq') PF.uniq=!PF.uniq;
+  else if(k==='ml'){ if(PF.ml[v]) delete PF.ml[v]; else PF.ml[v]=1; }
+  else if(k==='g'){ if(PF.g[v]) delete PF.g[v]; else PF.g[v]=1; }
+  else if(k==='clear') PF={brand:'',ml:{},g:{},uniq:false};
+  renderPazar();
+});
+$('pz-filters').addEventListener('change', function(e){ if(e.target.id==='pzf-brand'){ PF.brand=e.target.value; renderPazar(); } });
+$('pz-filters').addEventListener('toggle', function(e){ if(e.target.id==='pzf-d') PF_OPEN=e.target.open; }, true);
 $('u-q').addEventListener('input', function(){ SS.n=10; renderUcuz(); });
 $('u-budget').addEventListener('input', function(){ SS.n=10; renderUcuz(); });
 $('q').addEventListener('input', function(){ F.q=this.value; renderHeader(); renderPane(); });
@@ -1555,8 +1700,9 @@ function pzVars(p){
 }
 function pzCur(si,k,p){
   var vs=pzVars(p); if(!vs.length) return null;
-  var i, pref=['50','100',String(p[3])];
-  for(var j=0;j<pref.length;j++) for(i=0;i<vs.length;i++) if(vs[i].id===pref[j]) return vs[i];
+  var sel=PZ_SEL[si+'|'+k], i;
+  if(sel!==undefined) for(i=0;i<vs.length;i++) if(vs[i].id===String(sel)) return vs[i];
+  for(i=0;i<vs.length;i++) if(vs[i].id===String(p[3])) return vs[i];
   return vs[0];
 }
 function pzcFind(e){
@@ -1621,21 +1767,95 @@ function pzShipTxt(sh){
   if(sh.freeOver!=null) t+=(t?' · ':'')+tl(sh.freeOver)+' ve üzeri ücretsiz';
   return t;
 }
+
+function pzcComplete(){
+  var T=pzcCalc(); if(!T.groups.length) return null;
+  var ts=Date.now(), oid=uid('o'), o={id:oid, ts:ts, sub:T.sub, disc:T.disc, ship:T.ship, total:T.total, qty:T.qty, vol:0, groups:[]};
+  T.groups.forEach(function(g){
+    var seller=g.s.name||brandFromUrl(g.s.base), ratio=g.sub>0?g.net/g.sub:1;
+    var og={seller:seller, base:g.s.base||'', sub:g.sub, disc:g.disc, camp:g.camp?String(g.camp.c.label||g.camp.c.type):'', ship:g.ship.cost, shipFree:g.ship.t==='free', shipKnown:g.ship.t!=='unknown',
+      gifts:g.gifts.map(function(c){ return {label:c.label||'Hediye', n:c.n}; }), total:g.total, lines:[]};
+    g.lines.forEach(function(l){
+      var ml=l.v.ml||null, label=l.v.label||'';
+      og.lines.push({name:l.p[0], ml:ml, label:label, qty:l.e.q, unit:l.v.price, sum:l.sum, eff:r2(l.sum*ratio)});
+      if(ml) o.vol+=ml*l.e.q;
+      var key=norm(l.p[0]), pf=null;
+      U.perfumes.forEach(function(p){ if(!pf && norm(p.name)===key) pf=p; });
+      if(!pf){ pf={id:uid('p'), name:l.p[0], notes:'', sellers:[], auto:true, buys:[]}; U.perfumes.push(pf); }
+      if(!pf.buys) pf.buys=[];
+      pf.buys.push({oid:oid, seller:seller, ml:ml, label:label, qty:l.e.q, price:l.v.price, ts:ts});
+    });
+    o.groups.push(og);
+  });
+  U.orders.unshift(o); save();
+  PZC.length=0; pzcSave(); pzcBadge();
+  return o;
+}
+function altsFor(l, seller){
+  if(!l.ml || l.label) return [];
+  var paid=l.eff/(l.ml*l.qty), key=norm(l.name), sk=norm(seller).replace(/[^a-z0-9]/g,''), out=[], seen={};
+  function push(sn,ml,price){
+    if(!ml||!(price>0)) return; if(norm(sn).replace(/[^a-z0-9]/g,'')===sk) return;
+    if(ml<l.ml*0.6||ml>l.ml*1.5) return;
+    var u=price/ml; if(!(u<paid-0.005)) return;
+    var k=sn+'|'+ml; if(seen[k]) return; seen[k]=1;
+    out.push({seller:sn, ml:ml, price:price, u:u, save:(paid-u)*l.ml*l.qty});
+  }
+  PAZAR2.forEach(function(s){
+    var sn=s.name||brandFromUrl(s.base);
+    s.items.forEach(function(p){ if(norm(p[0])!==key) return; pzVars(p).forEach(function(v){ if(!v.label) push(sn,v.ml,v.price); }); });
+  });
+  Object.keys(PAZAR).forEach(function(c){ PAZAR[c].forEach(function(p){ if(norm(p[0])===key) push('Barroni',p[3],p[1]); }); });
+  return out.sort(function(a,b){ return a.u-b.u; }).slice(0,3);
+}
+function renderOrders(){
+  var el=$('orders'); if(!el) return;
+  if(!U.orders.length){
+    el.innerHTML='<div class="card"><h2>Satın alma geçmişi</h2><p class="empty">Henüz tamamlanmış sipariş yok. Pazar sekmesindeki sepette “Siparişi tamamla” dediğinde satın alma kaydı tarihiyle buraya eklenir.</p></div>'; return;
+  }
+  var tot=0, vol=0, net=0, disc=0, ship=0, saveAll=0, qty=0;
+  var cards=U.orders.map(function(o){
+    var oSave=0;
+    var gh=o.groups.map(function(g){
+      var lines=g.lines.map(function(l){
+        var u=l.ml?l.eff/(l.ml*l.qty):0, alts=altsFor(l,g.seller), ah='';
+        if(l.ml && !l.label){
+          if(alts.length){ oSave+=alts[0].save; ah='<div class="alt"><b>Daha ucuz alternatif'+(alts.length>1?'ler':'')+'</b>'+alts.map(function(a){ return '<div><span>'+esc(a.seller)+' · '+nf0.format(a.ml)+' ml · '+tl(a.price)+'</span><span>'+f2(a.u)+' TL/ml · ≈ '+tl(a.save)+' az</span></div>'; }).join('')+'</div>'; }
+          else ah='<div class="alt ok">Daha ucuz alternatif bulunamadı ✓</div>';
+        }
+        return '<div class="ol"><div><b>'+esc(l.name)+'</b><small>'+(l.label?esc(l.label):(l.ml?nf0.format(l.ml)+' ml':'hacim yok'))+' × '+l.qty+' · birim '+tl(l.unit)+(l.ml?' · '+f2(u)+' TL/ml'+(Math.abs(l.eff-l.sum)>0.005?' (indirimli)':''):'')+'</small></div><b class="mono">'+tl(l.sum)+'</b>'+ah+'</div>';
+      }).join('');
+      var r='<div class="orr"><span>Ürünler</span><b>'+tl(g.sub)+'</b></div>';
+      if(g.disc>0) r+='<div class="orr d"><span>Kampanya: '+esc(g.camp||'indirim')+'</span><b>− '+tl(g.disc)+'</b></div>';
+      r+='<div class="orr"><span>Kargo</span><b>'+(g.shipKnown?(g.shipFree?'Ücretsiz':tl(g.ship)):'Bilgi yok')+'</b></div>';
+      (g.gifts||[]).forEach(function(c){ r+='<div class="orr d"><span>Hediye: '+esc(c.label)+'</span><b>'+(c.n>1?'× '+c.n:'Kazanıldı')+'</b></div>'; });
+      r+='<div class="orr t"><span>'+esc(g.seller)+' toplamı</span><b>'+tl(g.total)+'</b></div>';
+      return '<div class="og"><h4>'+esc(g.seller)+'</h4>'+lines+r+'</div>';
+    }).join('');
+    tot+=o.total; vol+=o.vol; net+=o.sub-o.disc; disc+=o.disc; ship+=o.ship; saveAll+=oSave; qty+=o.qty;
+    return '<details class="card ord"><summary><h3>'+dateTime(o.ts)+'</h3><span class="oi">'+o.qty+' ürün · '+(o.vol?mlf(o.vol)+' · '+f2((o.sub-o.disc)/o.vol)+' TL/ml · ':'')+'<b>'+tl(o.total)+'</b></span></summary><div class="ob">'+gh+
+      '<p class="onote">Bu siparişte kampanya kazancı: '+tl(o.disc)+' · kargo: '+tl(o.ship)+(oSave>0?' · en iyi alternatiflerle olası fark: ≈ '+tl(oSave):'')+'</p>'+
+      '<div class="row2" style="margin-top:10px"><button type="button" class="link" data-act="o-del" data-id="'+esc(o.id)+'">Kaydı sil</button></div></div></details>';
+  }).join('');
+  el.innerHTML='<div class="card"><h2>Satın alma geçmişi</h2><p class="hint">“Siparişi tamamla” ile kaydedilen alışverişler, işlem tarihiyle. Alternatifler satıcıların güncel liste fiyatlarıyla (kampanya ve kargo hariç), benzer hacimde (±%40–50 hacim farkı) karşılaştırılır.</p>'+
+    '<div class="ostats"><div><span>Sipariş</span><b>'+U.orders.length+'</b></div><div><span>Toplam ödeme</span><b>'+tl(tot)+'</b></div><div><span>Toplam hacim</span><b>'+mlf(vol)+'</b></div><div><span>Ort. TL/ml</span><b>'+(vol?f2(net/vol):'—')+'</b></div><div><span>Kampanya kazancı</span><b>'+tl(disc)+'</b></div><div><span>Kargo</span><b>'+tl(ship)+'</b></div>'+
+    '<div><span>Olası tasarruf</span><b>'+(saveAll>0?'≈ '+tl(saveAll):'—')+'</b></div></div><p class="onote">Ort. TL/ml kampanya sonrası ürün bedelinin hacme bölünmesiyle bulunur, kargo hariçtir.</p></div>'+cards;
+}
 /*PZC-CALC-END*/
 
 document.addEventListener('click', function(e){
   var t=e.target, b;
   if(t.closest && (b=t.closest('[data-pzadd]'))){
-    var a=b.getAttribute('data-pzadd').split('|'), si=+a[0], k=+a[1], s=PAZAR2[si], p=s&&s.items[k], vs=p?pzVars(p):[]; if(!vs.length) return;
-    if(vs.length>1){ pzvOpen(si,k); return; }
-    pzcAdd(si,k,vs[0]); b.textContent='Eklendi ✓'; setTimeout(function(){ b.textContent='Sepete ekle'; },1200); return;
+    var a=b.getAttribute('data-pzadd').split('|'), si=+a[0], k=+a[1], s=PAZAR2[si], p=s&&s.items[k], v=p&&pzCur(si,k,p); if(!v) return;
+    var key=pzSk(s), f=null; PZC.forEach(function(x){ if(x.s===key&&x.n===p[0]&&String(x.ml)===v.id) f=x; });
+    if(f){ if(f.q<99) f.q++; } else PZC.push({s:key,n:p[0],ml:v.id,q:1});
+    pzcSave(); pzcBadge(); b.textContent='Eklendi ✓'; setTimeout(function(){ b.textContent='Sepete ekle'; },1200); return;
   }
-  if(t.closest && (b=t.closest('[data-pzpick]'))){
-    if(PZV){ var v=PZV.vs[+b.getAttribute('data-pzpick')]; if(v){ pzcAdd(PZV.si,PZV.k,v); b.classList.add('ok'); b.firstChild.textContent+=' · Eklendi ✓'; setTimeout(pzvClose,500); } }
-    return;
+  if(t.closest && (b=t.closest('[data-pzfinish]'))){
+    armDelete(b,function(){ var o=pzcComplete(); PZC_DONE=o?{n:o.qty,total:o.total}:null; pzcRender(); refresh(); },'Emin misin? Tamamla'); return;
   }
-  if(t.id==='pzv-panel' || (t.closest && t.closest('button[data-pzvclose]'))){ pzvClose(); return; }
-  if(t.closest && t.closest('#pzc-fab')){ pzcOpen(true); return; }
+  if(t.closest && (b=t.closest('[data-pzgo]'))){ var to=b.getAttribute('data-pzgo'); PZC_DONE=null; pzcOpen(false); setTab(to); window.scrollTo({top:0}); return; }
+  if(t.closest && t.closest('#pzc-fab')){ PZC_DONE=null; pzcOpen(true); return; }
   if(t.closest && t.closest('[data-pzclose]')){ pzcOpen(false); return; }
   if(t.closest && (b=t.closest('[data-pzq]'))){ var e1=PZC[+b.getAttribute('data-i')]; if(e1){ e1.q=Math.max(1,Math.min(99,e1.q+(+b.getAttribute('data-pzq')))); pzcSave(); pzcRender(); } return; }
   if(t.closest && (b=t.closest('[data-pzdel]'))){ PZC.splice(+b.getAttribute('data-pzdel'),1); pzcSave(); pzcRender(); return; }
@@ -1647,7 +1867,7 @@ document.addEventListener('change', function(e){
   PZ_SEL[si+'|'+k]=sl.value;
   li.outerHTML=pzCard(PAZAR2[si],si,k,li.querySelector('.n').textContent);
 });
-document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ if(!$('pzv-panel').hidden) pzvClose(); else if(!$('pzc-panel').hidden) pzcOpen(false); } });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- başlat ---------- */
 loadLocal();
