@@ -40,27 +40,8 @@ ol{padding-left:20px;margin:8px 0}li{margin:4px 0}
 .pv{width:150px;aspect-ratio:2/3;border-radius:8px;border:1px solid var(--line);background:center/cover no-repeat;display:grid;place-items:center;font:italic 54px Georgia,serif;color:rgba(255,255,255,.55);margin-top:6px}
 .cols{display:flex;gap:10px;align-items:flex-end}.cols label{flex:1}input[type=color]{padding:3px;height:44px}
 .top a{color:var(--acc);font-size:14px;text-decoration:none}
-.top a{color:var(--acc);font-size:14px;text-decoration:none}
-/* Wix sekmesi */
-#wix{position:fixed;inset:0;z-index:25;background:var(--bg);display:flex;flex-direction:column}
-#wix[hidden]{display:none}
-.wxtop,.wxbot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--card);padding:8px 12px}
-.wxtop{border-bottom:1px solid var(--line);padding-top:calc(8px + env(safe-area-inset-top,0px))}
-.wxbot{border-top:1px solid var(--acc);padding-bottom:calc(8px + env(safe-area-inset-bottom,0px));justify-content:space-between}
-.wxtop .sp{flex:1}.wxinfo,.wxbot span{font-size:13px;color:var(--mut)}.wxinfo .b{margin-left:4px}
-.wxstage{flex:1;min-height:0;display:flex;justify-content:center;background:#050403;overflow:hidden}
-#wxf{border:0;width:100%;height:100%;background:#fff}
-#wix.mob #wxf{width:390px;max-width:100%}
-#wxov .ov{z-index:60}
 </style></head><body>
 <div id="app"></div><div id="toast"></div>
-<div id="wix" hidden>
- <div class="wxtop"><button class="b s" data-a="wxback">← Kokular</button><b style="font:italic 400 18px Georgia,serif">Wix</b>
-  <button class="b s" id="wxmode" data-a="wxmode">Düzenleme: açık</button><button class="b s" data-a="wxdev">Mobil / Masaüstü</button><button class="b s" data-a="wxreload">Yenile</button><button class="b s" data-a="wxcfg" title="Dergi sayfası adresi">⚙</button>
-  <span class="sp"></span><span class="wxinfo" id="wxinfo"></span></div>
- <div class="wxstage"><iframe id="wxf" title="Olfactus canlı önizleme"></iframe></div>
- <div class="wxbot"><span id="wxcount">Değişiklik yok</span><div style="display:flex;gap:8px"><button class="b s" id="wxdis" data-a="wxdis">Vazgeç</button><button class="b p" id="wxsave" data-a="save">Değişiklikleri Kaydet</button></div></div>
-</div><div id="wxov"></div>
 <script>
 (function(){
 "use strict";
@@ -71,7 +52,7 @@ function guess(){var c={owner:'',repo:'',branch:'',dir:'parfumeri/data'},h=locat
   if(/\.github\.io$/.test(h)){c.owner=h.split('.')[0];c.repo=(p[0]&&p[0]!=='admin')?p[0]:c.owner+'.github.io';}return c}
 var cfg=guess();try{var sv=JSON.parse(LS.g('op_adm_cfg')||'{}');for(var k in sv)if(sv[k])cfg[k]=sv[k]}catch(e){}
 var tok=LS.g('op_adm_tok')||'',pre=cfg.dir&&cfg.dir.indexOf('docs/')===0?'docs/':'';
-var S={view:tok?'list':'login',tab:'k',D:null,orig:null,head:'',dirty:false,cur:null,q:'',lim:80,imgs:{},trash:[],busy:false,msg:''};
+var S={view:tok?'list':'login',tab:'k',D:null,head:'',dirty:false,cur:null,q:'',lim:80,imgs:{},trash:[],busy:false,msg:''};
 var SEASON=['Yazlık','Geçiş Mevsimi','Kışlık'],LINE=['Maskülen','Feminen','Unisex'],OCC=['Günlük','Randevu Gecesi','İş / Formal'];
 var TL={'cover.issue':'Kapak: sayı','cover.date':'Kapak: tarih','cover.title':'Kapak: dergi adı','cover.tagline':'Kapak: alt başlık','nav.eyebrow':'İçindekiler: üst etiket',
  'idx1.eyebrow':'İçindekiler 1: etiket','idx1.title':'İçindekiler 1: başlık','idx1.desc':'İçindekiler 1: açıklama','idx2.eyebrow':'İçindekiler 2: etiket','idx2.title':'İçindekiler 2: başlık','idx2.desc':'İçindekiler 2: açıklama','idx3.eyebrow':'İçindekiler 3: etiket','idx3.title':'İçindekiler 3: başlık','idx3.desc':'İçindekiler 3: açıklama',
@@ -87,21 +68,21 @@ function norm(D){D.texts=D.texts||{};D.labels=D.labels||{};D.groupShots=D.groupS
 function load(){S.msg='Veriler okunuyor…';render();
   var b=cfg.branch?Promise.resolve():api(rp('')).then(function(r){cfg.branch=r.default_branch});
   return b.then(function(){return api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch)))}).then(function(r){S.head=r.object.sha;return readData().catch(function(e){if(e.status===404&&!pre){pre='docs/';return readData()}throw e})})
-  .then(function(D){S.D=norm(D);S.orig=JSON.parse(JSON.stringify(S.D));S.imgs={};S.trash=[];S.dirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));if(S.view==='login')S.view='list';render();if(S.view==='wix')wxRelink()})
+  .then(function(D){S.D=norm(D);S.imgs={};S.trash=[];S.dirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));if(S.view==='login')S.view='list';render()})
   .catch(function(e){S.msg='Hata: '+e.message;if(e.status===401)S.view='login';render()})}
 
 function slug(n){return n.toLowerCase().replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'gorsel'}
-function imgUrl(p){return !p?'':S.imgs[p]?S.imgs[p].url:/^(https?:|data:|\/)/.test(p)?p:'../olfactus/'+p}
+function imgUrl(p){return !p?'':S.imgs[p]?S.imgs[p].url:'../olfactus/'+p}
 function shrink(file,max,cb){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);var x=c.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.86))};im.onerror=function(){toast('Görsel okunamadı')};im.src=r.result};r.readAsDataURL(file)}
-function setImg(old,name,url){if(old){if(S.imgs[old])delete S.imgs[old];else if(!/^(https?:|data:)/.test(old))S.trash.push(old)}var p='img/'+slug(name)+'_'+Date.now().toString(36)+'.jpg';S.imgs[p]={url:url};return p}
-function dropImg(old){if(!old)return;if(S.imgs[old])delete S.imgs[old];else if(!/^(https?:|data:)/.test(old))S.trash.push(old)}
+function setImg(old,name,url){if(old){if(S.imgs[old])delete S.imgs[old];else S.trash.push(old)}var p='img/'+slug(name)+'_'+Date.now().toString(36)+'.jpg';S.imgs[p]={url:url};return p}
+function dropImg(old){if(!old)return;if(S.imgs[old])delete S.imgs[old];else S.trash.push(old)}
 function toast(t){var e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
 function mark(){S.dirty=true;var b=$('#savebar');if(b)b.outerHTML=bar()}
 function bar(){return S.dirty?'<div class="bar" id="savebar"><span>Kaydedilmemiş değişiklik var</span><div><button class="b s" data-a="discard">Vazgeç</button><button class="b p" data-a="save">'+(S.busy?'Kaydediliyor…':'GitHub\'a kaydet')+'</button></div></div>':'<span id="savebar"></span>'}
 var nav='<a href="index.html">Pazar</a> · <b>Olfactus</b>';
 
 /* ---------- görünümler ---------- */
-function render(){if(S.view==='wix'){wxShow();return}wxHide();var y=window.scrollY,h=S.view==='login'?vLogin():S.view==='edit'?vEdit():vList();$('#app').innerHTML=h+bar();window.scrollTo(0,S.keepY?y:0);S.keepY=false}
+function render(){var y=window.scrollY,h=S.view==='login'?vLogin():S.view==='edit'?vEdit():vList();$('#app').innerHTML=h+bar();window.scrollTo(0,S.keepY?y:0);S.keepY=false}
 function vLogin(){return '<main class="w"><h1>Olfactus yönetimi</h1><p class="m">Pazar paneliyle aynı GitHub erişim anahtarı kullanılır. Daha önce o panele girdiysen bu cihazda otomatik açılır.</p>'+
  '<label>GitHub erişim anahtarı (token)<input id="tok" type="password" autocomplete="off" placeholder="github_pat_…" value="'+esc(tok)+'"></label>'+
  '<details><summary>Depo ayarları</summary><label>Kullanıcı adı<input id="c-owner" value="'+esc(cfg.owner)+'"></label><label>Depo adı<input id="c-repo" value="'+esc(cfg.repo)+'"></label><label>Dal (boşsa otomatik)<input id="c-branch" value="'+esc(cfg.branch)+'"></label></details>'+
@@ -109,7 +90,7 @@ function vLogin(){return '<main class="w"><h1>Olfactus yönetimi</h1><p class="m
 function vList(){var D=S.D;if(!D)return '<main class="w"><p class="m">'+esc(S.msg||'Yükleniyor…')+'</p></main>';
   var t=function(k,l){return '<button class="b'+(S.tab===k?' on':'')+'" data-a="tab" data-k="'+k+'">'+l+'</button>'};
   var h='<div class="top"><span>'+nav+'</span><span><button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+(S.msg?'<p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>':'')+
-   '<div class="tabs">'+t('k','Kokular ('+D.perfumes.length+')')+t('t','Dergi metinleri')+t('g','Grup fotoğrafları')+t('w','Wix · canlı düzenleme')+'</div>';
+   '<div class="tabs">'+t('k','Kokular ('+D.perfumes.length+')')+t('t','Dergi metinleri')+t('g','Grup fotoğrafları')+'</div>';
   if(S.tab==='k'){var q=S.q.toLowerCase(),idx=D.perfumes.map(function(p,i){return i}).filter(function(i){var p=D.perfumes[i];return !q||(p.name+' '+p.house).toLowerCase().indexOf(q)>=0}).sort(function(a,b){return D.perfumes[b].score-D.perfumes[a].score||a-b}),n=idx.length;
     h+='<input id="sq" placeholder="koku veya ev ara" value="'+esc(S.q)+'"><div style="height:10px"></div><button class="row nw" data-a="new">+ Koku ekle</button>';
     idx.slice(0,S.lim).forEach(function(i){var p=D.perfumes[i],u=imgUrl(p.poster);
@@ -152,7 +133,7 @@ function save(){if(S.busy)return;var names={},bad='';S.D.perfumes.forEach(functi
     if(r.object.sha!==S.head&&!confirm('Depo, sen veriyi açtıktan sonra değişmiş. Yine de bu değişikliklerle üzerine yazılsın mı? (İptal: önce Yenile)'))throw new Error('İptal edildi');
     var chain=Promise.resolve();up.forEach(function(p){chain=chain.then(function(){return api(rp('/git/blobs'),{method:'POST',body:{content:S.imgs[p].url.split(',')[1],encoding:'base64'}}).then(function(b){ch.push({path:od+'/'+p,mode:'100644',type:'blob',sha:b.sha})})})});
     return chain.then(function(){return api(rp('/git/commits/'+r.object.sha))}).then(function(c){return api(rp('/git/trees'),{method:'POST',body:{base_tree:c.tree.sha,tree:ch}})}).then(function(t){return api(rp('/git/commits'),{method:'POST',body:{message:'Olfactus güncellemesi (yönetim paneli)',tree:t.sha,parents:[r.object.sha]}})}).then(function(nc){return api(rp('/git/refs/heads/'+encodeURIComponent(cfg.branch)),{method:'PATCH',body:{sha:nc.sha}})})})
-  .then(function(){S.busy=false;if(S.view!=='wix'){S.view='list';S.cur=null}toast('Kaydedildi. Site 1–2 dakika içinde güncellenir.');return load()})
+  .then(function(){S.busy=false;S.view='list';S.cur=null;toast('Kaydedildi. Site 1–2 dakika içinde güncellenir.');return load()})
   .catch(function(e){S.busy=false;S.msg='Hata: '+e.message;render();toast('Kaydedilemedi: '+e.message)})}
 
 /* ---------- olaylar ---------- */
@@ -162,7 +143,7 @@ var A={
  logout:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Çıkılsın mı?'))return;LS.d('op_adm_tok');tok='';S.view='login';S.dirty=false;S.D=null;S.msg='';render()},
  reload:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Yenilensin mi?'))return;load()},
  discard:function(){if(confirm('Tüm kaydedilmemiş değişiklikler silinsin mi?')){S.view='list';load()}},
- tab:function(b){if(b.dataset.k==='w'){S.view='wix';render();return}S.tab=b.dataset.k;render()},more:function(){S.lim+=100;render()},
+ tab:function(b){S.tab=b.dataset.k;render()},more:function(){S.lim+=100;render()},
  edit:function(b){S.cur=+b.dataset.i;S.view='edit';render()},back:function(){S.view='list';render()},
  new:function(){S.D.perfumes.push({name:'Yeni koku',house:'',score:5,season:[],occ:[],line:'',notes:{},essay:{},moment:'',poster:''});S.cur=S.D.perfumes.length-1;S.view='edit';mark();render()},
  chip:function(b){var p=S.D.perfumes[S.cur],k=b.dataset.key,v=b.dataset.v;if(k==='line')p.line=p.line===v?'':v;else{var i=p[k].indexOf(v);if(i>=0)p[k].splice(i,1);else p[k].push(v)}mark();S.keepY=true;render()},
@@ -173,125 +154,6 @@ var A={
  shotdel:function(b){if(!confirm('Bu kademe fotoğrafı kaldırılsın mı?'))return;var k=b.dataset.k;dropImg(S.D.groupShots[k].src);delete S.D.groupShots[k];mark();S.keepY=true;render()},
  save:save};
 function mv(d){var D=S.D.perfumes,i=S.cur,j=i+d;while(j>=0&&j<D.length&&D[j].score!==D[i].score)j+=d;if(j<0||j>=D.length){toast('Daha fazla taşınamaz');return}var t=D[i];D[i]=D[j];D[j]=t;S.cur=j;mark();toast('Taşındı')}
-/* ---------- Wix: canlı önizleme + sayfa içi (inline) düzenleme ---------- */
-var W={fr:null,doc:null,on:true,binds:[],changed:{},P:[],pn:[],obs:null,tm:null,pen:null,penB:null,ib:null,miss:[],err:'',nT:0,nI:0};
-var WX_CSS=[
- 'body.wx-on [data-wx]{cursor:text;outline:1px dashed transparent;outline-offset:3px;transition:outline-color .15s,background .15s}',
- 'body.wx-on [data-wx]:hover{outline-color:rgba(201,164,92,.95)}',
- 'body.wx-on [data-wx]:focus{outline:2px solid #C9A45C;background:rgba(201,164,92,.10)}',
- 'body.wx-on [data-wx-ch]{box-shadow:0 2px 0 0 rgba(141,191,138,.9)}',
- 'body.wx-on [data-wx-img]:hover{outline:2px dashed #C9A45C;outline-offset:-2px}',
- '.wx-pen{position:absolute;z-index:2147483000;width:36px;height:36px;border-radius:50%;border:1px solid #C9A45C;background:#1A130D;color:#C9A45C;font:18px/1 system-ui,sans-serif;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.55);padding:0}',
- 'body:not(.wx-on) .wx-pen{display:none!important}'
-].join('\n');
-function wnorm(s){return String(s==null?'':s).replace(/\s+/g,' ').trim()}
-function wq(s){return s.replace(/^[“”"«»‘’]+/,'').replace(/[“”"«»‘’]+$/,'')}
-function wtext(el){var out='';(function walk(n){for(var c=n.firstChild;c;c=c.nextSibling){if(c.nodeType===3)out+=c.data;else if(c.nodeType===1){var t=c.tagName;if(t==='BR')out+='\n';else{if(/^(DIV|P|LI|H[1-6]|SECTION|BLOCKQUOTE)$/.test(t)&&out&&out.slice(-1)!=='\n')out+='\n';walk(c)}}}})(el);
-  return out.split('\n').map(function(l){return l.replace(/[ \t ]+/g,' ').trim()}).join('\n').trim()}
-function wget(o,path){return path.split('.').reduce(function(a,k){return a==null?a:a[k]},o)}
-/* Alan kataloğu: önizlemede aranacak her değer ve değişince yazılacağı yer (S.D). Sayfadaki değerler S.orig'dan (son kaydedilen veri) okunur. */
-function wfields(){var O=S.orig,F=[];if(!O)return F;
-  Object.keys(O.texts).forEach(function(k){var v=O.texts[k];F.push({id:'t.'+k,t:'text',v:v,ml:v.length>60,lab:TL[k]||k,get:function(){return S.D.texts[k]},set:function(x){S.D.texts[k]=x}})});
-  O.perfumes.forEach(function(p0,i){
-    function add(path,lab,ml){var v=wget(p0,path);if(!v)return;F.push({id:'p'+i+'.'+path,t:'text',pi:i,v:String(v),ml:ml,lab:p0.name+' · '+lab,get:function(){var p=W.P[i];return p?wget(p,path):''},set:function(x){var p=W.P[i];if(!p)return;setP(p,path,x);if(path==='name')W.pn[i]=x}})}
-    add('name','ad');add('house','ev');add('moment','ortam notu');
-    ['open','last','feel','free'].forEach(function(k){add('notes.'+k,'not ('+k+')',true)});
-    ['open','last','feel'].forEach(function(k){add('essay.'+k,'taslak ('+k+')',true)});
-    if(p0.poster)F.push({id:'p'+i+'.poster',t:'img',pi:i,v:p0.poster,lab:p0.name+' · görsel',name:p0.name,get:function(){return W.P[i]?W.P[i].poster:''},set:function(x){if(W.P[i])W.P[i].poster=x}});
-  });
-  Object.keys(O.groupShots).forEach(function(k){var g=O.groupShots[k];if(g&&g.src)F.push({id:'g.'+k,t:'img',v:g.src,lab:'Kademe '+k+' grup fotoğrafı',name:'grup_'+k,get:function(){return S.D.groupShots[k]?S.D.groupShots[k].src:''},set:function(x){if(S.D.groupShots[k])S.D.groupShots[k].src=x},del:function(){delete S.D.groupShots[k]}})});
-  return F}
-/* Bağlama: sayfadaki öğeyi alanla eşleştirir. Önce açık işaretler (data-edit="texts.cover.title"), sonra metin/dosya adı eşleşmesi. */
-function wbind(){var d=W.doc;if(!d||!d.body)return;var F=wfields(),idx={},idxq={},nameEls={},all=d.body.querySelectorAll('*'),SK=/^(SCRIPT|STYLE|NOSCRIPT|IMG|SVG|PATH|IFRAME|CANVAS|VIDEO|SELECT|OPTION|TEXTAREA|INPUT|BUTTON|PICTURE|SOURCE)$/i;
-  for(var i=0;i<all.length;i++){var e=all[i];if(SK.test(e.tagName)||e.__wx||e.closest('.wx-pen')||e.namespaceURI!=='http://www.w3.org/1999/xhtml')continue;var t=wnorm(e.textContent);if(!t||t.length>3000)continue;
-    var dup=false;for(var c=e.firstElementChild;c;c=c.nextElementSibling){if(wnorm(c.textContent)===t){dup=true;break}}if(dup)continue;
-    (idx[t]=idx[t]||[]).push(e);var q=wq(t);if(q&&q!==t)(idxq[q]=idxq[q]||[]).push(e)}
-  var byV={};F.forEach(function(f){if(f.t==='text'&&f.v&&wnorm(f.v).length>1)(byV[wnorm(f.v)]=byV[wnorm(f.v)]||[]).push(f)});
-  var keys=Object.keys(byV).sort(function(a,b){var an=byV[a].some(function(f){return /\.name$/.test(f.id)}),bn=byV[b].some(function(f){return /\.name$/.test(f.id)});return an===bn?0:an?-1:1});
-  function put(e,f,pre,suf){if(e.__wx)return;var b={el:e,f:f,pre:pre,suf:suf,t:'text'};e.__wx=b;e.setAttribute('data-wx',f.id);e.spellcheck=false;if(W.on)e.contentEditable='true';W.binds.push(b);if(/\.name$/.test(f.id))(nameEls[f.pi]=nameEls[f.pi]||[]).push(e)}
-  function nearest(e,c){var a=e;while(a&&a!==d.body){var hit=c.filter(function(f){return (nameEls[f.pi]||[]).some(function(n){return a.contains(n)})});if(hit.length===1)return hit[0];if(hit.length>1)return null;a=a.parentElement}return null}
-  keys.forEach(function(k){var c=byV[k],E=(idx[k]||[]).map(function(e){return{e:e,pre:'',suf:''}});
-    (idxq[wq(k)]||[]).forEach(function(e){if(wq(wnorm(e.textContent))===wq(k)&&wnorm(e.textContent)!==k){var tx=wnorm(e.textContent),m1=tx.match(/^[“”"«»‘’]+/),m2=tx.match(/[“”"«»‘’]+$/);E.push({e:e,pre:m1?m1[0]:'',suf:m2?m2[0]:''})}});
-    var seen=[];E=E.filter(function(o){if(seen.indexOf(o.e)>=0||o.e.__wx)return false;seen.push(o.e);return true});
-    if(c.length===1){E.forEach(function(o){put(o.e,c[0],o.pre,o.suf)});return}
-    var hasP=c.every(function(f){return f.pi!=null}),n=0;
-    E.forEach(function(o){var f=hasP?nearest(o.e,c):c[Math.min(n++,c.length-1)];if(f)put(o.e,f,o.pre,o.suf)})});
-  /* açık işaretler: data-edit="texts.cover.title" veya data-edit="perfumes.<ad>.notes.open" */
-  Array.prototype.forEach.call(d.querySelectorAll('[data-edit]'),function(e){if(e.__wx)return;var a=e.getAttribute('data-edit'),f=null;
-    F.forEach(function(x){if(f)return;if(a==='texts.'+x.id.slice(2)&&x.id.indexOf('t.')===0)f=x;var m=a.match(/^perfumes\.(.+?)\.(name|house|moment|notes\.\w+|essay\.\w+)$/);if(m&&x.pi!=null&&W.pn[x.pi]===m[1]&&x.id==='p'+x.pi+'.'+m[2])f=x});
-    if(f&&f.t==='text')put(e,f,'','')});
-  /* görseller: dosya adı eşleşmesi (img src veya inline background-image) */
-  F.forEach(function(f){if(f.t!=='img'||!f.v)return;var fn=String(f.v).split('/').pop(),els=[];
-    Array.prototype.forEach.call(d.querySelectorAll('img'),function(e){if((e.getAttribute('src')||'').split('?')[0].slice(-fn.length)===fn)els.push(e)});
-    Array.prototype.forEach.call(d.querySelectorAll('[style*="url("]'),function(e){if((e.getAttribute('style')||'').indexOf(fn)>=0)els.push(e)});
-    els.forEach(function(e){if(e.__wxi)return;var b={el:e,f:f,t:'img'};e.__wxi=b;e.setAttribute('data-wx-img',f.id);W.binds.push(b)})});
-  var ok={};W.binds.forEach(function(b){ok[b.f.id]=1});W.miss=F.filter(function(f){return !ok[f.id]});
-  W.nT=W.binds.filter(function(b){return b.t==='text'}).length;W.nI=W.binds.filter(function(b){return b.t==='img'}).length;wchrome()}
-function wcommit(el){var b=el.__wx;if(!b)return;var v=wtext(el);if(b.pre&&v.indexOf(b.pre)===0)v=v.slice(b.pre.length);if(b.suf&&v.slice(-b.suf.length)===b.suf)v=v.slice(0,-b.suf.length);
-  b.f.set(v);W.binds.forEach(function(o){if(o.t==='text'&&o.f===b.f){o.el.setAttribute('data-wx-ch','1');if(o.el!==el)o.el.textContent=o.pre+v+o.suf}});
-  W.changed[b.f.id]=1;mark();wchrome()}
-function wrevert(el){var b=el.__wx;if(!b)return;var v=b.f.get()||'';el.textContent=b.pre+v+b.suf}
-function wimgAt(x,y){var best=null,ba=1e12;W.binds.forEach(function(b){if(b.t!=='img'||!b.el.isConnected)return;var r=b.el.getBoundingClientRect();if(r.width>12&&r.height>12&&x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom){var a=r.width*r.height;if(a<ba){ba=a;best=b}}});return best}
-function wattach(){
-  try{W.doc=W.fr.contentDocument;if(!W.doc||!W.doc.body)throw 0;void W.doc.body.innerHTML}catch(e){W.doc=null;W.err='Dergi sayfası bu panelden okunamıyor. Panel ve dergi aynı alan adında olmalı. Adres: '+wfront();wchrome();return}
-  W.err='';var d=W.doc,win=W.fr.contentWindow;
-  if(!d.getElementById('wx-css')){var st=d.createElement('style');st.id='wx-css';st.textContent=WX_CSS;d.head.appendChild(st)}
-  d.body.classList.toggle('wx-on',W.on);W.binds=[];W.changed=W.changed||{};
-  W.P=S.orig?S.orig.perfumes.map(function(o){return S.D.perfumes.filter(function(p){return p.name===o.name})[0]||null}):[];W.pn=S.orig?S.orig.perfumes.map(function(o){return o.name}):[];
-  W.pen=d.createElement('button');W.pen.type='button';W.pen.className='wx-pen';W.pen.setAttribute('aria-label','Görseli düzenle');W.pen.title='Görseli değiştir';W.pen.textContent='✎';d.body.appendChild(W.pen);
-  W.pen.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();if(W.penB)wopenImg(W.penB)});
-  var raf=0,mx=0,my=0;
-  d.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(raf)return;raf=win.requestAnimationFrame(function(){raf=0;if(!W.on)return;var b=wimgAt(mx,my);W.penB=b;if(!b){W.pen.style.display='none';return}var r=b.el.getBoundingClientRect();W.pen.style.display='flex';W.pen.style.left=(Math.min(r.right,win.innerWidth)+win.scrollX-44)+'px';W.pen.style.top=(Math.max(r.top,0)+win.scrollY+8)+'px'})},true);
-  d.addEventListener('input',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(el)wcommit(el)},true);
-  d.addEventListener('keydown',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(!el)return;e.stopPropagation();var b=el.__wx;
-    if(e.key==='Enter'){e.preventDefault();if(b&&b.f.ml&&!e.ctrlKey&&!e.metaKey)d.execCommand('insertLineBreak');else el.blur()}else if(e.key==='Escape'){e.preventDefault();wrevert(el);el.blur()}},true);
-  ['keyup','keypress'].forEach(function(n){d.addEventListener(n,function(e){if(e.target.closest&&e.target.closest('[data-wx]'))e.stopPropagation()},true)});
-  d.addEventListener('paste',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(!el)return;e.preventDefault();var b=el.__wx,t=(e.clipboardData&&e.clipboardData.getData('text/plain'))||'';if(!(b&&b.f.ml))t=t.replace(/\s*\n\s*/g,' ');d.execCommand('insertText',false,t)},true);
-  d.addEventListener('click',function(e){if(!W.on)return;var a=e.target.closest&&e.target.closest('a');if(a)e.preventDefault();if(e.target.closest&&e.target.closest('[data-wx]'))return;var im=wimgAt(e.clientX,e.clientY);if(im){e.preventDefault();e.stopPropagation();wopenImg(im)}},true);
-  d.addEventListener('submit',function(e){if(W.on)e.preventDefault()},true);
-  if(W.obs)W.obs.disconnect();W.obs=new win.MutationObserver(function(){clearTimeout(W.tm);W.tm=setTimeout(wbind,250)});W.obs.observe(d.body,{childList:true,subtree:true});
-  wbind();setTimeout(wbind,800);setTimeout(wbind,2500)}
-/* Görsel değiştirme penceresi */
-function wopenImg(b){W.ib=b;var f=b.f,cur=imgUrl(f.get()||'');
-  $('#wxov').innerHTML='<div class="ov"><div class="sheet"><h2 style="margin-top:0">Görseli değiştir</h2><p class="m">'+esc(f.lab)+'</p><div class="pv" style="width:100%;aspect-ratio:16/9;background-image:url(\''+esc(cur)+'\')"></div>'+
-   '<label>Görsel adresi (URL)<input id="wx-url" inputmode="url" placeholder="https://…"></label><div class="acts" style="margin-top:8px"><button class="b" data-a="wxurl">Adresten al</button></div>'+
-   '<label>veya dosya yükle<input id="wx-file" type="file" accept="image/*"></label><p class="m" id="wx-msg"></p>'+
-   '<div class="acts"><button class="b d" data-a="wxrm">Görseli kaldır</button><button class="b" data-a="wxclose">Vazgeç</button></div></div></div>'}
-function wclose(){$('#wxov').innerHTML='';W.ib=null}
-function wmsg(t,direct){var m=$('#wx-msg');if(!m)return;m.className='m err';m.innerHTML=esc(t)+(direct?' <button class="b s" data-a="wxdirect">Adresi olduğu gibi kullan</button>':'')}
-function rast(im,max){var k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);var x=c.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.86)}
-function wsetimg(el,u){if(el.tagName==='IMG'){if(el.parentNode&&el.parentNode.tagName==='PICTURE')Array.prototype.forEach.call(el.parentNode.querySelectorAll('source'),function(s){s.removeAttribute('srcset')});el.removeAttribute('srcset');el.removeAttribute('loading');el.style.visibility='';el.src=u}else{el.style.backgroundImage='url("'+u+'")'}el.setAttribute('data-wx-ch','1')}
-function wapply(u,direct){var b=W.ib;if(!b)return;var f=b.f,old=f.get();if(direct){dropImg(old);f.set(u)}else f.set(setImg(old,f.name||'gorsel',u));
-  W.binds.forEach(function(o){if(o.t==='img'&&o.f===f)wsetimg(o.el,u)});W.changed[f.id]=1;mark();wchrome();wclose();toast('Görsel değişti (henüz kaydedilmedi)')}
-A.wxurl=function(){var u=($('#wx-url').value||'').trim();if(!/^https?:\/\//i.test(u)){wmsg('Adres http:// veya https:// ile başlamalı.');return}
-  var im=new Image();im.crossOrigin='anonymous';im.onload=function(){try{wapply(rast(im,1600),false)}catch(e){wmsg('Görsel okunamadı.',u)}};im.onerror=function(){wmsg('Adres indirilemedi (site dışarıdan okumaya izin vermiyor olabilir). Dosyayı indirip yükleyebilir ya da adresi olduğu gibi kullanabilirsin; bu durumda dergi sayfası mutlak adresleri desteklemelidir.',true)};im.src=u};
-A.wxdirect=function(){var u=($('#wx-url').value||'').trim();if(u)wapply(u,true)};
-A.wxrm=function(){var b=W.ib;if(!b||!confirm('Bu görsel kaldırılsın mı?'))return;var f=b.f;if(f.del)f.del();else{dropImg(f.get());f.set('')}
-  W.binds.forEach(function(o){if(o.t==='img'&&o.f===f){o.el.style.visibility='hidden';o.el.setAttribute('data-wx-ch','1')}});W.changed[f.id]=1;mark();wchrome();wclose();toast('Görsel kaldırıldı (henüz kaydedilmedi)')};
-A.wxclose=wclose;
-document.addEventListener('change',function(e){var t=e.target;if(t.id!=='wx-file'||!t.files[0])return;shrink(t.files[0],1600,function(u){wapply(u,false)})});
-/* Araç çubuğu */
-function wfront(){return cfg.front||'../olfactus/index.html'}
-function wchrome(){var n=Object.keys(W.changed).length,s=$('#wxsave');if(!s)return;
-  $('#wxcount').textContent=n?n+' alan değişti':'Değişiklik yok';
-  s.disabled=!!S.busy||!S.dirty;s.textContent=S.busy?'Kaydediliyor…':'Değişiklikleri Kaydet';
-  $('#wxdis').disabled=!S.dirty||!!S.busy;
-  $('#wxinfo').innerHTML=W.err?'<span class="err">'+esc(W.err)+'</span>':(W.doc?'Bağlanan: '+W.nT+' metin · '+W.nI+' görsel'+(W.miss.length?' · <button class="b s" data-a="wxmiss">'+W.miss.length+' alan sayfada bulunamadı</button>':''):'Sayfa yükleniyor…');
-  $('#wxmode').textContent=W.on?'Düzenleme: açık':'Düzenleme: kapalı';$('#wxmode').classList.toggle('p',W.on)}
-function wxShow(){$('#app').hidden=true;$('#wix').hidden=false;
-  if(!W.fr){W.fr=$('#wxf');W.fr.addEventListener('load',wattach);W.fr.src=wfront();if(S.dirty)toast('Formda yaptığın kaydedilmemiş değişiklikler önizlemede görünmez ama kaydedilir.')}
-  wchrome()}
-function wxHide(){$('#app').hidden=false;$('#wix').hidden=true}
-function wxRelink(){W.changed={};W.binds.forEach(function(b){b.el.removeAttribute('data-wx-ch')});
-  W.P=S.orig.perfumes.map(function(o){return S.D.perfumes.filter(function(p){return p.name===o.name})[0]||null});W.pn=S.orig.perfumes.map(function(o){return o.name});wchrome()}
-A.wxback=function(){S.view='list';render()};
-A.wxmode=function(){W.on=!W.on;if(W.doc){W.doc.body.classList.toggle('wx-on',W.on);W.binds.forEach(function(b){if(b.t==='text')b.el.contentEditable=W.on?'true':'inherit'})}wchrome()};
-A.wxdev=function(){$('#wix').classList.toggle('mob')};
-A.wxreload=function(){if(W.fr&&W.fr.contentWindow)W.fr.contentWindow.location.reload()};
-A.wxcfg=function(){var u=prompt('Dergi sayfasının adresi (bu panele göre göreli veya tam):',wfront());if(!u)return;cfg.front=u.trim();LS.s('op_adm_cfg',JSON.stringify(cfg));W.fr.src=cfg.front};
-A.wxdis=function(){if(!confirm('Kaydedilmemiş tüm değişiklikler silinsin mi?'))return;W.changed={};load().then(function(){A.wxreload()})};
-A.wxmiss=function(b){var h=W.miss.slice(0,40).map(function(f){return '<li>'+esc(f.lab)+'</li>'}).join('');$('#wxov').innerHTML='<div class="ov"><div class="sheet"><h2 style="margin-top:0">Sayfada bulunamayan alanlar</h2><p class="m">Bu alanlar önizlemede görünmüyor ya da başka biçimde gösteriliyor. Kokular sekmesindeki formdan düzenlenebilir. Sayfaya data-edit="texts.cover.title" gibi işaret koyarak da bağlayabilirsin.</p><ol>'+h+'</ol>'+(W.miss.length>40?'<p class="m">… ve '+(W.miss.length-40)+' alan daha</p>':'')+'<div class="acts"><button class="b" data-a="wxclose">Kapat</button></div></div></div>'};
-
 document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b)});
 document.addEventListener('input',function(e){var t=e.target;
   if(t.dataset.p&&S.cur!==null){var p=S.D.perfumes[S.cur];setP(p,t.dataset.p,t.dataset.p==='score'?+t.value:t.value);mark();if(t.dataset.p==='name'){var h=document.querySelector('.top b');if(h)h.textContent=t.value||'Yeni koku'}}

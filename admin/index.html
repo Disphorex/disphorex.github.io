@@ -30,26 +30,8 @@ details{background:var(--card);border:1px solid var(--line);border-radius:8px;pa
 .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.acts .b{flex:1}
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:14px;display:none;max-width:90%}
 ol{padding-left:20px;margin:8px 0}li{margin:4px 0}
-/* Wix sekmesi */
-#wix{position:fixed;inset:0;z-index:25;background:var(--bg);display:flex;flex-direction:column}
-#wix[hidden]{display:none}
-.wxtop,.wxbot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--card);padding:8px 12px}
-.wxtop{border-bottom:1px solid var(--line);padding-top:calc(8px + env(safe-area-inset-top,0px))}
-.wxbot{border-top:1px solid var(--acc);padding-bottom:calc(8px + env(safe-area-inset-bottom,0px));justify-content:space-between}
-.wxtop .sp{flex:1}.wxinfo,.wxbot span{font-size:13px;color:var(--mut)}
-.wxstage{flex:1;min-height:0;display:flex;justify-content:center;background:#050403;overflow:hidden}
-#wxf{border:0;width:100%;height:100%;background:#fff}
-#wix.mob #wxf{width:390px;max-width:100%}
-.ov{z-index:60}
 </style></head><body>
 <div id="app"></div><div id="toast"></div>
-<div id="wix" hidden>
- <div class="wxtop"><button class="b s" data-a="wxback">← Satıcılar</button><b style="font:italic 400 18px Georgia,serif">Wix</b>
-  <button class="b s" id="wxmode" data-a="wxmode">Düzenleme: açık</button><button class="b s" data-a="wxdev">Mobil / Masaüstü</button><button class="b s" data-a="wxreload">Yenile</button><button class="b s" data-a="wxcfg" title="Parfümeri paneli adresi">⚙</button>
-  <span class="sp"></span><span class="wxinfo" id="wxinfo"></span></div>
- <div class="wxstage"><iframe id="wxf" title="Parfümeri canlı önizleme"></iframe></div>
- <div class="wxbot"><span id="wxcount">Değişiklik yok</span><div style="display:flex;gap:8px"><button class="b s" id="wxdis" data-a="wxdis">Vazgeç</button><button class="b p" id="wxsave" data-a="save">Değişiklikleri Kaydet</button></div></div>
-</div>
 <script>
 (function(){
 "use strict";
@@ -77,9 +59,9 @@ function api(path,o){o=o||{};
 }
 var rp=function(p){return '/repos/'+cfg.owner+'/'+cfg.repo+p};
 function readFile(n){return api(rp('/contents/'+cfg.dir+'/'+n+'?ref='+encodeURIComponent(cfg.branch)),{raw:true}).then(JSON.parse)}
-function ni(p){var d=['',null,null,null,'','','','',''];for(var i=0;i<p.length;i++)if(p[i]!==undefined&&p[i]!==null)d[i]=p[i];return d}
+function ni(p){var d=['',null,null,null,'','','','',''];for(var i=0;i<9;i++)if(p[i]!==undefined&&p[i]!==null)d[i]=p[i];if(p[1]===null)d[1]=null;if(p[2]===null)d[2]=null;if(p[3]===null)d[3]=null;return d}
 function nk(p){return String(p[0]||'').toLowerCase()+'|'+(p[3]||'')}
-function merge(t,a){(a.items||[]).forEach(function(p){p=ni(p);var k=nk(p),i=-1;t.items.forEach(function(q,j){if(i<0&&nk(q)===k)i=j});if(i>=0)t.items[i]=p;else t.items.push(p)});['note','sizes','policy','shipping','campaigns'].forEach(function(f){if(a[f])t[f]=a[f]})}
+function merge(t,a){(a.items||[]).forEach(function(p){p=ni(p);var k=nk(p),i=-1;t.items.forEach(function(q,j){if(i<0&&nk(q)===k)i=j});if(i>=0)t.items[i]=p;else t.items.push(p)});['note','sizes','policy'].forEach(function(f){if(a[f])t[f]=a[f]})}
 function load(){
   S.msg='Veriler okunuyor…';render();
   var b=cfg.branch?Promise.resolve():api(rp('')).then(function(r){cfg.branch=r.default_branch});
@@ -91,7 +73,7 @@ function load(){
         if(d.append){var t=S.sellers.filter(function(x){return x.data.base===d.base&&(x.data.name||'')===(d.name||'')})[0];if(t){merge(t.data,d);t.extra.push(f);return;}}
         S.sellers.push({file:f,extra:[],data:d,dirty:false});});
       S.gone=[];S.dirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));
-      if(S.view==='login')S.view='list';render();if(S.view==='wix')wxRelink();});})
+      if(S.view==='login')S.view='list';render();});})
   .catch(function(e){S.msg='Hata: '+e.message;if(S.view!=='login'&&e.status===401){S.view='login';}render();});
 }
 
@@ -104,7 +86,7 @@ var fp=function(v){return v==null||v===''?'':typeof v==='number'?nf.format(v):St
 function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
 function sname(s){return s.data.name||host(s.data.base)||'(adsız)'}
 function slug(n){return n.toLowerCase().replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'satici'}
-function ser(d){var h=['"base": '+JSON.stringify(d.base||'')],sk={base:1,items:1,append:1,name:1,note:1,sizes:1,policy:1};['name','note','sizes','policy'].forEach(function(k){if(d[k]!==undefined&&d[k]!=='')h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});Object.keys(d).forEach(function(k){if(sk[k]||d[k]==null||d[k]===''||(Array.isArray(d[k])&&!d[k].length))return;h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});
+function ser(d){var h=['"base": '+JSON.stringify(d.base||'')];['name','note','sizes','policy'].forEach(function(k){if(d[k]!==undefined&&d[k]!=='')h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});
   var its=d.items.map(function(p){var a=p.slice();while(a.length>5&&(a[a.length-1]===''||a[a.length-1]===null))a.pop();return JSON.stringify(a)});
   return '{\n'+h.join(',\n')+',\n"items": [\n'+its.join(',\n')+'\n]\n}\n'}
 function mark(){S.dirty=true;if(S.cur!==null)S.sellers[S.cur].dirty=true;var b=$('#savebar');if(b)b.outerHTML=bar()}
@@ -112,7 +94,7 @@ function toast(t){var e=$('#toast');e.textContent=t;e.style.display='block';clea
 function bar(){return S.dirty?'<div class="bar" id="savebar"><span>Kaydedilmemiş değişiklik var</span><div><button class="b s" data-a="discard">Vazgeç</button><button class="b p" data-a="save">'+(S.busy?'Kaydediliyor…':'GitHub\'a kaydet')+'</button></div></div>':'<span id="savebar"></span>'}
 
 /* ---------- görünümler ---------- */
-function render(){if(S.view==='wix'){wxShow();return}wxHide();var h;
+function render(){var h;
   if(S.view==='login')h=vLogin();else if(S.view==='seller')h=vSeller();else h=vList();
   $('#app').innerHTML=h+bar();if(S.view==='seller')items();}
 function vLogin(){return '<main class="w"><h1>Pazar yönetimi</h1><p class="m">Satıcıları ve ürün kartlarını buradan düzenleyip doğrudan GitHub deposuna kaydedebilirsin.</p>'+
@@ -123,20 +105,20 @@ function vLogin(){return '<main class="w"><h1>Pazar yönetimi</h1><p class="m">S
 function vList(){var q=S.q.toLowerCase(),n=0;
   var rows=S.sellers.map(function(s,i){var t=sname(s);if(q&&t.toLowerCase().indexOf(q)<0)return '';n++;
     return '<button class="row" data-a="open" data-i="'+i+'"><span>'+esc(t)+'<small>'+esc(host(s.data.base)||'site adresi yok')+'</small></span><span class="r">'+s.data.items.length+' ürün'+(s.dirty?'<small class="ok">değişti</small>':'')+'</span></button>'}).join('');
-  return '<div class="top"><span><b>Pazar</b> · <a href="olfactus.html" style="color:var(--acc);text-decoration:none">Olfactus →</a></span><span><button class="b s" data-a="wix">Wix · canlı düzenleme</button> <button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
+  return '<div class="top"><span><b>Pazar</b> · <a href="olfactus.html" style="color:var(--acc);text-decoration:none">Olfactus →</a></span><span><button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
   (S.msg?'<p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>':'')+
   '<label>Satıcı ara<input id="sq" value="'+esc(S.q)+'" placeholder="satıcı adı"></label><h2>Satıcılar ('+S.sellers.length+')</h2>'+rows+
   '<button class="row nw" data-a="newseller">+ Satıcı ekle</button>'+
   '<label style="display:flex;gap:8px;align-items:center;margin-top:18px"><input type="checkbox" id="sd" style="width:auto;margin:0"'+(S.setDate?' checked':'')+'> Kaydederken Pazar tarihini bugüne güncelle</label></main>'}
 function vSeller(){var s=S.sellers[S.cur],d=s.data;
-  return '<div class="top"><button class="b s" data-a="back">← Satıcılar</button><b>'+esc(sname(s))+'</b><button class="b s" data-a="wixs">Canlıda gör</button></div><main class="w">'+
+  return '<div class="top"><button class="b s" data-a="back">← Satıcılar</button><b>'+esc(sname(s))+'</b><span></span></div><main class="w">'+
   '<h2>Satıcı bilgileri</h2><label>Satıcı adı (kartlarda bu görünür)<input data-f="name" value="'+esc(d.name||'')+'"></label>'+
   '<label>Site adresi (ürün yolları buna eklenir)<input data-f="base" value="'+esc(d.base||'')+'" placeholder="https://ornek.com"></label>'+
   '<label>Hacim seçenekleri<input data-f="sizes" value="'+esc(d.sizes||'')+'"></label><label>Kampanya / fiyat politikası<input data-f="policy" value="'+esc(d.policy||'')+'"></label>'+
   '<label>Not (satıcı kutusunda görünür)<textarea data-f="note">'+esc(d.note||'')+'</textarea></label>'+
   '<h2>Ürünler (<span id="cnt"></span>)</h2><input id="iq" placeholder="ürün ara" value="'+esc(S.iq)+'"><div style="height:10px"></div><div id="items"></div>'+
   '<div class="acts"><button class="b" data-a="bulk">Toplu ekle</button><button class="b d" data-a="delseller">Satıcıyı sil</button></div></main>'}
-function items(){if(!$('#items'))return;var s=S.sellers[S.cur],q=S.iq.toLowerCase(),out=[],n=0;
+function items(){var s=S.sellers[S.cur],q=S.iq.toLowerCase(),out=[],n=0;
   s.data.items.forEach(function(p,i){if(q&&String(p[0]).toLowerCase().indexOf(q)<0)return;n++;if(out.length>=S.lim)return;
     var info=[p[3]?p[3]+' ml':'',p[8]||'',p[6]?'seçenekler: '+p[6]:''].filter(Boolean).join(' · ');
     out.push('<button class="row" data-a="edit" data-i="'+i+'"><span>'+esc(p[0])+'<small>'+esc(info||'—')+'</small></span><span class="r">'+(p[1]==null?'<small>fiyat yok</small>':esc(fp(p[1]))+(typeof p[1]==='number'?' TL':''))+(p[2]?'<small><s>'+esc(fp(p[2]))+'</s></small>':'')+'</span></button>')});
@@ -186,7 +168,7 @@ function save(){if(S.busy)return;var dir=cfg.dir,ch=[],mf=[];
       return api(rp('/git/trees'),{method:'POST',body:{base_tree:c.tree.sha,tree:ch}}).then(function(t){
         return api(rp('/git/commits'),{method:'POST',body:{message:'Pazar güncellemesi (yönetim paneli)',tree:t.sha,parents:[r.object.sha]}}).then(function(nc){
           return api(rp('/git/refs/heads/'+encodeURIComponent(cfg.branch)),{method:'PATCH',body:{sha:nc.sha}});});});});})
-  .then(function(){S.busy=false;if(S.view!=='wix'){S.view='list';S.cur=null}toast('Kaydedildi. Site 1–2 dakika içinde güncellenir.');return load()})
+  .then(function(){S.busy=false;S.view='list';S.cur=null;toast('Kaydedildi. Site 1–2 dakika içinde güncellenir.');return load()})
   .catch(function(e){S.busy=false;S.gone=S.gone.filter(function(g,i,a){return a.indexOf(g)===i});S.msg='Hata: '+e.message;render();toast('Kaydedilemedi: '+e.message)});}
 
 /* ---------- olaylar ---------- */
@@ -206,102 +188,6 @@ var A={
  delseller:function(){var s=S.sellers[S.cur];if(!confirm('"'+sname(s)+'" satıcısı ve tüm ürünleri silinsin mi?'))return;
    if(!s.isNew){S.gone.push(cfg.dir+'/'+s.file);s.extra.forEach(function(x){S.gone.push(cfg.dir+'/'+x)})}S.sellers.splice(S.cur,1);S.dirty=true;S.cur=null;S.view='list';render()},
  save:save};
-/* ---------- Wix: canlı önizleme + sayfa içi (inline) düzenleme ---------- */
-/* Önizleme, parfümeri panelinin Pazar sekmesidir (aynı alan adı, iframe). Panel, düzenlenebilir öğelere data-wx-* işaretleri koyar:
-   data-wx-s = satıcı anahtarı (base|ad), data-wx-i = ürün anahtarı (ad|ml), data-wx-f = alan, data-wx-k = kart türü (s: satıcı, i: ürün). */
-var W={fr:null,doc:null,win:null,on:true,binds:[],cards:[],changed:{},srs:{},refs:{},pen:null,penB:null,err:'',nT:0,edit:null,focusSk:'',obs:null,tm:null};
-var WX_CSS=[
- 'body.wx-on [data-wx]{cursor:text;outline:1px dashed transparent;outline-offset:3px;transition:outline-color .15s,background .15s}',
- 'body.wx-on [data-wx]:hover{outline-color:rgba(201,164,92,.95)}',
- 'body.wx-on [data-wx]:focus{outline:2px solid #C9A45C;background:rgba(201,164,92,.12)}',
- 'body.wx-on [data-wx-ch]{box-shadow:0 2px 0 0 rgba(141,191,138,.9)}',
- '.wx-pen{position:absolute;z-index:2147483000;width:34px;height:34px;border-radius:50%;border:1px solid #C9A45C;background:#1A130D;color:#C9A45C;font:17px/1 system-ui,sans-serif;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.55);padding:0}',
- 'body:not(.wx-on) .wx-pen{display:none!important}'
-].join('\n');
-function wtext(el){var out='';(function walk(n){for(var c=n.firstChild;c;c=c.nextSibling){if(c.nodeType===3)out+=c.data;else if(c.nodeType===1){if(c.tagName==='BR')out+='\n';else walk(c)}}})(el);
-  return out.split('\n').map(function(l){return l.replace(/[ \t ]+/g,' ').trim()}).join('\n').trim()}
-function skey(s){return (s.data.base||'')+'|'+(s.data.name||'')}
-function wsr(sk){return W.srs[sk]||(W.srs[sk]={sk:sk})}
-function wref(sk,ik){var k=sk+'\u0001'+ik;return W.refs[k]||(W.refs[k]={sr:wsr(sk),nk:ik})}
-function wseller(sr){return S.sellers.filter(function(s){return skey(s)===sr.sk})[0]||null}
-function witem(r){var s=wseller(r.sr);return s?(s.data.items.filter(function(p){return nk(p)===r.nk})[0]||null):null}
-function wpseller(sk){var a=W.win&&W.win.__PZ&&W.win.__PZ.data;if(!a)return null;return a.filter(function(x){return (x.base||'')+'|'+(x.name||'')===sk})[0]||null}
-function wpitem(r){var s=wpseller(r.sr.sk);return s?(s.items.filter(function(p){return nk(p)===r.nk})[0]||null):null}
-function wnum(v){v=String(v||'').replace(/TL|₺/gi,'').trim();return pp(v)}
-/* Değeri hem yönetim verisine (S.sellers) hem önizlemedeki panel verisine yazar */
-function wset(b,v){var r=b.ref,s;
-  if(b.item){var p=witem(r),q=wpitem(r);if(!p)return false;s=wseller(r.sr);
-    if(b.f==='name'){p[0]=v;if(q)q[0]=v;r.nk=nk(p)}else if(b.f==='price'){var n=wnum(v);p[1]=n;if(q)q[1]=n}else if(b.f==='old'){var o=wnum(v);p[2]=o;if(q)q[2]=o}}
-  else{s=wseller(r);if(!s)return false;var ps=wpseller(r.sk);s.data[b.f]=v;if(ps)ps[b.f]=v;if(b.f==='name')r.sk=skey(s)}
-  s.dirty=true;S.dirty=true;return true}
-function wid(b){return b.el.getAttribute('data-wx-s')+'|'+(b.el.getAttribute('data-wx-i')||'')+'#'+b.f}
-function wbind(){var d=W.doc;if(!d||!d.body)return;
-  Array.prototype.forEach.call(d.querySelectorAll('[data-wx-f]'),function(e){if(e.__wx)return;var sk=e.getAttribute('data-wx-s'),ik=e.getAttribute('data-wx-i'),f=e.getAttribute('data-wx-f'),item=ik!=null;
-    var b={el:e,ref:item?wref(sk,ik):wsr(sk),f:f,item:item,t:'text',ml:f==='note'};e.__wx=b;e.setAttribute('data-wx',f);e.spellcheck=false;if(W.on)e.contentEditable='true';W.binds.push(b)});
-  Array.prototype.forEach.call(d.querySelectorAll('[data-wx-k]'),function(e){if(e.__wxc)return;var sk=e.getAttribute('data-wx-s'),ik=e.getAttribute('data-wx-i'),k=e.getAttribute('data-wx-k');
-    var c={el:e,kind:k,ref:k==='i'?wref(sk,ik):wsr(sk)};e.__wxc=c;W.cards.push(c)});
-  W.binds=W.binds.filter(function(b){return b.el.isConnected});W.cards=W.cards.filter(function(c){return c.el.isConnected});
-  W.nT=W.binds.length;wchrome();wfocus()}
-function wfocus(){if(!W.focusSk||!W.doc)return;var done=false;W.cards.forEach(function(c){if(!done&&c.kind==='s'&&c.ref.sk===W.focusSk){done=true;c.el.open=true;W.focusSk='';c.el.scrollIntoView({block:'start'})}})}
-function wcommit(el){var b=el.__wx;if(!b)return;var v=wtext(el);if(v==='—'&&(b.f==='sizes'||b.f==='policy'))v='';
-  if(!wset(b,v))return;el.setAttribute('data-wx-ch','1');W.changed[wid(b)]=1;wchrome()}
-function wfmt(b){var el=b.el;if(b.f!=='price'&&b.f!=='old')return;var p=witem(b.ref),n=p?p[b.f==='price'?1:2]:null;el.textContent=typeof n==='number'?nf.format(n)+' TL':(n==null?'':String(n))}
-function wcardAt(x,y){var best=null,ba=1e12;W.cards.forEach(function(c){var r=(c.kind==='s'?c.el.querySelector('summary'):c.el);if(!r||!c.el.isConnected)return;r=r.getBoundingClientRect();if(r.width>20&&r.height>10&&x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom){var a=r.width*r.height;if(a<ba){ba=a;best={c:c,r:r}}}});return best}
-function wattach(){
-  try{W.doc=W.fr.contentDocument;if(!W.doc||!W.doc.body)throw 0;void W.doc.body.innerHTML}catch(e){W.doc=null;W.err='Önizleme sayfası bu panelden okunamıyor. Panel ve parfümeri aynı alan adında olmalı. Adres: '+wfront();wchrome();return}
-  W.err='';var d=W.doc,win=W.win=W.fr.contentWindow;W.binds=[];W.cards=[];
-  if(!d.getElementById('wx-css')){var st=d.createElement('style');st.id='wx-css';st.textContent=WX_CSS;d.head.appendChild(st)}
-  d.body.classList.toggle('wx-on',W.on);
-  W.pen=d.createElement('button');W.pen.type='button';W.pen.className='wx-pen';W.pen.setAttribute('aria-label','Ürünü düzenle');W.pen.title='Formla düzenle';W.pen.textContent='✎';d.body.appendChild(W.pen);
-  W.pen.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();if(W.penB)wopen(W.penB)});
-  var raf=0,mx=0,my=0;
-  d.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(raf)return;raf=win.requestAnimationFrame(function(){raf=0;if(!W.on)return;var h=wcardAt(mx,my);W.penB=h?h.c:null;if(!h){W.pen.style.display='none';return}var r=h.r;W.pen.style.display='flex';W.pen.style.left=(Math.min(r.right,win.innerWidth)+win.scrollX-40)+'px';W.pen.style.top=(Math.max(r.top,0)+win.scrollY+4)+'px'})},true);
-  d.addEventListener('input',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(el)wcommit(el)},true);
-  d.addEventListener('focusout',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(el&&el.__wx)wfmt(el.__wx)},true);
-  d.addEventListener('keydown',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(!el)return;e.stopPropagation();var b=el.__wx;
-    if(e.key==='Enter'){e.preventDefault();if(b&&b.ml&&!e.ctrlKey&&!e.metaKey)d.execCommand('insertLineBreak');else el.blur()}
-    else if(e.key==='Escape'){e.preventDefault();el.blur()}},true);
-  ['keyup','keypress'].forEach(function(n){d.addEventListener(n,function(e){if(e.target.closest&&e.target.closest('[data-wx]'))e.stopPropagation()},true)});
-  d.addEventListener('paste',function(e){var el=e.target.closest&&e.target.closest('[data-wx]');if(!el)return;e.preventDefault();var b=el.__wx,t=(e.clipboardData&&e.clipboardData.getData('text/plain'))||'';if(!(b&&b.ml))t=t.replace(/\s*\n\s*/g,' ');d.execCommand('insertText',false,t)},true);
-  d.addEventListener('click',function(e){if(!W.on)return;var t=e.target;if(t.closest&&t.closest('[data-wx]')){e.preventDefault();return}
-    var a=t.closest&&t.closest('a'),btn=t.closest&&t.closest('[data-pzadd]');if(a||btn){e.preventDefault();e.stopPropagation()}},true);
-  var tab=d.querySelector('[data-act="tab"][data-tab="pazar"]');if(tab)tab.click();
-  if(W.obs)W.obs.disconnect();W.obs=new win.MutationObserver(function(){clearTimeout(W.tm);W.tm=setTimeout(wbind,250)});W.obs.observe(d.body,{childList:true,subtree:true});
-  wbind();setTimeout(wbind,800);setTimeout(wbind,2500)}
-/* Kalem: ürün kartında tam form, satıcı başlığında ürün ekleme menüsü */
-function wopen(c){
-  if(c.kind==='i'){var s=wseller(c.ref.sr),p=witem(c.ref);if(!s||!p)return;S.cur=S.sellers.indexOf(s);W.edit=c.ref.sr;itemForm(s.data.items.indexOf(p))}
-  else{var s2=wseller(c.ref);if(!s2)return;S.cur=S.sellers.indexOf(s2);W.edit=c.ref;
-    modal('<h2 style="margin-top:0">'+esc(sname(s2))+'</h2><p class="m">'+s2.data.items.length+' ürün</p><div class="acts"><button class="b p" data-a="wxadd">+ Ürün ekle</button><button class="b" data-a="bulk">Toplu ekle</button><button class="b" data-a="closem">Kapat</button></div>')}}
-/* Form ile yapılan değişiklikten sonra önizlemedeki panel verisini yenile */
-function wsync(sr){var s=wseller(sr),ps=wpseller(sr.sk);if(!s||!ps||!W.win||!W.win.__PZ)return;
-  ['base','name','note','sizes','policy'].forEach(function(k){ps[k]=s.data[k]});ps.items=s.data.items.map(function(p){return p.slice()});sr.sk=skey(s);
-  s.dirty=true;S.dirty=true;W.changed['form:'+sr.sk]=1;W.win.__PZ.render();wchrome()}
-function wafter(){if(S.view!=='wix'||!W.edit||$('#ov'))return;var sr=W.edit;W.edit=null;wsync(sr);S.cur=null}
-['itemok','itemdel','itemdup','bulkok'].forEach(function(k){var o=A[k];A[k]=function(b){o(b);wafter()}});
-A.closem=function(){closeM();if(S.view==='wix'){W.edit=null;S.cur=null}};
-A.wxadd=function(){closeM();itemForm(-1)};
-/* Araç çubuğu */
-function wfront(){return cfg.front||'../parfumeri/index.html'}
-function wchrome(){var n=Object.keys(W.changed).length,s=$('#wxsave');if(!s)return;
-  $('#wxcount').textContent=n?n+' değişiklik':'Değişiklik yok';
-  s.disabled=!!S.busy||!S.dirty;s.textContent=S.busy?'Kaydediliyor…':'Değişiklikleri Kaydet';$('#wxdis').disabled=!S.dirty||!!S.busy;
-  $('#wxinfo').innerHTML=W.err?'<span class="err">'+esc(W.err)+'</span>':(W.doc?(W.nT?'Düzenlenebilir alan: '+W.nT:'Pazar sekmesi yükleniyor… (açılan satıcı listelerinde alanlar belirir)'):'Sayfa yükleniyor…');
-  $('#wxmode').textContent=W.on?'Düzenleme: açık':'Düzenleme: kapalı';$('#wxmode').classList.toggle('p',W.on)}
-function wxShow(){$('#app').hidden=true;$('#wix').hidden=false;
-  if(!W.fr){W.fr=$('#wxf');W.fr.addEventListener('load',wattach);W.fr.src=wfront()}else wfocus();
-  wchrome()}
-function wxHide(){$('#app').hidden=false;$('#wix').hidden=true}
-function wxRelink(){W.changed={};W.binds.forEach(function(b){b.el.removeAttribute('data-wx-ch')});wchrome()}
-A.wix=function(){W.focusSk='';S.view='wix';render()};
-A.wixs=function(){var s=S.sellers[S.cur];W.focusSk=skey(s);S.view='wix';S.cur=null;render()};
-A.wxback=function(){S.view='list';S.cur=null;render()};
-A.wxmode=function(){W.on=!W.on;if(W.doc){W.doc.body.classList.toggle('wx-on',W.on);W.binds.forEach(function(b){b.el.contentEditable=W.on?'true':'inherit'})}wchrome()};
-A.wxdev=function(){$('#wix').classList.toggle('mob')};
-A.wxreload=function(){if(W.fr&&W.fr.contentWindow)W.fr.contentWindow.location.reload()};
-A.wxcfg=function(){var u=prompt('Parfümeri panelinin adresi (bu panele göre göreli veya tam):',wfront());if(!u)return;cfg.front=u.trim();LS.s('op_adm_cfg',JSON.stringify(cfg));W.fr.src=cfg.front};
-A.wxdis=function(){if(!confirm('Kaydedilmemiş tüm değişiklikler silinsin mi?'))return;W.changed={};load().then(function(){A.wxreload()})};
-
 document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b)});
 document.addEventListener('input',function(e){var t=e.target;
   if(t.dataset&&t.dataset.f&&S.cur!==null){S.sellers[S.cur].data[t.dataset.f]=t.value;mark();if(t.dataset.f==='name'){var h=document.querySelector('.top b');if(h)h.textContent=sname(S.sellers[S.cur])}}
