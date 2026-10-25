@@ -167,6 +167,17 @@ input[type="range"]{width:100%; accent-color:var(--accent); margin:8px 0}
 .pz-body{padding:6px 0 16px}
 .pz-live .ucard .pr strong{font-size:24px}
 .pz-info p{margin:0 0 8px; font-size:14px; line-height:1.5}
+.pz-sum{margin:0 0 10px}
+.pz-camps{list-style:none; margin:0 0 8px; padding:0}
+.pz-camps li{font-size:14px; line-height:1.45; padding:2px 0 2px 16px; position:relative}
+.pz-camps li::before{content:"\2022"; position:absolute; left:3px; color:var(--accent)}
+.pz-camps li.more{color:var(--muted); font-size:13px}
+.pz-detbtn{all:unset; box-sizing:border-box; cursor:pointer; font:400 12px var(--f-mono); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); padding:6px 0; border-bottom:1px solid var(--accent)}
+.pz-detbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.pz-det[hidden]{display:none}
+.pz-det{margin-top:10px}
+.pz-detend{margin:10px 0 0!important}
+.pz-warn{margin:6px 0 0}
 .pz-live .muted{color:var(--muted); font-size:13px}
 .pz-info p.muted{color:var(--muted); font-size:13px}
 .pz-h span{font:400 12px var(--f-mono); letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
@@ -983,7 +994,44 @@ var PAZAR2=[];
     PAZAR2.push({base:'',name:'Veri yüklenemedi',note:'data/ klasörü okunamadı. Sayfayı dosya olarak değil, GitHub Pages adresinden aç. ('+e.message+')',items:[],sizes:'—',policy:'—'});
   }).then(function(){ renderPane(); });
 })();
-var PZ_OPEN={};
+var PZ_OPEN={}, PZ_DET={};
+/* Özet: yalnızca kampanyalar (kargo hariç), en fazla 3 madde */
+function pzCampLabel(c){
+  var l=String(c.label||'').trim(); if(l) return l;
+  var t=c.type, mn=c.min?' ('+nf0.format(c.min)+' TL üzeri)':'';
+  if(t==='nthPercent') return c.n+'. ürüne %'+c.value+' indirim';
+  if(t==='percent') return '%'+c.value+' indirim'+mn;
+  if(t==='seqPercent') return 'Sıralı indirim: '+(c.percents||[]).map(function(x){ return '%'+x; }).join(' / ');
+  if(t==='amountOff') return nf0.format(c.value)+' TL indirim'+mn;
+  if(t==='buyXPayY') return (c.ml&&c.ml.length?c.ml.join(' ve ')+' ml'+(c.perMl?' setlerde ':' ürünlerde '):'')+c.buy+' AL '+c.pay+' ÖDE';
+  if(t==='gift') return 'Hediye'+mn;
+  return '';
+}
+function pzCampList(s){
+  var disc=[], gift=[], cs=s.campaigns;
+  if(cs && cs.length){
+    cs.forEach(function(c){
+      var t=String(c.type||''), l=pzCampLabel(c);
+      if(!l || /ship|kargo|cargo/i.test(t) || /kargo/i.test(l)) return;
+      (t==='gift'?gift:disc).push(l);
+    });
+  } else if(s.policy && s.policy!=='—'){
+    String(s.policy).replace(/\([^)]*\)/g,' ').replace(/(\d)\.(\s)/g,'$1\u0001$2').split(/[.!?;]+\s+|\s\+\s|\n/).forEach(function(x){
+      x=x.replace(/\u0001/g,'.').replace(/["“”]/g,'').replace(/\s+/g,' ').replace(/^[\s\-•:]+|[\s.,;:]+$/g,'');
+      if(!x || /kargo|esans|extrait/i.test(x) || !/\bal\s*(\d+\s*)?öde(?![a-zçğıöşü])|az\s*öde|%|indirim|hediye/i.test(x)) return;
+      (/hediye/i.test(x)?gift:disc).push(x);
+    });
+  }
+  var seen={}; return disc.concat(gift).filter(function(x){ var k=x.toLowerCase(); if(seen[k]) return false; seen[k]=1; return true; });
+}
+function pzDetUi(key, list, inner, warn){
+  var on=!!PZ_DET[key], ul='';
+  if(list.length){
+    ul='<ul class="pz-camps">'+list.slice(0,3).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+(list.length>3?'<li class="more">+ '+(list.length-3)+' kampanya daha, detaylı bilgide</li>':'')+'</ul>';
+  }
+  return '<div class="pz-sum">'+ul+'<button type="button" class="pz-detbtn" data-pz-det="1" aria-expanded="'+on+'">'+(on?'Gizle':'Detaylı bilgi')+'</button></div>'+(warn||'')+
+    '<div class="card pz-info pz-det"'+(on?'':' hidden')+'>'+inner+'<p class="pz-detend"><button type="button" class="pz-detbtn" data-pz-det="2">Gizle</button></p></div>';
+}
 var BARRONI_BASE='https://barroniprofumo.com';
 function pzBar(){ return '<p class="pz-bar"><button type="button" class="add" data-pz-all="1">Tümünü aç</button> <button type="button" class="add" data-pz-all="0">Tümünü kapat</button></p>'; }
 function pzPrice(v){ return typeof v==='string' ? v : nfp.format(v)+' TL'; }
@@ -1009,11 +1057,13 @@ function renderSellers(q){
     var np=s.items.filter(function(p){ return p[1]==null; }).length;
     var meta=s.items.length?ix.length+' parfüm'+(np===s.items.length?' · yalnızca ad':''):'veri yok';
     h+='<details class="pz-seller" data-base="'+esc(s.base)+'"'+((q||PZ_OPEN[s.base])?' open':'')+'><summary><h2>Satıcı: '+esc(brand)+'</h2><span>'+meta+'</span></summary><div class="pz-body">';
-    h+='<div class="card pz-info"><p><b>Hacim seçenekleri:</b> '+esc(s.sizes||'—')+'</p><p><b>Kampanya / fiyat politikası:</b> '+esc(s.policy||'—')+'</p>'+
+    var inner='<p><b>Hacim seçenekleri:</b> '+esc(s.sizes||'—')+'</p><p><b>Kampanya / fiyat politikası:</b> '+esc(s.policy||'—')+'</p>'+
       (s.shipping?'<p><b>Kargo:</b> '+esc(pzShipTxt(s.shipping))+'</p>':'')+
       ((s.campaigns&&s.campaigns.length)?'<p><b>Sepet kampanyası:</b> '+s.campaigns.map(function(c){ return esc(c.label||c.type); }).join(' · ')+'</p>':'')+
-      (s.items.length?'<p class="muted">'+esc(s.note)+'</p>':'<p class="empty" style="padding:10px 0 4px">Veri çekilemedi<br><small>'+esc(s.note)+'</small></p>')+
-      (s.base?'<p style="margin:8px 0 0"><a class="add" href="'+esc(s.base)+'" target="_blank" rel="noopener">Siteyi aç</a></p>':'')+'</div>';
+      (s.items.length?'<p class="muted">'+esc(s.note)+'</p>':'')+
+      (s.base?'<p style="margin:8px 0 0"><a class="add" href="'+esc(s.base)+'" target="_blank" rel="noopener">Siteyi aç</a></p>':'');
+    var warn=s.items.length?'':'<p class="empty pz-warn" style="padding:10px 0 4px">Veri çekilemedi<br><small>'+esc(s.note)+'</small></p>';
+    h+=pzDetUi(s.base, pzCampList(s), inner, warn);
     if(s.items.length){
       h+='<ol class="ulist pz-live">';
       ix.forEach(function(k,i){ h+=pzCard(s,si,k,i+1); });
@@ -1094,7 +1144,7 @@ function renderPazar(){
       '<div class="act"><a class="add" href="'+PAZAR_URL+p[4]+'" target="_blank" rel="noopener">Sitede aç</a></div></li>';
   }).join('')+'</ol>';
   var shown=all.length;
-  var bh=any?'<details class="pz-seller" data-base="'+BARRONI_BASE+'"'+((q||PZ_OPEN[BARRONI_BASE])?' open':'')+'><summary><h2>Satıcı: Barroni</h2><span>'+shown+' parfüm</span></summary><div class="pz-body"><div class="card pz-info"><p><b>Hacim seçenekleri:</b> 50 ml; 5 ml test serisi.</p><p><b>Kampanya / fiyat politikası:</b> —</p><p class="muted">'+esc(leadTxt)+'</p><p style="margin:8px 0 0"><a class="add" href="'+BARRONI_BASE+'" target="_blank" rel="noopener">Siteyi aç</a></p></div>'+h+'</div></details>':'';
+  var bh=any?'<details class="pz-seller" data-base="'+BARRONI_BASE+'"'+((q||PZ_OPEN[BARRONI_BASE])?' open':'')+'><summary><h2>Satıcı: Barroni</h2><span>'+shown+' parfüm</span></summary><div class="pz-body">'+pzDetUi(BARRONI_BASE, [], '<p><b>Hacim seçenekleri:</b> 50 ml; 5 ml test serisi.</p><p><b>Kampanya / fiyat politikası:</b> —</p><p class="muted">'+esc(leadTxt)+'</p><p style="margin:8px 0 0"><a class="add" href="'+BARRONI_BASE+'" target="_blank" rel="noopener">Siteyi aç</a></p>')+h+'</div></details>':'';
   pzcBadge(); $('pz-list').innerHTML = pzBar() + bh + renderSellers(q) + (LIVE_ENABLED ? renderLive(q) : '');
 }
 
@@ -1462,6 +1512,14 @@ $('pz-q').addEventListener('input', function(){ renderPazar(); });
 $('pz-refresh').addEventListener('click', function(){ LIVE={}; liveStartAll(); renderPazar(); });
 $('pz-list').addEventListener('toggle', function(e){ var d=e.target; if(d&&d.classList&&d.classList.contains('pz-seller')&&!$('pz-q').value.trim()) PZ_OPEN[d.getAttribute('data-base')]=d.open; }, true);
 $('pz-list').addEventListener('click', function(e){ var b=e.target.closest&&e.target.closest('[data-pz-all]'); if(!b) return; var on=b.getAttribute('data-pz-all')==='1'; PZ_OPEN[BARRONI_BASE]=on; PAZAR2.forEach(function(x){ PZ_OPEN[x.base]=on; }); Array.prototype.forEach.call($('pz-list').querySelectorAll('details.pz-seller'), function(d){ d.open=on; }); });
+$('pz-list').addEventListener('click', function(e){
+  var b=e.target.closest&&e.target.closest('[data-pz-det]'); if(!b) return;
+  var body=b.closest('.pz-body'), det=body&&body.querySelector('.pz-det'), top=body&&body.querySelector('.pz-sum .pz-detbtn'), sd=body&&body.parentNode;
+  if(!det||!top||!sd) return;
+  var on=det.hidden; det.hidden=!on; PZ_DET[sd.getAttribute('data-base')]=on;
+  top.textContent=on?'Gizle':'Detaylı bilgi'; top.setAttribute('aria-expanded', on);
+  if(!on && b!==top){ top.scrollIntoView({block:'nearest'}); }
+});
 $('u-q').addEventListener('input', function(){ SS.n=10; renderUcuz(); });
 $('u-budget').addEventListener('input', function(){ SS.n=10; renderUcuz(); });
 $('q').addEventListener('input', function(){ F.q=this.value; renderHeader(); renderPane(); });
