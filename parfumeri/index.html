@@ -1,10 +1,8 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
-<style id="app-version-style">.app-version{position:fixed;right:9px;bottom:calc(env(safe-area-inset-bottom,0px) + 7px);z-index:2;pointer-events:none;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em;box-shadow:0 1px 4px #18251a14}</style>
+<style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
-<span class="app-version" aria-label="Uygulama sürümü">v1.0.3</span>
-
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.3">
+<meta name="app-version" content="1.0.4">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1137,7 +1135,7 @@ function pzCard(s,si,k,n){
   var opts=(!multi && p[6])?p[6]:'';
   var sel=multi?'<select class="pz-vs" data-pzvs="'+si+'|'+k+'" aria-label="Hacim seç">'+vs.map(function(x){ return '<option value="'+esc(x.id)+'"'+(v&&x.id===v.id?' selected':'')+'>'+(x.label?x.label:(x.ml?nf0.format(x.ml)+' ml':'Hacim yok'))+' · '+nfp.format(x.price)+' TL</option>'; }).join('')+'</select>':'';
   return '<li class="ucard"><span class="n">'+n+'</span>'+
-    '<div class="m"><b>'+esc(p[0])+'</b><small>'+esc(brand)+(ml?' · '+nf0.format(ml)+' ml'+(typeof price==='number'?' · '+f2(price/ml)+' TL/ml':''):'')+(opts?' · seçenekler: '+esc(opts):'')+(p[8]?' · '+esc(p[8]):'')+(p._master&&[p._master.category,p._master.season,p._master.time].filter(Boolean).length?' · '+esc([p._master.category,p._master.season,p._master.time].filter(Boolean).join(' · ')):'')+'</small></div>'+
+    '<div class="m"><b>'+esc(p[0])+'</b><small>'+esc(brand)+(ml?' · '+nf0.format(ml)+' ml'+(typeof price==='number'?' · '+f2(price/ml)+' TL/ml':''):'')+(opts?' · seçenekler: '+esc(opts):'')+(p[8]?' · '+esc(p[8]):'')+(p._master&&[].concat(pzMetaValues(p._master.category),pzMetaValues(p._master.season),pzMetaValues(p._master.time)).length?' · '+esc([].concat(pzMetaValues(p._master.category),pzMetaValues(p._master.season),pzMetaValues(p._master.time)).join(' · ')):'')+'</small></div>'+
     '<div class="pr">'+(hasPrice?'<strong>'+esc(pzPrice(price))+'</strong>'+(oldp?'<s>'+nfp.format(oldp)+' TL</s>':''):'<span class="muted">Fiyat yok</span>')+'</div>'+
     '<div class="act">'+sel+(v?'<button type="button" class="add pz-cartbtn" data-pzadd="'+si+'|'+k+'">Sepete ekle</button>':'<button type="button" class="add" disabled title="Fiyat olmadığı için sepete eklenemez">Sepete ekle</button>')+
     (s.base?'<a class="add" href="'+esc(s.base+p[4])+'" target="_blank" rel="noopener">Sitede aç</a>':'')+'</div></li>';
@@ -1198,6 +1196,7 @@ function pzKey(name){ return norm(name).replace(/[^a-z0-9]/g,''); }
 function pzIsSet(p){ return /\b(seti?|deneme|kesif|tester)\b/.test(norm(p[0])); }
 function pzMls(p){ var m={}; pzVars(p).forEach(function(v){ if(v.ml && !v.label) m[v.ml]=1; }); if(p[3]) m[p[3]]=1; return Object.keys(m).map(Number); }
 function pzGen(p){ var g=p[8]; return (g==='Erkek'||g==='Kadın'||g==='Unisex')?g:''; }
+function pzMetaValues(v){return Array.isArray(v)?v:(v?[v]:[]);}
 function pzIndex(){
   var I={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0,seasons:{},times:{},families:{}}, sellersOf={}, bseen={};
   PAZAR2.forEach(function(s){ var sk=pzSk(s); s.items.forEach(function(p){
@@ -1206,7 +1205,7 @@ function pzIndex(){
     var b=(p._master&&p._master.brand)||pzBrand(p[0]); if(!bseen[b+'|'+k]){ bseen[b+'|'+k]=1; I.brands[b]=(I.brands[b]||0)+1; }
     pzMls(p).forEach(function(m){ I.mls[m]=(I.mls[m]||0)+1; });
     var g=pzGen(p); if(g) I.gens[g]=(I.gens[g]||0)+1; else I.nogen++;
-    var m=p._master||{}; if(m.season) I.seasons[m.season]=(I.seasons[m.season]||0)+1; if(m.time) I.times[m.time]=(I.times[m.time]||0)+1; if(m.category) I.families[m.category]=(I.families[m.category]||0)+1;
+    var m=p._master||{}; pzMetaValues(m.season).forEach(function(v){I.seasons[v]=(I.seasons[v]||0)+1}); pzMetaValues(m.time).forEach(function(v){I.times[v]=(I.times[v]||0)+1}); pzMetaValues(m.category).forEach(function(v){I.families[v]=(I.families[v]||0)+1});
   }); });
   Object.keys(sellersOf).forEach(function(k){ var n=Object.keys(sellersOf[k]).length; I.cnt[k]=n; if(n===1) I.uniq++; });
   return I;
@@ -1214,7 +1213,7 @@ function pzIndex(){
 function pzFilterOn(){ return !!(PF.brand || PF.season || PF.time || PF.family || PF.uniq || Object.keys(PF.ml).length || Object.keys(PF.g).length); }
 function pzPass(p){
   if(PF.brand && ((p._master&&p._master.brand)||pzBrand(p[0]))!==PF.brand) return false;
-  var master=p._master||{}; if(PF.season&&master.season!==PF.season) return false; if(PF.time&&master.time!==PF.time) return false; if(PF.family&&master.category!==PF.family) return false;
+  var master=p._master||{}; if(PF.season&&!pzMetaValues(master.season).includes(PF.season)) return false; if(PF.time&&!pzMetaValues(master.time).includes(PF.time)) return false; if(PF.family&&!pzMetaValues(master.category).includes(PF.family)) return false;
   var mk=Object.keys(PF.ml); if(mk.length){ var ms=pzMls(p); if(!ms.some(function(m){ return PF.ml[m]; })) return false; }
   var gk=Object.keys(PF.g); if(gk.length){ var g=pzGen(p)||'—'; if(!PF.g[g]) return false; }
   if(PF.uniq){ if(pzIsSet(p)) return false; if(PZI.cnt[pzKey(p[0])]!==1) return false; }
@@ -2359,4 +2358,5 @@ connectDb();
 })();
 </script>
 
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.4</footer>
 </body></html>

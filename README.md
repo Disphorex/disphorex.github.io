@@ -16,7 +16,7 @@ Katalog geçişi başlamadan önce pano ve admin kodunun v2 uyumluluğu kontrol 
 
 ## Merkezi ürün kataloğu (v2)
 
-`parfumeri/data/products.json` ortak ürün kayıtlarını tutar. Her ürünün tekrar kullanılmayan sayısal `id` değeri ve `name`, `brand`, `variant`, `gender`, `season`, `time`, `category`, `aliases` alanları bulunur. `index.json` içindeki `productsFile` kataloğu gösterir.
+`parfumeri/data/products.json` ortak ürün kayıtlarını tutar. Her ürünün tekrar kullanılmayan sayısal `id` değeri ve `name`, `brand`, `variant`, `gender`, `season`, `time`, `category`, `aliases` alanları bulunur. Mevsim, kullanım zamanı ve koku ailesi çoklu seçim olduğunda dizi olarak saklanır; eski tek değerli kayıtlar da okunur. `index.json` içindeki `productsFile` kataloğu gösterir.
 
 Satıcı dosyalarındaki `items[]` artık ürün adı yerine `product_id` ve satış bilgilerini tutar: `price`, `old_price`, `volume_ml`, `url`, `stock`, `options`, `seller_name` ve `volume_prices`. Pano ve admin paneli, katalog adını ID üzerinden çözer. Uygulama eski tuple verisini de geçiş için okuyabilir.
 
@@ -26,4 +26,4 @@ Eski kategoriler `legacy_categories` ve satıcı kaydındaki `legacy_category` a
 
 ## Sürüm etiketi
 
-Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi altı etkin HTML sayfasında birlikte güncellenmelidir. Bu çalışma kopyasının etiketi `v1.0.3` olarak ayarlandı.
+Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi altı etkin HTML sayfasında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.4` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.

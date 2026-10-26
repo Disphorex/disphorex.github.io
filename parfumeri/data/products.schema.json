@@ -56,23 +56,80 @@
           ]
         },
         "season": {
-          "enum": [
-            "",
-            "Yaz",
-            "İlkbahar",
-            "Sonbahar",
-            "Kış"
+          "anyOf": [
+            {
+              "enum": [
+                "",
+                "Yaz",
+                "İlkbahar",
+                "Sonbahar",
+                "Kış"
+              ]
+            },
+            {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "Yaz",
+                  "İlkbahar",
+                  "Sonbahar",
+                  "Kış"
+                ]
+              }
+            }
           ]
         },
         "time": {
-          "enum": [
-            "",
-            "Gündüz",
-            "Gece"
+          "anyOf": [
+            {
+              "enum": [
+                "",
+                "Gündüz",
+                "Gece"
+              ]
+            },
+            {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "Gündüz",
+                  "Gece"
+                ]
+              }
+            }
           ]
         },
         "category": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "Floral",
+                  "Soft Floral",
+                  "Floral Amber",
+                  "Amber",
+                  "Soft Amber",
+                  "Amber Woody",
+                  "Woody",
+                  "Woods",
+                  "Mossy Woods",
+                  "Dry Woods",
+                  "Fresh",
+                  "Citrus",
+                  "Water",
+                  "Green",
+                  "Fruity"
+                ]
+              }
+            }
+          ]
         },
         "aliases": {
           "type": "array",
