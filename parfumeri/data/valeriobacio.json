@@ -1,145 +1,3546 @@
 {
-"base": "https://valeriobacio.com",
-"name": "Valerio Bacio",
-"note": "Sitenin erkek parfüm listesi (ürün kodları, \"Erkek Parfüm\" eki ve \"2. üründe %50 indirim / Sepete Ekle\" yazıları alınmadı). Ürün adları sitedeki yazımıyla bırakıldı. Boyut listede yoktu; ürün bağlantılarında görülen 50 ml kabul edildi. Sonda duran, fiyatı olmayan ürünler önceki kayıttan korundu. Yeni eklenenlerde \"Sitede aç\" ana sayfaya gider.  15 ve 100 ml fiyatları satıcıdan alındı (25 Ekim 2026): 799,90 → 399,90 / 1.199,90; 1.199,90 → 599,90 / 1.799,90; 1.999,90 → 899,90 / 2.999,90 TL. 1.499,90 TL’lik ürünler için tablo verilmedi. Sepette ürünler pahalıdan ucuza sıralanıp çiftler halinde 1. ürüne %12, 2. ürüne %50 uygulandı varsayıldı.",
-"sizes": "15 · 50 · 100 ml (1.499,90 TL’lik ürünlerde yalnızca 50 ml).",
-"policy": "1.000 TL üzeri ücretsiz kargo; 1. parfümde %12, 2. parfümde %50 indirim kampanyası. Haftanın seçili ürünlerinde %44 indirim olur; her ürün için geçerli değil, hesaba katılmadı.",
-"shipping": {
-"cost": 150,
-"freeOver": 1000
-},
-"campaigns": [
-{
-"type": "seqPercent",
-"percents": [
-12,
-50
-],
-"label": "1. ürün %12, 2. ürün %50 indirim"
-}
-],
-"items": [
-["Carolina Herrera 212 Sexy Men", 799.9, null, 50, "", "", "", "212 Sexy Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Bvlgari Man in Black", 799.9, null, 50, "", "", "", "Man In Black", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Le Male", 799.9, null, 50, "", "", "", "J.P Le Male", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dolce&Gabbana Light Blue", 799.9, null, 50, "", "", "", "Light Blue", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Ultra Male", 799.9, null, 50, "", "", "", "Ultramale", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne Invictus Platinum", 799.9, null, 50, "", "", "", "Invıctus Platınum", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne Invictus Victory", 799.9, null, 50, "", "", "", "İnvictus Victory", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Hugo Boss Bottled", 799.9, null, 50, "", "", "", "Boss", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Attıtude", 799.9, null, 50, "", "", "", "", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dolce&Gabbana K", 799.9, null, 50, "", "", "", "King", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne Invictus Parfum", 799.9, null, 50, "", "", "", "Invıctus Parfum 2024", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Carolina Herrera 212 Men", 799.9, null, 50, "", "", "", "212 Classical Man", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Tommy Hilfiger Impact", 799.9, null, 50, "", "", "", "T.H Impact", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Issey Miyake Nuit d'Issey", 799.9, null, 50, "", "", "", "Nuit", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Chanel Allure Homme Sport", 799.9, null, 50, "", "", "", "Allure Homme Sport", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Versace Eros Flame", 799.9, null, 50, "", "", "", "Eros Flame", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Forever", 799.9, null, 50, "", "", "", "", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Diesel Fuel for Life", 799.9, null, 50, "", "", "", "Fuel For Life", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne 1 Million", 799.9, null, 50, "", "", "", "One Million", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Prada Luna Rossa Ocean Le Parfum", 799.9, null, 50, "", "", "", "Luna Rossa Ocean Le Parfum", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Prada Luna Rossa Ocean", 799.9, null, 50, "", "", "", "Luna Rossa Ocean", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Chic", 799.9, null, 50, "", "", "", "", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne Invictus Aqua", 799.9, null, 50, "", "", "", "Invıctus Aqua", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Gucci Guilty Intense", 799.9, null, 50, "/guilty-intense?boyut=50-ml", "", "", "Guilty Intense", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dolce&Gabbana The One for Men", 799.9, null, 50, "", "", "", "The One Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Bvlgari Wood Essence", 799.9, null, 50, "", "", "", "Wood Essence", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne Invictus Intense", 799.9, null, 50, "", "", "", "Invıctus Intense", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Zadig&Voltaire This Is Her", 799.9, null, 50, "", "", "", "Zadig Voltaire", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Le Beau Le Parfum", 799.9, null, 50, "", "", "", "Le Beau Le Parfume", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Giorgio Armani Black Code", 799.9, null, 50, "", "", "", "Black Code", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Chanel Égoïste Platinum", 799.9, null, 50, "", "", "", "Egoist Platınum", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Versace Dylan Blue", 799.9, null, 50, "", "", "", "Dylan Blue", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Issey Miyake L'Eau d'Issey Pour Homme", 799.9, null, 50, "", "", "", "Issey Mıyake Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dolce&Gabbana The One Sport", 799.9, null, 50, "", "", "", "The One Sport", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jil Sander Sun Men", 799.9, null, 50, "", "", "", "Zen Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Yves Saint Laurent La Nuit de L'Homme", 799.9, null, 50, "", "", "", "La Nuıt D L'homme", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Lacoste Red", 799.9, null, 50, "", "", "", "LA'cos Red", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne Invictus", 799.9, null, 50, "/invictus?boyut=50-ml", "", "", "Invıctus", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Versace Man Eau Fraîche", 799.9, null, 50, "", "", "", "Vercase Eu Fraiche", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Ermenegildo Zegna Intenso", 799.9, null, 50, "", "", "", "Zegna Intenso", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Burberry Classic", 799.9, null, 50, "", "", "", "Brbrrys", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jil Sander Sun Men", 799.9, null, 50, "", "", "", "J.S Sun", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Abercrombie & Fitch Fierce", 799.9, null, 50, "", "", "", "Fitch", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Le Beau", 799.9, null, 50, "", "", "", "Le Beau", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Viktor&Rolf Spicebomb", 799.9, null, 50, "", "", "", "Spicebomb", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Azzaro Wanted", 799.9, null, 50, "", "", "", "Wanted", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Montblanc Explorer", 799.9, null, 50, "", "", "", "Explorer", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Prada Luna Rossa Carbon", 799.9, null, 50, "", "", "", "Luna Rossa Carbon", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Giorgio Armani Acqua di Giò Profumo", 799.9, null, 50, "", "", "", "Gio Profumo", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Calvin Klein Euphoria Men", 799.9, null, 50, "", "", "", "Euphoria Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Diesel Only The Brave", 799.9, null, 50, "", "", "", "Only The Brave", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Le Beau Paradise Garden", 799.9, null, 50, "", "", "", "Le Beau Paradise Garden", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Givenchy Insensé Ultramarine", 799.9, null, 50, "", "", "", "Insense Ultramarine", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dolce&Gabbana Light Blue Intense", 799.9, null, 50, "", "", "", "Lıght Blue Intense", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dior Fahrenheit", 799.9, null, 50, "", "", "", "Fahrenheit", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Tom Ford Tobacco Vanille", 799.9, null, 50, "", "", "", "Tabacco Vanılla", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Emporio Armani Stronger With You", 799.9, null, 50, "", "", "", "You", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Emporio Armani Stronger With You Absolutely", 799.9, null, 50, "", "", "", "You Absolutely", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Carolina Herrera Bad Boy", 799.9, null, 50, "", "", "", "Bad Boy", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Lacoste L.12.12 White", 799.9, null, 50, "", "", "", "La’Coste White", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Montblanc Explorer Ultra Blue", 799.9, null, 50, "", "", "", "Explorer Blue", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Lacoste Essential", 799.9, null, 50, "", "", "", "Essential Lac.", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Le Male Le Parfum", 1199.9, null, 50, "", "", "", "Le Male Le Parfum", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Paco Rabanne 1 Million Lucky", 799.9, null, 50, "", "", "", "One Million Lucky", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dark Temptation", 799.9, null, 50, "", "", "", "", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Penhaligon's Halfeti", 1199.9, null, 50, "", "", "", "Halfeti", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Amouage Interlude Man", 1199.9, null, 50, "", "", "", "İnterlude", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Penhaligon's The Blazing Mr. Sam", 1999.9, null, 50, "", "", "", "Mr. Sam", "Erkek", [[15, 899.9, null], [50, 1999.9, null], [100, 2999.9, null]]],
-["Gucci Guilty", 799.9, null, 50, "", "", "", "Guilty", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Giorgio Armani Gio Profondo", 799.9, null, 50, "", "", "", "Gio Profondo", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["By Kilian Blue Moon", 1499.9, null, 50, "", "", "", "Blue Moon", "Erkek"],
-["Penhaligon's The Tragedy of Lord George", 1999.9, null, 50, "", "", "", "Lord of George", "Erkek", [[15, 899.9, null], [50, 1999.9, null], [100, 2999.9, null]]],
-["Maison Crivelli Oud Maracuja", 1499.9, null, 50, "", "", "", "Oud Maracuja", "Erkek"],
-["Bvlgari Le Gemme Tygar", 1199.9, null, 50, "", "", "", "Tygar", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Emporio Armani Stronger With You Intensely", 799.9, null, 50, "", "", "", "You Intensly", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Versace Eros", 799.9, null, 50, "", "", "", "Eros", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Creed Aventus", 1199.9, null, 50, "", "", "", "Aventus", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Louis Vuitton Imagination", 1199.9, null, 50, "", "", "", "Imagination", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Comme des Garçons Wonderwood", 799.9, null, 50, "", "", "", "WonderWood", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dior Sauvage", 799.9, null, 50, "", "", "", "Sauvage", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Scandal Pour Homme Absolu", 799.9, null, 50, "", "", "", "Scandal Pour Homme Absolu", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Montblanc Legend", 799.9, null, 50, "", "", "", "Legend", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Hermès D'hermes", 799.9, null, 50, "", "", "", "Hermes", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Davidoff Cool Water Man", 799.9, null, 50, "", "", "", "Coolwater", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Parfums de Marly Herod", 1499.9, null, 50, "", "", "", "Herod", "Erkek"],
-["Amouage Reflection Man", 1199.9, null, 50, "", "", "", "Reflection", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Givenchy Gentleman Réserve Privée", 799.9, null, 50, "", "", "", "Gentleman Reserve Prive", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Rochas Man", 799.9, null, 50, "", "", "", "", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Yves Saint Laurent Y", 799.9, null, 50, "", "", "", "Y For Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Burberry Hero", 799.9, null, 50, "", "", "", "Hero", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Maison Francis Kurkdjian Grand Soir", 1199.9, null, 50, "", "", "", "Grande Soirêe", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Tom Ford Noir Extreme", 799.9, null, 50, "", "", "", "Noir Extreme", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Scandal Pour Homme", 799.9, null, 50, "", "", "", "Scandal Pour Homme", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Jean Paul Gaultier Le Male Elixir", 799.9, null, 50, "", "", "", "Le Male Elixir", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Paco Rabanne 1 Million Royal", 799.9, null, 50, "", "", "", "One Million Royal", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Chanel Bleu de Chanel", 799.9, null, 50, "", "", "", "Bleu De CHNL", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Nautica Voyage", 799.9, null, 50, "", "", "", "", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Orto Parisi Megamare", 1499.9, null, 50, "", "", "", "Megamare", "Erkek"],
-["Dior Homme Intense", 799.9, null, 50, "", "", "", "Homme Intense", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Givenchy Gentleman", 799.9, null, 50, "", "", "", "Gentleman", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Carolina Herrera 212 Men", 799.9, null, 50, "", "", "", "212 VIP Men", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Viktor&Rolf Spicebomb Extreme", 799.9, null, 50, "", "", "", "Spicebomb Extreme", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Giorgio Armani Acqua di Giò", 799.9, null, 50, "", "", "", "Gıo", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Parfums de Marly Layton", 1199.9, null, 50, "", "", "", "Layton", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Dior Sauvage EDP", 799.9, null, 50, "", "", "", "Sauvage Eau de Parfum", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Lattafa Khamrah", 1199.9, null, 50, "", "", "", "Khamrah", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Azzaro The Most Wanted", 799.9, null, 50, "", "", "", "The Most Wanted", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Yves Saint Laurent Myslf", 799.9, null, 50, "", "", "", "My SLF", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Prada L'Homme", 799.9, null, 50, "", "", "", "Prda L'homme", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Gucci Pour Homme II", 799.9, null, 50, "", "", "", "Gcc Pour Homme II", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Dior Sauvage Elixir", 799.9, null, 50, "", "", "", "Sauvage Elixir", "Erkek", [[15, 399.9, null], [50, 799.9, null], [100, 1199.9, null]]],
-["Nasomatto Black Afgano", 1199.9, null, 50, "", "", "", "Black Afgano", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Xerjoff Naxos", 1199.9, null, 50, "", "", "", "Naxos XJ", "Erkek", [[15, 599.9, null], [50, 1199.9, null], [100, 1799.9, null]]],
-["Coffee Whiskey", null, null, 50, "/coffee-whiskey", "", "", "", ""],
-["Leader", null, null, 50, "/leader", "", "", "", ""],
-["Safran Musc", null, null, 50, "/safran-musc", "", "", "", ""],
-["Essential Parfums Bois Impérial", null, null, 50, "/bois-imperial", "", "", "Bois İmperial", ""],
-["Parfums de Marly Althaïr", null, null, 50, "/althair", "", "", "Altheyir", ""],
-["Night Dream", null, null, 50, "/dream-night", "", "", "", ""],
-["Labyrinthe", null, null, 50, "/labyrinthe", "", "", "", ""],
-["Seijaku", null, null, 50, "/seijaku", "", "", "", ""],
-["Louis Vuitton Pacific Chill", null, null, 50, "/pacific-chill-1?boyut=50-ml", "", "", "Pacıfıc Chill", ""]
-]
+  "base": "https://valeriobacio.com",
+  "name": "Valerio Bacio",
+  "note": "Sitenin erkek parfüm listesi (ürün kodları, \"Erkek Parfüm\" eki ve \"2. üründe %50 indirim / Sepete Ekle\" yazıları alınmadı). Ürün adları sitedeki yazımıyla bırakıldı. Boyut listede yoktu; ürün bağlantılarında görülen 50 ml kabul edildi. Sonda duran, fiyatı olmayan ürünler önceki kayıttan korundu. Yeni eklenenlerde \"Sitede aç\" ana sayfaya gider.  15 ve 100 ml fiyatları satıcıdan alındı (25 Ekim 2026): 799,90 → 399,90 / 1.199,90; 1.199,90 → 599,90 / 1.799,90; 1.999,90 → 899,90 / 2.999,90 TL. 1.499,90 TL’lik ürünler için tablo verilmedi. Sepette ürünler pahalıdan ucuza sıralanıp çiftler halinde 1. ürüne %12, 2. ürüne %50 uygulandı varsayıldı.",
+  "sizes": "15 · 50 · 100 ml (1.499,90 TL’lik ürünlerde yalnızca 50 ml).",
+  "policy": "1.000 TL üzeri ücretsiz kargo; 1. parfümde %12, 2. parfümde %50 indirim kampanyası. Haftanın seçili ürünlerinde %44 indirim olur; her ürün için geçerli değil, hesaba katılmadı.",
+  "shipping": {
+    "cost": 150,
+    "freeOver": 1000
+  },
+  "campaigns": [
+    {
+      "type": "seqPercent",
+      "percents": [
+        12,
+        50
+      ],
+      "label": "1. ürün %12, 2. ürün %50 indirim"
+    }
+  ],
+  "items": [
+    {
+      "product_id": 191,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "212 Sexy Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 146,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Man In Black",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 180,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "J.P Le Male",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 557,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Light Blue",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 178,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Ultramale",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 222,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Invıctus Platınum",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 906,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "İnvictus Victory",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 441,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Boss",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 907,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 145,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "King",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 578,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Invıctus Parfum 2024",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 172,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "212 Classical Man",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 818,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "T.H Impact",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 908,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Nuit",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 384,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Allure Homme Sport",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 163,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Eros Flame",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 909,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 143,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Fuel For Life",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 130,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "One Million",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 910,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Luna Rossa Ocean Le Parfum",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 406,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Luna Rossa Ocean",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 911,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 912,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Invıctus Aqua",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 913,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/guilty-intense?boyut=50-ml",
+      "stock": null,
+      "options": null,
+      "seller_name": "Guilty Intense",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 418,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "The One Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 228,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Wood Essence",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 616,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Invıctus Intense",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 194,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Zadig Voltaire",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 392,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Le Beau Le Parfume",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 13,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Black Code",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 248,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Egoist Platınum",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 238,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Dylan Blue",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 158,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Issey Mıyake Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 914,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "The One Sport",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 915,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Zen Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 257,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "La Nuıt D L'homme",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 404,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "LA'cos Red",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 46,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/invictus?boyut=50-ml",
+      "stock": null,
+      "options": null,
+      "seller_name": "Invıctus",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 221,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Vercase Eu Fraiche",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 916,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Zegna Intenso",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 258,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Brbrrys",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 915,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "J.S Sun",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 873,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Fitch",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 200,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Le Beau",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 408,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Spicebomb",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 917,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Wanted",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 886,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Explorer",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 235,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Luna Rossa Carbon",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 138,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Gio Profumo",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 169,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Euphoria Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 207,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Only The Brave",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 54,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Le Beau Paradise Garden",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 230,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Insense Ultramarine",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 918,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Lıght Blue Intense",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 242,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Fahrenheit",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 103,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Tabacco Vanılla",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 411,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "You",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 388,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "You Absolutely",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 415,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Bad Boy",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 606,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "La’Coste White",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 919,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Explorer Blue",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 920,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Essential Lac.",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 226,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Le Male Le Parfum",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 220,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "One Million Lucky",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 921,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 262,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Halfeti",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 115,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "İnterlude",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 506,
+      "price": 1999.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Mr. Sam",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 899.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1999.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 2999.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 532,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Guilty",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 398,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Gio Profondo",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 554,
+      "price": 1499.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Blue Moon",
+      "legacy_category": "Erkek"
+    },
+    {
+      "product_id": 360,
+      "price": 1999.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Lord of George",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 899.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1999.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 2999.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 76,
+      "price": 1499.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Oud Maracuja",
+      "legacy_category": "Erkek"
+    },
+    {
+      "product_id": 55,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Tygar",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 244,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "You Intensly",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 108,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Eros",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 348,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Aventus",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 49,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Imagination",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 922,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "WonderWood",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 89,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Sauvage",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 603,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Scandal Pour Homme Absolu",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 160,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Legend",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 839,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Hermes",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 430,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Coolwater",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 41,
+      "price": 1499.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Herod",
+      "legacy_category": "Erkek"
+    },
+    {
+      "product_id": 84,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Reflection",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 241,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Gentleman Reserve Prive",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 85,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 402,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Y For Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 176,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Hero",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 38,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Grande Soirêe",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 72,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Noir Extreme",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 181,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Scandal Pour Homme",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 56,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Le Male Elixir",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 923,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "One Million Royal",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 18,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Bleu De CHNL",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 820,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 369,
+      "price": 1499.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Megamare",
+      "legacy_category": "Erkek"
+    },
+    {
+      "product_id": 236,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Homme Intense",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 211,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Gentleman",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 172,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "212 VIP Men",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 177,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Spicebomb Extreme",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 259,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Gıo",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 52,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Layton",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 545,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Sauvage Eau de Parfum",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 336,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Khamrah",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 171,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "The Most Wanted",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 253,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "My SLF",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 239,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Prda L'homme",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 924,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Gcc Pour Homme II",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 90,
+      "price": 799.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Sauvage Elixir",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 399.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 799.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 378,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Black Afgano",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 375,
+      "price": 1199.9,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": "Naxos XJ",
+      "legacy_category": "Erkek",
+      "volume_prices": [
+        {
+          "volume_ml": 15,
+          "price": 599.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 50,
+          "price": 1199.9,
+          "old_price": null,
+          "label": ""
+        },
+        {
+          "volume_ml": 100,
+          "price": 1799.9,
+          "old_price": null,
+          "label": ""
+        }
+      ]
+    },
+    {
+      "product_id": 925,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/coffee-whiskey",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null
+    },
+    {
+      "product_id": 926,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/leader",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null
+    },
+    {
+      "product_id": 927,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/safran-musc",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null
+    },
+    {
+      "product_id": 22,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/bois-imperial",
+      "stock": null,
+      "options": null,
+      "seller_name": "Bois İmperial",
+      "legacy_category": null
+    },
+    {
+      "product_id": 8,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/althair",
+      "stock": null,
+      "options": null,
+      "seller_name": "Altheyir",
+      "legacy_category": null
+    },
+    {
+      "product_id": 928,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/dream-night",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null
+    },
+    {
+      "product_id": 929,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/labyrinthe",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null
+    },
+    {
+      "product_id": 930,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/seijaku",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null
+    },
+    {
+      "product_id": 79,
+      "price": null,
+      "old_price": null,
+      "volume_ml": 50,
+      "url": "/pacific-chill-1?boyut=50-ml",
+      "stock": null,
+      "options": null,
+      "seller_name": "Pacıfıc Chill",
+      "legacy_category": null
+    }
+  ],
+  "schema_version": 2
 }

@@ -8,13 +8,22 @@
 ## Yönetim paneli
 `/admin/` adresinden (ör. `siteadresi/admin/`) GitHub erişim anahtarıyla girilir; satıcı ve ürün ekleme / silme / düzenleme yapılıp tek tuşla depoya kaydedilir. Anahtar: Fine-grained token, yalnızca bu depo, *Contents: Read and write*.
 
-## Güncelleme (elle)
-Pazar verisini değiştirmek için yalnızca `parfumeri/data/` içindeki ilgili dosya yüklenir. Kodu değiştirmek gerekmez.
+## Veri Editörü
 
-- **Satıcıyı tamamen yenilemek:** `famakdefragancia.json` gibi dosyanın üzerine yazın.
-- **Sadece ürün eklemek / fiyat güncellemek:** küçük bir dosya hazırlayın (ör. `famak-2.json`), içinde `"base"` (satıcı adresi), `"append": true` ve `"items"` olsun, sonra dosya adını `data/index.json` içindeki `files` listesinin sonuna ekleyin. Aynı ad ve hacimdeki ürün güncellenir, yenisi eklenir.
-- `data/index.json` içindeki `date` alanı Pazar sekmesinde görünen tarihtir.
+`/parfum-veri-editoru.html` GitHub Pages üzerinden açılır. Depo verilerini GitHub API ile okur ve onaylanan değişiklikleri tek commit olarak kaydeder; dosya yükleme/indirme akışı gerektirmez. İlk kullanımda admin panelinde kullanılan, yalnızca bu depoda `Contents: Read and write` yetkisi bulunan fine-grained token aynı tarayıcıda tanımlı olmalıdır.
 
-Ürün satırı: `[ad, güncel fiyat, eski fiyat|null, ml|null, yol, "x" (tükendi), seçenekler, "", kategori]`
+Katalog geçişi başlamadan önce pano ve admin kodunun v2 uyumluluğu kontrol edilir. Eski kayıt adları master kimliklere çevrilir; benzer ürün adları ayrı tutulur ve yalnızca admin onayıyla birleştirilir.
 
-Sayfayı çift tıklayıp açmayın; veri dosyaları yalnızca GitHub Pages (veya yerel sunucu) üzerinden okunur. Güncelleme sonrası eski görünüm gelirse sayfayı yenileyin.
+## Merkezi ürün kataloğu (v2)
+
+`parfumeri/data/products.json` ortak ürün kayıtlarını tutar. Her ürünün tekrar kullanılmayan sayısal `id` değeri ve `name`, `brand`, `variant`, `gender`, `season`, `time`, `category`, `aliases` alanları bulunur. `index.json` içindeki `productsFile` kataloğu gösterir.
+
+Satıcı dosyalarındaki `items[]` artık ürün adı yerine `product_id` ve satış bilgilerini tutar: `price`, `old_price`, `volume_ml`, `url`, `stock`, `options`, `seller_name` ve `volume_prices`. Pano ve admin paneli, katalog adını ID üzerinden çözer. Uygulama eski tuple verisini de geçiş için okuyabilir.
+
+`products.schema.json` ve `seller.schema.json` JSON Schema tanımlarını içerir. `merge_rules.json` özel satıcı ürünlerinin yanlış eşleştirmeyle birleşmesini engeller. Benzer ürün isimleri otomatik birleştirilmez; Veri Editörü adayları gösterir ve onaylanan eşleştirmeyi tüm satıcı referanslarına tek commit içinde uygular.
+
+Eski kategoriler `legacy_categories` ve satıcı kaydındaki `legacy_category` alanlarında korunur. Kaynakta bulunmayan mevsim, zaman ve koku ailesi değerleri boş başlatılır; Veri Editörü bunları elle doldurabilir.
+
+## Sürüm etiketi
+
+Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi altı etkin HTML sayfasında birlikte güncellenmelidir. Bu çalışma kopyasının etiketi `v1.0.3` olarak ayarlandı.

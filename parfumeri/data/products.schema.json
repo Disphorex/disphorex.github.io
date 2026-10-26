@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "products.schema.json",
+  "title": "Muadil Parfüm Merkezi Veri Şeması",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "products"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/product"
+      }
+    }
+  },
+  "$defs": {
+    "product": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "brand",
+        "variant",
+        "gender",
+        "season",
+        "time",
+        "category",
+        "aliases"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "brand": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "gender": {
+          "enum": [
+            "",
+            "Kadın",
+            "Erkek",
+            "Unisex"
+          ]
+        },
+        "season": {
+          "enum": [
+            "",
+            "Yaz",
+            "İlkbahar",
+            "Sonbahar",
+            "Kış"
+          ]
+        },
+        "time": {
+          "enum": [
+            "",
+            "Gündüz",
+            "Gece"
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "legacy_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "do_not_merge": {
+          "type": "boolean"
+        },
+        "review_status": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

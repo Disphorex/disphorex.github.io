@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "seller.schema.json",
+  "title": "Satıcı dosyası v2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "base",
+    "name",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "base": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "product_id"
+        ],
+        "properties": {
+          "product_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "price": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "old_price": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          },
+          "volume_ml": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "url": {
+            "type": "string"
+          },
+          "stock": {
+            "type": [
+              "string",
+              "boolean",
+              "null"
+            ]
+          },
+          "options": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "seller_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "legacy_category": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "volume_prices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "volume_ml": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "price": {
+                  "type": [
+                    "number",
+                    "string",
+                    "null"
+                  ]
+                },
+                "old_price": {
+                  "type": [
+                    "number",
+                    "string",
+                    "null"
+                  ]
+                },
+                "label": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

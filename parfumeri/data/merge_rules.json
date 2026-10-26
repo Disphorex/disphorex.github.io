@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "seller_rules": [
+    {
+      "seller": "Emre Boslu",
+      "protected_names": [
+        "Emre Boslu Yevm Premium",
+        "Narcotic Elixir Emre Boslu",
+        "Narcotic Emre Boslu",
+        "Spice Leather Emre Boslu"
+      ],
+      "note": "Satıcıya özgü ürünler başka markalarla otomatik eşleştirilmez."
+    }
+  ],
+  "product_exceptions": []
+}
