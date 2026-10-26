@@ -4,51 +4,85 @@
   "products": [
     {
       "id": 1,
-      "name": "Creed Absolu Aventus",
-      "brand": "",
+      "name": "Absolu Aventus",
+      "brand": "Creed",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz",
+        "İlkbahar",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece",
+        "Gündüz"
+      ],
+      "category": [
+        "Citrus",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
         "Erkek · Niche",
         "Kod S77"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 2,
-      "name": "Xerjoff Accento",
-      "brand": "",
+      "name": "Accento",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz",
+        "İlkbahar",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece",
+        "Gündüz"
+      ],
+      "category": [
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 3,
-      "name": "Xerjoff Accento Overdose",
-      "brand": "",
+      "name": "Accento Overdose",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz",
+        "İlkbahar",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece",
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Green",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 4,
@@ -8326,7 +8360,7 @@
       ],
       "review_status": "metadata_incomplete",
       "do_not_merge": true,
-      "merge_note": "Emre Boslu özel ürün istisnası"
+      "merge_note": "Satıcı kuralı: Emre Boslu"
     },
     {
       "id": 544,
@@ -12577,7 +12611,7 @@
       "legacy_categories": [],
       "review_status": "metadata_incomplete",
       "do_not_merge": true,
-      "merge_note": "Emre Boslu özel ürün istisnası"
+      "merge_note": "Satıcı kuralı: Emre Boslu"
     },
     {
       "id": 856,
@@ -12620,7 +12654,7 @@
       "legacy_categories": [],
       "review_status": "metadata_incomplete",
       "do_not_merge": true,
-      "merge_note": "Emre Boslu özel ürün istisnası"
+      "merge_note": "Satıcı kuralı: Emre Boslu"
     },
     {
       "id": 859,
