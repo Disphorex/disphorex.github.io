@@ -247,6 +247,34 @@ td small{display:block; color:var(--muted); font-size:14px}
 .bk-row small{display:block; color:var(--muted); font-size:14px}
 @media (max-width:480px){ .bk-row{grid-template-columns:70px minmax(0,1fr) auto} }
 
+/* optimizasyon motoru */
+.opt-add{display:flex; gap:8px}
+.opt-add input[type="search"]{flex:1; min-width:0}
+#opt-qty{width:70px}
+.opt-sug{border:1px solid var(--line); background:var(--surface-2); margin-top:4px; max-height:260px; overflow:auto}
+.opt-sug button{display:flex; justify-content:space-between; gap:10px; width:100%; border:0; border-bottom:1px solid var(--line-soft); background:transparent; padding:10px 12px; text-align:left}
+.opt-sug button:hover{background:var(--accent-soft)}
+.opt-sug small{font:400 11px var(--f-mono); color:var(--muted)}
+.opt-chip button{border:0; background:transparent; padding:0 5px; font-size:17px; line-height:1; color:var(--muted)}
+.opt-chip b{font:700 13px var(--f-mono); padding:0 2px}
+#opt-goals{display:flex; flex-wrap:wrap; gap:8px}
+#opt-goals .chip{text-align:left}
+#opt-goals .chip small{display:block; margin:2px 0 0}
+.opt-row{display:flex; flex-wrap:wrap; gap:14px 20px; margin:16px 0}
+#opt-out{margin-top:18px}
+.opt-h{font-size:26px; margin:6px 0 2px}
+.opt-n{margin:6px 0; font-size:15px; color:var(--muted)}
+.opt-n.ok{color:var(--c-l)}
+.opt-ok,.opt-bad,.opt-warn,.opt-red,.opt-lock{margin:12px 0; padding:12px 16px; border:1px solid var(--line); border-left-width:5px; border-radius:2px; font-size:16px}
+.opt-ok{border-left-color:var(--c-l)}
+.opt-bad,.opt-warn{border-left-color:var(--accent); background:var(--accent-soft)}
+.opt-red,.opt-lock{border-color:var(--danger); border-left-color:var(--danger); background:rgba(219,124,117,.12)}
+.opt-red p,.opt-warn p,.opt-lock p{margin:6px 0}
+.opt-lock b{color:var(--danger)}
+.opt-plan{margin:12px 0; border:1px solid var(--line); border-radius:2px; padding:0 14px 12px}
+.opt-plan summary{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:12px 0; cursor:pointer}
+.opt-plan .cs{margin-bottom:12px}
+
 /* plan */
 .cs{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px 18px}
 .cs span{display:block; font:400 11px var(--f-mono); letter-spacing:.13em; text-transform:uppercase; color:var(--muted)}
@@ -517,6 +545,23 @@ td small{display:block; color:var(--muted); font-size:14px}
 
     <!-- Plan -->
     <section class="pane" id="p-plan" hidden>
+      <div class="card" id="opt">
+        <h2>Optimizasyon motoru</h2>
+        <p class="hint">Almak istediğin parfümleri, bütçeni ve hedefini seç; motor tüm satıcılarda fiyat, kargo ve kampanyaları birlikte hesaplayıp en ekonomik sepeti çıkarsın.</p>
+        <div class="field grow" style="position:relative"><span>Satın almak istediklerim</span>
+          <div class="opt-add"><input id="opt-q" type="search" autocomplete="off" placeholder="Parfüm adı yaz: Imagination, Vibrato, Tygar…"><input id="opt-qty" type="number" min="1" max="9" value="1" aria-label="Adet"><button type="button" class="ghost" data-opt="add">Ekle</button></div>
+          <div class="opt-sug" id="opt-sug" hidden></div>
+        </div>
+        <div class="chips" id="opt-chips" style="margin-top:12px"></div>
+        <div class="opt-row">
+          <label class="field" for="opt-budget" style="flex:0 1 200px"><span>Bütçe (TL)</span><input id="opt-budget" type="number" min="0" step="50" inputmode="decimal" placeholder="Sınırsız"></label>
+          <div class="field grow"><span>Hedef</span><div id="opt-goals" role="radiogroup" aria-label="Hedef"></div></div>
+        </div>
+        <div class="row2"><button type="button" class="primary" data-opt="run">Hesapla</button><button type="button" class="ghost" data-opt="frompz">Pazar sepetimden al</button><button type="button" class="ghost" data-opt="clear">Listeyi temizle</button></div>
+        <div id="opt-out" aria-live="polite"></div>
+      </div>
+      <h2 style="margin:26px 0 10px">Elle plan</h2>
+      
       <div class="card">
         <h2>Satın alma planı</h2>
         <p class="hint">Parfüm kartlarında ve fiyat listelerinde "Plana ekle" ile seçtiğin paketler burada toplanır.</p>
@@ -1383,6 +1428,7 @@ function cartText(){
   lines.push('Toplam: '+tl(ct.total)+' · '+mlf(ct.vol)+' · ortalama '+f2(ct.avg)+' TL/ml'); return lines.join('\n');
 }
 function renderPlan(){
+  try{ optInit(); }catch(e){}
   renderOrders();
   var ct=cartTotals();
   $('cartsum').innerHTML='<div><span>Toplam</span><b>'+tl(ct.total)+'</b></div><div><span>Toplam hacim</span><b>'+mlf(ct.vol)+'</b></div><div><span>Ortalama TL/ml</span><b>'+(ct.vol?f2(ct.avg):'—')+'</b></div><div><span>Kalem / satıcı</span><b>'+ct.items.length+' / '+ct.sellers+'</b></div>';
@@ -1835,6 +1881,286 @@ document.addEventListener('change', function(e){
   li.outerHTML=pzCard(PAZAR2[si],si,k,li.querySelector('.n').textContent);
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
+
+/* ---------- plan: optimizasyon motoru ---------- */
+var OPT_KEY='optstate1', OPT_LIM=60000;
+var OPT=(function(){
+  var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
+  return {want:Array.isArray(o.want)?o.want.filter(function(w){ return w&&w.k&&w.n; }):[], goal:o.goal||'kesif', budget:typeof o.budget==='string'?o.budget:'', decide:{}, res:null};
+})();
+function optSave(){ LS.set(OPT_KEY,{want:OPT.want,goal:OPT.goal,budget:OPT.budget}); }
+var OPT_GOALS={
+  kesif:{name:'Yeni kokular keşfetmek',desc:'10 ml ve altı deneme boyları, çok çeşit',test:function(m){ return m<=10; },ref:5},
+  denge:{name:'Dengeli kullanım',desc:'15–30 ml orta boylar',test:function(m){ return m>=15&&m<=30; },ref:22},
+  sise:{name:'Tam şişe',desc:'50 ml ve üstü büyük boylar',test:function(m){ return m>=50; },ref:75},
+  eko:{name:'En düşük TL/ml',desc:'10 ml ve üstü, ml başına en ucuz sepet',test:function(m){ return m>=10; },ref:50,perMl:true}
+};
+function optSn(s){ return s.name||brandFromUrl(s.base); }
+/* katalog: parfüm anahtarı -> satıcılar ve hacim seçenekleri (deneme setleri hariç) */
+var OPT_CAT=null, OPT_STAMP='';
+function optCat(){
+  var st=PAZAR2.length+':'+PAZAR2.reduce(function(a,s){ return a+s.items.length; },0);
+  if(OPT_CAT && OPT_STAMP===st) return OPT_CAT;
+  var C={};
+  PAZAR2.forEach(function(s,si){ s.items.forEach(function(p,k){
+    if(pzIsSet(p)) return; var key=pzKey(p[0]); if(!key) return;
+    var vs=pzVars(p).filter(function(v){ return !v.label; }); if(!vs.length) return;
+    var c=C[key]||(C[key]={key:key,names:{},sm:{},sellers:[]});
+    c.names[p[0]]=(c.names[p[0]]||0)+1;
+    var sl=c.sm[si]; if(!sl){ sl=c.sm[si]={si:si,s:s,vars:[]}; c.sellers.push(sl); }
+    vs.forEach(function(v){
+      var ex=null; sl.vars.forEach(function(x){ if(x.id===v.id) ex=x; });
+      if(ex){ if(v.price<ex.price){ ex.price=v.price; ex.old=v.old; ex.k=k; ex.p=p; } }
+      else { v.k=k; v.p=p; sl.vars.push(v); }
+    });
+  }); });
+  Object.keys(C).forEach(function(key){
+    var c=C[key], best='', bn=-1; Object.keys(c.names).forEach(function(n){ if(c.names[n]>bn){ bn=c.names[n]; best=n; } }); c.name=best;
+  });
+  OPT_CAT=C; OPT_STAMP=st; return C;
+}
+function optOptions(c, goal){
+  var out=[]; c.sellers.forEach(function(sl){ sl.vars.forEach(function(v){ out.push({si:sl.si,s:sl.s,v:v,m:v.ml||50}); }); });
+  if(!goal) return out;
+  var inb=out.filter(function(o){ return goal.test(o.m); }); if(inb.length) return inb;
+  var bd=1e9, bm=null; out.forEach(function(o){ var d=Math.abs(Math.log(o.m/goal.ref)); if(d<bd-1e-9){ bd=d; bm=o.m; } });
+  return out.filter(function(o){ return o.m===bm; });
+}
+function optGroup(G){
+  var cp=pzcCampaign(G); G.camp=cp; G.disc=cp?cp.d:0; G.net=r2(G.sub-G.disc);
+  var sh=G.s.shipping; G.shipSaved=0;
+  if(sh && sh.cost===0) G.ship={t:'free',cost:0};
+  else if(sh && sh.freeOver!=null && G.net>=sh.freeOver){ G.ship={t:'free',cost:0}; G.shipSaved=(typeof sh.cost==='number')?sh.cost:0; }
+  else if(sh && typeof sh.cost==='number') G.ship={t:'paid',cost:sh.cost,need:(sh.freeOver!=null?r2(sh.freeOver-G.net):null)};
+  else G.ship={t:'unknown',cost:0};
+  G.gifts=[]; (G.s.campaigns||[]).forEach(function(c){ if(c.type!=='gift') return; var n=1; if(c.per) n=Math.floor(G.net/c.per); else if(G.net<(c.min||0)) n=0; if(n>0) G.gifts.push({label:c.label,n:n}); });
+  G.total=r2(G.net+G.ship.cost);
+}
+function optEval(sel,W){
+  var g={}, ord=[], i, o, q, n, G;
+  for(i=0;i<sel.length;i++){
+    o=sel[i]; q=W[i].q; G=g[o.si];
+    if(!G){ G=g[o.si]={s:o.s,si:o.si,sub:0,units:[],lines:[]}; ord.push(G); }
+    G.sub=r2(G.sub+o.v.price*q); for(n=0;n<q;n++) G.units.push({p:o.v.price,ml:o.v.ml});
+    G.lines.push({i:i,o:o,q:q});
+  }
+  var ev={groups:ord,total:0,disc:0,ship:0,shipSaved:0,ml:0,lg:0,n:ord.length,sel:sel};
+  ord.forEach(function(G){ optGroup(G); ev.total+=G.total; ev.disc+=G.disc; ev.ship+=G.ship.cost; ev.shipSaved+=G.shipSaved; });
+  for(i=0;i<sel.length;i++){ ev.ml+=sel[i].m*W[i].q; ev.lg+=W[i].q*Math.log(sel[i].m); }
+  ev.total=r2(ev.total); ev.disc=r2(ev.disc); ev.ship=r2(ev.ship); ev.shipSaved=r2(ev.shipSaved);
+  return ev;
+}
+/* puan: küçük = iyi; 1e9 ve üstü = koşulu sağlamıyor */
+var OPT_BAD=1e9;
+function optSearch(opts,W,score){
+  var n=opts.length, combos=opts.reduce(function(a,o){ return a*o.length; },1), best=null, bs=Infinity, sel=new Array(n), i;
+  function consider(s){ var ev=optEval(s,W), sc=score(ev); if(sc<bs){ bs=sc; best=ev; } }
+  if(combos<=OPT_LIM){
+    (function rec(d){ if(d===n){ consider(sel.slice()); return; } for(var j=0;j<opts[d].length;j++){ sel[d]=opts[d][j]; rec(d+1); } })(0);
+  } else {
+    var seed=12345; function rnd(){ seed=(seed*1664525+1013904223)>>>0; return seed/4294967296; }
+    var starts=[], sis={};
+    opts.forEach(function(o){ o.forEach(function(x){ sis[x.si]=1; }); });
+    function cheapest(o,si){ var b=null; o.forEach(function(x){ if((si===undefined||x.si===si) && (!b||x.v.price<b.v.price)) b=x; }); return b; }
+    starts.push(opts.map(function(o){ return cheapest(o); }));
+    Object.keys(sis).forEach(function(si){ starts.push(opts.map(function(o){ return cheapest(o,+si)||cheapest(o); })); });
+    for(i=0;i<30;i++) starts.push(opts.map(function(o){ return o[Math.floor(rnd()*o.length)]; }));
+    starts.forEach(function(s0){
+      var cur=s0.slice(), cs=score(optEval(cur,W)), imp=true, loops=0;
+      while(imp && loops++<30){
+        imp=false;
+        for(var d=0;d<n;d++) for(var j=0;j<opts[d].length;j++){
+          if(opts[d][j]===cur[d]) continue;
+          var t=cur.slice(); t[d]=opts[d][j]; var sc=score(optEval(t,W));
+          if(sc<cs-1e-9){ cs=sc; cur=t; imp=true; }
+        }
+      }
+      consider(cur);
+    });
+  }
+  return (best && bs<OPT_BAD)?best:null;
+}
+function optBestEffort(opts,W,score){ /* koşul sağlanmasa da en iyi (en düşük puanlı) planı döndür */
+  return optSearch(opts,W,function(ev){ var s=score(ev); return s>=OPT_BAD?s-OPT_BAD:s; });
+}
+function optGoalScore(goal){ return function(ev){ return (goal.perMl? ev.total/Math.max(ev.ml,1)*1000 : ev.total) + ev.n*1 - ev.ml*1e-6; }; }
+function optFitScore(max){ return function(ev){ return ev.total<=max+0.001 ? -ev.lg*100+ev.total*0.001+ev.n*0.01 : OPT_BAD+(ev.total-max); }; }
+function optBenefit(ev){ return ev.disc+ev.shipSaved; }
+
+function optRun(){
+  var B=parseFloat(OPT.budget); if(!(B>0)) B=null;
+  var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif, cat=optCat(), W=[], missing=[];
+  OPT.want.forEach(function(w){ var c=cat[w.k]; if(c&&c.sellers.length) W.push({w:w,c:c,q:Math.max(1,w.q||1)}); else missing.push(w); });
+  var R={B:B,goal:goal,missing:missing,W:W,flags:[],P0:null};
+  OPT.res=R;
+  if(!W.length){ optShow(); return; }
+  var optsGoal=W.map(function(x){ return optOptions(x.c,goal); }), optsAll=W.map(function(x){ return optOptions(x.c,null); });
+  R.optsGoal=optsGoal; R.optsAll=optsAll;
+  R.P0=optSearch(optsGoal,W,optGoalScore(goal));
+  /* kırmızı uyarı: ortak satıcıyla birleşmeyen, tek başına sipariş doğuran ürünler */
+  if(W.length>1 && R.P0.n>1){
+    R.P0.groups.forEach(function(G){
+      if(G.lines.length!==1) return;
+      var L=G.lines[0], x=W[L.i];
+      var rest=R.P0.sel.map(function(o,i){ return i; }).filter(function(i){ return i!==L.i; });
+      var evR=optEval(rest.map(function(i){ return R.P0.sel[i]; }),rest.map(function(i){ return W[i]; }));
+      var marg=r2(R.P0.total-evR.total), own=r2(L.o.v.price*L.q), over=r2(marg-own);
+      var only=x.c.sellers.length===1;
+      if(over>=60 && over>=0.2*own) R.flags.push({k:x.w.k,name:x.w.n,seller:optSn(G.s),price:own,ship:G.ship.cost,lostDisc:0,marg:marg,over:over,only:only,kept:OPT.decide[x.w.k]==='keep',nsel:x.c.sellers.length,without:evR.total});
+    });
+    if(R.flags.length>1){ var mn=Math.min.apply(null,R.flags.map(function(f){ return f.nsel; })); R.flags=R.flags.filter(function(f){ return f.nsel===mn; }); }
+    R.flags=R.flags.filter(function(f){ return !f.kept; });
+    if(R.flags.length){ optShow(); return; }
+  }
+  var P0=R.P0;
+  /* tek satıcı karşılaştırması */
+  R.single=null;
+  var sis={}; optsGoal.forEach(function(o){ o.forEach(function(x){ sis[x.si]=1; }); });
+  Object.keys(sis).forEach(function(si){
+    var sel=[], ok=true; optsGoal.forEach(function(o,i){ var b=null; o.forEach(function(x){ if(x.si===+si && (!b||x.v.price<b.v.price)) b=x; }); if(!b) ok=false; sel.push(b); });
+    if(!ok) return; var ev=optEval(sel,W); if(!R.single||ev.total<R.single.total) R.single=ev;
+  });
+  if(B){
+    if(P0.total<=B+0.001){ R.fits=true; R.F=P0; }
+    else {
+      R.fits=false;
+      R.F=optSearch(optsAll,W,optFitScore(B));
+      R.Fmin=R.F?null:optBestEffort(optsAll,W,function(ev){ return ev.total+ev.n; });
+      var need=r2(P0.total-B);
+      if(need<=B*0.5+0.001) R.raise={need:need,plan:P0};
+      else R.raise={need:need,capped:true,plan:optSearch(optsAll,W,optFitScore(B*1.5)),cap:r2(B*0.5)};
+    }
+    /* kampanya / kargo istisnası: bütçeyi az aşarak kazanç */
+    var Fq=R.fits?optSearch(optsAll,W,optFitScore(B)):R.F;
+    if(Fq){
+      var Fb=optBenefit(Fq), lim=B*1.15;
+      var Q=optSearch(optsAll,W,function(ev){
+        if(ev.total<=B+0.001 || ev.total>lim || ev.lg<Fq.lg-0.05) return OPT_BAD;
+        var gain=(optBenefit(ev)-Fb)-(ev.total-B); return gain>0.5? -gain : OPT_BAD;
+      });
+      if(Q){ R.Q=Q; R.Qover=r2(Q.total-B); R.Qgain=r2((optBenefit(Q)-Fb)-(Q.total-B)); }
+    }
+  }
+  optShow();
+}
+
+/* ---------- motor: ekran ---------- */
+function optLinesHTML(ev,W){
+  return ev.groups.map(function(G){
+    var lines=G.lines.map(function(L){
+      var v=L.o.v, nm=W[L.i].w.n;
+      return '<div class="ci"><div class="nm"><b>'+esc(nm)+'</b><small>'+(v.ml?mlf(v.ml):'hacim belirtilmemiş')+' × '+L.q+' · '+tl(v.price)+(v.ml?' · '+f2(v.price/v.ml)+' TL/ml':'')+'</small></div><div class="rtc"><b class="mono">'+tl(v.price*L.q)+'</b></div></div>';
+    }).join('');
+    var foot='';
+    if(G.disc>0) foot+='<p class="opt-n ok">Kampanya: '+esc(G.camp.c.label||G.camp.c.type)+' → − '+tl(G.disc)+'</p>';
+    if(G.ship.t==='free') foot+='<p class="opt-n ok">Kargo ücretsiz'+(G.shipSaved>0?' (limit aşıldı, '+tl(G.shipSaved)+' kargo tasarrufu)':'')+'</p>';
+    else if(G.ship.t==='paid') foot+='<p class="opt-n">Kargo: '+tl(G.ship.cost)+(G.ship.need>0?' · ücretsiz kargoya '+tl(G.ship.need)+' kaldı':'')+'</p>';
+    else foot+='<p class="opt-n">Kargo bilgisi yok</p>';
+    G.gifts.forEach(function(c){ foot+='<p class="opt-n ok">Hediye: '+esc(c.label||'hediye')+(c.n>1?' × '+c.n:'')+'</p>'; });
+    return '<div class="card grp"><h3><span>'+esc(optSn(G.s))+'</span><span class="mono">'+tl(G.total)+'</span></h3>'+lines+foot+'</div>';
+  }).join('');
+}
+function optSum(ev){
+  return '<div class="cs"><div><span>Toplam ödeme</span><b>'+tl(ev.total)+'</b></div><div><span>Toplam hacim</span><b>'+mlf(ev.ml)+'</b></div><div><span>Ort. TL/ml</span><b>'+f2(ev.total/Math.max(ev.ml,1))+'</b></div><div><span>Kargo / indirim</span><b>'+nf0.format(ev.ship)+' / '+nf0.format(ev.disc)+' TL</b></div><div><span>Sipariş</span><b>'+ev.n+' satıcı</b></div></div>';
+}
+function optPlanBlock(title,ev,W,open,note){
+  return '<details class="opt-plan"'+(open?' open':'')+'><summary><b>'+title+'</b><span class="mono">'+tl(ev.total)+' · '+mlf(ev.ml)+'</span></summary>'+(note?'<p class="opt-n">'+note+'</p>':'')+optSum(ev)+optLinesHTML(ev,W)+'<div class="row2"><button type="button" class="ghost" data-opt="tocart" data-plan="'+esc(title)+'">Bu planı Pazar sepetine aktar</button></div></details>';
+}
+function optShrink(a,b,W){
+  var t=[]; W.forEach(function(x,i){ if(a.sel[i].m!==b.sel[i].m) t.push(esc(x.w.n)+': '+nf0.format(a.sel[i].m)+' → '+nf0.format(b.sel[i].m)+' ml'); });
+  return t.length?' ('+t.join('; ')+')':'';
+}
+var OPT_PLANS={};
+function optShow(){
+  var el=$('opt-out'); if(!el) return; var R=OPT.res; OPT_PLANS={};
+  if(!R){ el.innerHTML=''; return; }
+  var h='';
+  R.missing.forEach(function(w){ h+='<div class="opt-red"><b>'+esc(w.n)+'</b> hiçbir satıcı listesinde bulunamadı; hesaplamaya katılamıyor. <button type="button" class="link" data-opt="rm" data-k="'+esc(w.k)+'">Listeden çıkar</button></div>'; });
+  if(!R.W.length){ el.innerHTML=h+'<p class="empty">Hesaplanacak ürün yok. Yukarıdan parfüm ekle.</p>'; return; }
+  if(R.flags.length){
+    h+='<div class="opt-lock"><b>Plan kilitli — kararını bekliyorum</b><p>Aşağıdaki ürün(ler) ortak bir satıcıyla birleşmiyor ve tek başına ayrı bir sipariş doğurarak maliyeti ciddi artırıyor. Hiçbir ürünü sen onaylamadan plandan çıkarmıyorum; hesap, her biri için “Planda tut” ya da “Çıkar” seçene kadar bekliyor.</p></div>';
+    R.flags.forEach(function(f){
+      h+='<div class="opt-red"><b>⚠ '+esc(f.name)+'</b><p>'+(f.only?'Yalnızca ':'En uygun fiyatla ')+'<b>'+esc(f.seller)+'</b>’de'+(f.only?' bulunuyor':' alınıyor')+' ve planın diğer ürünleriyle ortak satıcısı yok. Ürün '+tl(f.price)+'; kargo '+(f.ship?tl(f.ship):'—')+'. Bu ürün planın toplamını '+tl(f.marg)+' artırıyor (yalnızca kargo/kampanya kaybından gelen ek yük: <b>'+tl(f.over)+'</b>). Onsuz plan: '+tl(f.without)+'.</p>'+
+        '<div class="row2"><button type="button" class="primary" data-opt="keep" data-k="'+esc(f.k)+'">Planda tut</button><button type="button" class="ghost" data-opt="drop" data-k="'+esc(f.k)+'">Çıkar</button></div></div>';
+    });
+    el.innerHTML=h; return;
+  }
+  var W=R.W, P0=R.P0, B=R.B;
+  W.forEach(function(x){ if(OPT.decide[x.w.k]==='keep'){ var f=false; R.P0.groups.forEach(function(G){ if(G.lines.length===1&&W[G.lines[0].i]===x) f=true; }); if(f) h+='<p class="opt-n">Onayınla planda tutuldu: <b>'+esc(x.w.n)+'</b> (tek başına sipariş).</p>'; } });
+  h+='<h3 class="opt-h">Hedef: '+esc(R.goal.name)+'</h3><p class="opt-n">'+esc(R.goal.desc)+(B?' · Bütçe: '+tl(B):' · Bütçe sınırı yok')+'</p>';
+  function reg(t,ev){ OPT_PLANS[t]=ev; return t; }
+  if(!B || R.fits){
+    h+='<div class="opt-ok">'+(B?'Plan bütçene sığıyor. Kalan: <b>'+tl(B-P0.total)+'</b>':'Bütçe girmediğin için en ekonomik sepet hesaplandı.')+'</div>';
+    h+=optPlanBlock(reg('Önerilen plan',P0),P0,W,true);
+  } else {
+    h+='<div class="opt-bad">İstediğin ürünler hedef boylarda <b>'+tl(P0.total)+'</b> tutuyor; bütçen '+tl(B)+' — <b>'+tl(P0.total-B)+'</b> yetmiyor.</div>';
+    if(R.F) h+=optPlanBlock(reg('Seçenek 1: Hacmi küçülterek bütçeye sığdır',R.F),R.F,W,true,'Ürünler aynı kalır; boylar bütçeye sığacak şekilde küçültüldü'+optShrink(P0,R.F,W)+'. Toplam '+tl(R.F.total)+' · kalan '+tl(B-R.F.total)+'.');
+    else h+='<div class="opt-red">Seçenek 1: Bütçe, en küçük boylarla bile yetmiyor. Ulaşılabilecek en düşük sepet '+(R.Fmin?'<b>'+tl(R.Fmin.total)+'</b> ('+tl(R.Fmin.total-B)+' fazla).':'hesaplanamadı.')+'</div>';
+    if(R.raise && !R.raise.capped) h+=optPlanBlock(reg('Seçenek 2: Bütçeyi artır',R.raise.plan),R.raise.plan,W,false,'Hedef boyları almak için bütçeni <b>'+tl(R.raise.need)+'</b> (%'+Math.round(R.raise.need/B*100)+') artırman yeterli. İstemediğin hiçbir ek ürün eklenmedi.');
+    else if(R.raise){
+      h+='<div class="opt-red">Seçenek 2: Hedef boylar için bütçeyi <b>'+tl(R.raise.need)+'</b> artırman gerekir; bu, bütçenin %50’sini ('+tl(R.raise.cap)+') aşıyor, bu yüzden bu yönde öneri yapmıyorum.</div>';
+      if(R.raise.plan) h+=optPlanBlock(reg('Seçenek 2 (üst sınır): Bütçeyi %50 artır',R.raise.plan),R.raise.plan,W,false,'Bütçeyi en fazla '+tl(R.raise.cap)+' artırırsan ('+tl(B+R.raise.cap)+') elde edebileceğin en iyi plan.');
+    }
+  }
+  if(R.Q){
+    var Q=R.Q, parts=[], seen={}; if(Q.shipSaved>0) parts.push('ücretsiz kargo'); Q.groups.forEach(function(G){ if(G.disc>0){ var t='“'+(G.camp.c.label||G.camp.c.type)+'” kampanyası'; if(!seen[t]){ seen[t]=1; parts.push(esc(t)); } } });
+    h+='<div class="opt-warn"><b>Küçük bir aşım kâr ettirebilir</b><p>Bütçeyi <b>'+tl(R.Qover)+'</b> aşarak '+parts.join(' ve ')+' avantajından yararlanabilirsiniz; bu sayede <b>'+tl(R.Qgain)+'</b> kâr edersiniz.</p><p class="opt-n">Kâr = kazanılan kargo + indirim tutarı − bütçenin aşılan kısmı (bütçeye sığan en iyi planla karşılaştırıldı).</p></div>';
+    var dup=R.raise&&!R.raise.capped&&R.raise.plan.total===Q.total&&R.raise.plan.ml===Q.ml;
+    if(!dup) h+=optPlanBlock(reg('Kampanyalı plan (bütçe + '+nf0.format(R.Qover)+' TL)',Q),Q,W,false);
+  }
+  if(R.single && P0.n>1) h+='<p class="opt-n">Sipariş bölme: hepsi tek satıcıdan ('+esc(optSn(R.single.groups[0].s))+') '+tl(R.single.total)+' tutuyor; plan '+(R.single.total>P0.total+0.5?tl(R.single.total-P0.total)+' daha ucuz olduğu için':'kargo/kampanya dengesi için')+' '+P0.n+' satıcıya bölündü.</p>';
+  else if(!R.single && P0.n>1) h+='<p class="opt-n">Ürünlerin hepsini tek satıcıda bulamadığım için sipariş '+P0.n+' satıcıya bölündü.</p>';
+  else if(P0.n===1) h+='<p class="opt-n ok">Tüm ürünler tek satıcıdan: tek kargo, tek kampanya.</p>';
+  el.innerHTML=h;
+}
+function optToCart(ev){
+  if(!ev) return; var W=OPT.res.W;
+  ev.groups.forEach(function(G){ G.lines.forEach(function(L){
+    var v=L.o.v, key=pzSk(G.s), f=null; PZC.forEach(function(x){ if(x.s===key&&x.n===v.p[0]&&String(x.ml)===v.id) f=x; });
+    if(f) f.q=Math.min(99,f.q+L.q); else PZC.push({s:key,n:v.p[0],ml:v.id,q:L.q});
+  }); });
+  pzcSave(); pzcBadge(); pzcOpen(true);
+}
+/* ---------- motor: girdiler ---------- */
+function optChips(){
+  var el=$('opt-chips'); if(!el) return;
+  el.innerHTML=OPT.want.length?OPT.want.map(function(w){ return '<span class="chip opt-chip">'+esc(w.n)+' <button type="button" data-opt="dec" data-k="'+esc(w.k)+'" aria-label="Adedi azalt">−</button><b>'+(w.q||1)+'</b><button type="button" data-opt="inc" data-k="'+esc(w.k)+'" aria-label="Adedi artır">+</button><button type="button" data-opt="rm" data-k="'+esc(w.k)+'" aria-label="Listeden çıkar">×</button></span>'; }).join(''):'<span class="muted">Henüz parfüm eklemedin.</span>';
+  var g=$('opt-goals'); if(g) g.innerHTML=Object.keys(OPT_GOALS).map(function(k){ return '<button type="button" class="chip" role="radio" aria-checked="'+(OPT.goal===k)+'" data-opt="goal" data-g="'+k+'">'+esc(OPT_GOALS[k].name)+'<small>'+esc(OPT_GOALS[k].desc)+'</small></button>'; }).join('');
+}
+function optSuggest(){
+  var q=norm($('opt-q').value.trim()), box=$('opt-sug'); if(q.length<2){ box.hidden=true; return []; }
+  var cat=optCat(), toks=q.split(/\s+/).filter(Boolean), have={}; OPT.want.forEach(function(w){ have[w.k]=1; });
+  var list=Object.keys(cat).map(function(k){ return cat[k]; }).filter(function(c){ var n=norm(c.name); return !have[c.key] && toks.every(function(t){ return n.indexOf(t)>=0; }); })
+    .sort(function(a,b){ return b.sellers.length-a.sellers.length || a.name.localeCompare(b.name,'tr'); }).slice(0,8);
+  box.hidden=!list.length;
+  box.innerHTML=list.map(function(c){ return '<button type="button" data-opt="pick" data-k="'+esc(c.key)+'"><span>'+esc(c.name)+'</span><small>'+c.sellers.length+' satıcı</small></button>'; }).join('');
+  return list;
+}
+function optAdd(k){
+  var c=optCat()[k]; if(!c) return; var q=Math.max(1,Math.min(9,parseInt($('opt-qty').value,10)||1));
+  var f=null; OPT.want.forEach(function(w){ if(w.k===k) f=w; });
+  if(f) f.q=Math.min(9,(f.q||1)+q); else OPT.want.push({k:k,n:c.name,q:q});
+  optSave(); $('opt-q').value=''; $('opt-sug').hidden=true; OPT.res=null; optChips(); optShow();
+}
+document.addEventListener('click', function(e){
+  var b=e.target.closest && e.target.closest('[data-opt]'); if(!b) return;
+  var a=b.getAttribute('data-opt'), k=b.getAttribute('data-k'), w=null; OPT.want.forEach(function(x){ if(x.k===k) w=x; });
+  if(a==='pick'||a==='add'){ if(a==='pick') optAdd(k); else { var l=optSuggest(); if(l.length) optAdd(l[0].key); } return; }
+  if(a==='inc'&&w){ w.q=Math.min(9,(w.q||1)+1); }
+  else if(a==='dec'&&w){ w.q=Math.max(1,(w.q||1)-1); }
+  else if(a==='rm'||a==='drop'){ OPT.want=OPT.want.filter(function(x){ return x.k!==k; }); delete OPT.decide[k]; }
+  else if(a==='keep'){ OPT.decide[k]='keep'; optSave(); optRun(); return; }
+  else if(a==='goal'){ OPT.goal=b.getAttribute('data-g'); }
+  else if(a==='run'){ OPT.decide={}; optRun(); return; }
+  else if(a==='clear'){ OPT.want=[]; OPT.decide={}; }
+  else if(a==='frompz'){ PZC.forEach(function(e){ var c=optCat()[pzKey(e.n)]; if(!c) return; var f=null; OPT.want.forEach(function(x){ if(x.k===c.key) f=x; }); if(!f) OPT.want.push({k:c.key,n:c.name,q:1}); }); }
+  else if(a==='tocart'){ optToCart(OPT_PLANS[b.getAttribute('data-plan')]); return; }
+  else return;
+  optSave(); if(a==='drop'){ OPT.res=null; optChips(); optRun(); return; } OPT.res=null; optChips(); optShow();
+});
+document.addEventListener('input', function(e){ if(e.target.id==='opt-q') optSuggest(); if(e.target.id==='opt-budget'){ OPT.budget=e.target.value; optSave(); } });
+document.addEventListener('keydown', function(e){ if(e.target.id==='opt-q' && e.key==='Enter'){ e.preventDefault(); var l=optSuggest(); if(l.length) optAdd(l[0].key); } });
+function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; optChips(); }
 
 /* ---------- başlat ---------- */
 loadLocal();
