@@ -86,30 +86,46 @@
     },
     {
       "id": 4,
-      "name": "Profumum Roma Acqua di Sale",
-      "brand": "",
+      "name": "Acqua di Sale",
+      "brand": "Profumum Roma",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz",
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 5,
-      "name": "Memo Paris African Leather",
-      "brand": "",
+      "name": "African Leather",
+      "brand": "Memo Paris",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece",
+        "Gündüz"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -117,83 +133,121 @@
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 6,
-      "name": "Louis Vuitton Afternoon Swim",
-      "brand": "",
+      "name": "Afternoon Swim",
+      "brand": "Louis Vuitton",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz",
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 7,
-      "name": "Xerjoff Alexandria 2",
-      "brand": "",
+      "name": "Alexandria 2",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 8,
-      "name": "Parfums de Marly Althaïr",
-      "brand": "",
+      "name": "Althaïr",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece",
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
         "Kod S330",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 9,
-      "name": "By Kilian Angels' Share",
-      "brand": "",
+      "name": "Angels' Share",
+      "brand": "By Kilian",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod S466",
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 10,
-      "name": "Montale Arabians Tonka",
-      "brand": "",
+      "name": "Arabians Tonka",
+      "brand": "Montale",
       "variant": "",
       "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [],
+      "time": [],
+      "category": [],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -201,32 +255,34 @@
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "metadata_incomplete",
+      "do_not_merge": false
     },
     {
       "id": 11,
-      "name": "Creed Aventus 2012 Batch VIP",
-      "brand": "",
+      "name": "Aventus 2012 Batch VIP",
+      "brand": "Creed",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [],
+      "time": [],
+      "category": [],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "metadata_incomplete",
+      "do_not_merge": false
     },
     {
       "id": 12,
-      "name": "Maison Francis Kurkdjian Baccarat Rouge 540",
-      "brand": "",
+      "name": "Baccarat Rouge 540",
+      "brand": "Maison Francis Kurkdjian",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [],
+      "time": [],
+      "category": [],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -235,54 +291,58 @@
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "metadata_incomplete",
+      "do_not_merge": false
     },
     {
       "id": 13,
-      "name": "Giorgio Armani Black Code",
-      "brand": "",
+      "name": "Black Code",
+      "brand": "Giorgio Armani",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [],
+      "time": [],
+      "category": [],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
         "Kod E203"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "metadata_incomplete",
+      "do_not_merge": false
     },
     {
       "id": 14,
-      "name": "Mancera Black Gold",
-      "brand": "",
+      "name": "Black Gold",
+      "brand": "Mancera",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [],
+      "time": [],
+      "category": [],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "metadata_incomplete",
+      "do_not_merge": false
     },
     {
       "id": 15,
-      "name": "Yves Saint Laurent Black Opium",
-      "brand": "",
+      "name": "Black Opium",
+      "brand": "Yves Saint Laurent",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [],
+      "time": [],
+      "category": [],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
         "Kadın · Designer"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "metadata_incomplete",
+      "do_not_merge": false
     },
     {
       "id": 16,
@@ -387,13 +447,22 @@
     },
     {
       "id": 22,
-      "name": "Essential Parfums Bois Impérial",
-      "brand": "",
+      "name": "Bois Impérial",
+      "brand": "Essential Parfums",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz",
+        "İlkbahar",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -401,7 +470,8 @@
         "Unisex",
         "Unisex · Niche"
       ],
-      "review_status": "metadata_incomplete"
+      "review_status": "reviewed",
+      "do_not_merge": false
     },
     {
       "id": 23,
@@ -937,7 +1007,9 @@
       "season": "",
       "time": "",
       "category": "",
-      "aliases": [],
+      "aliases": [
+        "Bvlgari Tygar Le Gemme"
+      ],
       "legacy_categories": [
         "Erkek",
         "Erkek · Designer",
@@ -9145,21 +9217,6 @@
       "category": "",
       "aliases": [],
       "legacy_categories": [],
-      "review_status": "metadata_incomplete"
-    },
-    {
-      "id": 601,
-      "name": "Bvlgari Tygar Le Gemme",
-      "brand": "",
-      "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
-      "aliases": [],
-      "legacy_categories": [
-        "Erkek"
-      ],
       "review_status": "metadata_incomplete"
     },
     {
