@@ -110,6 +110,8 @@
     (sellers || []).forEach(function (s) {
       (s.items || []).forEach(function (p) {
         if (!p || !p[0]) return;
+        /* Merkezi katalog kimliklerinde ürün adı master kayıttan gelir; isim sözlüğü bu kimliği ezmemeli. */
+        if (p._productId != null) { st.total++; return; }
         st.total++;
         if (p.orig === undefined) p.orig = String(p[0]);          /* her zaman ilk ham adı sakla */
         var r = resolve(p.orig);
