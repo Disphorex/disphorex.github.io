@@ -1,5 +1,6 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
+<meta name="app-version" content="1.0.2">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1883,6 +1884,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
+var APP_VERSION='1.0.2';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -1891,9 +1893,10 @@ var OPT=(function(){
 function optSave(){ LS.set(OPT_KEY,{want:OPT.want,goal:OPT.goal,budget:OPT.budget}); }
 var OPT_GOALS={
   kesif:{name:'Yeni kokular keşfetmek',desc:'10 ml ve altı deneme boyları, çok çeşit',test:function(m){ return m<=10; },ref:5},
+  ucuz:{name:'Mutlak ucuzluk',desc:'Hacim gözetmeden en az nakit: en küçük boylar, en çok çeşidi en az parayla dene',test:function(){ return true; },ref:5,mode:'cheap'},
   denge:{name:'Dengeli kullanım',desc:'15–30 ml orta boylar',test:function(m){ return m>=15&&m<=30; },ref:22},
   sise:{name:'Tam şişe',desc:'50 ml ve üstü büyük boylar',test:function(m){ return m>=50; },ref:75},
-  eko:{name:'En düşük TL/ml',desc:'10 ml ve üstü, ml başına en ucuz sepet',test:function(m){ return m>=10; },ref:50,perMl:true}
+  eko:{name:'Birim ekonomisi (en düşük TL/ml)',desc:'Bütçene sığan, ml başına en ucuz yüksek hacimli boylar',test:function(m){ return m>=10; },ref:50,perMl:true,mode:'unit'}
 };
 function optSn(s){ return s.name||brandFromUrl(s.base); }
 /* katalog: parfüm anahtarı -> satıcılar ve hacim seçenekleri (deneme setleri hariç) */
@@ -1986,6 +1989,11 @@ function optBestEffort(opts,W,score){ /* koşul sağlanmasa da en iyi (en düş�
 function optGoalScore(goal){ return function(ev){ return (goal.perMl? ev.total/Math.max(ev.ml,1)*1000 : ev.total) + ev.n*1 - ev.ml*1e-6; }; }
 function optFitScore(max){ return function(ev){ return ev.total<=max+0.001 ? -ev.lg*100+ev.total*0.001+ev.n*0.01 : OPT_BAD+(ev.total-max); }; }
 function optBenefit(ev){ return ev.disc+ev.shipSaved; }
+function optPerMl(ev){ return ev.total/Math.max(ev.ml,1); }
+/* Strateji 1 (mutlak ucuzluk): hacme bakmadan cepten çıkan toplam para en az; eşitlikte küçük boy */
+function optCheapScore(ev){ return ev.total + ev.n*0.01 + ev.ml*1e-6; }
+/* Strateji 2 (birim ekonomisi): bütçeye sığan planlar arasında TL/ml en düşük olan; eşitlikte daha çok hacim */
+function optEcoFit(B){ return function(ev){ return ev.total<=B+0.001 ? optPerMl(ev)*1000 - ev.ml*1e-4 + ev.n*0.01 : OPT_BAD+(ev.total-B); }; }
 
 function optRun(){
   var B=parseFloat(OPT.budget); if(!(B>0)) B=null;
@@ -1996,7 +2004,16 @@ function optRun(){
   if(!W.length){ optShow(); return; }
   var optsGoal=W.map(function(x){ return optOptions(x.c,goal); }), optsAll=W.map(function(x){ return optOptions(x.c,null); });
   R.optsGoal=optsGoal; R.optsAll=optsAll;
-  R.P0=optSearch(optsGoal,W,optGoalScore(goal));
+  R.mode=goal.mode||'';
+  R.P0=(R.mode==='cheap')?optSearch(optsGoal,W,optCheapScore):optSearch(optsGoal,W,optGoalScore(goal));
+  if(R.mode==='unit'){
+    if(B){ /* bütçeye sığan en düşük TL/ml; hedef boylar sığmazsa küçük boylar da değerlendirilir */
+      var Pe=optSearch(optsGoal,W,optEcoFit(B));
+      if(!Pe){ Pe=optSearch(optsAll,W,optEcoFit(B)); if(Pe) R.ecoWiden=true; }
+      if(Pe) R.P0=Pe;
+    }
+    R.Pcheap=optSearch(optsAll,W,optCheapScore); /* karşılaştırma için mutlak ucuz sepet */
+  }
   /* kırmızı uyarı: ortak satıcıyla birleşmeyen, tek başına sipariş doğuran ürünler */
   if(W.length>1 && R.P0.n>1){
     R.P0.groups.forEach(function(G){
@@ -2031,6 +2048,23 @@ function optRun(){
       else R.raise={need:need,capped:true,plan:optSearch(optsAll,W,optFitScore(B*1.5)),cap:r2(B*0.5)};
     }
     /* kampanya / kargo istisnası: bütçeyi az aşarak kazanç */
+    if(R.mode==='cheap'||R.mode==='unit'){
+      /* yeni stratejiler: ana plana (P0) göre karşılaştır; kâr = kazanılan kargo+indirim − ana plana göre ek nakit */
+      if(R.fits){
+        var lim2=B*1.15, bpm=optPerMl(P0), bben=optBenefit(P0);
+        var Q2=optSearch(optsAll,W,function(ev){
+          if(ev.total<=B+0.001 || ev.total>lim2 || ev.ml<P0.ml-0.001) return OPT_BAD;
+          if(R.mode==='unit' && optPerMl(ev)>bpm+1e-9) return OPT_BAD;
+          var gain=(optBenefit(ev)-bben)-(ev.total-P0.total); return gain>0.5? -gain : OPT_BAD;
+        });
+        if(Q2){ R.Q=Q2; R.Qover=r2(Q2.total-B); R.Qextra=r2(Q2.total-P0.total); R.Qgain=r2((optBenefit(Q2)-bben)-(Q2.total-P0.total)); R.Qbase=P0; }
+        /* mutlak ucuzluk: kalan bütçeyle daha verimli (TL/ml) alternatif */
+        if(R.mode==='cheap'){
+          var Pe2=optSearch(optsAll,W,optEcoFit(B));
+          if(Pe2 && Pe2.ml>P0.ml+0.001 && Pe2.total>P0.total+0.5 && optPerMl(Pe2)<optPerMl(P0)-1e-6) R.Peff=Pe2;
+        }
+      }
+    } else {
     var Fq=R.fits?optSearch(optsAll,W,optFitScore(B)):R.F;
     if(Fq){
       var Fb=optBenefit(Fq), lim=B*1.15;
@@ -2039,6 +2073,7 @@ function optRun(){
         var gain=(optBenefit(ev)-Fb)-(ev.total-B); return gain>0.5? -gain : OPT_BAD;
       });
       if(Q){ R.Q=Q; R.Qover=r2(Q.total-B); R.Qgain=r2((optBenefit(Q)-Fb)-(Q.total-B)); }
+    }
     }
   }
   optShow();
@@ -2066,6 +2101,20 @@ function optSum(ev){
 function optPlanBlock(title,ev,W,open,note){
   return '<details class="opt-plan"'+(open?' open':'')+'><summary><b>'+title+'</b><span class="mono">'+tl(ev.total)+' · '+mlf(ev.ml)+'</span></summary>'+(note?'<p class="opt-n">'+note+'</p>':'')+optSum(ev)+optLinesHTML(ev,W)+'<div class="row2"><button type="button" class="ghost" data-opt="tocart" data-plan="'+esc(title)+'">Bu planı Pazar sepetine aktar</button></div></details>';
 }
+/* strateji notları: yeni hedeflerin ana planı ne yaptığını kısaca açıklar */
+function optModeNote(R){
+  var P=R.P0, n='';
+  if(R.mode==='cheap') return 'Hacim gözetmeden cebinden çıkacak parayı en aza indiren sepet: her ürün için en ucuz seçenek (çoğunlukla en küçük boy) seçildi.';
+  if(R.mode==='unit'){
+    if(R.ecoWiden) n+='10 ml ve üstü boylar bütçene sığmadığı için daha küçük boylar da değerlendirildi. ';
+    var C=R.Pcheap;
+    if(C && P.ml>C.ml+0.001 && P.total>=C.total){
+      var a=optPerMl(C), b=optPerMl(P);
+      n+='Mutlak ucuz sepete ('+tl(C.total)+' · '+mlf(C.ml)+') göre <b>'+tl(P.total-C.total)+'</b> fazla ödeyip <b>'+mlf(P.ml-C.ml)+'</b> fazla hacim alıyorsun; ortalama birim fiyat '+f2(a)+' → <b>'+f2(b)+' TL/ml</b>'+(a>b?' (%'+Math.round((1-b/a)*100)+' daha ucuz)':'')+'.';
+    } else if(C && Math.abs(P.total-C.total)<0.5) n+='Bu bütçede mutlak ucuz sepetle aynı boylar en verimli çıktı.';
+  }
+  return n;
+}
 function optShrink(a,b,W){
   var t=[]; W.forEach(function(x,i){ if(a.sel[i].m!==b.sel[i].m) t.push(esc(x.w.n)+': '+nf0.format(a.sel[i].m)+' → '+nf0.format(b.sel[i].m)+' ml'); });
   return t.length?' ('+t.join('; ')+')':'';
@@ -2091,7 +2140,8 @@ function optShow(){
   function reg(t,ev){ OPT_PLANS[t]=ev; return t; }
   if(!B || R.fits){
     h+='<div class="opt-ok">'+(B?'Plan bütçene sığıyor. Kalan: <b>'+tl(B-P0.total)+'</b>':'Bütçe girmediğin için en ekonomik sepet hesaplandı.')+'</div>';
-    h+=optPlanBlock(reg('Önerilen plan',P0),P0,W,true);
+    h+=optPlanBlock(reg('Önerilen plan',P0),P0,W,true,optModeNote(R));
+    if(R.Peff){ var Pf=R.Peff; h+=optPlanBlock(reg('Alternatif: Kalan bütçeyle verimli plan (TL/ml)',Pf),Pf,W,false,'Bütçenden kalan '+tl(B-P0.total)+' ile ana plana göre <b>'+tl(Pf.total-P0.total)+'</b> daha fazla ödeyip <b>'+mlf(Pf.ml-P0.ml)+'</b> fazla hacim alırsın; ortalama birim fiyat '+f2(optPerMl(P0))+' → <b>'+f2(optPerMl(Pf))+' TL/ml</b> olur (toplam '+tl(Pf.total)+', kalan '+tl(B-Pf.total)+').'); }
   } else {
     h+='<div class="opt-bad">İstediğin ürünler hedef boylarda <b>'+tl(P0.total)+'</b> tutuyor; bütçen '+tl(B)+' — <b>'+tl(P0.total-B)+'</b> yetmiyor.</div>';
     if(R.F) h+=optPlanBlock(reg('Seçenek 1: Hacmi küçülterek bütçeye sığdır',R.F),R.F,W,true,'Ürünler aynı kalır; boylar bütçeye sığacak şekilde küçültüldü'+optShrink(P0,R.F,W)+'. Toplam '+tl(R.F.total)+' · kalan '+tl(B-R.F.total)+'.');
@@ -2104,6 +2154,10 @@ function optShow(){
   }
   if(R.Q){
     var Q=R.Q, parts=[], seen={}; if(Q.shipSaved>0) parts.push('ücretsiz kargo'); Q.groups.forEach(function(G){ if(G.disc>0){ var t='“'+(G.camp.c.label||G.camp.c.type)+'” kampanyası'; if(!seen[t]){ seen[t]=1; parts.push(esc(t)); } } });
+    if(R.Qbase){
+      var bq=R.Qbase, dm=Q.ml-bq.ml;
+      h+='<div class="opt-warn"><b>Küçük bir aşım kâr ettirebilir</b><p>Bütçeyi <b>'+tl(R.Qover)+'</b> aşarak '+parts.join(' ve ')+' avantajından yararlanabilirsiniz. Ana plana göre <b>'+tl(R.Qextra)+'</b> ek ödeyip '+(dm>0.001?'<b>'+mlf(dm)+'</b> fazla hacim alır, ':'')+'ortalama birim fiyatı '+f2(optPerMl(bq))+' → <b>'+f2(optPerMl(Q))+' TL/ml</b> yaparsınız; bu sayede <b>'+tl(R.Qgain)+'</b> kâr edersiniz.</p><p class="opt-n">Kâr = kazanılan kargo + indirim tutarı − ana plana göre ek nakit. Bu bir uyarıdır; ana plan bütçene sığan plandır.</p></div>';
+    } else
     h+='<div class="opt-warn"><b>Küçük bir aşım kâr ettirebilir</b><p>Bütçeyi <b>'+tl(R.Qover)+'</b> aşarak '+parts.join(' ve ')+' avantajından yararlanabilirsiniz; bu sayede <b>'+tl(R.Qgain)+'</b> kâr edersiniz.</p><p class="opt-n">Kâr = kazanılan kargo + indirim tutarı − bütçenin aşılan kısmı (bütçeye sığan en iyi planla karşılaştırıldı).</p></div>';
     var dup=R.raise&&!R.raise.capped&&R.raise.plan.total===Q.total&&R.raise.plan.ml===Q.ml;
     if(!dup) h+=optPlanBlock(reg('Kampanyalı plan (bütçe + '+nf0.format(R.Qover)+' TL)',Q),Q,W,false);
