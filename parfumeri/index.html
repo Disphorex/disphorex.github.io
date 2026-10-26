@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.2">
+<meta name="app-version" content="1.0.3">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1884,7 +1884,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.2';
+var APP_VERSION='1.0.3';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -1990,6 +1990,25 @@ function optGoalScore(goal){ return function(ev){ return (goal.perMl? ev.total/M
 function optFitScore(max){ return function(ev){ return ev.total<=max+0.001 ? -ev.lg*100+ev.total*0.001+ev.n*0.01 : OPT_BAD+(ev.total-max); }; }
 function optBenefit(ev){ return ev.disc+ev.shipSaved; }
 function optPerMl(ev){ return ev.total/Math.max(ev.ml,1); }
+/* Marjinal birim fiyat: ekstra ödenen paranın ekstra hacme bölünmesi */
+function optMarginalPerMl(base,ev){
+  var dPay=ev.total-base.total, dMl=ev.ml-base.ml;
+  if(dMl<=0.001) return dPay<=0 ? 0 : Infinity;
+  return dPay/dMl;
+}
+/* Aşım planı gerçekten daha iyi değer sunuyor mu?
+   - En az aynı hacim
+   - Genel TL/ml anlamlı ölçüde kötüleşmesin
+   - Ekstra hacmin marjinal TL/ml'si mevcut ortalamadan en az %10 daha iyi olsun
+   (sadece indirim tutarına bakmak yanıltıcı; liste fiyatı yüksek satıcıda büyük indirim yine de pahalı kalabilir) */
+function optOverageWorth(base,ev){
+  if(ev.ml<base.ml-0.001) return false;
+  var bpm=optPerMl(base), qpm=optPerMl(ev);
+  if(qpm>bpm*1.02+1e-9) return false;
+  var marg=optMarginalPerMl(base,ev);
+  if(!isFinite(marg)) return ev.total<=base.total+0.001;
+  return marg < bpm*0.90;
+}
 /* Strateji 1 (mutlak ucuzluk): hacme bakmadan cepten çıkan toplam para en az; eşitlikte küçük boy */
 function optCheapScore(ev){ return ev.total + ev.n*0.01 + ev.ml*1e-6; }
 /* Strateji 2 (birim ekonomisi): bütçeye sığan planlar arasında TL/ml en düşük olan; eşitlikte daha çok hacim */
@@ -2047,33 +2066,28 @@ function optRun(){
       if(need<=B*0.5+0.001) R.raise={need:need,plan:P0};
       else R.raise={need:need,capped:true,plan:optSearch(optsAll,W,optFitScore(B*1.5)),cap:r2(B*0.5)};
     }
-    /* kampanya / kargo istisnası: bütçeyi az aşarak kazanç */
-    if(R.mode==='cheap'||R.mode==='unit'){
-      /* yeni stratejiler: ana plana (P0) göre karşılaştır; kâr = kazanılan kargo+indirim − ana plana göre ek nakit */
-      if(R.fits){
-        var lim2=B*1.15, bpm=optPerMl(P0), bben=optBenefit(P0);
-        var Q2=optSearch(optsAll,W,function(ev){
-          if(ev.total<=B+0.001 || ev.total>lim2 || ev.ml<P0.ml-0.001) return OPT_BAD;
-          if(R.mode==='unit' && optPerMl(ev)>bpm+1e-9) return OPT_BAD;
-          var gain=(optBenefit(ev)-bben)-(ev.total-P0.total); return gain>0.5? -gain : OPT_BAD;
-        });
-        if(Q2){ R.Q=Q2; R.Qover=r2(Q2.total-B); R.Qextra=r2(Q2.total-P0.total); R.Qgain=r2((optBenefit(Q2)-bben)-(Q2.total-P0.total)); R.Qbase=P0; }
-        /* mutlak ucuzluk: kalan bütçeyle daha verimli (TL/ml) alternatif */
-        if(R.mode==='cheap'){
-          var Pe2=optSearch(optsAll,W,optEcoFit(B));
-          if(Pe2 && Pe2.ml>P0.ml+0.001 && Pe2.total>P0.total+0.5 && optPerMl(Pe2)<optPerMl(P0)-1e-6) R.Peff=Pe2;
-        }
+    /* kampanya / kargo istisnası: bütçeyi az aşarak gerçek değer kazancı */
+    if(R.fits){
+      var lim2=B*1.15, baseForQ=P0;
+      /* cheap/unit: ana plana (P0) göre; diğer hedeflerde bütçeye sığan en iyi plana göre */
+      if(!(R.mode==='cheap'||R.mode==='unit')){
+        var Fq=optSearch(optsAll,W,optFitScore(B));
+        if(Fq) baseForQ=Fq;
       }
-    } else {
-    var Fq=R.fits?optSearch(optsAll,W,optFitScore(B)):R.F;
-    if(Fq){
-      var Fb=optBenefit(Fq), lim=B*1.15;
-      var Q=optSearch(optsAll,W,function(ev){
-        if(ev.total<=B+0.001 || ev.total>lim || ev.lg<Fq.lg-0.05) return OPT_BAD;
-        var gain=(optBenefit(ev)-Fb)-(ev.total-B); return gain>0.5? -gain : OPT_BAD;
+      var Q2=optSearch(optsAll,W,function(ev){
+        if(ev.total<=B+0.001 || ev.total>lim2) return OPT_BAD;
+        if(!optOverageWorth(baseForQ,ev)) return OPT_BAD;
+        return optPerMl(ev)*1000 + optMarginalPerMl(baseForQ,ev)*10 + ev.total*0.001 + ev.n*0.01;
       });
-      if(Q){ R.Q=Q; R.Qover=r2(Q.total-B); R.Qgain=r2((optBenefit(Q)-Fb)-(Q.total-B)); }
-    }
+      if(Q2){
+        R.Q=Q2; R.Qover=r2(Q2.total-B); R.Qextra=r2(Q2.total-baseForQ.total);
+        R.Qmarg=optMarginalPerMl(baseForQ,Q2); R.Qbase=baseForQ;
+      }
+      /* mutlak ucuzluk: kalan bütçeyle daha verimli (TL/ml) alternatif */
+      if(R.mode==='cheap'){
+        var Pe2=optSearch(optsAll,W,optEcoFit(B));
+        if(Pe2 && Pe2.ml>P0.ml+0.001 && Pe2.total>P0.total+0.5 && optPerMl(Pe2)<optPerMl(P0)-1e-6) R.Peff=Pe2;
+      }
     }
   }
   optShow();
@@ -2154,13 +2168,17 @@ function optShow(){
   }
   if(R.Q){
     var Q=R.Q, parts=[], seen={}; if(Q.shipSaved>0) parts.push('ücretsiz kargo'); Q.groups.forEach(function(G){ if(G.disc>0){ var t='“'+(G.camp.c.label||G.camp.c.type)+'” kampanyası'; if(!seen[t]){ seen[t]=1; parts.push(esc(t)); } } });
-    if(R.Qbase){
-      var bq=R.Qbase, dm=Q.ml-bq.ml;
-      h+='<div class="opt-warn"><b>Küçük bir aşım kâr ettirebilir</b><p>Bütçeyi <b>'+tl(R.Qover)+'</b> aşarak '+parts.join(' ve ')+' avantajından yararlanabilirsiniz. Ana plana göre <b>'+tl(R.Qextra)+'</b> ek ödeyip '+(dm>0.001?'<b>'+mlf(dm)+'</b> fazla hacim alır, ':'')+'ortalama birim fiyatı '+f2(optPerMl(bq))+' → <b>'+f2(optPerMl(Q))+' TL/ml</b> yaparsınız; bu sayede <b>'+tl(R.Qgain)+'</b> kâr edersiniz.</p><p class="opt-n">Kâr = kazanılan kargo + indirim tutarı − ana plana göre ek nakit. Bu bir uyarıdır; ana plan bütçene sığan plandır.</p></div>';
-    } else
-    h+='<div class="opt-warn"><b>Küçük bir aşım kâr ettirebilir</b><p>Bütçeyi <b>'+tl(R.Qover)+'</b> aşarak '+parts.join(' ve ')+' avantajından yararlanabilirsiniz; bu sayede <b>'+tl(R.Qgain)+'</b> kâr edersiniz.</p><p class="opt-n">Kâr = kazanılan kargo + indirim tutarı − bütçenin aşılan kısmı (bütçeye sığan en iyi planla karşılaştırıldı).</p></div>';
+    var bq=R.Qbase||P0, dm=Q.ml-bq.ml, bpm=optPerMl(bq), qpm=optPerMl(Q), marg=R.Qmarg;
+    var why=parts.length ? parts.join(' ve ')+' sayesinde ' : '';
+    var body='Bütçeyi <b>'+tl(R.Qover)+'</b> aşarak '+why+'ana plana göre <b>'+tl(R.Qextra)+'</b> ek ödeyip';
+    if(dm>0.001) body+=' <b>'+mlf(dm)+'</b> fazla hacim alıyorsun.';
+    else body+=' aynı hacmi koruyorsun.';
+    body+=' Ortalama birim fiyat '+f2(bpm)+' → <b>'+f2(qpm)+' TL/ml</b>';
+    if(isFinite(marg) && dm>0.001) body+='; ekstra hacmin marjinal maliyeti <b>'+f2(marg)+' TL/ml</b>';
+    body+='.';
+    h+='<div class="opt-warn"><b>Küçük bir aşım daha iyi değer sunabilir</b><p>'+body+'</p><p class="opt-n">Yalnızca genel birim fiyatı kötüleştirmeyen ve ekstra hacmi mevcut ortalamadan en az %10 daha ucuza getiren planlar önerilir. Ana plan hâlâ bütçene sığan plandır.</p></div>';
     var dup=R.raise&&!R.raise.capped&&R.raise.plan.total===Q.total&&R.raise.plan.ml===Q.ml;
-    if(!dup) h+=optPlanBlock(reg('Kampanyalı plan (bütçe + '+nf0.format(R.Qover)+' TL)',Q),Q,W,false);
+    if(!dup) h+=optPlanBlock(reg('Daha verimli plan (bütçe + '+nf0.format(R.Qover)+' TL)',Q),Q,W,false);
   }
   if(R.single && P0.n>1) h+='<p class="opt-n">Sipariş bölme: hepsi tek satıcıdan ('+esc(optSn(R.single.groups[0].s))+') '+tl(R.single.total)+' tutuyor; plan '+(R.single.total>P0.total+0.5?tl(R.single.total-P0.total)+' daha ucuz olduğu için':'kargo/kampanya dengesi için')+' '+P0.n+' satıcıya bölündü.</p>';
   else if(!R.single && P0.n>1) h+='<p class="opt-n">Ürünlerin hepsini tek satıcıda bulamadığım için sipariş '+P0.n+' satıcıya bölündü.</p>';
