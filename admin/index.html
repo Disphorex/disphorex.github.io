@@ -53,6 +53,7 @@ ol{padding-left:20px;margin:8px 0}li{margin:4px 0}
 <script>
 (function(){
 "use strict";
+/* PRODUCT_MASTER_V2_ADMIN: master IDs and metadata are loaded/saved with seller records. */
 var $=function(s){return document.querySelector(s)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var LS={g:function(k){try{return localStorage.getItem(k)}catch(e){return null}},s:function(k,v){try{localStorage.setItem(k,v)}catch(e){}},d:function(k){try{localStorage.removeItem(k)}catch(e){}}};
@@ -64,7 +65,10 @@ function guess(){
 }
 var cfg=guess();try{var sv=JSON.parse(LS.g('op_adm_cfg')||'{}');for(var k in sv)if(sv[k])cfg[k]=sv[k];}catch(e){}
 var tok=LS.g('op_adm_tok')||'';
-var S={view:tok?'list':'login',sellers:[],man:{date:'',files:[]},head:'',gone:[],dirty:false,cur:null,q:'',iq:'',lim:60,msg:'',setDate:true,busy:false};
+var S={view:tok?'list':'login',sellers:[],man:{date:'',files:[]},productsData:null,productsFile:'products.json',productsDirty:false,head:'',gone:[],dirty:false,cur:null,q:'',iq:'',lim:60,msg:'',setDate:true,busy:false};
+var PRODUCT_BY_ID={};
+function runtimeProductItem(p){if(Array.isArray(p))return ni(p);var m=PRODUCT_BY_ID[String(p.product_id)]||{},a=[m.name||('Ürün #'+p.product_id),p.price??null,p.old_price??null,p.volume_ml??null,p.url||'',p.stock||'',p.options||'',p.seller_name||'',p.legacy_category||m.gender||'',Array.isArray(p.volume_prices)?p.volume_prices.map(function(v){return [v.volume_ml,v.price,v.old_price||null,v.label||'']}):[]];a._productId=p.product_id;a._sellerName=p.seller_name||'';return a}
+function ensureProductId(p){if(p._productId&&PRODUCT_BY_ID[String(p._productId)])return p._productId;var found=(S.productsData.products||[]).filter(function(x){return x.name===String(p[0]||'')})[0];if(found){p._productId=found.id;return found.id}var id=(S.productsData.products||[]).reduce(function(m,x){return Math.max(m,+x.id||0)},0)+1,prod={id:id,name:String(p[0]||''),brand:'',variant:'',gender:['Kadın','Erkek','Unisex'].indexOf(p[8])>=0?p[8]:'',season:'',time:'',category:'',aliases:[],legacy_categories:p[8]?[p[8]]:[],review_status:'metadata_incomplete'};S.productsData.products.push(prod);PRODUCT_BY_ID[String(id)]=prod;S.productsDirty=true;return p._productId=id}
 var dl=['Erkek','Kadın','Unisex','Kadın + Erkek','Deneme seti'];
 
 /* ---------- GitHub ---------- */
@@ -79,18 +83,18 @@ var rp=function(p){return '/repos/'+cfg.owner+'/'+cfg.repo+p};
 function readFile(n){return api(rp('/contents/'+cfg.dir+'/'+n+'?ref='+encodeURIComponent(cfg.branch)),{raw:true}).then(JSON.parse)}
 function ni(p){var d=['',null,null,null,'','','','',''];for(var i=0;i<p.length;i++)if(p[i]!==undefined&&p[i]!==null)d[i]=p[i];return d}
 function nk(p){return String(p[0]||'').toLowerCase()+'|'+(p[3]||'')}
-function merge(t,a){(a.items||[]).forEach(function(p){p=ni(p);var k=nk(p),i=-1;t.items.forEach(function(q,j){if(i<0&&nk(q)===k)i=j});if(i>=0)t.items[i]=p;else t.items.push(p)});['note','sizes','policy','shipping','campaigns'].forEach(function(f){if(a[f])t[f]=a[f]})}
+function merge(t,a){(a.items||[]).forEach(function(raw){var p=ni(raw);if(raw._productId)p._productId=raw._productId;var k=nk(p),i=-1;t.items.forEach(function(q,j){if(i<0&&nk(q)===k)i=j});if(i>=0)t.items[i]=p;else t.items.push(p)});['note','sizes','policy','shipping','campaigns'].forEach(function(f){if(a[f])t[f]=a[f]})}
 function load(){
   S.msg='Veriler okunuyor…';render();
   var b=cfg.branch?Promise.resolve():api(rp('')).then(function(r){cfg.branch=r.default_branch});
   return b.then(function(){return api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch)))}).then(function(r){S.head=r.object.sha;return readFile('index.json').catch(function(e){
       if(e.status===404&&cfg.dir.indexOf('docs/')!==0){cfg.dir='docs/'+cfg.dir;return readFile('index.json');}throw e;})})
-  .then(function(m){S.man=m;return Promise.all(m.files.map(readFile)).then(function(list){
+  .then(function(m){S.man=m;S.productsFile=m.productsFile||'products.json';return (m.productsFile?readFile(m.productsFile):Promise.resolve(null)).catch(function(e){if(e.status===404)return null;throw e}).then(function(cat){S.productsData=cat||{schema_version:1,products:[]};PRODUCT_BY_ID={};(S.productsData.products||[]).forEach(function(x){PRODUCT_BY_ID[String(x.id)]=x});return Promise.all(m.files.map(readFile))}).then(function(list){
       S.sellers=[];list.forEach(function(d,i){var f=m.files[i];
-        d.items=(d.items||[]).map(ni);
+        d.items=(d.items||[]).map(runtimeProductItem);
         if(d.append){var t=S.sellers.filter(function(x){return x.data.base===d.base&&(x.data.name||'')===(d.name||'')})[0];if(t){merge(t.data,d);t.extra.push(f);return;}}
         S.sellers.push({file:f,extra:[],data:d,dirty:false});});
-      S.gone=[];S.dirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));
+      S.gone=[];S.dirty=false;S.productsDirty=false;S.msg='';LS.s('op_adm_cfg',JSON.stringify(cfg));
       if(S.view==='login')S.view='list';render();if(S.view==='wix')wxRelink();});})
   .catch(function(e){S.msg='Hata: '+e.message;if(S.view!=='login'&&e.status===401){S.view='login';}render();});
 }
@@ -104,7 +108,7 @@ var fp=function(v){return v==null||v===''?'':typeof v==='number'?nf.format(v):St
 function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
 function sname(s){return s.data.name||host(s.data.base)||'(adsız)'}
 function slug(n){return n.toLowerCase().replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'satici'}
-function ser(d){var h=['"base": '+JSON.stringify(d.base||'')],sk={base:1,items:1,append:1,name:1,note:1,sizes:1,policy:1};['name','note','sizes','policy'].forEach(function(k){if(d[k]!==undefined&&d[k]!=='')h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});Object.keys(d).forEach(function(k){if(sk[k]||d[k]==null||d[k]===''||(Array.isArray(d[k])&&!d[k].length))return;h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});
+function ser(d){if(d.schema_version===2){var out=Object.assign({},d);out.items=d.items.map(function(p){return {product_id:ensureProductId(p),price:p[1]??null,old_price:p[2]??null,volume_ml:p[3]??null,url:p[4]||'',stock:p[5]||null,options:p[6]||null,seller_name:p[7]||null,legacy_category:p[8]||null,volume_prices:Array.isArray(p[9])?p[9].map(function(v){return {volume_ml:v[0],price:v[1],old_price:v[2]||null,label:v[3]||''}}):[]}});return JSON.stringify(out,null,2)+'\n'}var h=['"base": '+JSON.stringify(d.base||'')],sk={base:1,items:1,append:1,name:1,note:1,sizes:1,policy:1};['name','note','sizes','policy'].forEach(function(k){if(d[k]!==undefined&&d[k]!=='')h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});Object.keys(d).forEach(function(k){if(sk[k]||d[k]==null||d[k]===''||(Array.isArray(d[k])&&!d[k].length))return;h.push(JSON.stringify(k)+': '+JSON.stringify(d[k]))});
   var its=d.items.map(function(p){var a=p.slice();while(a.length>5&&(a[a.length-1]===''||a[a.length-1]===null))a.pop();return JSON.stringify(a)});
   return '{\n'+h.join(',\n')+',\n"items": [\n'+its.join(',\n')+'\n]\n}\n'}
 function mark(){S.dirty=true;if(S.cur!==null)S.sellers[S.cur].dirty=true;var b=$('#savebar');if(b)b.outerHTML=bar()}
@@ -160,8 +164,8 @@ function itemOk(idx){var v=function(i){return $(i).value.trim()};
   if(/^https?:\/\//i.test(path)){var h2=host(path),h1=host(d.base);if(h1&&h2===h1){try{var u=new URL(path);path=u.pathname+u.search+u.hash}catch(e){}}else warn='Bağlantı bu satıcının sitesine ait görünmüyor.'}
   var ml=v('#i-ml').replace(',','.');ml=ml?parseFloat(ml):null;if(isNaN(ml))ml=null;
   var old=idx>=0?d.items[idx]:ni(['']),p=old.slice();
-  p[0]=v('#i-name');p[1]=pp(v('#i-price'));p[2]=pp(v('#i-old'));p[3]=ml;p[4]=path;p[6]=v('#i-opts');p[7]=v('#i-alias');p[8]=v('#i-g');
-  if(idx>=0)d.items[idx]=p;else d.items.unshift(p);
+  p[0]=v('#i-name');p[1]=pp(v('#i-price'));p[2]=pp(v('#i-old'));p[3]=ml;p[4]=path;p[6]=v('#i-opts');p[7]=v('#i-alias');p[8]=v('#i-g');if(old._productId)p._productId=old._productId;
+  if(idx>=0)d.items[idx]=p;else d.items.unshift(p);if(d.schema_version===2){var pid=ensureProductId(p),master=PRODUCT_BY_ID[String(pid)];if(master&&master.name!==p[0]){master.name=p[0];S.productsDirty=true;S.sellers.forEach(function(ss){ss.data.items.forEach(function(q){if(String(q._productId)===String(pid))q[0]=p[0]})})}}
   mark();closeM();items();toast(warn||'Ürün güncellendi (henüz kaydedilmedi)')}
 function bulkForm(){modal('<h2 style="margin-top:0">Toplu ürün ekle</h2><p class="m">Her satıra bir ürün. Alanları <b>;</b> ile ayır: <br><b>Ad ; fiyat ; hacim(ml) ; kategori ; bağlantı</b><br>Fiyat, hacim, kategori ve bağlantı boş bırakılabilir.</p><textarea id="b-t" style="min-height:160px" placeholder="Aventus ; 899 ; 50 ; Erkek&#10;Layton ; 999 ; 50 ; Erkek"></textarea><div class="acts"><button class="b p" data-a="bulkok">Ekle</button><button class="b" data-a="closem">İptal</button></div>')}
 function bulkOk(){var d=S.sellers[S.cur].data,n=0;$('#b-t').value.split('\n').forEach(function(l){l=l.trim();if(!l)return;var a=l.split(/;|\t/).map(function(x){return x.trim()});if(!a[0])return;
@@ -171,14 +175,15 @@ function sellerForm(){modal('<h2 style="margin-top:0">Yeni satıcı</h2>'+f('n-n
 function sellerOk(){var n=$('#n-name').value.trim(),b=$('#n-base').value.trim().replace(/\/+$/,'');if(!n)return;
   var fn=slug(n)+'.json',all=S.sellers.reduce(function(a,s){return a.concat(s.file,s.extra)},[]).concat(S.gone.map(function(g){return g.split('/').pop()})),k=2,base=fn;
   while(all.indexOf(fn)>=0)fn=base.replace('.json','-'+(k++)+'.json');
-  S.sellers.push({file:fn,extra:[],dirty:true,isNew:true,data:{base:b,name:n,note:'',sizes:'',policy:'',items:[]}});S.dirty=true;S.cur=S.sellers.length-1;S.iq='';S.lim=60;closeM();S.view='seller';render();window.scrollTo(0,0)}
+  S.sellers.push({file:fn,extra:[],dirty:true,isNew:true,data:{base:b,name:n,note:'',sizes:'',policy:'',schema_version:S.man.productsFile?2:undefined,items:[]}});S.dirty=true;S.cur=S.sellers.length-1;S.iq='';S.lim=60;closeM();S.view='seller';render();window.scrollTo(0,0)}
 
 /* ---------- kaydet ---------- */
 function today(){var d=new Date();return d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()}
 function save(){if(S.busy)return;var dir=cfg.dir,ch=[],mf=[];
   S.sellers.forEach(function(s){mf.push(s.file);if(s.dirty){ch.push({path:dir+'/'+s.file,mode:'100644',type:'blob',content:ser(s.data)});s.extra.forEach(function(x){S.gone.push(dir+'/'+x)})}else s.extra.forEach(function(x){mf.push(x)})});
   S.gone.filter(function(g,i,a){return a.indexOf(g)===i}).forEach(function(g){ch.push({path:g,mode:'100644',type:'blob',sha:null})});
-  var man={date:S.setDate?today():S.man.date,files:mf};ch.push({path:dir+'/index.json',mode:'100644',type:'blob',content:JSON.stringify(man,null,1)+'\n'});
+  if(S.productsDirty&&S.man.productsFile)ch.push({path:dir+'/'+S.productsFile,mode:'100644',type:'blob',content:JSON.stringify(S.productsData,null,2)+'\n'});
+  var man=Object.assign({},S.man,{date:S.setDate?today():S.man.date,files:mf});ch.push({path:dir+'/index.json',mode:'100644',type:'blob',content:JSON.stringify(man,null,1)+'\n'});
   S.busy=true;render();
   api(rp('/git/ref/heads/'+encodeURIComponent(cfg.branch))).then(function(r){
     if(r.object.sha!==S.head&&!confirm('Depo, sen veriyi açtıktan sonra değişmiş. Yine de bu değişikliklerle üzerine yazılsın mı? (İptal: önce Yenile)'))throw new Error('İptal edildi');
@@ -193,7 +198,7 @@ function save(){if(S.busy)return;var dir=cfg.dir,ch=[],mf=[];
 var A={
  login:function(){tok=$('#tok').value.trim();cfg.owner=$('#c-owner').value.trim();cfg.repo=$('#c-repo').value.trim();cfg.branch=$('#c-branch').value.trim();cfg.dir=($('#c-dir').value.trim()||'parfumeri/data').replace(/\/+$/,'');
    if(!tok||!cfg.owner||!cfg.repo){S.msg='Hata: anahtar, kullanıcı adı ve depo adı gerekli';render();return}LS.s('op_adm_tok',tok);load()},
- logout:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Çıkılsın mı?'))return;LS.d('op_adm_tok');tok='';S.view='login';S.dirty=false;S.sellers=[];S.msg='';render()},
+ logout:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Çıkılsın mı?'))return;LS.d('op_adm_tok');tok='';S.view='login';S.dirty=false;S.sellers=[];S.productsData=null;PRODUCT_BY_ID={};S.msg='';render()},
  reload:function(){if(S.dirty&&!confirm('Kaydedilmemiş değişiklikler silinecek. Yenilensin mi?'))return;load()},
  discard:function(){if(confirm('Tüm kaydedilmemiş değişiklikler silinsin mi?')){S.view='list';S.cur=null;load()}},
  open:function(b){S.cur=+b.dataset.i;S.iq='';S.lim=60;S.view='seller';render();window.scrollTo(0,0)},
