@@ -442,6 +442,8 @@
       if (!select.options.length) throw new Error("Manifest dosyasında satıcı JSON dosyası bulunamadı.");
       state.textContent = repoConfig.owner + "/" + repoConfig.repo + " · " + repoConfig.branch + " · " + select.options.length + " satıcı dosyası bulundu.";
     } catch (e) {
+      const select = $("repoSeller");
+      if (select.options.length === 1 && select.options[0].text.includes("yükleniyor")) select.options[0].text = "Admin girişi bekleniyor";
       state.textContent = e.message;
       log("GitHub satıcı listesi alınamadı: " + e.message, "err");
     }
