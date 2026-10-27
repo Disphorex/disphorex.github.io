@@ -26,4 +26,7 @@ Eski kategoriler `legacy_categories` ve satıcı kaydındaki `legacy_category` a
 
 ## Sürüm etiketi
 
-Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi altı etkin HTML sayfasında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.4` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
+Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi altı etkin HTML sayfasında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.5` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
+
+
+Pazar filtrelerindeki kategori sayaçları her master ürün ID'sini bir kez sayar; aynı ürünün farklı satıcılardaki teklifleri sonuç listesinde korunur.

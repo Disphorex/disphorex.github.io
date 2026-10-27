@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.4">
+<meta name="app-version" content="1.0.5">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -412,6 +412,7 @@ td small{display:block; color:var(--muted); font-size:14px}
 .pzf-uniq{border-color:var(--accent); font-weight:600}
 .pzf-foot{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font:400 13px var(--f-mono); color:var(--muted)}
 .pzf-foot b{color:var(--ink)}
+.pzf-note{grid-column:1/-1;margin:0;color:var(--muted);font:400 12px/1.45 var(--f-mono)}
 .pzf select{width:100%}
 
 </style>
@@ -1195,17 +1196,20 @@ function pzBrand(name){
 function pzKey(name){ return norm(name).replace(/[^a-z0-9]/g,''); }
 function pzIsSet(p){ return /\b(seti?|deneme|kesif|tester)\b/.test(norm(p[0])); }
 function pzMls(p){ var m={}; pzVars(p).forEach(function(v){ if(v.ml && !v.label) m[v.ml]=1; }); if(p[3]) m[p[3]]=1; return Object.keys(m).map(Number); }
-function pzGen(p){ var g=p[8]; return (g==='Erkek'||g==='Kadın'||g==='Unisex')?g:''; }
-function pzMetaValues(v){return Array.isArray(v)?v:(v?[v]:[]);}
+function pzGen(p){ var g=(p._master&&p._master.gender)||p[8]; return (g==='Erkek'||g==='Kadın'||g==='Unisex')?g:''; }
+function pzMetaValues(v){return Array.from(new Set(Array.isArray(v)?v:(v?[v]:[])));}
 function pzIndex(){
-  var I={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0,seasons:{},times:{},families:{}}, sellersOf={}, bseen={};
+  var I={cnt:{},uniq:0,brands:{},mls:{},gens:{},nogen:0,seasons:{},times:{},families:{}}, sellersOf={}, productSeen={};
   PAZAR2.forEach(function(s){ var sk=pzSk(s); s.items.forEach(function(p){
     var k=pzKey(p[0]); if(!k) return;
     if(!pzIsSet(p)){ (sellersOf[k]=sellersOf[k]||{})[sk]=1; }
-    var b=(p._master&&p._master.brand)||pzBrand(p[0]); if(!bseen[b+'|'+k]){ bseen[b+'|'+k]=1; I.brands[b]=(I.brands[b]||0)+1; }
     pzMls(p).forEach(function(m){ I.mls[m]=(I.mls[m]||0)+1; });
-    var g=pzGen(p); if(g) I.gens[g]=(I.gens[g]||0)+1; else I.nogen++;
-    var m=p._master||{}; pzMetaValues(m.season).forEach(function(v){I.seasons[v]=(I.seasons[v]||0)+1}); pzMetaValues(m.time).forEach(function(v){I.times[v]=(I.times[v]||0)+1}); pzMetaValues(m.category).forEach(function(v){I.families[v]=(I.families[v]||0)+1});
+    var productKey=p._productId!=null?'id:'+p._productId:'name:'+k;
+    if(!productSeen[productKey]){productSeen[productKey]=1;
+      var m=p._master||{},b=m.brand||pzBrand(p[0]); I.brands[b]=(I.brands[b]||0)+1;
+      var g=pzGen(p); if(g) I.gens[g]=(I.gens[g]||0)+1; else I.nogen++;
+      pzMetaValues(m.season).forEach(function(v){I.seasons[v]=(I.seasons[v]||0)+1}); pzMetaValues(m.time).forEach(function(v){I.times[v]=(I.times[v]||0)+1}); pzMetaValues(m.category).forEach(function(v){I.families[v]=(I.families[v]||0)+1});
+    }
   }); });
   Object.keys(sellersOf).forEach(function(k){ var n=Object.keys(sellersOf[k]).length; I.cnt[k]=n; if(n===1) I.uniq++; });
   return I;
@@ -1227,6 +1231,7 @@ function renderPzFilters(){
   var act=(PF.brand?1:0)+(PF.season?1:0)+(PF.time?1:0)+(PF.family?1:0)+Object.keys(PF.ml).length+Object.keys(PF.g).length+(PF.uniq?1:0);
   var SORTS=[['','Varsayılan sıra'],['price-asc','Fiyat: Artan'],['price-desc','Fiyat: Azalan'],['ml-asc','Hacim: Artan'],['ml-desc','Hacim: Azalan']];
   var h='<button type="button" class="pzf-btn" id="pzf-btn" data-pzf="toggle" aria-expanded="'+PF_OPEN+'" aria-controls="pzf-panel"><span>Filtrele</span><small>'+(act?act+' filtre açık':'marka · hacim · cinsiyet')+(PF.sort?' · sıralı':'')+'</small><i>'+(PF_OPEN?'▲':'▼')+'</i></button><div class="pzf" id="pzf-panel"'+(PF_OPEN?'':' hidden')+'><div class="pzf-b">';
+  h+='<p class="pzf-note">Kategori adetleri satıcı tekliflerini değil, tekil master ürünleri sayar. Filtre sonuçlarında ürünlerin tüm satıcı teklifleri listelenir.</p>';
   h+='<label class="field"><span>Sırala:</span><select id="pzf-sort">'+SORTS.map(function(o){ return '<option value="'+o[0]+'"'+(PF.sort===o[0]?' selected':'')+'>'+o[1]+'</option>'; }).join('')+'</select><p class="hint" style="margin:6px 0 0;font-size:13px">Ürünler satıcı bazında gruplanır; sıralama her satıcının kendi listesi içinde yapılır.</p></label>';
   h+='<div><button type="button" class="chip pzf-uniq" data-pzf="uniq" aria-pressed="'+PF.uniq+'">★ Benzersiz ürünler<small>'+I.uniq+'</small></button><p class="hint" style="margin:6px 0 0;font-size:13px">Yalnızca tek satıcıda bulunan kokular. Birden fazla satıcıda olanlar ve deneme setleri listelenmez.</p></div>';
   h+='<label class="field"><span>Marka</span><select id="pzf-brand"><option value="">Tüm markalar</option>'+bl.map(function(b){ return '<option value="'+esc(b)+'"'+(PF.brand===b?' selected':'')+'>'+esc(b)+' ('+I.brands[b]+')</option>'; }).join('')+'</select></label>';
@@ -2358,5 +2363,5 @@ connectDb();
 })();
 </script>
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.4</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.5</footer>
 </body></html>
