@@ -35,7 +35,7 @@ Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` met
 Pazar filtrelerindeki kategori sayaçları her master ürün ID'sini bir kez sayar; aynı ürünün farklı satıcılardaki teklifleri sonuç listesinde korunur.
 
 
-`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. Her sürümden önce canlı durum `backup/v…` dalında saklanır. v1.0.8 ana sayfa yenilemesi geri alınıp önceki görünüm v1.0.9 olarak yayımlandı. v1.0.11 satıcı fiyat aracını admin paneline ekler.
+`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. Her sürümden önce canlı durum `backup/v…` dalında saklanır. v1.0.8 ana sayfa yenilemesi geri alınıp önceki görünüm v1.0.9 olarak yayımlandı. v1.0.10 satıcı fiyat aracını admin paneline ekler; v1.0.11 fiyat aracındaki adım göstergesini düzeltir.
 
 
 Geri dönüş noktaları `backup/v1.0.7`, `backup/v1.0.9` ve `backup/v1.0.10` dallarıdır.
