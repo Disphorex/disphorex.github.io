@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="app-version" content="1.0.5">
+<html lang="tr"><head><meta charset="utf-8"><meta name="app-version" content="1.0.6">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <title>Pazar yönetimi</title>
@@ -129,7 +129,7 @@ function vLogin(){return '<main class="w"><h1>Pazar yönetimi</h1><p class="m">S
 function vList(){var q=S.q.toLowerCase(),n=0;
   var rows=S.sellers.map(function(s,i){var t=sname(s);if(q&&t.toLowerCase().indexOf(q)<0)return '';n++;
     return '<button class="row" data-a="open" data-i="'+i+'"><span>'+esc(t)+'<small>'+esc(host(s.data.base)||'site adresi yok')+'</small></span><span class="r">'+s.data.items.length+' ürün'+(s.dirty?'<small class="ok">değişti</small>':'')+'</span></button>'}).join('');
-  return '<div class="top"><span><b>Pazar</b> · <a href="olfactus.html" style="color:var(--acc);text-decoration:none">Olfactus →</a> · <a href="../parfum-veri-editoru.html" style="color:var(--acc);text-decoration:none">Veri editörü ↗</a></span><span><button class="b s" data-a="wix">Wix · canlı düzenleme</button> <button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
+  return '<div class="top"><span><b>Pazar</b> · <a href="olfactus.html" style="color:var(--acc);text-decoration:none">Olfactus →</a> · <a href="../parfum-veri-editoru.html" style="color:var(--acc);text-decoration:none">Veri editörü ↗</a> · <a href="metadata-ai.html" style="color:var(--acc);text-decoration:none">AI metadata ↗</a></span><span><button class="b s" data-a="wix">Wix · canlı düzenleme</button> <button class="b s" data-a="reload">Yenile</button> <button class="b s" data-a="logout">Çıkış</button></span></div><main class="w">'+
   (S.msg?'<p class="'+(S.msg.indexOf('Hata')===0?'err':'m')+'">'+esc(S.msg)+'</p>':'')+
   '<label>Satıcı ara<input id="sq" value="'+esc(S.q)+'" placeholder="satıcı adı"></label><h2>Satıcılar ('+S.sellers.length+')</h2>'+rows+
   '<button class="row nw" data-a="newseller">+ Satıcı ekle</button>'+
@@ -318,5 +318,5 @@ document.addEventListener('input',function(e){var t=e.target;
 window.addEventListener('beforeunload',function(e){if(S.dirty){e.preventDefault();e.returnValue=''}});
 if(tok&&cfg.owner&&cfg.repo)load();else{S.view='login';render()}
 })();
-</script><footer class="app-version" aria-label="Uygulama sürümü">v1.0.5</footer>
+</script><footer class="app-version" aria-label="Uygulama sürümü">v1.0.6</footer>
 </body></html>

@@ -6,7 +6,7 @@
 - `parfumeri/data/` : Pazar sekmesinin satıcı verileri
 
 ## Yönetim paneli
-`/admin/` adresinden (ör. `siteadresi/admin/`) GitHub erişim anahtarıyla girilir; satıcı ve ürün ekleme / silme / düzenleme yapılıp tek tuşla depoya kaydedilir. Anahtar: Fine-grained token, yalnızca bu depo, *Contents: Read and write*.
+`/admin/` adresinden (ör. `siteadresi/admin/`) GitHub erişim anahtarıyla girilir. Pazar panelindeki “AI metadata” bağlantısı Gemini, Groq veya OpenAI destekli metadata aracını açar. Aracı aynı tarayıcıda admin token’ı varken kullanarak `products.json` dosyasını depodan okuyabilir ve onay sonrasında doğrudan aynı dosyaya commit edebilirsin; yerel JSON yükleme ve indirme de yedek akış olarak kalır; satıcı ve ürün ekleme / silme / düzenleme yapılıp tek tuşla depoya kaydedilir. Anahtar: Fine-grained token, yalnızca bu depo, *Contents: Read and write*.
 
 ## Veri Editörü
 
@@ -26,7 +26,10 @@ Eski kategoriler `legacy_categories` ve satıcı kaydındaki `legacy_category` a
 
 ## Sürüm etiketi
 
-Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi altı etkin HTML sayfasında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.5` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
+Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi etkin HTML sayfalarında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.6` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
 
 
 Pazar filtrelerindeki kategori sayaçları her master ürün ID'sini bir kez sayar; aynı ürünün farklı satıcılardaki teklifleri sonuç listesinde korunur.
+
+
+`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. v1.0.6 yayımlaması GitHub’da `v1.0.6` etiketiyle Release olarak işaretlenir.

@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="app-version" content="1.0.6">
+<title>AI Parfüm Metadata Aracı</title>
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --primary: #1a73e8;
+    --primary-dark: #1557b0;
+    --success: #0d904f;
+    --danger: #d93025;
+    --warning: #f9ab00;
+    --text: #202124;
+    --muted: #5f6368;
+    --border: #dadce0;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.4rem; margin-bottom: 4px; }
+  .app-head { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+  .back-link { color:var(--primary); text-decoration:none; border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:.85rem; white-space:nowrap; }
+  .repo-status { font-size:.85rem; color:var(--muted); align-self:center; }
+  .app-version { display:block; position:static; width:max-content; margin:14px 0 8px auto; color:#526056; background:#fff; border:1px solid rgba(95,112,100,.28); border-radius:12px; padding:2px 7px; font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.02em; }
+  .subtitle { color: var(--muted); font-size: .9rem; margin-bottom: 18px; }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .step-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-num {
+    background: var(--primary);
+    color: #fff;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .85rem;
+  }
+  label { display: block; font-size: .9rem; font-weight: 500; margin-bottom: 4px; }
+  input[type="text"], input[type="password"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: .95rem;
+    margin-bottom: 12px;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); border-color: transparent; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .row > * { flex: 1 1 140px; }
+  .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .checkbox-row input { width: auto; margin: 0; }
+  button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: .95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  button:hover:not(:disabled) { background: var(--primary-dark); }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  button.secondary { background: #5f6368; }
+  button.secondary:hover:not(:disabled) { background: #3c4043; }
+  button.success { background: var(--success); }
+  button.danger { background: var(--danger); }
+  button.warning { background: var(--warning); color: #202124; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 28px 16px;
+    text-align: center;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .drop-zone.dragover { border-color: var(--primary); background: #e8f0fe; }
+  .drop-zone.has-file { border-color: var(--success); background: #e6f4ea; color: var(--success); }
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+  .stat {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 120px;
+    text-align: center;
+  }
+  .stat strong { display: block; font-size: 1.3rem; }
+  .stat span { font-size: .8rem; color: var(--muted); }
+  .progress-bar-wrap {
+    height: 10px;
+    background: #e8eaed;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width .3s;
+  }
+  .log {
+    background: #202124;
+    color: #e8eaed;
+    font-family: "SF Mono", "Consolas", "Liberation Mono", monospace;
+    font-size: .8rem;
+    padding: 12px;
+    border-radius: 8px;
+    height: 260px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .log .info { color: #8ab4f8; }
+  .log .ok { color: #81c995; }
+  .log .warn { color: #fdd663; }
+  .log .err { color: #f28b82; }
+  .preview-table-wrap { max-height: 320px; overflow: auto; margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; }
+  th { background: #f1f3f4; position: sticky; top: 0; }
+  .warning-box {
+    background: #fef7e0;
+    border: 1px solid #f9ab00;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: .85rem;
+    margin-bottom: 12px;
+  }
+  .error-box {
+    background: #fce8e6;
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: .9rem;
+    color: var(--danger);
+    margin-top: 10px;
+    display: none;
+  }
+  .hidden { display: none !important; }
+  .counters { display: flex; flex-wrap: wrap; gap: 10px; font-size: .9rem; margin: 8px 0; }
+  .counters span { background: #e8f0fe; padding: 4px 10px; border-radius: 20px; }
+  #modelSelect { margin-bottom: 8px; }
+  .resume-banner {
+    background: #e8f0fe;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    display: none;
+  }
+  @media (max-width: 600px) {
+    body { padding: 8px; }
+    h1 { font-size: 1.2rem; }
+    .card { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="app-head"><h1>AI Parfüm Metadata Aracı</h1><a class="back-link" href="index.html">← Admin ana sayfası</a></div>
+  <p class="subtitle">Gemini, Groq veya OpenAI ile ürün metadata’sı önerir. Sonuçları kontrol edip master kataloğa kaydedebilirsiniz.</p>
+
+  <div class="warning-box">
+    <strong>Güvenlik:</strong> API anahtarı seçtiğiniz sağlayıcıya doğrudan gönderilir. Anahtar sayfa loguna veya ürün dosyasına yazılmaz; saklama seçeneği yalnızca bu tarayıcıdaki localStorage’ı kullanır. GitHub kaydı için admin paneli token’ı gerekir.
+  </div>
+
+  <!-- ADIM 1 -->
+  <div class="card" id="step1">
+    <div class="step-title"><span class="step-num">1</span> Ürün kataloğu</div>
+    <div class="btn-group" style="margin:0 0 10px"><button type="button" id="btnLoadRepo" class="success">GitHub’dan products.json yükle</button><span id="repoState" class="repo-status">Admin token’ı aynı tarayıcıda kayıtlıysa otomatik yüklenir.</span></div>
+    <div class="drop-zone" id="dropZone">
+      <p><strong>Yerel JSON yedeği</strong> seçmek istersen dosyayı buraya sürükle veya tıkla</p>
+      <p style="font-size:.85rem;margin-top:6px">Normal kullanımda GitHub’dan yükle düğmesi ürün dosyasını doğrudan açar.</p>
+      <input type="file" id="fileInput" accept=".json,application/json" class="hidden">
+    </div>
+    <div class="error-box" id="fileError"></div>
+    <div id="fileInfo" class="hidden">
+      <div class="stats">
+        <div class="stat"><strong id="statTotal">0</strong><span>Toplam ürün</span></div>
+        <div class="stat"><strong id="statMissing">0</strong><span>Eksik metadata</span></div>
+        <div class="stat"><strong id="statFilled">0</strong><span>Dolu ürün</span></div>
+      </div>
+      <div style="margin-top:12px">
+        <label>Ürün adı alanı</label>
+        <select id="nameFieldSelect"></select>
+      </div>
+      <p id="fileNameLabel" style="font-size:.85rem;color:var(--muted);margin-top:6px"></p>
+    </div>
+  </div>
+
+  <!-- ADIM 2 -->
+  <div class="card" id="step2">
+    <div class="step-title"><span class="step-num">2</span> Ayarlar</div>
+    <label>Sağlayıcı (API)</label>
+    <select id="providerSelect">
+      <option value="gemini">Google Gemini</option>
+      <option value="groq">Groq (hızlı, genelde ücretsiz kota)</option>
+      <option value="openai">OpenAI</option>
+    </select>
+    <label id="apiKeyLabel">API Anahtarı</label>
+    <input type="password" id="apiKey" placeholder="API anahtarı" autocomplete="off">
+    <p id="providerHint" style="font-size:.8rem;color:var(--muted);margin:-6px 0 10px">Gemini: aistudio.google.com/apikey</p>
+    <div class="checkbox-row">
+      <input type="checkbox" id="rememberKey">
+      <label for="rememberKey" style="margin:0">Tarayıcıda hatırla (localStorage)</label>
+    </div>
+    <div class="row">
+      <div>
+        <label>Grup (batch) boyutu</label>
+        <input type="number" id="batchSize" value="8" min="1" max="50">
+      </div>
+      <div>
+        <label>Aynı anda istek sayısı</label>
+        <input type="number" id="concurrency" value="2" min="1" max="20">
+      </div>
+      <div>
+        <label>İstekler arası min. bekleme (sn)</label>
+        <input type="number" id="minDelay" value="8" min="0" max="60" step="0.5">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Sadece ilk N ürünü işle (0 = hepsi)</label>
+        <input type="number" id="limitN" value="0" min="0">
+      </div>
+      <div>
+        <label>Model</label>
+        <select id="modelSelect">
+          <option value="auto">Otomatik</option>
+        </select>
+        <div class="btn-group">
+          <button type="button" class="secondary" id="btnListModels" style="padding:6px 12px;font-size:.85rem">Modelleri listele</button>
+        </div>
+        <input type="text" id="customModel" placeholder="veya model adını elle yaz" style="margin-top:6px">
+      </div>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="overwrite">
+      <label for="overwrite" style="margin:0">Dolu alanların üzerine de yaz</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="previewMode" checked>
+      <label for="previewMode" style="margin:0">Önizleme modu (sonuçları dosyaya uygulama, sadece göster)</label>
+    </div>
+  </div>
+
+  <!-- ADIM 3 -->
+  <div class="card" id="step3">
+    <div class="step-title"><span class="step-num">3</span> Çalıştır</div>
+    <div class="resume-banner" id="resumeBanner">
+      <strong>Kayıtlı ilerleme bulundu.</strong>
+      <span id="resumeInfo"></span>
+      <div class="btn-group">
+        <button type="button" id="btnResume" class="success">Kaldığın yerden devam et</button>
+        <button type="button" id="btnDiscardResume" class="secondary">Yeni baştan başla</button>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button type="button" id="btnStart">Başlat</button>
+      <button type="button" id="btnPause" class="secondary" disabled>Duraklat</button>
+      <button type="button" id="btnStop" class="danger" disabled>Durdur</button>
+      <button type="button" id="btnFake" class="warning">Sahte API ile test et</button>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="counters">
+      <span>Grup: <strong id="cntBatches">0/0</strong></span>
+      <span>Ürün: <strong id="cntProducts">0/0</strong></span>
+      <span>Doldurulan: <strong id="cntFilled">0</strong></span>
+      <span>Başarısız: <strong id="cntFailed">0</strong></span>
+      <span>Model: <strong id="cntModel">-</strong></span>
+    </div>
+    <div class="log" id="log"></div>
+    <div id="downloadArea" class="btn-group hidden" style="margin-top:14px">
+      <button type="button" id="btnApplyPreview" class="warning hidden">Önizlemeyi çalışma kopyasına uygula</button>
+      <button type="button" id="btnSaveRepo" class="success hidden">Metadata’yı GitHub’a kaydet</button>
+      <button type="button" id="btnDownload" class="success">Güncellenmiş products.json’u indir</button>
+      <button type="button" id="btnDownloadOrig" class="secondary">Orijinal dosyanın yedeğini indir</button>
+      <button type="button" id="btnDownloadFailed" class="secondary hidden">Başarısız ürünleri indir</button>
+      <button type="button" id="btnSaveOver" class="secondary hidden">Dosyanın üzerine kaydet</button>
+    </div>
+    <div id="previewArea" class="hidden">
+      <h3 style="margin:14px 0 8px;font-size:1rem">Önizleme sonuçları</h3>
+      <div class="preview-table-wrap">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Ad</th><th>Brand</th><th>Gender</th><th>Season</th><th>Time</th><th>Category</th></tr>
+          </thead>
+          <tbody id="previewBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- sabitler ----------
+  const SYSTEM_PROMPT_BASE = `Sen deneyimli bir parfüm uzmanısın. Sana parfüm isimlerinin listesi verilecek; her biri için metadata üret. KESİN ŞEMA KURALLARI: 1) 'id': verilen id'yi AYNEN geri ver; id uydurma, ürün atlama veya tekrarlama. 2) 'brand': resmi marka/ev adı (string). 3) 'gender': tek string; yalnızca Kadın, Erkek veya Unisex. 4) 'season': dizi; yalnızca İlkbahar, Yaz, Sonbahar, Kış; 1–4 değer. 5) 'time': dizi; yalnızca Gündüz, Gece; 1–2 değer. 6) 'category': dizi; yalnızca Floral, Soft Floral, Floral Amber, Amber, Soft Amber, Amber Woody, Woody, Woods, Mossy Woods, Dry Woods, Fresh, Citrus, Water, Green, Fruity değerlerinden 1–4 uygun olanı seç. 7) season, time, category tek değer olsa bile dizi olmalı. 8) Ürüne uygun sınıflandırma yap; gereksiz değer ekleme. Emin olmadığında en makul tahmini ver. Yalnızca istenen JSON’u döndür; açıklama veya Markdown ekleme.`;
+  const SYSTEM_PROMPT_GEMINI = SYSTEM_PROMPT_BASE + ` ÇIKTI: yalnızca geçerli JSON; kök bir DİZİ olmalı: [{"id": 24, "brand": "Memo Paris", "gender": "Unisex", "season": ["İlkbahar"], "time": ["Gündüz", "Gece"], "category": ["Fresh", "Citrus"]}]`;
+  const SYSTEM_PROMPT_OPENAI = SYSTEM_PROMPT_BASE + ` ÇIKTI: yalnızca geçerli JSON nesnesi; kök tam olarak şöyle olmalı: {"products":[{"id": 24, "brand": "Memo Paris", "gender": "Unisex", "season": ["İlkbahar"], "time": ["Gündüz", "Gece"], "category": ["Fresh", "Citrus"]}]}`;
+
+  const PROVIDER_MODELS = {
+    gemini: ["gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"],
+    groq: ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "openai/gpt-oss-20b", "moonshotai/kimi-k2-instruct", "gemma2-9b-it"],
+    openai: ["gpt-4o-mini", "gpt-4.1-mini", "gpt-4o", "gpt-4.1"]
+  };
+
+  const VALID_GENDER = new Set(["Kadın", "Erkek", "Unisex"]);
+  const VALID_SEASON = new Set(["İlkbahar", "Yaz", "Sonbahar", "Kış"]);
+  const VALID_TIME = new Set(["Gündüz", "Gece"]);
+  const VALID_CATEGORY = new Set(["Floral", "Soft Floral", "Floral Amber", "Amber", "Soft Amber", "Amber Woody", "Woody", "Woods", "Mossy Woods", "Dry Woods", "Fresh", "Citrus", "Water", "Green", "Fruity"]);
+  const SEASON_MAP = { "ilkbahar": "İlkbahar", "yaz": "Yaz", "sonbahar": "Sonbahar", "kış": "Kış", "kis": "Kış", "spring": "İlkbahar", "summer": "Yaz", "autumn": "Sonbahar", "fall": "Sonbahar", "winter": "Kış" };
+  const TIME_MAP = { "gündüz": "Gündüz", "gunduz": "Gündüz", "gece": "Gece", "day": "Gündüz", "night": "Gece", "daytime": "Gündüz", "nighttime": "Gece" };
+  const GENDER_MAP = { "kadın": "Kadın", "kadin": "Kadın", "erkek": "Erkek", "unisex": "Unisex", "women": "Kadın", "woman": "Kadın", "men": "Erkek", "man": "Erkek", "female": "Kadın", "male": "Erkek" };
+  const NAME_CANDIDATES = ["name", "title", "product", "ad", "isim", "ürün", "urun"];
+  const PROGRESS_KEY = "perfumeMetaProgress_v1";
+  const KEY_STORAGE = "perfumeMetaApiKey";
+  const REMEMBER_KEY = "perfumeMetaRememberKey";
+
+  // ---------- durum ----------
+  let originalStructure = null; // "array" | "object"
+  let originalRoot = null;
+  let products = [];            // çalışma kopyası
+  let originalProducts = null;  // derin kopya (yedek)
+  let fileName = "products.json";
+  let nameField = null;
+  let fileHandle = null;        // File System Access API
+  let loadedFromRepo = false;
+  let repoConfig = null;
+  let repoBaseBranchSha = "";
+  let repoFileSha = "";
+  let isRunning = false;
+  let isPaused = false;
+  let stopRequested = false;
+  let useFakeApi = false;
+  let currentModel = null;
+  let modelsList = [];
+  let unavailableModels = new Set();
+  let dailyQuotaModels = new Set();
+  let thinkingConfigUnsupported = false;
+  let lastRequestStart = 0;
+  let abortControllers = new Set();
+  let failedItems = [];         // {id, name, reason}
+  let filledCount = 0;
+  let processedCount = 0;
+  let totalToProcess = 0;
+  let batchesDone = 0;
+  let totalBatches = 0;
+  let previewRows = [];
+  let progressSnapshot = null;
+
+  // ---------- DOM ----------
+  const $ = (id) => document.getElementById(id);
+  const dropZone = $("dropZone");
+  const fileInput = $("fileInput");
+  const fileError = $("fileError");
+  const fileInfo = $("fileInfo");
+  const nameFieldSelect = $("nameFieldSelect");
+  const logEl = $("log");
+  const progressBar = $("progressBar");
+
+  // ---------- yardımcılar ----------
+  function esc(s) {
+    if (s == null) return "";
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function log(msg, type = "info") {
+    const t = new Date().toLocaleTimeString("tr-TR");
+    const line = document.createElement("div");
+    line.className = type;
+    line.textContent = `[${t}] ${msg}`;
+    logEl.appendChild(line);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+  function sleep(ms) {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+  function deepClone(o) {
+    return JSON.parse(JSON.stringify(o));
+  }
+
+  // ---------- metadata kontrolü ----------
+  function isValidBrand(v) {
+    return typeof v === "string" && v.trim().length > 0;
+  }
+  function isValidGender(v) {
+    return typeof v === "string" && VALID_GENDER.has(v);
+  }
+  function normalizeGender(v) {
+    if (Array.isArray(v) && v.length === 1) v = v[0];
+    if (typeof v !== "string") return null;
+    const t = v.trim();
+    if (VALID_GENDER.has(t)) return t;
+    return GENDER_MAP[t.toLocaleLowerCase("tr-TR")] || null;
+  }
+  function normalizeSeasonArr(arr) {
+    if (!Array.isArray(arr)) {
+      if (typeof arr === "string") arr = [arr];
+      else return null;
+    }
+    const out = [];
+    const seen = new Set();
+    for (const x of arr) {
+      if (typeof x !== "string") continue;
+      let c = VALID_SEASON.has(x) ? x : SEASON_MAP[x.trim().toLocaleLowerCase("tr-TR")];
+      if (c && !seen.has(c)) { seen.add(c); out.push(c); }
+    }
+    if (out.length < 1 || out.length > 4) return null;
+    return out;
+  }
+  function normalizeTimeArr(arr) {
+    if (!Array.isArray(arr)) {
+      if (typeof arr === "string") arr = [arr];
+      else return null;
+    }
+    const out = [];
+    const seen = new Set();
+    for (const x of arr) {
+      if (typeof x !== "string") continue;
+      let c = VALID_TIME.has(x) ? x : TIME_MAP[x.trim().toLocaleLowerCase("tr-TR")];
+      if (c && !seen.has(c)) { seen.add(c); out.push(c); }
+    }
+    if (out.length < 1 || out.length > 4) return null;
+    return out;
+  }
+  function normalizeCategoryArr(arr) {
+    if (!Array.isArray(arr)) {
+      if (typeof arr === "string" && arr.trim()) arr = [arr.trim()];
+      else return null;
+    }
+    const out = [];
+    const seen = new Set();
+    for (const x of arr) {
+      if (typeof x !== "string") continue;
+      const t = x.trim();
+      if (!t) continue;
+      const key = t.toLocaleLowerCase("tr-TR");
+      const canonical = [...VALID_CATEGORY].find(v => v.toLocaleLowerCase("tr-TR") === key);
+      if (canonical && !seen.has(key)) { seen.add(key); out.push(canonical); }
+    }
+    if (out.length < 1 || out.length > 4) return null;
+    return out;
+  }
+  function isMissingMeta(p, overwrite) {
+    if (overwrite) return true;
+    if (!isValidBrand(p.brand)) return true;
+    if (!isValidGender(p.gender)) return true;
+    if (!normalizeSeasonArr(p.season)) return true;
+    if (!normalizeTimeArr(p.time)) return true;
+    if (!normalizeCategoryArr(p.category)) return true;
+    return false;
+  }
+  function getProductName(p) {
+    if (!nameField) return "";
+    const v = p[nameField];
+    return v == null ? "" : String(v);
+  }
+
+  // ---------- dosya yükleme ----------
+  function showFileError(msg) {
+    fileError.textContent = msg;
+    fileError.style.display = "block";
+  }
+  function clearFileError() {
+    fileError.style.display = "none";
+    fileError.textContent = "";
+  }
+
+  function detectNameField(sample) {
+    if (!sample || typeof sample !== "object") return null;
+    for (const c of NAME_CANDIDATES) {
+      if (Object.prototype.hasOwnProperty.call(sample, c) && sample[c] != null && String(sample[c]).trim() !== "") return c;
+    }
+    // yedek: id olmayan, string ve makul uzunlukta ilk alan
+    for (const k of Object.keys(sample)) {
+      if (k === "id") continue;
+      const v = sample[k];
+      if (typeof v === "string" && v.trim().length >= 2 && v.trim().length < 200) return k;
+    }
+    return null;
+  }
+
+  function processLoadedData(data, name, source) {
+    clearFileError();
+    let arr;
+    if (Array.isArray(data)) {
+      originalStructure = "array";
+      arr = data;
+    } else if (data && typeof data === "object" && Array.isArray(data.products)) {
+      originalStructure = "object";
+      arr = data.products;
+    } else {
+      showFileError("Dosya formatı tanınmadı. Kök dizi […] veya { \"products\": […] } olmalı.");
+      return;
+    }
+    if (arr.length === 0) {
+      showFileError("Ürün listesi boş.");
+      return;
+    }
+    // id kontrolü
+    const ids = new Set();
+    for (let i = 0; i < arr.length; i++) {
+      const p = arr[i];
+      if (p == null || typeof p !== "object") {
+        showFileError(`Ürün #${i} nesne değil.`);
+        return;
+      }
+      if (p.id === undefined || p.id === null || p.id === "") {
+        showFileError(`Ürün #${i} için "id" alanı eksik.`);
+        return;
+      }
+      const idKey = String(p.id);
+      if (ids.has(idKey)) {
+        showFileError(`Tekrarlayan id bulundu: ${p.id}`);
+        return;
+      }
+      ids.add(idKey);
+    }
+    originalRoot = Array.isArray(data) ? null : deepClone(data);
+    loadedFromRepo = source === "repo";
+    products = deepClone(arr);
+    originalProducts = deepClone(arr);
+    fileName = name || "products.json";
+    $("fileNameLabel").textContent = "Yüklenen: " + fileName;
+
+    // name field
+    const detected = detectNameField(products[0]);
+    nameFieldSelect.innerHTML = "";
+    const keys = Object.keys(products[0] || {});
+    keys.forEach((k) => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.textContent = k;
+      if (k === detected) opt.selected = true;
+      nameFieldSelect.appendChild(opt);
+    });
+    if (!detected) {
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "— ad alanı seçin —";
+      opt.selected = true;
+      nameFieldSelect.insertBefore(opt, nameFieldSelect.firstChild);
+    }
+    nameField = nameFieldSelect.value || null;
+    if (!nameField && keys.length) {
+      // son çare: ilk alanı seç
+      nameFieldSelect.selectedIndex = detected ? [...nameFieldSelect.options].findIndex(o => o.value === detected) : (nameFieldSelect.options[0].value === "" ? 1 : 0);
+      nameField = nameFieldSelect.value || null;
+    }
+    nameFieldSelect.onchange = () => { nameField = nameFieldSelect.value || null; updateStats(); };
+    log("Ad alanı: " + (nameField || "(seçilmedi)"), nameField ? "ok" : "warn");
+
+    updateStats();
+    updateRepoActions();
+    fileInfo.classList.remove("hidden");
+    dropZone.classList.add("has-file");
+    dropZone.querySelector("p").innerHTML = "<strong>Dosya yüklendi</strong> — başka dosya için tıkla veya sürükle";
+    checkResume();
+    log("Dosya yüklendi: " + fileName + " (" + products.length + " ürün)", "ok");
+  }
+
+  function getRepoSettings() {
+    try {
+      const c = JSON.parse(localStorage.getItem("op_adm_cfg") || "{}");
+      const owner = c.owner || location.hostname.split(".")[0];
+      const repo = c.repo || (location.hostname.endsWith(".github.io") ? owner + ".github.io" : "");
+      return { owner, repo, branch: c.branch || "main", dir: (c.dir || "parfumeri/data").replace(/^\/+|\/+$/g, "") };
+    } catch (_) { return null; }
+  }
+  function ghHeaders() {
+    const token = localStorage.getItem("op_adm_tok");
+    if (!token) throw new Error("Admin panelinde GitHub token’ı yok. Önce admin paneline giriş yapın.");
+    return { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json" };
+  }
+  async function ghRequest(path, options) {
+    const res = await fetch("https://api.github.com" + path, Object.assign({ headers: ghHeaders(), cache: "no-store" }, options || {}));
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error("GitHub " + res.status + ": " + (body.message || res.statusText));
+    return body;
+  }
+  function repoPath() {
+    if (!repoConfig || !repoConfig.owner || !repoConfig.repo) throw new Error("Depo ayarları bulunamadı; admin panelinde depo bilgilerini kontrol edin.");
+    return "/repos/" + encodeURIComponent(repoConfig.owner) + "/" + encodeURIComponent(repoConfig.repo);
+  }
+  function updateRepoActions() {
+    const save = $("btnSaveRepo"), apply = $("btnApplyPreview");
+    if (!save || !apply) return;
+    save.classList.toggle("hidden", !loadedFromRepo || !products.length);
+    apply.classList.toggle("hidden", !previewRows.length);
+  }
+  async function loadFromRepo() {
+    const state = $("repoState");
+    try {
+      repoConfig = getRepoSettings();
+      if (!repoConfig || !localStorage.getItem("op_adm_tok")) throw new Error("Önce aynı tarayıcıda admin paneline giriş yapın.");
+      state.textContent = "Depodan okunuyor…";
+      const base = repoPath();
+      const ref = await ghRequest(base + "/git/ref/heads/" + encodeURIComponent(repoConfig.branch));
+      repoBaseBranchSha = ref.object.sha;
+      const file = await ghRequest(base + "/contents/" + repoConfig.dir.split("/").map(encodeURIComponent).join("/") + "/products.json?ref=" + encodeURIComponent(repoConfig.branch));
+      repoFileSha = file.sha;
+      const text = decodeURIComponent(escape(atob(file.content.replace(/\s/g, ""))));
+      processLoadedData(JSON.parse(text), "products.json", "repo");
+      state.textContent = repoConfig.owner + "/" + repoConfig.repo + " · " + repoConfig.branch + " dalından okundu. Kaydetmeden önce ayrıca onay istenir.";
+    } catch (e) { state.textContent = e.message; showFileError(e.message); }
+  }
+  $("btnLoadRepo").addEventListener("click", loadFromRepo);
+  $("btnSaveRepo").addEventListener("click", async () => {
+    try {
+      if (!loadedFromRepo || !repoFileSha) throw new Error("Önce products.json dosyasını GitHub’dan yükleyin.");
+      if ($("previewMode").checked && previewRows.length) throw new Error("Önce önizlemeyi çalışma kopyasına uygulayın.");
+      const changed = products.filter((p, i) => JSON.stringify(p) !== JSON.stringify(originalProducts[i])).length;
+      if (!changed) { log("Kaydedilecek metadata değişikliği yok.", "info"); return; }
+      if (!confirm("products.json dosyasında " + changed + " ürün değişecek. Bu işlem GitHub’da commit oluşturup canlı veriyi günceller. Devam edilsin mi?")) return;
+      const base = repoPath();
+      const ref = await ghRequest(base + "/git/ref/heads/" + encodeURIComponent(repoConfig.branch));
+      if (ref.object.sha !== repoBaseBranchSha) throw new Error("Depo siz dosyayı açtıktan sonra değişmiş. Değişiklikleri korumak için yeniden yükleyip işlemi tekrarlayın.");
+      const payload = JSON.stringify(buildOutputJson(), null, 2) + "\n";
+      const encoded = btoa(unescape(encodeURIComponent(payload)));
+      const result = await ghRequest(base + "/contents/" + repoConfig.dir.split("/").map(encodeURIComponent).join("/") + "/products.json", { method: "PUT", body: JSON.stringify({ message: "Ürün metadata güncellemesi", content: encoded, sha: repoFileSha, branch: repoConfig.branch }) });
+      repoFileSha = result.content.sha;
+      repoBaseBranchSha = result.commit.sha;
+      originalProducts = deepClone(products);
+      originalRoot = deepClone(buildOutputJson());
+      log(changed + " ürün metadata’sı GitHub’a kaydedildi. Commit: " + result.commit.sha.slice(0, 7), "ok");
+      $("repoState").textContent = "Kaydedildi · commit " + result.commit.sha.slice(0, 7);
+    } catch (e) { log("GitHub’a kaydedilemedi: " + e.message, "err"); $("repoState").textContent = e.message; }
+  });
+  $("btnApplyPreview").addEventListener("click", () => {
+    if (!previewRows.length) return;
+    const overwrite = $("overwrite").checked;
+      const byId = new Map(previewRows.map(r => [String(r.id), r]));
+    products = products.map(p => {
+      const r = byId.get(String(p.id));
+      if (!r || (!overwrite && !isMissingMeta(p, false))) return p;
+      return Object.assign({}, p, { brand: r.brand, gender: r.gender, season: String(r.season).split(/,\s*/), time: String(r.time).split(/,\s*/), category: String(r.category).split(/,\s*/) });
+    });
+    previewRows = [];
+    $("previewMode").checked = false;
+    updateStats(); updateRepoActions(); saveProgress();
+    log("Önizleme çalışma kopyasına uygulandı. GitHub’a yazılmadı; kaydet düğmesini ayrıca kullanın.", "ok");
+  });
+
+  function updateStats() {
+    const overwrite = $("overwrite").checked;
+    let missing = 0;
+    for (const p of products) {
+      if (isMissingMeta(p, overwrite)) missing++;
+    }
+    $("statTotal").textContent = products.length;
+    $("statMissing").textContent = missing;
+    $("statFilled").textContent = products.length - missing;
+  }
+
+  async function handleFile(file) {
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      processLoadedData(data, file.name);
+    } catch (e) {
+      showFileError("JSON okunamadı: " + (e.message || e));
+    }
+  }
+
+  dropZone.addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files[0]) handleFile(fileInput.files[0]);
+  });
+  dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("dragover"); });
+  dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+  dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.classList.remove("dragover");
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
+  // File System Access API (üzerine kaydet)
+  if (window.showOpenFilePicker) {
+    // opsiyonel: kullanıcı isterse handle tutabiliriz; şimdilik indirme yeterli
+  }
+
+  // ---------- ayarlar / anahtar / sağlayıcı ----------
+  function getProvider() {
+    return ($("providerSelect") && $("providerSelect").value) || "gemini";
+  }
+  function keyStorageFor(p) {
+    return KEY_STORAGE + "_" + p;
+  }
+  function loadSavedKey() {
+    if (localStorage.getItem(REMEMBER_KEY) === "1") {
+      $("rememberKey").checked = true;
+    }
+    const p = getProvider();
+    const k = localStorage.getItem(keyStorageFor(p)) || (p === "gemini" ? localStorage.getItem(KEY_STORAGE) : null);
+    if ($("rememberKey").checked && k) $("apiKey").value = k;
+    else if (!$("rememberKey").checked) $("apiKey").value = "";
+  }
+  function saveKeyIfNeeded() {
+    if ($("rememberKey").checked) {
+      localStorage.setItem(REMEMBER_KEY, "1");
+      localStorage.setItem(keyStorageFor(getProvider()), $("apiKey").value);
+    }
+  }
+  function applyProviderUI() {
+    const p = getProvider();
+    unavailableModels.clear();
+    dailyQuotaModels.clear();
+    modelsList = (PROVIDER_MODELS[p] || []).slice();
+    fillModelSelect();
+    $("modelSelect").value = "auto";
+    $("customModel").value = "";
+    if (p === "gemini") {
+      $("apiKeyLabel").textContent = "Gemini API Anahtarı";
+      $("apiKey").placeholder = "AIza...";
+      $("providerHint").textContent = "Ücretsiz: aistudio.google.com/apikey — yavaş kota olabilir.";
+      $("btnListModels").style.display = "";
+      $("batchSize").value = "8";
+      $("concurrency").value = "2";
+      $("minDelay").value = "8";
+    } else if (p === "groq") {
+      $("apiKeyLabel").textContent = "Groq API Anahtarı";
+      $("apiKey").placeholder = "gsk_...";
+      $("providerHint").textContent = "Ücretsiz kota: console.groq.com/keys — genelde çok daha hızlı.";
+      $("btnListModels").style.display = "none";
+      $("batchSize").value = "15";
+      $("concurrency").value = "4";
+      $("minDelay").value = "1";
+    } else {
+      $("apiKeyLabel").textContent = "OpenAI API Anahtarı";
+      $("apiKey").placeholder = "sk-...";
+      $("providerHint").textContent = "platform.openai.com/api-keys — çoğu hesap ücretlidir; gpt-4o-mini ucuzdur.";
+      $("btnListModels").style.display = "none";
+      $("batchSize").value = "15";
+      $("concurrency").value = "3";
+      $("minDelay").value = "1";
+    }
+    loadSavedKey();
+    log("Sağlayıcı: " + p, "info");
+  }
+  $("rememberKey").addEventListener("change", () => {
+    if ($("rememberKey").checked) {
+      localStorage.setItem(REMEMBER_KEY, "1");
+      saveKeyIfNeeded();
+    } else {
+      localStorage.removeItem(REMEMBER_KEY);
+    }
+  });
+  $("apiKey").addEventListener("change", saveKeyIfNeeded);
+  $("providerSelect").addEventListener("change", applyProviderUI);
+  loadSavedKey();
+  // ilk yüklemede model listesini doldur
+  modelsList = (PROVIDER_MODELS.gemini || []).slice();
+
+  // ---------- model listesi ----------
+  async function listModels() {
+    if (getProvider() !== "gemini" && !useFakeApi) {
+      modelsList = (PROVIDER_MODELS[getProvider()] || []).slice();
+      fillModelSelect();
+      log(getProvider() + " için hazır modeller: " + modelsList.join(", "), "ok");
+      return;
+    }
+    const key = $("apiKey").value.trim();
+    if (!key && !useFakeApi) {
+      log("Model listesi için API anahtarı gerekli.", "err");
+      return;
+    }
+    if (useFakeApi) {
+      modelsList = ["fake-model"];
+      fillModelSelect();
+      log("Sahte model listesi yüklendi.", "ok");
+      return;
+    }
+    log("Modeller listeleniyor…");
+    const controller = new AbortController();
+    const to = setTimeout(() => controller.abort(), 15000);
+    try {
+      let url = "https://generativelanguage.googleapis.com/v1beta/models?pageSize=100";
+      const all = [];
+      while (url) {
+        const res = await fetch(url, { headers: { "x-goog-api-key": key }, signal: controller.signal });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        (data.models || []).forEach((m) => all.push(m));
+        url = data.nextPageToken
+          ? "https://generativelanguage.googleapis.com/v1beta/models?pageSize=100&pageToken=" + encodeURIComponent(data.nextPageToken)
+          : null;
+      }
+      clearTimeout(to);
+      const filtered = all
+        .filter((m) => {
+          const name = (m.name || "").replace(/^models\//, "");
+          const methods = m.supportedGenerationMethods || [];
+          if (!methods.includes("generateContent")) return false;
+          if (!/flash/i.test(name)) return false;
+          if (/image|tts|live|audio|embedding|exp|8b|thinking/i.test(name)) return false;
+          return true;
+        })
+        .map((m) => (m.name || "").replace(/^models\//, ""));
+
+      // sıralama: lite olmayanlar önce, sonra sürüm numarasına göre (yeni önde)
+      function score(n) {
+        const isLite = /lite/i.test(n) ? 1 : 0;
+        const ver = n.match(/(\d+\.\d+)/);
+        const v = ver ? parseFloat(ver[1]) : 0;
+        return [isLite, -v, n];
+      }
+      filtered.sort((a, b) => {
+        const sa = score(a), sb = score(b);
+        for (let i = 0; i < sa.length; i++) {
+          if (sa[i] < sb[i]) return -1;
+          if (sa[i] > sb[i]) return 1;
+        }
+        return 0;
+      });
+      modelsList = filtered;
+      fillModelSelect();
+      log("Bulunan uygun modeller: " + (modelsList.join(", ") || "(yok)"), "ok");
+    } catch (e) {
+      clearTimeout(to);
+      const msg = e.name === "AbortError" ? "zaman aşımı (15 sn)" : (e.message || String(e));
+      log("Model listesi alınamadı: " + msg + " — varsayılan modeller kullanılacak.", "warn");
+    }
+  }
+  function fillModelSelect() {
+    const sel = $("modelSelect");
+    const cur = sel.value;
+    sel.innerHTML = '<option value="auto">Otomatik</option>';
+    modelsList.forEach((m) => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      sel.appendChild(opt);
+    });
+    if (cur && [...sel.options].some((o) => o.value === cur)) sel.value = cur;
+  }
+  $("btnListModels").addEventListener("click", () => listModels());
+
+  function pickModel() {
+    if (useFakeApi) return "fake-model";
+    const custom = $("customModel").value.trim();
+    if (custom) {
+      const c = custom.replace(/^models\//, "");
+      if (/^fake/i.test(c)) return null;
+      if (!unavailableModels.has(c) && !dailyQuotaModels.has(c)) return c;
+    }
+    const sel = $("modelSelect").value;
+    if (sel && sel !== "auto" && !/^fake/i.test(sel)) {
+      if (!unavailableModels.has(sel) && !dailyQuotaModels.has(sel)) return sel;
+    }
+    for (const m of modelsList) {
+      if (/^fake/i.test(m)) continue;
+      if (!unavailableModels.has(m) && !dailyQuotaModels.has(m)) return m;
+    }
+    const p = getProvider();
+    const fallbacks = PROVIDER_MODELS[p] || PROVIDER_MODELS.gemini;
+    for (const m of fallbacks) {
+      if (!unavailableModels.has(m) && !dailyQuotaModels.has(m)) return m;
+    }
+    return null;
+  }
+
+  function parseModelJsonText(text) {
+    text = String(text || "").replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/i, "").trim();
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch (e) {
+      throw new Error("JSON_PARSE: " + text.slice(0, 200));
+    }
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && Array.isArray(parsed.products)) return parsed.products;
+    if (parsed && Array.isArray(parsed.items)) return parsed.items;
+    if (parsed && Array.isArray(parsed.data)) return parsed.data;
+    throw new Error("Beklenmeyen kök yapı");
+  }
+
+  // ---------- ortak istek gecikmesi ----------
+  async function waitMinDelay() {
+    const minDelayMs = Math.max(0, parseFloat($("minDelay").value) || 0) * 1000;
+    const now = Date.now();
+    const wait = lastRequestStart + minDelayMs - now;
+    if (wait > 0) await sleep(wait);
+    lastRequestStart = Date.now();
+  }
+
+  function throwHttpError(res, errText) {
+    if (res.status === 404 || /not found|no longer available|does not exist|invalid model|model_not_found/i.test(errText)) {
+      let suggested = null;
+      const tryMatch = errText.match(/Try\s+[\"']?models\/([a-zA-Z0-9._/-]+)/i) ||
+                       errText.match(/use\s+[\"']?([a-zA-Z0-9._/-]+)/i);
+      if (tryMatch) suggested = tryMatch[1].replace(/^models\//, "");
+      log("API yanıtı (" + res.status + "): " + errText.slice(0, 220).replace(/\s+/g, " "), "warn");
+      const err = new Error("MODEL_404:" + (suggested || ""));
+      err.status = res.status;
+      err.body = errText;
+      throw err;
+    }
+    if (res.status === 429 || res.status >= 500) {
+      let retryAfter = null;
+      try {
+        const j = JSON.parse(errText);
+        if (j.error && j.error.details) {
+          for (const d of j.error.details) {
+            if (d.retryDelay) retryAfter = parseFloat(String(d.retryDelay).replace("s", "")) || null;
+          }
+        }
+        if (/PerDay|per day|Daily|daily|quota|rate_limit|tokens per day/i.test(errText)) {
+          // günlük / sert kota
+          if (/PerDay|per day|Daily|daily|tokens per day/i.test(errText)) {
+            const err = new Error("DAILY_QUOTA");
+            err.status = res.status;
+            err.body = errText;
+            throw err;
+          }
+        }
+      } catch (e) {
+        if (e.message === "DAILY_QUOTA") throw e;
+      }
+      const raHeader = res.headers && res.headers.get && res.headers.get("Retry-After");
+      if (raHeader) retryAfter = parseFloat(raHeader) || retryAfter;
+      const err = new Error("RETRYABLE:" + res.status);
+      err.status = res.status;
+      err.retryAfter = retryAfter;
+      err.body = errText;
+      throw err;
+    }
+    if (res.status === 401 || res.status === 403) {
+      throw new Error("HTTP " + res.status + " (anahtar geçersiz veya yetkisiz): " + errText.slice(0, 200));
+    }
+    throw new Error("HTTP " + res.status + ": " + errText.slice(0, 300));
+  }
+
+  // ---------- Gemini ----------
+  async function callGemini(model, batchItems) {
+    const key = $("apiKey").value.trim();
+    const url = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent";
+    const body = {
+      systemInstruction: { parts: [{ text: SYSTEM_PROMPT_GEMINI }] },
+      contents: [{
+        role: "user",
+        parts: [{ text: JSON.stringify(batchItems.map((p) => ({ id: p.id, name: getProductName(p) }))) }]
+      }],
+      generationConfig: {
+        responseMimeType: "application/json",
+        temperature: 0
+      }
+    };
+    if (!thinkingConfigUnsupported) {
+      body.generationConfig.thinkingConfig = { thinkingBudget: 0 };
+    }
+    await waitMinDelay();
+    const controller = new AbortController();
+    abortControllers.add(controller);
+    const timeoutId = setTimeout(() => controller.abort(), 90000);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify(body),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      abortControllers.delete(controller);
+      if (!res.ok) {
+        const errText = await res.text();
+        if (!thinkingConfigUnsupported && /thinkingConfig|thinking_budget|Unknown name/i.test(errText)) {
+          thinkingConfigUnsupported = true;
+          log("thinkingConfig desteklenmiyor; sonraki isteklerde kapatıldı.", "warn");
+          return callGemini(model, batchItems);
+        }
+        throwHttpError(res, errText);
+      }
+      const data = await res.json();
+      const cand = data.candidates && data.candidates[0];
+      if (!cand || !cand.content || !cand.content.parts) throw new Error("EMPTY_OR_BLOCKED");
+      const text = cand.content.parts.map((p) => p.text || "").join("");
+      return parseModelJsonText(text);
+    } catch (e) {
+      clearTimeout(timeoutId);
+      abortControllers.delete(controller);
+      if (e.name === "AbortError") {
+        const err = new Error("TIMEOUT");
+        err.status = 0;
+        throw err;
+      }
+      throw e;
+    }
+  }
+
+  // ---------- OpenAI uyumlu (Groq + OpenAI) ----------
+  async function callOpenAICompatible(provider, model, batchItems) {
+    const key = $("apiKey").value.trim();
+    const url = provider === "groq"
+      ? "https://api.groq.com/openai/v1/chat/completions"
+      : "https://api.openai.com/v1/chat/completions";
+    const userPayload = JSON.stringify(batchItems.map((p) => ({ id: p.id, name: getProductName(p) })));
+    const body = {
+      model: model,
+      temperature: 0,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT_OPENAI },
+        { role: "user", content: "Aşağıdaki parfüm listesi için metadata üret. Yanıt yalnızca JSON nesnesi olsun (products dizisi):\n" + userPayload }
+      ]
+    };
+    await waitMinDelay();
+    const controller = new AbortController();
+    abortControllers.add(controller);
+    const timeoutId = setTimeout(() => controller.abort(), 90000);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + key
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      abortControllers.delete(controller);
+      if (!res.ok) {
+        const errText = await res.text();
+        throwHttpError(res, errText);
+      }
+      const data = await res.json();
+      const text = data.choices && data.choices[0] && data.choices[0].message
+        ? (data.choices[0].message.content || "")
+        : "";
+      if (!text) throw new Error("EMPTY_OR_BLOCKED");
+      return parseModelJsonText(text);
+    } catch (e) {
+      clearTimeout(timeoutId);
+      abortControllers.delete(controller);
+      if (e.name === "AbortError") {
+        const err = new Error("TIMEOUT");
+        err.status = 0;
+        throw err;
+      }
+      throw e;
+    }
+  }
+
+  // ---------- birleşik çağrı ----------
+  async function callLLM(model, batchItems) {
+    if (useFakeApi) return fakeGeminiResponse(batchItems);
+    const p = getProvider();
+    if (p === "groq" || p === "openai") return callOpenAICompatible(p, model, batchItems);
+    return callGemini(model, batchItems);
+  }
+
+  // ---------- sahte API ----------
+  async function fakeGeminiResponse(batchItems) {
+    await sleep(400 + Math.random() * 800);
+    // ara sıra hata simülasyonu
+    const r = Math.random();
+    if (r < 0.06) {
+      const err = new Error("TIMEOUT");
+      err.status = 0;
+      throw err;
+    }
+    if (r < 0.12) {
+      const err = new Error("RETRYABLE:429");
+      err.status = 429;
+      err.retryAfter = 3;
+      throw err;
+    }
+    const brands = ["Chanel", "Dior", "Tom Ford", "Yves Saint Laurent", "Gucci", "Memo Paris", "Creed", "Hermès", "Byredo", "Le Labo"];
+    const genders = ["Kadın", "Erkek", "Unisex"];
+    const seasons = ["İlkbahar", "Yaz", "Sonbahar", "Kış"];
+    const times = ["Gündüz", "Gece"];
+    const cats = ["Floral", "Soft Floral", "Floral Amber", "Amber", "Soft Amber", "Amber Woody", "Woody", "Woods", "Mossy Woods", "Dry Woods", "Fresh", "Citrus", "Water", "Green", "Fruity"];
+    const out = [];
+    for (const p of batchItems) {
+      // ara sıra bilinçli hatalı yanıt
+      if (Math.random() < 0.08) {
+        out.push({ id: p.id, brand: "", gender: ["Kadın"], season: "Yaz", time: "Gündüz", category: "Odunsu" });
+        continue;
+      }
+      const pick = (arr, min = 1, max = 2) => {
+        const n = min + Math.floor(Math.random() * (max - min + 1));
+        const shuffled = [...arr].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, n);
+      };
+      out.push({
+        id: p.id,
+        brand: brands[Math.floor(Math.random() * brands.length)],
+        gender: genders[Math.floor(Math.random() * genders.length)],
+        season: pick(seasons, 1, 3),
+        time: pick(times, 1, 2),
+        category: pick(cats, 1, 3)
+      });
+    }
+    return out;
+  }
+
+  // ---------- doğrulama & uygulama ----------
+  function validateAndNormalize(item, expectedIds) {
+    if (!item || typeof item !== "object") return { ok: false, reason: "nesne değil" };
+    const id = item.id;
+    if (!expectedIds.has(String(id))) return { ok: false, reason: "bilinmeyen id: " + id };
+    const brand = isValidBrand(item.brand) ? item.brand.trim() : null;
+    const gender = normalizeGender(item.gender);
+    const season = normalizeSeasonArr(item.season);
+    const time = normalizeTimeArr(item.time);
+    const category = normalizeCategoryArr(item.category);
+    if (!brand) return { ok: false, reason: "brand geçersiz" };
+    if (!gender) return { ok: false, reason: "gender geçersiz" };
+    if (!season) return { ok: false, reason: "season geçersiz" };
+    if (!time) return { ok: false, reason: "time geçersiz" };
+    if (!category) return { ok: false, reason: "category geçersiz" };
+    return { ok: true, data: { id, brand, gender, season, time, category } };
+  }
+
+  function applyToProduct(prod, data, overwrite) {
+    // id tipini koru
+    // sadece eksik alanlara yaz (veya overwrite)
+    if (overwrite || !isValidBrand(prod.brand)) prod.brand = data.brand;
+    if (overwrite || !isValidGender(prod.gender)) prod.gender = data.gender;
+    if (overwrite || !normalizeSeasonArr(prod.season)) prod.season = data.season;
+    if (overwrite || !normalizeTimeArr(prod.time)) prod.time = data.time;
+    if (overwrite || !normalizeCategoryArr(prod.category)) prod.category = data.category;
+  }
+
+  // ---------- batch işleme ----------
+  const appliedIds = new Set(); // çift sayımı önle
+
+  function applyResult(prod, data) {
+    const idKey = String(data.id);
+    if (appliedIds.has(idKey)) return false;
+    if ($("previewMode").checked) {
+      previewRows.push({
+        id: data.id,
+        name: getProductName(prod),
+        brand: data.brand,
+        gender: data.gender,
+        season: data.season.join(", "),
+        time: data.time.join(", "),
+        category: data.category.join(", ")
+      });
+    } else {
+      applyToProduct(prod, data, $("overwrite").checked);
+    }
+    appliedIds.add(idKey);
+    filledCount++;
+    processedCount++;
+    return true;
+  }
+
+  async function processBatch(batch, model, depth = 0) {
+    if (stopRequested) return;
+    const expectedIds = new Set(batch.map((p) => String(p.id)));
+    let remaining = batch.filter((p) => !appliedIds.has(String(p.id)));
+    if (remaining.length === 0) return;
+    let lastError = null;
+    const maxRounds = 3;
+    let timeouts = 0;
+
+    for (let round = 0; round < maxRounds && remaining.length > 0 && !stopRequested; round++) {
+      while (isPaused && !stopRequested) await sleep(200);
+      if (stopRequested) break;
+
+      // 503/429 için isteği burada üstel geri çekilerek tekrarla
+      let raw = null;
+      let attempt = 0;
+      const maxAttempts = 6;
+      while (attempt < maxAttempts && !stopRequested) {
+        try {
+          log("Batch " + (batch[0] ? batch[0].id : "?") + "… (" + remaining.length + " ürün, tur " + (round + 1) + ", deneme " + (attempt + 1) + ", model: " + model + ")");
+          raw = await callLLM(model, remaining);
+          break; // başarı
+        } catch (e) {
+          lastError = e;
+          const msg = e.message || "";
+          if (msg === "DAILY_QUOTA") {
+            dailyQuotaModels.add(model);
+            log("Model " + model + " günlük kotası doldu.", "err");
+            throw e;
+          }
+          if (msg.startsWith("MODEL_404")) {
+            unavailableModels.add(model);
+            const suggested = (msg.split(":").slice(1).join(":") || "").trim();
+            log("Model bulunamadı / kullanılamıyor: " + model + (suggested ? " (önerilen: " + suggested + ")" : ""), "err");
+            if (suggested && suggested !== model && !unavailableModels.has(suggested)) {
+              modelsList = [suggested].concat(modelsList.filter((x) => x !== suggested));
+              fillModelSelect();
+            }
+            throw e;
+          }
+          if (msg === "TIMEOUT" || msg.startsWith("TIMEOUT")) {
+            timeouts++;
+            log("Zaman aşımı (tur " + (round + 1) + ", deneme " + (attempt + 1) + ")", "warn");
+            if (timeouts >= 2 && remaining.length > 1 && depth < 4) {
+              log("Batch ikiye bölünüyor (" + remaining.length + " → " + Math.ceil(remaining.length / 2) + "+" + Math.floor(remaining.length / 2) + ")…", "warn");
+              const mid = Math.ceil(remaining.length / 2);
+              await processBatch(remaining.slice(0, mid), model, depth + 1);
+              await processBatch(remaining.slice(mid), model, depth + 1);
+              return;
+            }
+            attempt++;
+            if (attempt < maxAttempts) await sleep(Math.min(30, 3 * attempt) * 1000);
+            continue;
+          }
+          if (msg.startsWith("RETRYABLE") || (e.status === 429) || (e.status >= 500)) {
+            let delay = 8;
+            if (e.retryAfter) delay = Math.min(90, Number(e.retryAfter) || 8);
+            else delay = Math.min(90, 8 * Math.pow(2, attempt));
+            log("Hız limiti / sunucu hatası (" + (e.status || "?") + "), " + delay + " sn bekleniyor… (deneme " + (attempt + 1) + "/" + maxAttempts + ")", "warn");
+            await sleep(delay * 1000);
+            attempt++;
+            continue;
+          }
+          if (msg === "EMPTY_OR_BLOCKED") {
+            log("Güvenlik filtresi veya boş yanıt; yeniden denenecek.", "warn");
+            attempt++;
+            await sleep(2000);
+            continue;
+          }
+          log("İstek hatası: " + msg, "err");
+          attempt++;
+          await sleep(2000);
+        }
+      }
+
+      if (!raw) {
+        // bu turda yanıt alınamadı
+        continue;
+      }
+
+      const seen = new Set();
+      for (const item of raw) {
+        const v = validateAndNormalize(item, expectedIds);
+        if (!v.ok) continue;
+        if (seen.has(String(v.data.id))) continue;
+        seen.add(String(v.data.id));
+        const prod = products.find((p) => String(p.id) === String(v.data.id));
+        if (!prod) continue;
+        applyResult(prod, v.data);
+      }
+      remaining = remaining.filter((p) => !seen.has(String(p.id)) && !appliedIds.has(String(p.id)));
+      if (remaining.length === 0) break;
+      log(remaining.length + " ürün doğrulanamadı, yeniden sorulacak…", "warn");
+    }
+
+    for (const p of remaining) {
+      if (appliedIds.has(String(p.id))) continue;
+      if (failedItems.some((f) => String(f.id) === String(p.id))) continue;
+      failedItems.push({
+        id: p.id,
+        name: getProductName(p),
+        reason: lastError ? (lastError.message || String(lastError)) : "doğrulama başarısız"
+      });
+      processedCount++;
+    }
+  }
+
+  // ---------- paralel havuz + global delay ----------
+  async function runPool(batches, model) {
+    const concurrency = useFakeApi ? 1 : Math.max(1, parseInt($("concurrency").value, 10) || 5);
+    let idx = 0;
+    let active = 0;
+    let modelChangeLock = false;
+
+    function markBatchFailed(batch, reason) {
+      for (const p of batch) {
+        if (!failedItems.some((f) => String(f.id) === String(p.id))) {
+          failedItems.push({ id: p.id, name: getProductName(p), reason: reason || "bilinmeyen hata" });
+          processedCount++;
+        }
+      }
+    }
+
+    return new Promise((resolve) => {
+      function next() {
+        if (stopRequested) {
+          // kalan batch'leri başarısız yaz
+          while (idx < batches.length) {
+            markBatchFailed(batches[idx++], "işlem durduruldu / model kalmadı");
+            batchesDone++;
+          }
+          updateProgressUI();
+          if (active === 0) resolve();
+          return;
+        }
+        while (active < concurrency && idx < batches.length && !stopRequested) {
+          if (isPaused) break;
+          const batch = batches[idx++];
+          active++;
+          (async () => {
+            let tries = 0;
+            let done = false;
+            while (tries < 6 && !stopRequested && !done) {
+              try {
+                const m = useFakeApi ? "fake-gemini-flash" : (pickModel() || model);
+                if (!m) {
+                  log("Uygun model kalmadı. İşlem durduruluyor; ilerleme kaydedildi.", "err");
+                  stopRequested = true;
+                  markBatchFailed(batch, "uygun model yok");
+                  showQuotaOptions();
+                  break;
+                }
+                currentModel = m;
+                $("cntModel").textContent = m;
+                await processBatch(batch, m);
+                done = true;
+                break;
+              } catch (e) {
+                const msg = (e && e.message) ? e.message : String(e);
+                if (msg === "DAILY_QUOTA" || msg.startsWith("MODEL_404")) {
+                  if (!modelChangeLock) {
+                    modelChangeLock = true;
+                    // bu model zaten unavailableModels'a eklendi (processBatch içinde)
+                    const nextM = pickModel();
+                    modelChangeLock = false;
+                    if (!nextM) {
+                      log("Uygun model kalmadı. İşlem durduruluyor; ilerleme kaydedildi.", "err");
+                      stopRequested = true;
+                      markBatchFailed(batch, msg);
+                      if (msg === "DAILY_QUOTA") showQuotaOptions();
+                      break;
+                    }
+                    log("Yeni modele geçiliyor: " + nextM, "warn");
+                    tries++;
+                    continue;
+                  }
+                }
+                tries++;
+                if (tries >= 6) {
+                  markBatchFailed(batch, msg);
+                }
+              }
+            }
+            if (!done && !stopRequested && tries >= 6) {
+              // zaten markBatchFailed
+            }
+            batchesDone++;
+            updateProgressUI();
+            saveProgress();
+            active--;
+            if ((idx >= batches.length || stopRequested) && active === 0) resolve();
+            else next();
+          })();
+        }
+        if (isPaused && active === 0 && !stopRequested) {
+          const iv = setInterval(() => {
+            if (!isPaused || stopRequested) {
+              clearInterval(iv);
+              next();
+            }
+          }, 300);
+        }
+      }
+      next();
+    });
+  }
+
+  function showQuotaOptions() {
+    log("——— GÜNLÜK KOTA DOLDU ———", "err");
+    log("Seçenekler: 1) Yarın devam et (kota Türkiye saatiyle ~10:00’da yenilenir)", "warn");
+    log("2) Daha büyük batch kullan  3) Google AI Studio’da faturalandırmayı aç", "warn");
+    log("İlerleme kaydedildi; sayfayı yenileyip ‘Kaldığın yerden devam et’ diyebilirsin.", "info");
+  }
+
+  function updateProgressUI() {
+    $("cntBatches").textContent = batchesDone + "/" + totalBatches;
+    $("cntProducts").textContent = processedCount + "/" + totalToProcess;
+    $("cntFilled").textContent = filledCount;
+    $("cntFailed").textContent = failedItems.length;
+    const pct = totalToProcess ? Math.round((processedCount / totalToProcess) * 100) : 0;
+    progressBar.style.width = pct + "%";
+  }
+
+  // ---------- ilerleme kaydı ----------
+  function saveProgress() {
+    try {
+      const snap = {
+        fileName,
+        productCount: products.length,
+        structure: originalStructure,
+        products, // güncel hali
+        failedItems,
+        filledCount,
+        processedCount,
+        nameField,
+        previewRows,
+        repoBaseBranchSha: loadedFromRepo ? repoBaseBranchSha : "",
+        ts: Date.now()
+      };
+      // localStorage boyutu sınırlı olabilir; büyükse IndexedDB dene
+      const json = JSON.stringify(snap);
+      if (json.length < 4_500_000) {
+        localStorage.setItem(PROGRESS_KEY, json);
+      } else {
+        // IndexedDB
+        const req = indexedDB.open("perfumeMetaDB", 1);
+        req.onupgradeneeded = () => req.result.createObjectStore("progress");
+        req.onsuccess = () => {
+          const tx = req.result.transaction("progress", "readwrite");
+          tx.objectStore("progress").put(snap, "main");
+        };
+      }
+    } catch (e) {
+      // sessiz
+    }
+  }
+
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(PROGRESS_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  }
+
+  function checkResume() {
+    const snap = loadProgress();
+    if (!snap) return;
+    if (snap.fileName === fileName && snap.productCount === products.length && (!loadedFromRepo || snap.repoBaseBranchSha === repoBaseBranchSha)) {
+      $("resumeBanner").style.display = "block";
+      $("resumeInfo").textContent = ` (${new Date(snap.ts).toLocaleString("tr-TR")}, ${snap.processedCount || 0} ürün işlenmiş)`;
+      progressSnapshot = snap;
+    }
+  }
+  $("btnResume").addEventListener("click", () => {
+    if (!progressSnapshot) return;
+    products = progressSnapshot.products;
+    failedItems = progressSnapshot.failedItems || [];
+    filledCount = progressSnapshot.filledCount || 0;
+    processedCount = progressSnapshot.processedCount || 0;
+    previewRows = progressSnapshot.previewRows || [];
+    nameField = progressSnapshot.nameField || nameField;
+    $("resumeBanner").style.display = "none";
+    updateStats();
+    log("Kayıtlı ilerlemeden devam ediliyor.", "ok");
+    startProcess(true);
+  });
+  $("btnDiscardResume").addEventListener("click", () => {
+    localStorage.removeItem(PROGRESS_KEY);
+    progressSnapshot = null;
+    $("resumeBanner").style.display = "none";
+    log("Kayıtlı ilerleme silindi.", "info");
+  });
+
+  // ---------- ana akış ----------
+  function buildBatches() {
+    const overwrite = $("overwrite").checked;
+    const limitN = parseInt($("limitN").value, 10) || 0;
+    let list = products.filter((p) => isMissingMeta(p, overwrite));
+    if (limitN > 0) list = list.slice(0, limitN);
+    const size = Math.max(1, parseInt($("batchSize").value, 10) || 20);
+    const batches = [];
+    for (let i = 0; i < list.length; i += size) {
+      batches.push(list.slice(i, i + size));
+    }
+    return { batches, total: list.length };
+  }
+
+  async function startProcess(fromResume) {
+    try {
+      log("Başlat tıklandı — kontroller yapılıyor…", "info");
+
+      if (products.length === 0) {
+        log("HATA: Önce bir products.json yükleyin.", "err");
+        return;
+      }
+      // ad alanı hâlâ boşsa select'ten oku
+      if (!nameField) {
+        nameField = ($("nameFieldSelect") && $("nameFieldSelect").value) || null;
+      }
+      if (!nameField) {
+        log("HATA: Ürün adı alanını (name/title/ad…) seçin. 1. adımdaki açılır listeden seçin.", "err");
+        return;
+      }
+      useFakeApi = false;
+      // önceki sahte koşudan kalan model seçimini temizle
+      if ($("modelSelect").value && /^fake/i.test($("modelSelect").value)) {
+        $("modelSelect").value = "auto";
+      }
+      unavailableModels.clear();
+      dailyQuotaModels.clear();
+      const key = $("apiKey").value.trim();
+      if (!key) {
+        log("HATA: API anahtarı boş. 2. adıma anahtarı yapıştırın veya 'Sahte API ile test et' kullanın.", "err");
+        $("apiKey").focus();
+        return;
+      }
+
+      // Gemini için model listesini önce al; Groq/OpenAI sabit listeden gider
+      if (getProvider() === "gemini" && (modelsList.length === 0 || modelsList.every((m) => /^fake/i.test(m)))) {
+        modelsList = modelsList.filter((m) => !/^fake/i.test(m));
+        log("Güncel Gemini modelleri alınıyor…", "info");
+        try {
+          await Promise.race([
+            listModels(),
+            sleep(12000).then(function () { throw new Error("model listesi zaman aşımı"); })
+          ]);
+        } catch (e) {
+          log("Model listesi beklenirken: " + (e.message || e) + " — yedek modellerle devam.", "warn");
+        }
+      } else if (getProvider() !== "gemini" && modelsList.length === 0) {
+        modelsList = (PROVIDER_MODELS[getProvider()] || []).slice();
+        fillModelSelect();
+      }
+      const model = pickModel();
+      if (!model) {
+        log("HATA: Kullanılabilir model bulunamadı. Model kutusuna elle yazın (örn. gemini-3.8-flash).", "err");
+        return;
+      }
+      currentModel = model;
+      $("cntModel").textContent = model;
+      log("Seçilen model: " + model + " (gerçek API)", "info");
+
+      if (!fromResume) {
+        failedItems = [];
+        filledCount = 0;
+        processedCount = 0;
+        batchesDone = 0;
+        previewRows = [];
+        appliedIds.clear();
+        products = deepClone(originalProducts);
+      }
+
+      const built = buildBatches();
+      const batches = built.batches;
+      const total = built.total;
+      if (total === 0) {
+        log("İşlenecek eksik ürün yok. (Tüm ürünler dolu görünüyor veya 'Sadece ilk N' = 0 ve eksik yok.) 'Dolu alanların üzerine de yaz' veya N değerini kontrol edin.", "warn");
+        return;
+      }
+      totalToProcess = total;
+      totalBatches = batches.length;
+      isRunning = true;
+      isPaused = false;
+      stopRequested = false;
+      $("btnStart").disabled = true;
+      $("btnPause").disabled = false;
+      $("btnStop").disabled = false;
+      $("btnFake").disabled = true;
+      $("downloadArea").classList.add("hidden");
+      $("previewArea").classList.add("hidden");
+      $("previewBody").innerHTML = "";
+      updateProgressUI();
+      log("Başladı: " + total + " ürün, " + batches.length + " grup, model=" + model + ", önizleme=" + $("previewMode").checked, "ok");
+
+      try {
+        await runPool(batches, model);
+      } catch (e) {
+        log("Kritik hata: " + (e && e.message ? e.message : e), "err");
+      }
+
+      finishRun();
+    } catch (e) {
+      log("Başlat sırasında beklenmeyen hata: " + (e && e.message ? e.message : e), "err");
+      console.error(e);
+      isRunning = false;
+      $("btnStart").disabled = false;
+      $("btnPause").disabled = true;
+      $("btnStop").disabled = true;
+      $("btnFake").disabled = false;
+    }
+  }
+
+  function finishRun() {
+    isRunning = false;
+    $("btnStart").disabled = false;
+    $("btnPause").disabled = true;
+    $("btnStop").disabled = true;
+    $("btnFake").disabled = false;
+    $("btnPause").textContent = "Duraklat";
+    updateProgressUI();
+    saveProgress();
+    log(`Bitti. Doldurulan: ${filledCount}, Başarısız: ${failedItems.length}`, filledCount ? "ok" : "warn");
+
+    $("downloadArea").classList.remove("hidden");
+    if (failedItems.length) $("btnDownloadFailed").classList.remove("hidden");
+    else $("btnDownloadFailed").classList.add("hidden");
+
+    // File System Access destekleniyorsa
+    if (window.showSaveFilePicker) {
+      $("btnSaveOver").classList.remove("hidden");
+    }
+
+    if ($("previewMode").checked && previewRows.length) {
+      $("previewArea").classList.remove("hidden");
+      const tbody = $("previewBody");
+      tbody.innerHTML = "";
+      for (const r of previewRows) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${esc(r.id)}</td><td>${esc(r.name)}</td><td>${esc(r.brand)}</td><td>${esc(r.gender)}</td><td>${esc(r.season)}</td><td>${esc(r.time)}</td><td>${esc(r.category)}</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+    updateRepoActions();
+  }
+
+  $("btnStart").addEventListener("click", function () {
+    startProcess(false).catch(function (e) {
+      log("Başlat hatası: " + (e && e.message ? e.message : e), "err");
+      console.error(e);
+    });
+  });
+  $("btnPause").addEventListener("click", () => {
+    if (!isRunning) return;
+    isPaused = !isPaused;
+    $("btnPause").textContent = isPaused ? "Devam et" : "Duraklat";
+    log(isPaused ? "Duraklatıldı." : "Devam ediyor…", "info");
+  });
+  $("btnStop").addEventListener("click", () => {
+    stopRequested = true;
+    isPaused = false;
+    for (const c of abortControllers) {
+      try { c.abort(); } catch (e) {}
+    }
+    abortControllers.clear();
+    log("Durduruldu. Biten grupların sonuçları korundu.", "warn");
+    finishRun();
+  });
+
+  $("btnFake").addEventListener("click", async () => {
+    if (products.length === 0) {
+      log("Önce bir products.json yükleyin.", "err");
+      return;
+    }
+    if (!nameField) {
+      nameField = ($("nameFieldSelect") && $("nameFieldSelect").value) || null;
+    }
+    if (!nameField) {
+      log("Ürün adı alanını seçin.", "err");
+      return;
+    }
+    useFakeApi = true;
+    unavailableModels.clear();
+    dailyQuotaModels.clear();
+    appliedIds.clear();
+    log("Sahte API modu açıldı. Gerçek ağ çağrısı YOK, anahtar kullanılmayacak.", "warn");
+    failedItems = [];
+    filledCount = 0;
+    processedCount = 0;
+    batchesDone = 0;
+    previewRows = [];
+    products = deepClone(originalProducts);
+    const { batches, total } = buildBatches();
+    if (total === 0) {
+      log("İşlenecek eksik ürün yok.", "ok");
+      useFakeApi = false;
+      return;
+    }
+    totalToProcess = total;
+    totalBatches = batches.length;
+    isRunning = true;
+    isPaused = false;
+    stopRequested = false;
+    $("btnStart").disabled = true;
+    $("btnPause").disabled = false;
+    $("btnStop").disabled = false;
+    $("btnFake").disabled = true;
+    $("downloadArea").classList.add("hidden");
+    $("previewArea").classList.add("hidden");
+    $("previewBody").innerHTML = "";
+    updateProgressUI();
+    log("Sahte test başladı: " + total + " ürün, " + batches.length + " grup", "ok");
+    try {
+      await runPool(batches, "fake-gemini-flash");
+    } catch (e) {
+      log("Sahte test hatası: " + (e && e.message ? e.message : e), "err");
+    }
+    finishRun();
+    useFakeApi = false;
+    // sahte model select'te kalmasın
+    modelsList = modelsList.filter((m) => !/^fake/i.test(m));
+    fillModelSelect();
+    $("modelSelect").value = "auto";
+    $("cntModel").textContent = "-";
+    log("Sahte test bitti. Model seçimi tekrar 'Otomatik'.", "info");
+  });
+
+  // ---------- indirme ----------
+  function buildOutputJson() {
+    if (originalStructure === "array") return products;
+    return Object.assign({}, originalRoot || {}, { products });
+  }
+  function downloadJson(obj, name) {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+  $("btnDownload").addEventListener("click", () => {
+    downloadJson(buildOutputJson(), fileName.replace(/\.json$/i, "") + ".updated.json");
+    log("Güncellenmiş dosya indirildi.", "ok");
+  });
+  $("btnDownloadOrig").addEventListener("click", () => {
+    const orig = originalStructure === "array" ? originalProducts : Object.assign({}, originalRoot || {}, { products: originalProducts });
+    downloadJson(orig, fileName.replace(/\.json$/i, "") + ".backup.json");
+    log("Orijinal yedek indirildi.", "ok");
+  });
+  $("btnDownloadFailed").addEventListener("click", () => {
+    downloadJson(failedItems, "products.failed.json");
+    log("Başarısız ürünler indirildi.", "ok");
+  });
+  $("btnSaveOver").addEventListener("click", async () => {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: fileName,
+        types: [{ description: "JSON", accept: { "application/json": [".json"] } }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(JSON.stringify(buildOutputJson(), null, 2));
+      await writable.close();
+      log("Dosya üzerine kaydedildi.", "ok");
+    } catch (e) {
+      if (e.name !== "AbortError") log("Kaydetme hatası: " + e.message, "err");
+    }
+  });
+
+  $("overwrite").addEventListener("change", updateStats);
+  $("previewMode").addEventListener("change", updateRepoActions);
+
+  // başlangıç
+  applyProviderUI();
+  updateRepoActions();
+  if (localStorage.getItem("op_adm_tok")) loadFromRepo();
+  log("Hazır. products.json yükleyin, sağlayıcı/anahtar seçin ve Başlat’a basın (veya Sahte API ile test edin).", "info");
+})();
+</script>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.6</footer>
+</body>
+</html>
