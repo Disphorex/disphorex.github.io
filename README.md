@@ -1,6 +1,7 @@
 # Olfactus & Parfümeri
 
-- `index.html` : Olfactus / Parfümeri geçiş sayfası
+- `index.html` : Disphorex karşılama / landing sayfası
+- `site.html` : Olfactus / Parfümeri geçiş sayfası (iki deneyimi tek ekranda açar)
 - `olfactus/` : dergi (`img/` içinde posterler)
 - `parfumeri/` : fiyat paneli (arayüz kodu `index.html`)
 - `parfumeri/data/` : Pazar sekmesinin satıcı verileri
@@ -26,10 +27,13 @@ Eski kategoriler `legacy_categories` ve satıcı kaydındaki `legacy_category` a
 
 ## Sürüm etiketi
 
-Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi etkin HTML sayfalarında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.6` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
+Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi etkin HTML sayfalarında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.7` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
 
 
 Pazar filtrelerindeki kategori sayaçları her master ürün ID'sini bir kez sayar; aynı ürünün farklı satıcılardaki teklifleri sonuç listesinde korunur.
 
 
-`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. v1.0.6 yayımlaması GitHub’da `v1.0.6` etiketiyle Release olarak işaretlenir.
+`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. v1.0.6 yayımlaması GitHub’da `v1.0.6` etiketiyle Release olarak işaretlenmiştir. Bu sürüm landing page ekler; `v1.0.7` Release olarak yayımlanır.
+
+
+Ana giriş sayfası `index.html` landing sayfasıdır. Olfactus ve Parfümeri doğrudan açılır; önceki iki sekmeli giriş `site.html` adresinde korunur.
