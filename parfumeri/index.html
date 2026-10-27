@@ -1,8 +1,8 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
-<style id="app-version-style">.app-version{display:block;position:fixed;right:12px;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:49;margin:0;width:max-content;color:#526056;background:rgba(255,255,255,.9);border:1px solid rgba(95,112,100,.35);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
+<style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.1">
+<meta name="app-version" content="1.0.14">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1915,7 +1915,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.13';
+var APP_VERSION='1.0.14';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2359,24 +2359,26 @@ function optRun(){
     var sel=[], ok=true; optsGoal.forEach(function(o,i){ var b=null; o.forEach(function(x){ if(x.si===+si && (!b||x.v.price<b.v.price)) b=x; }); if(!b) ok=false; sel.push(b); });
     if(!ok) return; var ev=optEval(sel,W); if(!R.single||ev.total<R.single.total) R.single=ev;
   });
+  /* Keşif/denge/şişe/eko: yalnızca hedef boy (optsGoal). Mutlak ucuz: tüm boylar (optsAll). */
+  var optsUse=(R.mode==='cheap')?optsAll:optsGoal;
   if(B && P0){
     if(P0.total<=B+0.001){ R.fits=true; R.F=P0; }
     else {
       R.fits=false;
-      R.F=optSearch(optsAll,W,optFitScore(B));
-      R.Fmin=R.F?null:optBestEffort(optsAll,W,function(ev){ return ev.total+ev.n; });
+      R.F=optSearch(optsUse,W,optFitScore(B));
+      R.Fmin=R.F?null:optBestEffort(optsUse,W,function(ev){ return ev.total+ev.n; });
       var need=r2(P0.total-B);
       if(need<=B*0.5+0.001) R.raise={need:need,plan:P0};
-      else R.raise={need:need,capped:true,plan:optSearch(optsAll,W,optFitScore(B*1.5)),cap:r2(B*0.5)};
+      else R.raise={need:need,capped:true,plan:optSearch(optsUse,W,optFitScore(B*1.5)),cap:r2(B*0.5)};
     }
-    /* kampanya / kargo istisnası: bütçeyi az aşarak gerçek değer kazancı */
+    /* kampanya / kargo: küçük bütçe aşımı — yine yalnızca optsUse (keşifte 50 ml yok) */
     if(R.fits){
       var lim2=B*1.15, baseForQ=P0;
       if(!(R.mode==='cheap'||R.mode==='unit')){
-        var Fq=optSearch(optsAll,W,optFitScore(B));
+        var Fq=optSearch(optsUse,W,optFitScore(B));
         if(Fq) baseForQ=Fq;
       }
-      var Q2=optSearch(optsAll,W,function(ev){
+      var Q2=optSearch(optsUse,W,function(ev){
         if(ev.total<=B+0.001 || ev.total>lim2) return OPT_BAD;
         if(!optOverageWorth(baseForQ,ev)) return OPT_BAD;
         return optPerMl(ev)*1000 + optMarginalPerMl(baseForQ,ev)*10 + ev.total*0.001 + ev.n*0.01;
@@ -2391,7 +2393,51 @@ function optRun(){
       }
     }
   }
+  /* Modüler kampanya eşiği: örn. 12 ürün, 5 al 4 öde → 3 daha ekle tavsiyesi */
+  R.campSteps=optCampStepAdvice(P0, goal);
   optShow();
+}
+
+function optCampStepAdvice(ev, goal){
+  var out=[];
+  if(!ev || !ev.groups) return out;
+  ev.groups.forEach(function(G){
+    (G.s.campaigns||[]).forEach(function(c){
+      if(c.type!=='buyXPayY' || !(c.buy>1)) return;
+      var cnt=0;
+      G.lines.forEach(function(L){
+        var m=L.o.m;
+        if(goal && goal.test && !goal.test(m)) return;
+        cnt+=L.q;
+      });
+      if(cnt<1) return;
+      var rem=cnt % c.buy;
+      if(rem===0) return;
+      var need=c.buy-rem;
+      var freeN=c.buy-c.pay;
+      /* ml filtresi kampanya kuralında varsa */
+      if(c.ml && c.ml.length){
+        var cnt2=0;
+        G.lines.forEach(function(L){
+          var m=L.o.m;
+          if(c.ml.indexOf(m)<0) return;
+          if(goal && goal.test && !goal.test(m)) return;
+          cnt2+=L.q;
+        });
+        if(cnt2<1) return;
+        rem=cnt2 % c.buy;
+        if(rem===0) return;
+        need=c.buy-rem;
+        cnt=cnt2;
+      }
+      out.push({
+        seller:optSn(G.s), si:G.si, buy:c.buy, pay:c.pay,
+        have:cnt, need:need, free:freeN,
+        label:c.label||(c.buy+' al '+c.pay+' öde')
+      });
+    });
+  });
+  return out;
 }
 
 /* ---------- motor: ekran ---------- */
@@ -2482,6 +2528,11 @@ function optShow(){
       h+='<div class="opt-red">Seçenek 2: Hedef boylar için bütçeyi <b>'+tl(R.raise.need)+'</b> artırman gerekir; bu, bütçenin %50’sini ('+tl(R.raise.cap)+') aşıyor, bu yüzden bu yönde öneri yapmıyorum.</div>';
       if(R.raise.plan) h+=optPlanBlock(reg('Seçenek 2 (üst sınır): Bütçeyi %50 artır',R.raise.plan),R.raise.plan,W,false,'Bütçeyi en fazla '+tl(R.raise.cap)+' artırırsan ('+tl(B+R.raise.cap)+') elde edebileceğin en iyi plan.');
     }
+  }
+  if(R.campSteps && R.campSteps.length){
+    R.campSteps.forEach(function(cs){
+      h+='<div class="opt-warn"><b>Kampanya eşiğine '+(cs.need)+' ürün kaldı</b><p><b>'+esc(cs.seller)+'</b> sepetinde hedef boyda <b>'+cs.have+'</b> ürün var. “'+esc(cs.label)+'” için <b>'+cs.need+'</b> adet daha (aynı boy bandında) eklersen bir sonraki kat tamamlanır; bu dilimde yaklaşık <b>'+cs.free+'</b> ürün bedava sayılır. Büyük boy şişe eklemek yerine keşif boyu tamamlamak genelde daha mantıklı.</p></div>';
+    });
   }
   if(R.Q){
     var Q=R.Q, parts=[], seen={}; if(Q.shipSaved>0) parts.push('ücretsiz kargo'); Q.groups.forEach(function(G){ if(G.disc>0){ var t='“'+(G.camp.c.label||G.camp.c.type)+'” kampanyası'; if(!seen[t]){ seen[t]=1; parts.push(esc(t)); } } });
@@ -2584,5 +2635,5 @@ connectDb();
 })();
 </script>
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.1</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.14</footer>
 </body></html>
