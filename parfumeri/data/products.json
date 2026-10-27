@@ -242,12 +242,22 @@
     {
       "id": 10,
       "name": "Arabians Tonka",
-      "brand": "Montale",
+      "brand": "Arabians",
       "variant": "",
-      "gender": "",
-      "season": [],
-      "time": [],
-      "category": [],
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Soft Amber",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -261,12 +271,22 @@
     {
       "id": 11,
       "name": "Aventus 2012 Batch VIP",
-      "brand": "Creed",
+      "brand": "Aventus",
       "variant": "",
       "gender": "Erkek",
-      "season": [],
-      "time": [],
-      "category": [],
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Woods",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -277,12 +297,22 @@
     {
       "id": 12,
       "name": "Baccarat Rouge 540",
-      "brand": "Maison Francis Kurkdjian",
+      "brand": "Baccarat",
       "variant": "",
       "gender": "Unisex",
-      "season": [],
-      "time": [],
-      "category": [],
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -297,12 +327,22 @@
     {
       "id": 13,
       "name": "Black Code",
-      "brand": "Giorgio Armani",
+      "brand": "Black Code",
       "variant": "",
-      "gender": "Erkek",
-      "season": [],
-      "time": [],
-      "category": [],
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody",
+        "Woods",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -314,12 +354,22 @@
     {
       "id": 14,
       "name": "Black Gold",
-      "brand": "Mancera",
+      "brand": "Black Gold",
       "variant": "",
       "gender": "Unisex",
-      "season": [],
-      "time": [],
-      "category": [],
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody",
+        "Woods",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -333,9 +383,19 @@
       "brand": "Yves Saint Laurent",
       "variant": "",
       "gender": "Kadın",
-      "season": [],
-      "time": [],
-      "category": [],
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -347,12 +407,22 @@
     {
       "id": 16,
       "name": "Tom Ford Black Orchid",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -365,12 +435,22 @@
     {
       "id": 17,
       "name": "Zielinski & Rozen Black Pepper & Amber, Neroli",
-      "brand": "",
+      "brand": "Zielinski & Rozen",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Soft Amber",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -380,12 +460,22 @@
     {
       "id": 18,
       "name": "Chanel Bleu de Chanel",
-      "brand": "",
+      "brand": "Chanel",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Woods",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -397,12 +487,22 @@
     {
       "id": 19,
       "name": "Clive Christian Blonde Amber",
-      "brand": "",
+      "brand": "Clive Christian",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Floral Amber",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek · Niche",
@@ -414,12 +514,22 @@
     {
       "id": 20,
       "name": "Gucci Bloom",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -430,12 +540,22 @@
     {
       "id": 21,
       "name": "Ex Nihilo Blue Talisman",
-      "brand": "",
+      "brand": "Ex Nihilo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -476,12 +596,22 @@
     {
       "id": 23,
       "name": "Valentino Born in Roma Extradose",
-      "brand": "",
+      "brand": "Valentino",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -491,12 +621,22 @@
     {
       "id": 24,
       "name": "Memo Paris Cap Camarat",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Woods",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -506,12 +646,22 @@
     {
       "id": 25,
       "name": "Parfums de Marly Cassili",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Woods",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -521,12 +671,20 @@
     {
       "id": 26,
       "name": "Chloé Love",
-      "brand": "",
+      "brand": "Chloé",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -536,12 +694,20 @@
     {
       "id": 27,
       "name": "Zoologist Perfumes Civet",
-      "brand": "",
+      "brand": "Zoologist Perfumes",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -551,12 +717,20 @@
     {
       "id": 28,
       "name": "Amouage Decision",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -569,12 +743,20 @@
     {
       "id": 29,
       "name": "Parfums de Marly Delina Exclusif",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -584,12 +766,20 @@
     {
       "id": 30,
       "name": "Dior Homme Intense 2011 Batch",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -599,12 +789,21 @@
     {
       "id": 31,
       "name": "Xerjoff Erba Pura",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod N379",
@@ -616,12 +815,20 @@
     {
       "id": 32,
       "name": "Ex Nihilo Fleur Narcotique",
-      "brand": "",
+      "brand": "Ex Nihilo",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod S493",
@@ -632,12 +839,20 @@
     {
       "id": 33,
       "name": "Gucci Flora Gorgeous Orchid",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -647,12 +862,20 @@
     {
       "id": 34,
       "name": "Marc-Antoine Barrois Ganymede",
-      "brand": "",
+      "brand": "Marc-Antoine Barrois",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -665,12 +888,20 @@
     {
       "id": 35,
       "name": "Stéphane Humbert Lucas 777 God of Fire",
-      "brand": "",
+      "brand": "Stéphane Humbert",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -683,12 +914,20 @@
     {
       "id": 36,
       "name": "Burberry Goddess",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -699,12 +938,20 @@
     {
       "id": 37,
       "name": "Carolina Herrera Good Girl",
-      "brand": "",
+      "brand": "Carolina Herrera",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -714,12 +961,20 @@
     {
       "id": 38,
       "name": "Maison Francis Kurkdjian Grand Soir",
-      "brand": "",
+      "brand": "Maison Francis Kurkdjian",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -733,12 +988,20 @@
     {
       "id": 39,
       "name": "Amouage Guidance 46",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -748,12 +1011,20 @@
     {
       "id": 40,
       "name": "Nishane Hacivat",
-      "brand": "",
+      "brand": "Nishane",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -767,12 +1038,21 @@
     {
       "id": 41,
       "name": "Parfums de Marly Herod",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -783,12 +1063,20 @@
     {
       "id": 42,
       "name": "Maison Crivelli Hibiscus Mahajad",
-      "brand": "",
+      "brand": "Maison Crivelli",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod S640",
@@ -801,12 +1089,19 @@
     {
       "id": 43,
       "name": "Kenzo Homme Marine",
-      "brand": "",
+      "brand": "Kenzo",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -818,12 +1113,20 @@
     {
       "id": 44,
       "name": "Dior Hypnotic Poison",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -834,12 +1137,21 @@
     {
       "id": 45,
       "name": "Memo Paris Iberian Leather",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -849,12 +1161,20 @@
     {
       "id": 46,
       "name": "Paco Rabanne Invictus",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -866,12 +1186,20 @@
     {
       "id": 47,
       "name": "Tiziana Terenzi Kirke",
-      "brand": "",
+      "brand": "Tiziana Terenzi",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -884,12 +1212,21 @@
     {
       "id": 48,
       "name": "Louis Vuitton L'Immensité",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -901,12 +1238,20 @@
     {
       "id": 49,
       "name": "Louis Vuitton Imagination",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -918,12 +1263,20 @@
     {
       "id": 50,
       "name": "Jean Paul Gaultier La Belle Paradise Garden",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -933,12 +1286,20 @@
     {
       "id": 51,
       "name": "Lancôme Idôle",
-      "brand": "",
+      "brand": "Lancôme",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -949,12 +1310,19 @@
     {
       "id": 52,
       "name": "Parfums de Marly Layton",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -967,12 +1335,19 @@
     {
       "id": 53,
       "name": "Parfums de Marly Layton Exclusif",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek · Niche",
@@ -984,12 +1359,20 @@
     {
       "id": 54,
       "name": "Jean Paul Gaultier Le Beau Paradise Garden",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1001,12 +1384,21 @@
     {
       "id": 55,
       "name": "Bvlgari Le Gemme Tygar",
-      "brand": "",
+      "brand": "Bvlgari",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [
         "Bvlgari Tygar Le Gemme"
       ],
@@ -1021,12 +1413,21 @@
     {
       "id": 56,
       "name": "Jean Paul Gaultier Le Male Elixir",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1038,12 +1439,21 @@
     {
       "id": 57,
       "name": "Yves Saint Laurent Libre",
-      "brand": "",
+      "brand": "Yves Saint Laurent",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -1053,12 +1463,22 @@
     {
       "id": 58,
       "name": "Casamorati 1888 Lira",
-      "brand": "",
+      "brand": "Casamorati",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -1068,12 +1488,22 @@
     {
       "id": 59,
       "name": "Tom Ford Lost Cherry",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fruity",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -1086,12 +1516,21 @@
     {
       "id": 60,
       "name": "Love Hibiscus",
-      "brand": "",
+      "brand": "Love Hibiscus",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
