@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="app-version" content="1.0.10">
+<meta name="app-version" content="1.0.11">
 <meta name="theme-color" content="#100D0B">
 <title>Satıcı Fiyat Güncelleme</title>
 <style>
@@ -34,6 +34,7 @@
     border-radius: 50%; display: inline-flex; align-items: center;
     justify-content: center; font-size: .85rem;
   }
+  .step-num.muted { background:#5f6368; }
   label { display: block; font-size: .9rem; font-weight: 500; margin-bottom: 4px; }
   input[type="text"], input[type="password"], input[type="number"], select, textarea {
     width: 100%; padding: 9px 12px; border: 1px solid var(--border);
@@ -140,7 +141,7 @@
   </div>
 
   <div class="card">
-    <div class="step-title"><span class="step-num">Yedek</span> Yerel satıcı dosyası</div>
+    <div class="step-title"><span class="step-num muted" aria-label="Yedek">↻</span> Yerel satıcı dosyası</div>
     <div class="drop-zone" id="sellerZone">
       <p><strong>Yedek kullanım:</strong> JSON satıcı dosyasını sürükle-bırak / tıkla</p>
       <p style="font-size:.85rem;margin-top:6px">Kökte <code>items[]</code>, kalemde <code>seller_name</code> ve <code>price</code></p>
@@ -1214,6 +1215,6 @@
   log("Hazır. Satıcı JSON yükle. CORS engeli varsa «Fiyatları kopyala» yer imini kullan.", "info");
 })();
 </script>
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.10</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.11</footer>
 </body>
 </html>
