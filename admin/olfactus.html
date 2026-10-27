@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="app-version" content="1.0.9">
+<html lang="tr"><head><meta charset="utf-8"><meta name="app-version" content="1.0.10">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <title>Olfactus yönetimi</title>
@@ -100,7 +100,7 @@ function dropImg(old){if(!old)return;if(S.imgs[old])delete S.imgs[old];else if(!
 function toast(t){var e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
 function mark(){S.dirty=true;var b=$('#savebar');if(b)b.outerHTML=bar()}
 function bar(){return S.dirty?'<div class="bar" id="savebar"><span>Kaydedilmemiş değişiklik var</span><div><button class="b s" data-a="discard">Vazgeç</button><button class="b p" data-a="save">'+(S.busy?'Kaydediliyor…':'GitHub\'a kaydet')+'</button></div></div>':'<span id="savebar"></span>'}
-var nav='<a href="index.html">Pazar</a> · <b>Olfactus</b>';
+var nav='<a href="index.html">Pazar</a> · <b>Olfactus</b> · <a href="../parfum-veri-editoru.html">Veri editörü</a> · <a href="metadata-ai.html">AI metadata</a> · <a href="price-tool.html">Fiyat aracı</a>';
 
 /* ---------- görünümler ---------- */
 function render(){if(S.view==='wix'){wxShow();return}wxHide();var y=window.scrollY,h=S.view==='login'?vLogin():S.view==='edit'?vEdit():vList();$('#app').innerHTML=h+bar();window.scrollTo(0,S.keepY?y:0);S.keepY=false}
@@ -313,5 +313,5 @@ document.addEventListener('change',function(e){var t=e.target;
 window.addEventListener('beforeunload',function(e){if(S.dirty){e.preventDefault();e.returnValue=''}});
 if(tok&&cfg.owner&&cfg.repo)load();else{S.view='login';render()}
 })();
-</script><footer class="app-version" aria-label="Uygulama sürümü">v1.0.9</footer>
+</script><footer class="app-version" aria-label="Uygulama sürümü">v1.0.10</footer>
 </body></html>

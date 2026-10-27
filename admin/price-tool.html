@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="app-version" content="1.0.10">
+<meta name="theme-color" content="#100D0B">
+<title>Satıcı Fiyat Güncelleme</title>
+<style>
+  :root {
+    --bg: #f4f6f9; --card: #fff; --primary: #1a73e8; --primary-dark: #1557b0;
+    --success: #0d904f; --danger: #d93025; --warning: #f9ab00;
+    --text: #202124; --muted: #5f6368; --border: #dadce0;
+    --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    padding: 12px; max-width: 1100px; margin: 0 auto;
+  }
+  h1 { font-size: 1.35rem; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); font-size: .9rem; margin-bottom: 16px; }
+  .card {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 18px; margin-bottom: 16px;
+  }
+  .step-title {
+    font-size: 1.05rem; font-weight: 600; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .step-num {
+    background: var(--primary); color: #fff; width: 26px; height: 26px;
+    border-radius: 50%; display: inline-flex; align-items: center;
+    justify-content: center; font-size: .85rem;
+  }
+  label { display: block; font-size: .9rem; font-weight: 500; margin-bottom: 4px; }
+  input[type="text"], input[type="password"], input[type="number"], select, textarea {
+    width: 100%; padding: 9px 12px; border: 1px solid var(--border);
+    border-radius: 6px; font-size: .95rem; margin-bottom: 12px;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); border-color: transparent; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .row > * { flex: 1 1 140px; }
+  .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .checkbox-row input { width: auto; margin: 0; }
+  button {
+    background: var(--primary); color: #fff; border: none; border-radius: 6px;
+    padding: 10px 16px; font-size: .95rem; font-weight: 500; cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: var(--primary-dark); }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  button.secondary { background: #5f6368; }
+  button.secondary:hover:not(:disabled) { background: #3c4043; }
+  button.success { background: var(--success); }
+  button.warning { background: var(--warning); color: #202124; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .drop-zone {
+    border: 2px dashed var(--border); border-radius: var(--radius);
+    padding: 22px 16px; text-align: center; color: var(--muted); cursor: pointer;
+  }
+  .drop-zone.dragover { border-color: var(--primary); background: #e8f0fe; }
+  .drop-zone.has-file { border-color: var(--success); background: #e6f4ea; color: var(--success); }
+  .hidden { display: none !important; }
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+  .stat {
+    background: #f8f9fa; border-radius: 8px; padding: 10px 14px;
+    min-width: 110px; text-align: center;
+  }
+  .stat strong { display: block; font-size: 1.15rem; }
+  .stat span { font-size: .8rem; color: var(--muted); }
+  .warning-box {
+    background: #fef7e0; border: 1px solid #f9ab00; border-radius: 8px;
+    padding: 10px 12px; font-size: .85rem; margin-bottom: 14px;
+  }
+  .info-box {
+    background: #e8f0fe; border: 1px solid var(--primary); border-radius: 8px;
+    padding: 10px 12px; font-size: .85rem; margin-bottom: 12px;
+  }
+  .counters { display: flex; flex-wrap: wrap; gap: 10px; font-size: .9rem; margin: 8px 0; }
+  .counters span { background: #e8f0fe; padding: 4px 10px; border-radius: 20px; }
+  .price-table-wrap { max-height: 440px; overflow: auto; margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; }
+  th { background: #f1f3f4; position: sticky; top: 0; z-index: 1; }
+  .price-up { color: var(--danger); font-weight: 600; }
+  .price-down { color: var(--success); font-weight: 600; }
+  .price-same { color: var(--muted); }
+  .match-ok { background: #e6f4ea; }
+  .match-weak { background: #fef7e0; }
+  .match-none { background: #fce8e6; }
+  textarea.price-paste {
+    width: 100%; min-height: 100px; font-family: Consolas, monospace; font-size: .85rem;
+    padding: 10px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 10px;
+  }
+  .log {
+    background: #202124; color: #e8eaed; font-family: Consolas, monospace; font-size: .8rem;
+    padding: 12px; border-radius: 8px; height: 180px; overflow-y: auto;
+    white-space: pre-wrap; word-break: break-word; margin-top: 12px;
+  }
+  .log .info { color: #8ab4f8; }
+  .log .ok { color: #81c995; }
+  .log .warn { color: #fdd663; }
+  .log .err { color: #f28b82; }
+  .admin-ribbon { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 12px; margin-bottom:16px; border:1px solid #dadce0; border-radius:10px; background:#fff; font-size:.82rem; }
+  .admin-ribbon a { color:#1557b0; text-decoration:none; }
+  .admin-ribbon a:hover { text-decoration:underline; }
+  .admin-ribbon strong { margin-right:auto; }
+  .repo-select { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
+  .repo-select > div { flex:1 1 240px; }
+  .repo-select select { margin-bottom:0; }
+  .repo-status { color:var(--muted); font-size:.86rem; margin-top:10px; }
+  .app-version { display:block; position:static; width:max-content; margin:14px 0 8px auto; color:#526056; background:#fff; border:1px solid rgba(95,112,100,.28); border-radius:12px; padding:2px 7px; font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.02em; }
+  code { background: #f1f3f4; padding: 1px 5px; border-radius: 4px; font-size: .85em; }
+  details { margin-top: 10px; font-size: .9rem; }
+  details summary { cursor: pointer; color: var(--muted); margin-bottom: 8px; }
+  @media (max-width: 600px) {
+    body { padding: 8px; }
+    h1 { font-size: 1.15rem; }
+    .card { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+  <nav class="admin-ribbon" aria-label="Admin gezinme"><strong>Disphorex Admin</strong><a href="index.html">Admin ana sayfası</a><a href="index.html">Pazar</a><a href="olfactus.html">Olfactus</a><a href="../parfum-veri-editoru.html">Veri editörü</a><a href="metadata-ai.html">AI metadata</a><span>Fiyat aracı</span></nav>
+  <h1>Satıcı Fiyat Güncelleme</h1>
+  <p class="subtitle">GitHub’daki satıcı verisini yükle → fiyatları çek → eşleştir → gözden geçir → satıcı dosyasına kaydet.</p>
+
+  <div class="card" id="repoPanel">
+    <div class="step-title"><span class="step-num">1</span> GitHub satıcı dosyası</div>
+    <div class="info-box">Admin paneline aynı tarayıcıda giriş yaptıysan depo ayarları ve erişim anahtarı otomatik kullanılır. Fiyat kaydı yalnızca seçtiğin satıcı JSON dosyasına yazılır.</div>
+    <div class="repo-select"><div><label for="repoSeller">Satıcı</label><select id="repoSeller"><option value="">Satıcı listesi yükleniyor…</option></select></div><button type="button" id="btnLoadRepo" class="success">GitHub’dan yükle</button></div>
+    <p id="repoState" class="repo-status" aria-live="polite">Admin oturumu kontrol ediliyor…</p>
+  </div>
+
+  <div class="warning-box">
+    <strong>Önemli:</strong> Çoğu site (ör. İmza Kimya) tarayıcı dışından fiyat çekmeyi engeller (CORS / 403).
+    Bu durumda en güvenilir yol: satıcı sitesini açıp aşağıdaki <strong>yer imini</strong> kullanmak.
+    Yalnızca satıcı JSON güncellenir — önce yedek al.
+  </div>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">Yedek</span> Yerel satıcı dosyası</div>
+    <div class="drop-zone" id="sellerZone">
+      <p><strong>Yedek kullanım:</strong> JSON satıcı dosyasını sürükle-bırak / tıkla</p>
+      <p style="font-size:.85rem;margin-top:6px">Kökte <code>items[]</code>, kalemde <code>seller_name</code> ve <code>price</code></p>
+      <input type="file" id="sellerInput" accept=".json,application/json" class="hidden">
+    </div>
+    <div id="sellerInfo" class="hidden">
+      <div class="stats">
+        <div class="stat"><strong id="statSeller">-</strong><span>Satıcı</span></div>
+        <div class="stat"><strong id="statItems">0</strong><span>Kalem</span></div>
+        <div class="stat"><strong id="statBase">-</strong><span>Site</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">2</span> Siteden fiyatları çek</div>
+    <div class="info-box">
+      Satıcı dosyasında <code>base</code> varsa otomatik doldurulur. Örn. <code>https://barroniprofumo.com</code>
+    </div>
+    <label>Satıcı web sitesi adresi</label>
+    <input type="text" id="siteUrl" placeholder="https://barroniprofumo.com">
+    <div class="row">
+      <div>
+        <label>Çekim yöntemi</label>
+        <select id="fetchMode">
+          <option value="auto">Otomatik (Shopify JSON → HTML)</option>
+          <option value="shopify">Sadece Shopify products.json</option>
+          <option value="html">HTML sayfa + AI çözümleme</option>
+        </select>
+      </div>
+      <div>
+        <label>AI sağlayıcı (HTML çözümleme için)</label>
+        <select id="aiProvider">
+          <option value="none">Kullanma</option>
+          <option value="groq">Groq</option>
+          <option value="openai">OpenAI</option>
+          <option value="nvidia">NVIDIA (Nemotron)</option>
+          <option value="gemini">Gemini</option>
+        </select>
+      </div>
+      <div>
+        <label>API anahtarı (AI kullanıyorsan)</label>
+        <input type="password" id="apiKey" placeholder="API anahtarı" autocomplete="off">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>AI model (boş = varsayılan)</label>
+        <input type="text" id="aiModel" placeholder="örn. llama-3.3-70b-versatile">
+      </div>
+      <div>
+        <label>CORS proxy (gerekirse)</label>
+        <select id="corsProxy">
+          <option value="auto">Otomatik dene</option>
+          <option value="none">Proxy yok (doğrudan)</option>
+          <option value="allorigins">api.allorigins.win</option>
+          <option value="corsproxy">corsproxy.io</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button type="button" id="btnFetch" class="success">Siteden fiyatları çek</button>
+      <button type="button" id="btnFetchStop" class="secondary" disabled>Durdur</button>
+    </div>
+    <p id="fetchInfo" style="font-size:.85rem;color:var(--muted);margin-top:8px"></p>
+
+    <div class="info-box" style="margin-top:14px">
+      <strong>CORS engeli varsa (önerilen): Yer imi ile çek</strong>
+      <ol style="margin:8px 0 8px 18px;font-size:.9rem">
+        <li>Aşağıdaki mavi linki yer işaretlerine sürükle (yer imi çubuğuna bırak).</li>
+        <li>Satıcı sitesini tarayıcıda aç (gerekirse ürün listesi sayfasına git).</li>
+        <li>Yer imine tıkla → fiyat listesi panoya kopyalanır.</li>
+        <li>Bu sayfaya dön, yapıştır kutusuna <kbd>Ctrl+V</kbd> → <strong>Listeyi oku</strong>.</li>
+      </ol>
+      <p style="margin:8px 0">
+        <a id="bookmarkletLink" href="#" style="display:inline-block;background:#1a73e8;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600">
+          📋 Fiyatları kopyala
+        </a>
+      </p>
+      <p style="font-size:.8rem;color:var(--muted);margin:0">İmza Kimya, Shopify ve genel ürün kartları için çalışır. Sayfada görünen ürünleri alır; tüm katalog için liste/kategori sayfalarını gezmen gerekebilir.</p>
+    </div>
+
+    <details>
+      <summary>Manuel yedek: dosya yükle / yapıştır</summary>
+      <div class="drop-zone" id="newZone" style="padding:14px;margin-top:8px">
+        <p>JSON / CSV / TXT sürükle veya tıkla</p>
+        <input type="file" id="newInput" accept=".json,.csv,.txt,text/plain,application/json" class="hidden">
+      </div>
+      <label style="margin-top:8px">Veya metin yapıştır (<code>ad | fiyat</code> veya JSON)</label>
+      <textarea class="price-paste" id="pasteBox" placeholder="ABSOLU AVENTUS Creed | 850"></textarea>
+      <div class="btn-group">
+        <button type="button" id="btnParse">Listeyi oku</button>
+        <button type="button" class="secondary" id="btnClear">Temizle</button>
+      </div>
+    </details>
+    <p id="newInfo" style="font-size:.85rem;color:var(--muted);margin-top:8px"></p>
+  </div>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">3</span> Eşleştir ve güncelle</div>
+    <div class="row">
+      <div>
+        <label>İsim benzerliği eşiği (%)</label>
+        <input type="number" id="threshold" value="55" min="30" max="100">
+      </div>
+      <div>
+        <label>Varsayılan hacim (ml)</label>
+        <input type="number" id="defaultMl" value="50" min="0">
+      </div>
+      <div>
+        <label>Eski fiyat davranışı</label>
+        <select id="oldBehavior">
+          <option value="shift">Mevcut fiyatı old_price yap, yeniyi yaz</option>
+          <option value="keep">old_price’a dokunma, sadece price güncelle</option>
+        </select>
+      </div>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="onlyChanged" checked>
+      <label for="onlyChanged" style="margin:0">Yalnızca fiyatı değişenleri işaretle</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="showUnmatched">
+      <label for="showUnmatched" style="margin:0">Eşleşmeyen satıcı kalemlerini de tabloda göster</label>
+    </div>
+    <div class="btn-group">
+      <button type="button" id="btnMatch">Eşleştir</button>
+      <button type="button" class="secondary" id="btnAll">Tümünü seç</button>
+      <button type="button" class="secondary" id="btnNone">Seçimi kaldır</button>
+      <button type="button" class="success" id="btnApply" disabled>Seçilenleri uygula</button>
+      <button type="button" class="success" id="btnSaveRepo" disabled>GitHub’a kaydet</button>
+      <button type="button" class="secondary" id="btnDownload" disabled>JSON yedeği indir</button>
+    </div>
+    <div class="counters">
+      <span>Çekilen: <strong id="cntFetched">0</strong></span>
+      <span>Eşleşen: <strong id="cntMatch">0</strong></span>
+      <span>Değişen: <strong id="cntChanged">0</strong></span>
+      <span>Seçili: <strong id="cntSelected">0</strong></span>
+      <span>Uygulanan: <strong id="cntApplied">0</strong></span>
+    </div>
+    <div class="price-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Satıcı ürün</th>
+            <th>Sitedeki ad</th>
+            <th>ml</th>
+            <th>Eski ₺</th>
+            <th>Yeni ₺</th>
+            <th>Fark</th>
+            <th>%</th>
+            <th>Eşleşme</th>
+          </tr>
+        </thead>
+        <tbody id="matchBody"></tbody>
+      </table>
+    </div>
+    <div class="log" id="log"></div>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+
+  let sellerData = null;
+  let sellerFileName = "seller.json";
+  let newPriceList = [];
+  let priceMatches = [];
+  let fetchAbort = null;
+  let repoConfig = null;
+  let repoSellerPath = "";
+  let repoFileSha = "";
+  let repoBaseSha = "";
+  let productsById = Object.create(null);
+  let repoLoaded = false;
+  let appliedCount = 0;
+
+  const DEFAULT_MODELS = {
+    groq: "llama-3.3-70b-versatile",
+    openai: "gpt-4o-mini",
+    nvidia: "nvidia/nemotron-3.5-lightning-30b-a3b",
+    gemini: "gemini-2.5-flash"
+  };
+
+  function esc(s) {
+    if (s == null) return "";
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function log(msg, type) {
+    const t = new Date().toLocaleTimeString("tr-TR");
+    const line = document.createElement("div");
+    line.className = type || "info";
+    line.textContent = "[" + t + "] " + msg;
+    $("log").appendChild(line);
+    $("log").scrollTop = $("log").scrollHeight;
+  }
+  function normName(s) {
+    return String(s || "").toLocaleLowerCase("tr-TR")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9ğüşıöç\s]/gi, " ").replace(/\s+/g, " ").trim();
+  }
+  function tokenSet(s) {
+    const stop = new Set(["ml","edp","edt","parfum","perfume","extrait","de","the","and","ve"]);
+    return new Set(normName(s).split(" ").filter((w) => w.length > 1 && !stop.has(w)));
+  }
+  function nameSimilarity(a, b) {
+    const na = normName(a), nb = normName(b);
+    if (!na || !nb) return 0;
+    if (na === nb) return 100;
+    if (na.includes(nb) || nb.includes(na)) return 90;
+    const ta = tokenSet(a), tb = tokenSet(b);
+    if (!ta.size || !tb.size) return 0;
+    let inter = 0;
+    ta.forEach((t) => { if (tb.has(t)) inter++; });
+    const union = new Set([...ta, ...tb]).size;
+    const shorter = na.length <= nb.length ? na : nb;
+    const longer = na.length <= nb.length ? nb : na;
+    const cover = longer.includes(shorter) ? 0.15 : 0;
+    return Math.round(Math.min(100, (inter / union + cover) * 100));
+  }
+  function parsePriceNumber(v) {
+    if (v == null || v === "") return null;
+    if (typeof v === "number" && !isNaN(v)) return v;
+    let s = String(v).replace(/₺/g, "").replace(/\bTL\b/gi, "").trim();
+    // Turkce: 1.155,00 veya 1.155 — nokta binlik, virgul ondalik
+    if (/\d{1,3}(\.\d{3})+(,\d+)?/.test(s)) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else if (s.indexOf(",") >= 0 && s.indexOf(".") < 0) {
+      // 1155,00
+      s = s.replace(",", ".");
+    } else {
+      // Ingilizce veya sade sayi
+      s = s.replace(/[^\d.\-]/g, "");
+      const n0 = parseFloat(s);
+      return isNaN(n0) ? null : n0;
+    }
+    s = s.replace(/[^\d.\-]/g, "");
+    const n = parseFloat(s);
+    return isNaN(n) ? null : n;
+  }
+  function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+  // ---------- GitHub admin oturumu ----------
+  function getRepoSettings() {
+    try {
+      const c = JSON.parse(localStorage.getItem("op_adm_cfg") || "{}");
+      const owner = c.owner || location.hostname.split(".")[0];
+      const repo = c.repo || (location.hostname.endsWith(".github.io") ? owner + ".github.io" : "");
+      return { owner, repo, branch: c.branch || "main", dir: (c.dir || "parfumeri/data").replace(/^\/+|\/+$/g, "") };
+    } catch (_) { return null; }
+  }
+  function ghHeaders() {
+    const token = localStorage.getItem("op_adm_tok");
+    if (!token) throw new Error("Önce aynı tarayıcıda Admin ana sayfasından GitHub’a giriş yapın.");
+    return { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json" };
+  }
+  function repoPath() {
+    if (!repoConfig || !repoConfig.owner || !repoConfig.repo) throw new Error("Depo ayarları bulunamadı. Admin paneli ayarlarını kontrol edin.");
+    return "/repos/" + encodeURIComponent(repoConfig.owner) + "/" + encodeURIComponent(repoConfig.repo);
+  }
+  function encodedPath(path) { return path.split("/").map(encodeURIComponent).join("/"); }
+  async function ghRequest(path, options) {
+    const res = await fetch("https://api.github.com" + path, Object.assign({ headers: ghHeaders(), cache: "no-store" }, options || {}));
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error("GitHub " + res.status + ": " + (body.message || res.statusText));
+    return body;
+  }
+  function decodeGitHubText(file) {
+    return decodeURIComponent(escape(atob(String(file.content || "").replace(/\s/g, ""))));
+  }
+  function encodeGitHubText(text) { return btoa(unescape(encodeURIComponent(text))); }
+  async function loadRepoSellerList() {
+    repoConfig = getRepoSettings();
+    const state = $("repoState");
+    try {
+      if (!repoConfig || !localStorage.getItem("op_adm_tok")) throw new Error("Önce Admin ana sayfasından GitHub’a giriş yapın.");
+      state.textContent = "Satıcı listesi GitHub’dan yükleniyor…";
+      const path = repoPath();
+      const manifestFile = await ghRequest(path + "/contents/" + encodedPath(repoConfig.dir + "/index.json") + "?ref=" + encodeURIComponent(repoConfig.branch));
+      const manifest = JSON.parse(decodeGitHubText(manifestFile));
+      if (!Array.isArray(manifest.files)) throw new Error("Satıcı listesi dosyasında files[] bulunamadı.");
+      const select = $("repoSeller");
+      select.innerHTML = "";
+      manifest.files.forEach((name) => {
+        if (typeof name !== "string" || !/^[^/]+\.json$/i.test(name)) return;
+        const option = document.createElement("option"); option.value = name; option.textContent = name; select.appendChild(option);
+      });
+      productsById = Object.create(null);
+      if (manifest.productsFile) {
+        try {
+          const catalogFile = await ghRequest(path + "/contents/" + encodedPath(repoConfig.dir + "/" + manifest.productsFile) + "?ref=" + encodeURIComponent(repoConfig.branch));
+          const catalog = JSON.parse(decodeGitHubText(catalogFile));
+          (catalog.products || []).forEach((p) => { productsById[String(p.id)] = p; });
+        } catch (e) { log("Ürün kataloğu okunamadı; satıcı başlıklarıyla devam edilecek: " + e.message, "warn"); }
+      }
+      if (!select.options.length) throw new Error("Manifest dosyasında satıcı JSON dosyası bulunamadı.");
+      state.textContent = repoConfig.owner + "/" + repoConfig.repo + " · " + repoConfig.branch + " · " + select.options.length + " satıcı dosyası bulundu.";
+    } catch (e) {
+      state.textContent = e.message;
+      log("GitHub satıcı listesi alınamadı: " + e.message, "err");
+    }
+  }
+  async function loadSelectedRepoSeller() {
+    const state = $("repoState");
+    try {
+      repoConfig = getRepoSettings();
+      const filename = $("repoSeller").value;
+      if (!filename) throw new Error("Önce satıcı seçin.");
+      state.textContent = filename + " GitHub’dan yükleniyor…";
+      const base = repoPath();
+      const branchRef = await ghRequest(base + "/git/ref/heads/" + encodeURIComponent(repoConfig.branch));
+      const filePath = repoConfig.dir + "/" + filename;
+      const file = await ghRequest(base + "/contents/" + encodedPath(filePath) + "?ref=" + encodeURIComponent(repoConfig.branch));
+      const data = JSON.parse(decodeGitHubText(file));
+      repoSellerPath = filePath; repoFileSha = file.sha; repoBaseSha = branchRef.object.sha; repoLoaded = true;
+      loadSellerData(data, filename, true);
+      state.textContent = repoConfig.owner + "/" + repoConfig.repo + "/" + filePath + " · GitHub’dan okundu; kaydetmeden önce ayrıca onay gerekir.";
+      log(filename + " GitHub’dan yüklendi. Orijinal satıcı dosyası değişmedi.", "ok");
+    } catch (e) { repoLoaded = false; state.textContent = e.message; log("Satıcı dosyası yüklenemedi: " + e.message, "err"); }
+  }
+
+  // ---------- satıcı dosyası ----------
+  function loadSellerData(data, fileName, fromRepo) {
+    if (!data || !Array.isArray(data.items)) throw new Error("Geçersiz satıcı dosyası: kökte items[] olmalı.");
+    sellerData = data;
+    sellerFileName = fileName || "seller.json";
+    $("statSeller").textContent = data.name || sellerFileName;
+    $("statItems").textContent = data.items.length;
+    const base = (data.base || "").replace(/\/$/, "");
+    $("statBase").textContent = base.replace(/^https?:\/\//, "").slice(0, 32) || "-";
+    if (base) $("siteUrl").value = base;
+    $("sellerInfo").classList.remove("hidden");
+    $("sellerZone").classList.add("has-file");
+    repoLoaded = !!fromRepo;
+    appliedCount = 0;
+    $("btnApply").disabled = true;
+    $("btnDownload").disabled = true;
+    $("btnSaveRepo").disabled = true;
+    priceMatches = [];
+    $("matchBody").innerHTML = "";
+    log("Satıcı yüklendi: " + (data.name || sellerFileName) + " (" + data.items.length + " kalem)", "ok");
+  }
+  async function loadSellerFile(file) {
+    try {
+      const data = JSON.parse(await file.text());
+      repoLoaded = false;
+      loadSellerData(data, file.name || "seller.json", false);
+    } catch (e) {
+      log("Satıcı JSON okunamadı: " + e.message, "err");
+    }
+  }
+  $("btnLoadRepo").addEventListener("click", loadSelectedRepoSeller);
+  loadRepoSellerList().then(() => {
+    if (localStorage.getItem("op_adm_tok") && $("repoSeller").options.length) loadSelectedRepoSeller();
+  });
+  $("sellerZone").addEventListener("click", () => $("sellerInput").click());
+  $("sellerInput").addEventListener("change", () => {
+    if ($("sellerInput").files[0]) loadSellerFile($("sellerInput").files[0]);
+  });
+  ["dragover","dragleave","drop"].forEach((ev) => {
+    $("sellerZone").addEventListener(ev, (e) => {
+      e.preventDefault();
+      if (ev === "dragover") $("sellerZone").classList.add("dragover");
+      else $("sellerZone").classList.remove("dragover");
+      if (ev === "drop" && e.dataTransfer.files[0]) loadSellerFile(e.dataTransfer.files[0]);
+    });
+  });
+
+  // ---------- fetch helpers ----------
+  function normalizeBaseUrl(u) {
+    let s = String(u || "").trim();
+    if (!s) return "";
+    if (!/^https?:\/\//i.test(s)) s = "https://" + s;
+    return s.replace(/\/$/, "");
+  }
+
+  function proxyUrls(targetUrl) {
+    const mode = $("corsProxy").value;
+    const encoded = encodeURIComponent(targetUrl);
+    const list = [];
+    if (mode === "none") return [targetUrl];
+    if (mode === "allorigins") return ["https://api.allorigins.win/raw?url=" + encoded];
+    if (mode === "corsproxy") return ["https://corsproxy.io/?" + encoded];
+    // auto
+    list.push(targetUrl);
+    list.push("https://api.allorigins.win/raw?url=" + encoded);
+    list.push("https://corsproxy.io/?" + encoded);
+    return list;
+  }
+
+  async function fetchText(url, signal) {
+    let lastErr = null;
+    for (const u of proxyUrls(url)) {
+      try {
+        log("İstek: " + u.slice(0, 100) + (u.length > 100 ? "…" : ""), "info");
+        const res = await fetch(u, {
+          signal,
+          headers: { "Accept": "application/json, text/html, */*" }
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const text = await res.text();
+        if (!text || text.length < 2) throw new Error("Boş yanıt");
+        return text;
+      } catch (e) {
+        if (e.name === "AbortError") throw e;
+        lastErr = e;
+        log("Başarısız: " + (e.message || e), "warn");
+      }
+    }
+    throw lastErr || new Error("Tüm istekler başarısız");
+  }
+
+  function parseShopifyProductsJson(text) {
+    const data = JSON.parse(text);
+    const products = data.products || data;
+    if (!Array.isArray(products)) throw new Error("Shopify products dizisi yok");
+    const list = [];
+    for (const p of products) {
+      const title = p.title || p.name || "";
+      if (!title) continue;
+      const variants = Array.isArray(p.variants) ? p.variants : [];
+      if (variants.length === 0 && p.price != null) {
+        list.push({ name: title, price: parsePriceNumber(p.price), volume_ml: null });
+        continue;
+      }
+      for (const v of variants) {
+        const price = parsePriceNumber(v.price);
+        if (price == null) continue;
+        const opt = [v.option1, v.option2, v.option3, v.title].filter(Boolean).join(" ");
+        let ml = null;
+        const m = String(opt).match(/(\d+)\s*ml/i) || String(title).match(/(\d+)\s*ml/i);
+        if (m) ml = parseInt(m[1], 10);
+        const name = title;
+        list.push({ name, price, volume_ml: ml });
+      }
+    }
+    return list;
+  }
+
+  async function fetchShopifyCatalog(base, signal) {
+    const all = [];
+    let page = 1;
+    const maxPages = 20;
+    while (page <= maxPages) {
+      if (signal && signal.aborted) throw new Error("İptal edildi");
+      const url = base + "/products.json?limit=250&page=" + page;
+      log("Shopify sayfa " + page + "…", "info");
+      const text = await fetchText(url, signal);
+      let batch;
+      try {
+        batch = parseShopifyProductsJson(text);
+      } catch (e) {
+        if (page === 1) throw e;
+        break;
+      }
+      if (!batch.length) break;
+      all.push(...batch);
+      log("Sayfa " + page + ": " + batch.length + " varyant", "ok");
+      if (batch.length < 250) break;
+      page++;
+      await sleep(300);
+    }
+    return all;
+  }
+
+  function extractMlFromText(s) {
+    const m = String(s || "").match(/(\d+)\s*ml/i);
+    return m ? parseInt(m[1], 10) : null;
+  }
+
+  function parseHtmlPricesHeuristic(html) {
+    const list = [];
+    const seen = new Set();
+    // JSON-LD
+    const ldRe = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+    let m;
+    while ((m = ldRe.exec(html))) {
+      try {
+        const j = JSON.parse(m[1]);
+        const nodes = Array.isArray(j) ? j : [j];
+        for (const node of nodes) {
+          const graph = node["@graph"] || [node];
+          for (const g of graph) {
+            if (!g) continue;
+            const type = g["@type"];
+            if (type === "Product" || (Array.isArray(type) && type.includes("Product"))) {
+              const name = g.name;
+              let price = null;
+              const offers = g.offers;
+              if (offers) {
+                const o = Array.isArray(offers) ? offers[0] : offers;
+                price = parsePriceNumber(o && o.price);
+              }
+              if (name && price != null) {
+                const key = normName(name) + "|" + price;
+                if (!seen.has(key)) {
+                  seen.add(key);
+                  list.push({ name: String(name), price, volume_ml: extractMlFromText(name) });
+                }
+              }
+            }
+          }
+        }
+      } catch (e) { /* ignore */ }
+    }
+    // product card-ish patterns: title near price
+    const priceRe = /(\d{2,5}(?:[.,]\d{1,2})?)\s*(?:TL|₺)/gi;
+    // Shopify product titles in links
+    const linkRe = /<(?:h2|h3|a)[^>]*>([^<]{4,120})<\/(?:h2|h3|a)>/gi;
+    const candidates = [];
+    while ((m = linkRe.exec(html))) {
+      const t = m[1].replace(/\s+/g, " ").trim();
+      if (t && !/sepet|cart|login|hesap|menu/i.test(t)) candidates.push({ name: t, index: m.index });
+    }
+    for (const c of candidates) {
+      const slice = html.slice(c.index, c.index + 800);
+      const pm = priceRe.exec(slice);
+      priceRe.lastIndex = 0;
+      if (pm) {
+        const price = parsePriceNumber(pm[1]);
+        if (price != null && price >= 20) {
+          const key = normName(c.name) + "|" + price;
+          if (!seen.has(key)) {
+            seen.add(key);
+            list.push({ name: c.name, price, volume_ml: extractMlFromText(c.name) });
+          }
+        }
+      }
+    }
+    return list;
+  }
+
+  async function extractWithAI(htmlOrText, signal) {
+    const provider = $("aiProvider").value;
+    if (provider === "none") return [];
+    const key = $("apiKey").value.trim();
+    if (!key) {
+      log("AI için API anahtarı gerekli.", "warn");
+      return [];
+    }
+    const model = $("aiModel").value.trim() || DEFAULT_MODELS[provider];
+    // metni kısalt
+    let text = String(htmlOrText || "")
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 120000);
+
+    const system = 'Ürün adı ve fiyat listesi çıkar. Yanıt yalnızca JSON: {"products":[{"name":"...","price":123,"volume_ml":50}]}. volume_ml yoksa null. Fiyat sayı olsun. Markdown ekleme.';
+    const user = "Aşağıdaki siteden/metinden tüm parfüm ürün adı ve TL fiyatlarını çıkar:\n\n" + text;
+
+    log("AI ile fiyat çıkarılıyor (" + provider + " / " + model + ")…", "info");
+
+    if (provider === "gemini") {
+      const url = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent";
+      const res = await fetch(url, {
+        method: "POST",
+        signal,
+        headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: system }] },
+          contents: [{ role: "user", parts: [{ text: user }] }],
+          generationConfig: { responseMimeType: "application/json", temperature: 0 }
+        })
+      });
+      if (!res.ok) throw new Error("Gemini HTTP " + res.status + " " + (await res.text()).slice(0, 200));
+      const data = await res.json();
+      const t = ((data.candidates || [])[0] && data.candidates[0].content && data.candidates[0].content.parts || [])
+        .map((p) => p.text || "").join("");
+      return ingestNewPriceData(t);
+    }
+
+    // OpenAI-compatible: groq, openai, nvidia
+    let base = "https://api.openai.com/v1";
+    if (provider === "groq") base = "https://api.groq.com/openai/v1";
+    if (provider === "nvidia") base = "https://integrate.api.nvidia.com/v1";
+
+    const res = await fetch(base + "/chat/completions", {
+      method: "POST",
+      signal,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + key
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: system },
+          { role: "user", content: user }
+        ]
+      })
+    });
+    if (!res.ok) throw new Error(provider + " HTTP " + res.status + " " + (await res.text()).slice(0, 200));
+    const data = await res.json();
+    const t = data.choices && data.choices[0] && data.choices[0].message
+      ? (data.choices[0].message.content || "")
+      : "";
+    return ingestNewPriceData(t);
+  }
+
+  function setNewPriceList(list, sourceLabel) {
+    // tekilleştir: name+ml+price
+    const seen = new Set();
+    const out = [];
+    for (const row of list) {
+      if (!row || !row.name || row.price == null) continue;
+      const key = normName(row.name) + "|" + (row.volume_ml || "") + "|" + row.price;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({
+        name: String(row.name).trim(),
+        price: Number(row.price),
+        volume_ml: row.volume_ml != null ? Number(row.volume_ml) : null
+      });
+    }
+    newPriceList = out;
+    $("cntFetched").textContent = out.length;
+    $("newInfo").textContent = out.length
+      ? (out.length + " fiyat satırı hazır (" + (sourceLabel || "kaynak") + ").")
+      : "Fiyat bulunamadı.";
+    // paste kutusuna da yaz (şeffaflık)
+    $("pasteBox").value = out.map((r) =>
+      r.volume_ml != null ? (r.name + " | " + r.price + " | " + r.volume_ml) : (r.name + " | " + r.price)
+    ).join("\n");
+    log(out.length + " fiyat satırı yüklendi (" + (sourceLabel || "?") + ").", out.length ? "ok" : "warn");
+  }
+
+  async function fetchFromSite() {
+    const base = normalizeBaseUrl($("siteUrl").value);
+    if (!base) {
+      log("Site adresi girin.", "err");
+      return;
+    }
+    if (fetchAbort) fetchAbort.abort();
+    fetchAbort = new AbortController();
+    const signal = fetchAbort.signal;
+    $("btnFetch").disabled = true;
+    $("btnFetchStop").disabled = false;
+    $("fetchInfo").textContent = "Çekiliyor…";
+    const mode = $("fetchMode").value;
+
+    try {
+      let list = [];
+
+      // 1) Shopify
+      if (mode === "auto" || mode === "shopify") {
+        try {
+          list = await fetchShopifyCatalog(base, signal);
+          if (list.length) {
+            setNewPriceList(list, "Shopify products.json");
+            $("fetchInfo").textContent = "Shopify üzerinden " + list.length + " satır alındı.";
+            return;
+          }
+        } catch (e) {
+          if (e.name === "AbortError") throw e;
+          log("Shopify denemesi: " + e.message, "warn");
+          if (mode === "shopify") throw e;
+        }
+      }
+
+      // 2) HTML ana sayfa / collections
+      if (mode === "auto" || mode === "html") {
+        const pages = [base, base + "/collections/all", base + "/collections"];
+        let html = "";
+        for (const page of pages) {
+          try {
+            html = await fetchText(page, signal);
+            if (html.length > 500) break;
+          } catch (e) {
+            if (e.name === "AbortError") throw e;
+          }
+        }
+        if (!html) throw new Error("HTML alınamadı (CORS veya site engeli).");
+
+        list = parseHtmlPricesHeuristic(html);
+        log("Sezgisel HTML parse: " + list.length + " aday", list.length ? "ok" : "warn");
+
+        if (list.length < 5 && $("aiProvider").value !== "none") {
+          const aiList = await extractWithAI(html, signal);
+          if (aiList.length > list.length) list = aiList;
+        } else if (list.length < 5 && $("aiProvider").value === "none") {
+          log("Az ürün bulundu. AI sağlayıcı seçip tekrar deneyebilirsin.", "warn");
+        }
+
+        if (!list.length) throw new Error("Siteden fiyat çıkarılamadı. Manuel yapıştırma kullanın veya AI açın.");
+        setNewPriceList(list, "HTML/AI");
+        $("fetchInfo").textContent = list.length + " satır alındı (HTML/AI).";
+      }
+    } catch (e) {
+      if (e.name === "AbortError") {
+        log("Çekim durduruldu.", "warn");
+        $("fetchInfo").textContent = "Durduruldu.";
+      } else {
+        log("Çekim hatası: " + e.message, "err");
+        $("fetchInfo").textContent = "Hata: " + e.message;
+      }
+    } finally {
+      $("btnFetch").disabled = false;
+      $("btnFetchStop").disabled = true;
+      fetchAbort = null;
+    }
+  }
+
+  $("btnFetch").addEventListener("click", () => fetchFromSite());
+  $("btnFetchStop").addEventListener("click", () => {
+    if (fetchAbort) fetchAbort.abort();
+  });
+
+  // ---------- manuel liste ----------
+  function ingestNewPriceData(raw) {
+    const list = [];
+    if (typeof raw !== "string") return list;
+    const trimmed = raw.trim();
+    if (!trimmed) return list;
+    if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+      try {
+        let parsed = JSON.parse(trimmed.replace(/^```json\s*/i, "").replace(/```$/i, "").trim());
+        if (parsed && Array.isArray(parsed.items)) parsed = parsed.items;
+        if (parsed && Array.isArray(parsed.products)) parsed = parsed.products;
+        if (!Array.isArray(parsed)) parsed = [parsed];
+        for (const row of parsed) {
+          const name = row.name || row.seller_name || row.title || row.product || "";
+          const price = parsePriceNumber(row.price != null ? row.price : row.fiyat);
+          const volume_ml = row.volume_ml != null ? row.volume_ml : (row.ml != null ? row.ml : null);
+          if (name && price != null) list.push({ name: String(name), price, volume_ml: volume_ml != null ? Number(volume_ml) : null });
+          if (Array.isArray(row.volume_prices)) {
+            for (const vp of row.volume_prices) {
+              const p = parsePriceNumber(vp.price);
+              if (name && p != null) list.push({ name: String(name), price: p, volume_ml: vp.volume_ml != null ? Number(vp.volume_ml) : null });
+            }
+          }
+        }
+        return list;
+      } catch (e) { /* fallthrough */ }
+    }
+    for (const line of trimmed.split(/\r?\n/)) {
+      let t = line.trim();
+      if (!t || t.startsWith("#")) continue;
+      // tirnak ve madde isaretlerini temizle
+      t = t.replace(/^["'`]+|["'`]+$/g, "").replace(/^[\-•*]\s*/, "").trim();
+      let parts = t.split("|").map((x) => x.trim()).filter((x) => x.length);
+      if (parts.length < 2) parts = t.split(/[;\t]/).map((x) => x.trim()).filter((x) => x.length);
+
+      // "ad | notalar | aciklama | fiyat" veya "ad | fiyat | ml" — fiyati SON sayisal alandan bul
+      if (parts.length >= 2) {
+        let priceIdx = -1;
+        let price = null;
+        let volume_ml = null;
+        // soldan saga: fiyat genelde sondaki sayi; ml de sayi olabilir (5-200 arasi)
+        for (let i = parts.length - 1; i >= 0; i--) {
+          const n = parsePriceNumber(parts[i]);
+          if (n == null) continue;
+          // sadece "100" gibi kucuk sayi ve bir onceki de fiyat gibiyse bu ml olabilir
+          if (price == null) {
+            // son sayi fiyat adayi
+            if (n >= 20 || i === parts.length - 1) {
+              price = n;
+              priceIdx = i;
+            }
+          } else if (volume_ml == null && n >= 1 && n <= 500 && n !== price) {
+            // fiyattan onceki kucuk sayi ml olabilir (sira: ad | fiyat | ml)
+            volume_ml = n;
+          }
+        }
+        // "ad | fiyat | ml" durumunda son 100 ml, 300 fiyat olabilir — duzelt
+        // Kural: iki sayi varsa ve biri 1-200 arasiysa kucuk olan ml, buyuk olan fiyat
+        const nums = [];
+        for (let i = 0; i < parts.length; i++) {
+          const n = parsePriceNumber(parts[i]);
+          if (n != null) nums.push({ i, n });
+        }
+        if (nums.length >= 2) {
+          const a = nums[nums.length - 2];
+          const b = nums[nums.length - 1];
+          // ... | 300 | 100  => fiyat 300, ml 100
+          if (b.n <= 500 && a.n >= 20 && b.n < a.n) {
+            price = a.n;
+            priceIdx = a.i;
+            volume_ml = b.n;
+          } else if (a.n <= 500 && b.n >= 20 && a.n < b.n && a.i > 0) {
+            // ... | 50 | 790 => ml 50 fiyat 790
+            volume_ml = a.n;
+            price = b.n;
+            priceIdx = b.i;
+          }
+        } else if (nums.length === 1) {
+          price = nums[0].n;
+          priceIdx = nums[0].i;
+        }
+
+        if (price != null && priceIdx > 0) {
+          // isim: fiyattan onceki metin parcalarinin ilki (urun adi)
+          // "Imagination Muadili | notalar | aciklama | 540" => Imagination Muadili
+          let name = parts[0];
+          // isimde ml geciyorsa yakala
+          if (volume_ml == null) {
+            const mml = t.match(/(\d+)\s*ml\b/i);
+            if (mml) volume_ml = parseInt(mml[1], 10);
+          }
+          if (name) list.push({ name, price, volume_ml });
+          continue;
+        }
+      }
+
+      // tek satir: sondaki fiyat
+      const m = t.match(/^(.*?)[\s|:=]+(\d+[.,]?\d*)\s*(?:TL|₺)?\s*$/i);
+      if (m) {
+        const name = m[1].replace(/\|+\s*$/, "").trim();
+        const price = parsePriceNumber(m[2]);
+        const volume_ml = (() => { const x = t.match(/(\d+)\s*ml\b/i); return x ? parseInt(x[1], 10) : null; })();
+        if (name && price != null) list.push({ name, price, volume_ml });
+      }
+    }
+    return list;
+  }
+
+  function parseNewPrices() {
+    const list = ingestNewPriceData($("pasteBox").value);
+    setNewPriceList(list, "manuel");
+  }
+  $("newZone").addEventListener("click", () => $("newInput").click());
+  $("newInput").addEventListener("change", async () => {
+    if ($("newInput").files[0]) {
+      $("pasteBox").value = await $("newInput").files[0].text();
+      parseNewPrices();
+    }
+  });
+  ["dragover","dragleave","drop"].forEach((ev) => {
+    $("newZone").addEventListener(ev, (e) => {
+      e.preventDefault();
+      if (ev === "dragover") $("newZone").classList.add("dragover");
+      else $("newZone").classList.remove("dragover");
+      if (ev === "drop" && e.dataTransfer.files[0]) {
+        e.dataTransfer.files[0].text().then((t) => { $("pasteBox").value = t; parseNewPrices(); });
+      }
+    });
+  });
+  $("btnParse").addEventListener("click", parseNewPrices);
+  $("btnClear").addEventListener("click", () => {
+    $("pasteBox").value = "";
+    newPriceList = [];
+    $("newInfo").textContent = "";
+    $("cntFetched").textContent = "0";
+    log("Liste temizlendi.", "info");
+  });
+
+  // ---------- eşleştirme ----------
+  function itemVolume(item) { return Array.isArray(item) ? item[3] : item.volume_ml; }
+  function itemSellerTitle(item) { return Array.isArray(item) ? (item[7] || item[0] || "") : (item.seller_name || ""); }
+  function itemDisplayName(item) {
+    const title = itemSellerTitle(item);
+    if (title) return String(title);
+    const id = Array.isArray(item) ? null : item.product_id;
+    const product = id == null ? null : productsById[String(id)];
+    if (product) return [product.brand, product.name, product.variant].filter(Boolean).join(" ");
+    return id == null ? "" : "Ürün #" + id;
+  }
+  function volumePriceList(item) { return Array.isArray(item) ? item[9] : item.volume_prices; }
+  function volumePriceMl(row) { return Array.isArray(row) ? row[0] : row.volume_ml; }
+  function volumePriceValue(row) { return Array.isArray(row) ? row[1] : row.price; }
+  function getItemPrice(item, ml) {
+    const prices = volumePriceList(item);
+    if (ml != null && Array.isArray(prices)) {
+      const vp = prices.find((v) => Number(volumePriceMl(v)) === Number(ml));
+      if (vp && volumePriceValue(vp) != null) return parsePriceNumber(volumePriceValue(vp));
+    }
+    const price = Array.isArray(item) ? item[1] : item.price;
+    return price != null ? parsePriceNumber(price) : null;
+  }
+
+  function runMatch() {
+    if (!sellerData || !Array.isArray(sellerData.items)) {
+      log("Önce satıcı dosyasını yükleyin.", "err");
+      return;
+    }
+    if (!newPriceList.length) parseNewPrices();
+    if (!newPriceList.length) {
+      log("Fiyat listesi boş. Siteden çekin veya yapıştırın.", "err");
+      return;
+    }
+    const threshold = Math.max(30, Math.min(100, parseInt($("threshold").value, 10) || 55));
+    const defaultMl = parsePriceNumber($("defaultMl").value);
+    const onlyChanged = $("onlyChanged").checked;
+    priceMatches = [];
+
+    for (let i = 0; i < sellerData.items.length; i++) {
+      const item = sellerData.items[i];
+      const sname = itemDisplayName(item);
+      const itemMl = itemVolume(item);
+      let best = null, bestScore = 0;
+      for (let j = 0; j < newPriceList.length; j++) {
+        let score = nameSimilarity(sname, newPriceList[j].name);
+        const nMl = newPriceList[j].volume_ml != null ? newPriceList[j].volume_ml : defaultMl;
+        if (itemMl != null && nMl != null && Number(itemMl) === Number(nMl)) score += 3;
+        if (score > bestScore) { bestScore = score; best = newPriceList[j]; }
+      }
+      if (bestScore < threshold || !best) {
+        priceMatches.push({
+          itemIndex: i, sellerName: sname, newName: "", ml: itemMl != null ? itemMl : defaultMl,
+          oldPrice: getItemPrice(item, itemMl != null ? itemMl : defaultMl),
+          newPrice: null, score: bestScore, selected: false, matched: false, changed: false
+        });
+        continue;
+      }
+      const ml = best.volume_ml != null ? best.volume_ml : (itemMl != null ? itemMl : defaultMl);
+      const oldPrice = getItemPrice(item, ml);
+      const newPrice = best.price;
+      const changed = oldPrice == null || Number(oldPrice) !== Number(newPrice);
+      priceMatches.push({
+        itemIndex: i, sellerName: sname, newName: best.name, ml, oldPrice, newPrice,
+        score: Math.min(100, bestScore), selected: onlyChanged ? changed : true, matched: true, changed
+      });
+    }
+    renderTable();
+    const matched = priceMatches.filter((r) => r.matched).length;
+    const changed = priceMatches.filter((r) => r.matched && r.changed).length;
+    $("cntMatch").textContent = matched;
+    $("cntChanged").textContent = changed;
+    updateSelectedCount();
+    $("btnApply").disabled = false;
+    log("Eşleştirme: " + matched + " eşleşme, " + changed + " değişti.", "ok");
+  }
+
+  function renderTable() {
+    const tbody = $("matchBody");
+    tbody.innerHTML = "";
+    const showUnmatched = $("showUnmatched").checked;
+    for (let i = 0; i < priceMatches.length; i++) {
+      const r = priceMatches[i];
+      if (!r.matched && !showUnmatched) continue;
+      const tr = document.createElement("tr");
+      tr.className = r.score >= 80 ? "match-ok" : (r.score >= 55 ? "match-weak" : "match-none");
+      let diffClass = "price-same", diffText = "—", pctText = "—";
+      if (r.oldPrice != null && r.newPrice != null) {
+        const diff = Number(r.newPrice) - Number(r.oldPrice);
+        const pct = r.oldPrice !== 0 ? (diff / r.oldPrice) * 100 : null;
+        if (diff > 0) { diffClass = "price-up"; diffText = "+" + diff; }
+        else if (diff < 0) { diffClass = "price-down"; diffText = String(diff); }
+        else diffText = "0";
+        if (pct != null) pctText = (pct > 0 ? "+" : "") + pct.toFixed(1) + "%";
+      }
+      tr.innerHTML =
+        "<td><input type=\"checkbox\" data-i=\"" + i + "\" " + (r.selected ? "checked " : "") + (r.matched ? "" : "disabled ") + "></td>" +
+        "<td>" + esc(r.sellerName) + "</td>" +
+        "<td>" + esc(r.newName || "—") + "</td>" +
+        "<td>" + (r.ml != null ? esc(r.ml) : "—") + "</td>" +
+        "<td>" + (r.oldPrice != null ? esc(r.oldPrice) : "—") + "</td>" +
+        "<td>" + (r.newPrice != null ? esc(r.newPrice) : "—") + "</td>" +
+        "<td class=\"" + diffClass + "\">" + diffText + "</td>" +
+        "<td class=\"" + diffClass + "\">" + pctText + "</td>" +
+        "<td>%" + r.score + "</td>";
+      tbody.appendChild(tr);
+    }
+    tbody.querySelectorAll("input[type=checkbox]").forEach((cb) => {
+      cb.addEventListener("change", () => {
+        priceMatches[parseInt(cb.getAttribute("data-i"), 10)].selected = cb.checked;
+        updateSelectedCount();
+      });
+    });
+  }
+  function updateSelectedCount() {
+    $("cntSelected").textContent = priceMatches.filter((r) => r.selected).length;
+  }
+
+  $("btnMatch").addEventListener("click", runMatch);
+  $("showUnmatched").addEventListener("change", () => { if (priceMatches.length) renderTable(); });
+  $("btnAll").addEventListener("click", () => {
+    priceMatches.forEach((r) => { if (r.matched) r.selected = true; });
+    renderTable(); updateSelectedCount();
+  });
+  $("btnNone").addEventListener("click", () => {
+    priceMatches.forEach((r) => { r.selected = false; });
+    renderTable(); updateSelectedCount();
+  });
+
+  function applyUpdates() {
+    if (!sellerData) return;
+    const behavior = $("oldBehavior").value;
+    let n = 0;
+    for (const r of priceMatches) {
+      if (!r.selected || !r.matched || r.newPrice == null) continue;
+      const item = sellerData.items[r.itemIndex];
+      if (!item) continue;
+      const ml = r.ml;
+      const isTuple = Array.isArray(item);
+      const baseVolume = itemVolume(item);
+      const basePrice = isTuple ? item[1] : item.price;
+      if (ml == null || baseVolume == null || Number(baseVolume) === Number(ml)) {
+        if (behavior === "shift" && basePrice != null && Number(basePrice) !== Number(r.newPrice)) {
+          if (isTuple) item[2] = basePrice; else item.old_price = basePrice;
+        }
+        if (isTuple) { item[1] = r.newPrice; if (ml != null) item[3] = ml; }
+        else { item.price = r.newPrice; if (ml != null) item.volume_ml = ml; }
+      }
+      let prices = volumePriceList(item);
+      if (ml != null && Array.isArray(prices)) {
+        let vp = prices.find((v) => Number(volumePriceMl(v)) === Number(ml));
+        if (!vp) {
+          if (baseVolume == null || Number(baseVolume) !== Number(ml)) {
+            vp = isTuple ? [ml, r.newPrice, null, ""] : { volume_ml: ml, price: r.newPrice, old_price: null, label: "" };
+            prices.push(vp);
+          }
+        } else {
+          const previous = volumePriceValue(vp);
+          if (behavior === "shift" && previous != null && Number(previous) !== Number(r.newPrice)) {
+            if (Array.isArray(vp)) vp[2] = previous; else vp.old_price = previous;
+          }
+          if (Array.isArray(vp)) vp[1] = r.newPrice; else vp.price = r.newPrice;
+        }
+      }
+      n++;
+    }
+    appliedCount = n;
+    $("cntApplied").textContent = n;
+    $("btnDownload").disabled = n === 0;
+    $("btnSaveRepo").disabled = !repoLoaded || n === 0;
+    log(n + " kalemde fiyat güncellendi.", "ok");
+  }
+  $("btnApply").addEventListener("click", applyUpdates);
+  $("btnSaveRepo").addEventListener("click", async () => {
+    const state = $("repoState");
+    try {
+      if (!repoLoaded || !repoSellerPath || !repoFileSha) throw new Error("GitHub’dan yüklenmiş bir satıcı dosyası seçin.");
+      if (!appliedCount) throw new Error("Önce eşleşen fiyatları seçip uygulayın.");
+      if (!confirm(repoSellerPath + " dosyasında " + appliedCount + " ürünün fiyat bilgisi değişecek. Bu işlem GitHub’da commit oluşturup canlı veriyi güncelleyecek. Devam edilsin mi?")) return;
+      state.textContent = "GitHub’a kaydediliyor…";
+      const base = repoPath();
+      const ref = await ghRequest(base + "/git/ref/heads/" + encodeURIComponent(repoConfig.branch));
+      if (ref.object.sha !== repoBaseSha) throw new Error("Depo dosya açıldıktan sonra değişmiş. Çakışmayı önlemek için hiçbir şey kaydedilmedi; satıcı dosyasını yeniden yükleyin.");
+      const payload = JSON.stringify(sellerData, null, 2) + "\n";
+      const result = await ghRequest(base + "/contents/" + encodedPath(repoSellerPath), { method: "PUT", body: JSON.stringify({ message: "Satıcı fiyat güncellemesi: " + sellerFileName, content: encodeGitHubText(payload), sha: repoFileSha, branch: repoConfig.branch }) });
+      repoFileSha = result.content.sha;
+      repoBaseSha = result.commit.sha;
+      appliedCount = 0;
+      $("btnSaveRepo").disabled = true;
+      $("btnDownload").disabled = true;
+      state.textContent = "GitHub’a kaydedildi · commit " + result.commit.sha.slice(0, 7) + " · " + repoSellerPath;
+      log("Fiyat değişiklikleri " + repoSellerPath + " dosyasına commit edildi (" + result.commit.sha.slice(0, 7) + ").", "ok");
+    } catch (e) { state.textContent = e.message; log("GitHub’a kaydedilemedi: " + e.message, "err"); }
+  });
+  $("btnDownload").addEventListener("click", () => {
+    if (!sellerData) return;
+    const blob = new Blob([JSON.stringify(sellerData, null, 2)], { type: "application/json;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = sellerFileName.replace(/\.json$/i, "") + ".updated.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    log("İndirildi.", "ok");
+  });
+
+  // Yer imi: satici sitesinde tiklaninca fiyatlari panoya alir
+  (function setupBookmarklet() {
+    var code = "javascript:(function(){try{var items=[],seen={};function trPrice(x){x=String(x).replace(/\\u20BA/g,'').replace(/\\bTL\\b/gi,'').trim();if(/\\d{1,3}(\\.\\d{3})+(,\\d+)?/.test(x))x=x.replace(/\\./g,'').replace(',','.');else if(x.indexOf(',')>=0&&x.indexOf('.')<0)x=x.replace(',','.');x=x.replace(/[^0-9.\\-]/g,'');var n=parseFloat(x);return isNaN(n)?NaN:n;}function add(n,p,m){n=(n||'').replace(/\\s+/g,' ').trim();p=trPrice(p);if(!n||!(p>=20))return;var k=n.toLowerCase()+'|'+p+'|'+(m||'');if(seen[k])return;seen[k]=1;items.push({name:n,price:p,volume_ml:m||null});}function ml(s){var x=String(s||'').match(/(\\d+)\\s*ml/i);return x?+x[1]:null;}function priceFromCard(c){var sels=['.js-product-final-price','.final-price','[class*=\"final-price\"]','.price-area .price','.product-final-price','[itemprop=\"price\"]'];for(var i=0;i<sels.length;i++){var els=c.querySelectorAll(sels[i]);for(var j=0;j<els.length;j++){var el=els[j];if(el.closest&&el.closest('.old-price,.js-product-old-price,del,s'))continue;var t=(el.textContent||'').trim();if(/[0-9].*(\\u20BA|TL)|(\\u20BA|TL).*[0-9]/i.test(t)){var n=trPrice(t);if(n>=20)return n;}}}var txt=(c.innerText||'').replace(/\\s+/g,' ');var all=txt.match(/\\d{1,3}(?:\\.\\d{3})+(?:,\\d{1,2})?\\s*\\u20BA/g);if(all&&all.length){var n=trPrice(all[all.length-1]);if(n>=20)return n;}return null;}document.querySelectorAll('.product-card,.js-product-container,.product-card-wrapper,[class*=\"product-card\"]').forEach(function(c){var a=c.querySelector('a[href*=\"urun\"],a[href*=\"product\"],.product-title,h2,h3,a[href]');var n=a?(a.getAttribute('title')||a.textContent||''):'';var p=priceFromCard(c);if(n&&p)add(n,p,ml(n+' '+(c.innerText||'').slice(0,80)));});if(items.length<3){document.querySelectorAll('a[href*=\"/urun/\"]').forEach(function(a){var n=(a.getAttribute('title')||a.textContent||'').replace(/\\s+/g,' ').trim();if(n.length<4||n.length>200)return;var r=a.closest('.product-card,.js-product-container,.product-card-wrapper,div,li,article')||a.parentElement;var p=r?priceFromCard(r):null;if(p)add(n,p,ml(n));});}if(!items.length){alert('Urun/fiyat bulunamadi. Liste sayfasinda deneyin.');return;}var text=items.map(function(r){return r.volume_ml!=null?r.name+' | '+r.price+' | '+r.volume_ml:r.name+' | '+r.price;}).join('\\n');if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){alert(items.length+' urun kopyalandi.\\nOrnek: '+items[0].name+' -> '+items[0].price+' TL');}).catch(function(){prompt('Ctrl+C:',text);});}else{prompt('Ctrl+C:',text);}}catch(e){alert('Hata: '+e.message);}})();";
+    var a = document.getElementById("bookmarkletLink");
+    if (a) {
+      a.setAttribute("href", code);
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Bu linki yer isaretleri cubuguna SURUKLEYIP BIRAKIN.\n\nSonra satici sitesinde yer imine tiklayin.");
+      });
+    }
+  })();
+
+  log("Hazır. Satıcı JSON yükle. CORS engeli varsa «Fiyatları kopyala» yer imini kullan.", "info");
+})();
+</script>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.10</footer>
+</body>
+</html>
