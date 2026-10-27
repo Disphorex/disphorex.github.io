@@ -29,15 +29,15 @@ Eski kategoriler `legacy_categories` ve satıcı kaydındaki `legacy_category` a
 
 ## Sürüm etiketi
 
-Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi etkin HTML sayfalarında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.10` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
+Kullanıcıya görünen sürüm her yayımlamada artırılır. `app-version` meta değeri ve alt köşedeki `v…` etiketi etkin HTML sayfalarında birlikte güncellenmelidir. Bu yayımdaki etiket `v1.0.11` olarak ayarlandı; sürüm sayfası altbilgisinde sabit konumda görünür.
 
 
 Pazar filtrelerindeki kategori sayaçları her master ürün ID'sini bir kez sayar; aynı ürünün farklı satıcılardaki teklifleri sonuç listesinde korunur.
 
 
-`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. Her sürümden önce canlı durum `backup/v…` dalında saklanır. v1.0.8 ana sayfa yenilemesi geri alınıp önceki görünüm v1.0.9 olarak yayımlandı. v1.0.10 satıcı fiyat aracını admin paneline ekler.
+`backup/v1.0.5` dalı v1.0.5 öncesi depo durumunun hızlı geri dönüş kopyasıdır. Her sürümden önce canlı durum `backup/v…` dalında saklanır. v1.0.8 ana sayfa yenilemesi geri alınıp önceki görünüm v1.0.9 olarak yayımlandı. v1.0.11 satıcı fiyat aracını admin paneline ekler.
 
 
-Geri dönüş noktaları `backup/v1.0.7` ve `backup/v1.0.9` dallarıdır.
+Geri dönüş noktaları `backup/v1.0.7`, `backup/v1.0.9` ve `backup/v1.0.10` dallarıdır.
 
 Ana giriş sayfası `index.html` landing sayfasıdır. Olfactus ve Parfümeri doğrudan açılır; önceki iki sekmeli giriş `site.html` adresinde korunur.
