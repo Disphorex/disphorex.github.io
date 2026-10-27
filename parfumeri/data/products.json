@@ -1541,12 +1541,22 @@
     {
       "id": 61,
       "name": "Unique'e Luxury Mangonifiscent",
-      "brand": "",
+      "brand": "Unique'e Luxury",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -1556,12 +1566,23 @@
     {
       "id": 62,
       "name": "Memo Paris Marfa",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod S257",
@@ -1573,12 +1594,23 @@
     {
       "id": 63,
       "name": "Orto Parisi Megamare VIP",
-      "brand": "",
+      "brand": "Orto Parisi",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -1588,12 +1620,23 @@
     {
       "id": 64,
       "name": "Ormonde Jayne Montabaco Intensivo",
-      "brand": "",
+      "brand": "Ormonde Jayne",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -1603,12 +1646,23 @@
     {
       "id": 65,
       "name": "Xerjoff More Than Words",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1621,12 +1675,22 @@
     {
       "id": 66,
       "name": "Alexandre.J Morning Muscs",
-      "brand": "",
+      "brand": "Alexandre.J",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -1636,12 +1700,22 @@
     {
       "id": 67,
       "name": "Frédéric Malle Musc Ravageur",
-      "brand": "",
+      "brand": "Frédéric Malle",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex",
@@ -1652,12 +1726,23 @@
     {
       "id": 68,
       "name": "Giorgio Armani My Way",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -1668,12 +1753,23 @@
     {
       "id": 69,
       "name": "Vertus Narcos'is",
-      "brand": "",
+      "brand": "Vertus",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -1683,12 +1779,23 @@
     {
       "id": 70,
       "name": "Bond No. 9 New York Amber",
-      "brand": "",
+      "brand": "Bond No. 9",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -1698,12 +1805,23 @@
     {
       "id": 71,
       "name": "Cacharel Noa",
-      "brand": "",
+      "brand": "Cacharel",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -1713,12 +1831,23 @@
     {
       "id": 72,
       "name": "Tom Ford Noir Extreme",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1730,12 +1859,23 @@
     {
       "id": 73,
       "name": "Tom Ford Ombré Leather",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1748,12 +1888,23 @@
     {
       "id": 74,
       "name": "Louis Vuitton Ombre Nomade",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1781,12 +1932,20 @@
     {
       "id": 76,
       "name": "Maison Crivelli Oud Maracuja",
-      "brand": "",
+      "brand": "Maison Crivelli",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fruity",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1799,12 +1958,20 @@
     {
       "id": 77,
       "name": "Maison Francis Kurkdjian Oud Satin Mood",
-      "brand": "",
+      "brand": "Maison Francis Kurkdjian",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod N291",
@@ -1816,12 +1983,20 @@
     {
       "id": 78,
       "name": "Amouage Outlands",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -1835,12 +2010,20 @@
     {
       "id": 79,
       "name": "Louis Vuitton Pacific Chill",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod S407",
@@ -2025,12 +2208,19 @@
     {
       "id": 91,
       "name": "Jean Paul Gaultier Scandal",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -2042,12 +2232,19 @@
     {
       "id": 92,
       "name": "Montale Sensual Instinct",
-      "brand": "",
+      "brand": "Montale",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -2057,12 +2254,19 @@
     {
       "id": 93,
       "name": "Swiss Arabian Shaghaf Oud",
-      "brand": "",
+      "brand": "Swiss Arabian",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -2072,12 +2276,19 @@
     {
       "id": 94,
       "name": "Initio Parfums Prives Side Effect",
-      "brand": "",
+      "brand": "Initio Parfums Prives",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -2087,12 +2298,19 @@
     {
       "id": 95,
       "name": "Viktor&Rolf Spicebomb Metallic Musk",
-      "brand": "",
+      "brand": "Viktor&Rolf",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -2102,12 +2320,19 @@
     {
       "id": 96,
       "name": "Lorenzo Pazzaglia Summer Hammer",
-      "brand": "",
+      "brand": "Lorenzo Pazzaglia",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -2118,12 +2343,19 @@
     {
       "id": 97,
       "name": "Hind Al Oud Tahnoun",
-      "brand": "",
+      "brand": "Hind Al Oud",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -2133,12 +2365,19 @@
     {
       "id": 98,
       "name": "Hermès Terre d'Hermès",
-      "brand": "",
+      "brand": "Hermès",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -2150,12 +2389,19 @@
     {
       "id": 99,
       "name": "Orto Parisi Terroni",
-      "brand": "",
+      "brand": "Orto Parisi",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex",
@@ -2166,12 +2412,19 @@
     {
       "id": 100,
       "name": "Zadig & Voltaire This Is Her",
-      "brand": "",
+      "brand": "Zadig & Voltaire",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -2181,12 +2434,19 @@
     {
       "id": 101,
       "name": "Hormone Paris This Is Not Gaba",
-      "brand": "",
+      "brand": "Hormone Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -2196,12 +2456,19 @@
     {
       "id": 102,
       "name": "Marc-Antoine Barrois Tilia",
-      "brand": "",
+      "brand": "Marc-Antoine Barrois",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Green",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex",
@@ -2212,12 +2479,20 @@
     {
       "id": 103,
       "name": "Tom Ford Tobacco Vanille",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -2230,12 +2505,19 @@
     {
       "id": 104,
       "name": "Xerjoff Torino 21",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -2245,12 +2527,19 @@
     {
       "id": 105,
       "name": "Tiziana Terenzi Ursa",
-      "brand": "",
+      "brand": "Tiziana Terenzi",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
