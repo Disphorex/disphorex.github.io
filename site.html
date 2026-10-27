@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="app-version" content="1.0.11">
+<html lang="tr"><head><meta charset="utf-8"><meta name="app-version" content="1.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Olfactus &amp; Parfümeri</title>
 <style>
@@ -11,7 +11,7 @@ html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{height:100%;margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bar);z-index:10}
 .bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px max(14px,env(safe-area-inset-left,0px)) 8px max(14px,env(safe-area-inset-left,0px));background:var(--bar);border-bottom:1px solid var(--line)}
-.brand{font:italic 400 18px/1 var(--serif);letter-spacing:.04em;white-space:nowrap}
+.brand{display:block;color:inherit;text-decoration:none;cursor:pointer;font:italic 400 18px/1 var(--serif);letter-spacing:.04em;white-space:nowrap}
 .brand small{display:block;margin-top:3px;font:400 9.5px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-style:normal}
 .sw{display:inline-flex;border:1px solid var(--line);border-radius:3px;overflow:hidden}
 .sw button{border:0;background:transparent;color:var(--muted);padding:9px 16px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
@@ -28,7 +28,7 @@ iframe[hidden]{display:none}
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <header class="bar">
-  <div class="brand">Olfactus &amp; Parfümeri<small>Dergi · Fiyat panosu</small></div>
+  <a class="brand" href="/" aria-label="Disphorex ana sayfası">Olfactus &amp; Parfümeri<small>Dergi · Fiyat panosu</small></a>
   <div class="sw" role="tablist" aria-label="Proje seçimi">
     <button type="button" role="tab" id="t-olfactus" data-k="olfactus" aria-selected="true" aria-controls="f-olfactus">Olfactus</button>
     <button type="button" role="tab" id="t-parfumeri" data-k="parfumeri" aria-selected="false" aria-controls="f-parfumeri">Parfümeri</button>
@@ -65,5 +65,5 @@ var start=location.hash.slice(1);
 if(!SRC[start]){try{start=localStorage.getItem("op_last");}catch(e){}}
 show(SRC[start]?start:"olfactus",true);
 })();
-</script><footer class="app-version" aria-label="Uygulama sürümü">v1.0.11</footer>
+</script><footer class="app-version" aria-label="Uygulama sürümü">v1.1</footer>
 </body></html>
