@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.12">
+<meta name="app-version" content="1.0.13">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1915,7 +1915,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.12';
+var APP_VERSION='1.0.13';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -1923,7 +1923,7 @@ var OPT=(function(){
 })();
 function optSave(){ LS.set(OPT_KEY,{want:OPT.want,goal:OPT.goal,budget:OPT.budget,sellers:OPT.sellers||'',gens:OPT.gens||{},seas:OPT.seas||{}}); }
 var OPT_GOALS={
-  kesif:{name:'Yeni kokular keşfetmek',desc:'10 ml ve altı deneme boyları, çok çeşit',test:function(m){ return m<=10; },ref:5},
+  kesif:{name:'Yeni kokular keşfetmek',desc:'30 ml altı deneme boyları (3–25 ml), çok çeşit, efektif TL/ml',test:function(m){ return m>0 && m<30; },ref:10},
   ucuz:{name:'Mutlak ucuzluk',desc:'Hacim gözetmeden en az nakit: en küçük boylar, en çok çeşidi en az parayla dene',test:function(){ return true; },ref:5,mode:'cheap'},
   denge:{name:'Dengeli kullanım',desc:'15–30 ml orta boylar',test:function(m){ return m>=15&&m<=30; },ref:22},
   sise:{name:'Tam şişe',desc:'50 ml ve üstü büyük boylar',test:function(m){ return m>=50; },ref:75},
@@ -2133,91 +2133,142 @@ function optShuffle(a){
   for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; }
   return a;
 }
-/* Bütçe + kargo öncelikli keşif seçimi: rastgele N ürün kilitlemek yerine bütçeye sığan paket kurar */
-function optBudgetPick(pool, n, B, goal){
-  var bySeller={}, i, j, si, list, c, sl, best, o;
+/* Efektif TL/ml (kampanya+kargo dahil) ile çekirdek paket + kalan bütçe doldurma */
+function optEffRate(ev){
+  if(!ev || !(ev.ml>0)) return Infinity;
+  return ev.total/ev.ml;
+}
+function optPackFromItems(items){
+  if(!items || !items.length) return null;
+  var sel=[], W=[];
+  items.forEach(function(x){
+    sel.push(x.o);
+    W.push({w:{k:x.c.key,n:x.c.name,q:1},c:x.c,q:1});
+  });
+  var ev=optEval(sel,W);
+  return {items:items, sel:sel, W:W, ev:ev, epm:optEffRate(ev)};
+}
+function optUnderBudget(pk, B){
+  if(!pk) return false;
+  if(!(B>0)) return true;
+  return pk.ev.total<=B+0.001;
+}
+/* Satıcıda hedef boya uyan, koku başına en iyi (fiyat/ml) seçenek */
+function optSellerCands(pool, goal){
+  var bySeller={};
   pool.forEach(function(c0){
     optFilterSellers(c0.sellers).forEach(function(sl0){
-      best=null;
+      var best=null;
       (sl0.vars||[]).forEach(function(v){
         var m=v.ml; if(m==null) m=50;
         if(goal && goal.test && !goal.test(m)) return;
-        if(!best || v.price<best.v.price) best={si:sl0.si,s:sl0.s,v:v,m:m};
+        /* nominal TL/ml; paket skoru sonra efektif hesaplanır */
+        var upm=v.price/Math.max(m,0.01);
+        if(!best || upm<best.upm-1e-9 || (Math.abs(upm-best.upm)<1e-9 && v.price<best.v.price))
+          best={si:sl0.si,s:sl0.s,v:v,m:m,upm:upm};
       });
       if(!best) return;
-      si=String(sl0.si);
+      var si=String(sl0.si);
       (bySeller[si]=bySeller[si]||[]).push({c:c0,o:best});
     });
   });
-  function uniqueCheapest(arr){
-    var seen={}, out=[];
-    arr.slice().sort(function(a,b){ return a.o.v.price-b.o.v.price; }).forEach(function(x){
-      if(seen[x.c.key]) return; seen[x.c.key]=1; out.push(x);
+  Object.keys(bySeller).forEach(function(si){
+    var seen={}, u=[];
+    bySeller[si].sort(function(a,b){ return a.o.upm-b.o.upm || a.o.v.price-b.o.v.price; }).forEach(function(x){
+      if(seen[x.c.key]) return; seen[x.c.key]=1; u.push(x);
     });
-    return out;
-  }
-  function packCost(items){
-    if(!items.length) return null;
-    var sel=[], W=[];
-    items.forEach(function(x){
-      sel.push(x.o);
-      W.push({w:{k:x.c.key,n:x.c.name,q:1},c:x.c,q:1});
-    });
-    return {items:items, sel:sel, W:W, ev:optEval(sel,W)};
-  }
-  function underBudget(pk){
-    if(!pk) return false;
-    if(!(B>0)) return true;
-    return pk.ev.total<=B+0.001;
-  }
+    bySeller[si]=u;
+  });
+  return bySeller;
+}
+/* Kampanya eşiği: buyXPayY → buy; aksi halde 1 */
+function optCampThreshold(s){
+  var t=1, camps=s.campaigns||[];
+  camps.forEach(function(c){
+    if(c.type==='buyXPayY' && c.buy>t) t=c.buy;
+    if(c.type==='nthPercent' && c.n>t) t=c.n;
+  });
+  return t;
+}
+function optBudgetPick(pool, n, B, goal){
+  n=Math.max(1, n|0);
+  var bySeller=optSellerCands(pool, goal);
   var sellerKeys=Object.keys(bySeller);
-  /* Tek satıcıdan N ürün — kargo bir kez */
+  if(!sellerKeys.length) return null;
+
   var bestPack=null;
-  sellerKeys.forEach(function(sk){
-    var u=uniqueCheapest(bySeller[sk]);
-    if(u.length<1) return;
-    var take=u.slice(0, Math.min(n, u.length));
-    var pk=packCost(take);
-    if(!underBudget(pk)){
-      /* bütçeye sığana kadar düşür */
-      for(var t=take.length-1;t>=1;t--){
-        pk=packCost(take.slice(0,t));
-        if(underBudget(pk)) break;
-        pk=null;
-      }
-    }
-    if(pk && underBudget(pk)){
-      if(!bestPack || pk.items.length>bestPack.items.length ||
-         (pk.items.length===bestPack.items.length && pk.ev.total<bestPack.ev.total))
-        bestPack=pk;
-    }
-  });
-  if(bestPack && bestPack.items.length>=n) return bestPack;
-  /* Çoklu satıcı: önce kalabalık satıcılardan doldur, bütçeyi aşma */
-  sellerKeys.sort(function(a,b){ return uniqueCheapest(bySeller[b]).length-uniqueCheapest(bySeller[a]).length; });
-  var chosen=[], used={};
-  function tryAdd(x){
-    if(used[x.c.key] || chosen.length>=n) return false;
-    var trial=chosen.concat([x]);
-    var pk=packCost(trial);
-    if(!underBudget(pk)) return false;
-    chosen=trial; used[x.c.key]=1; return true;
+  function consider(pk){
+    if(!optUnderBudget(pk,B)) return;
+    if(!bestPack){ bestPack=pk; return; }
+    /* 1) daha çok koku  2) daha düşük efektif TL/ml  3) daha düşük toplam */
+    if(pk.items.length>bestPack.items.length){ bestPack=pk; return; }
+    if(pk.items.length<bestPack.items.length) return;
+    if(pk.epm<bestPack.epm-1e-9){ bestPack=pk; return; }
+    if(Math.abs(pk.epm-bestPack.epm)<1e-9 && pk.ev.total<bestPack.ev.total) bestPack=pk;
   }
+
+  /* Faz 1–2: her satıcıda kampanya eşiği / N adet çekirdek paketleri skorla */
   sellerKeys.forEach(function(sk){
-    uniqueCheapest(bySeller[sk]).forEach(function(x){ tryAdd(x); });
+    var list=bySeller[sk];
+    if(!list.length) return;
+    var th=optCampThreshold(list[0].o.s);
+    var sizes=[];
+    /* eşik adedi, istenen n, ve ara adetler */
+    sizes.push(Math.min(n, list.length));
+    if(th>1 && th<=list.length) sizes.push(th);
+    if(th>1 && th*2<=list.length && th*2<=n) sizes.push(th*2);
+    for(var q=1;q<=Math.min(n, list.length);q++) sizes.push(q);
+    var seenQ={};
+    sizes.forEach(function(q){
+      q=Math.min(q, list.length, n);
+      if(q<1 || seenQ[q]) return; seenQ[q]=1;
+      var pk=optPackFromItems(list.slice(0,q));
+      consider(pk);
+    });
   });
-  if(chosen.length){
-    var pk2=packCost(chosen);
-    if(underBudget(pk2) && (!bestPack || pk2.items.length>bestPack.items.length ||
-        (pk2.items.length===bestPack.items.length && pk2.ev.total<bestPack.ev.total)))
-      bestPack=pk2;
+
+  /* Faz 3: kalan bütçe ile doldur — mevcut paketten başla veya sıfırdan çoklu satıcı */
+  function residualFill(startItems){
+    var chosen=(startItems||[]).slice();
+    var used={}; chosen.forEach(function(x){ used[x.c.key]=1; });
+    /* adaylar: tüm satıcılardan, efektif katkıya göre eklenecek */
+    var guard=0;
+    while(chosen.length<n && guard++<n+5){
+      var bestAdd=null, bestPk=null;
+      sellerKeys.forEach(function(sk){
+        bySeller[sk].forEach(function(x){
+          if(used[x.c.key]) return;
+          var trial=chosen.concat([x]);
+          var pk=optPackFromItems(trial);
+          if(!optUnderBudget(pk,B)) return;
+          if(!bestAdd){ bestAdd=x; bestPk=pk; return; }
+          /* Önce koku sayısı (zaten +1), sonra efektif TL/ml, sonra toplam */
+          if(pk.epm<bestPk.epm-1e-9){ bestAdd=x; bestPk=pk; return; }
+          if(Math.abs(pk.epm-bestPk.epm)<1e-9 && pk.ev.total<bestPk.ev.total){ bestAdd=x; bestPk=pk; }
+        });
+      });
+      if(!bestAdd) break;
+      chosen.push(bestAdd);
+      used[bestAdd.c.key]=1;
+      consider(bestPk);
+    }
+    if(chosen.length) consider(optPackFromItems(chosen));
   }
-  /* Bütçe yoksa veya paket yoksa: en ucuz hedef boylar (satıcı yoğun) */
+
+  /* Çekirdek: en iyi efektif paket (mümkünse kampanya eşiğine yakın) */
+  var core=bestPack;
+  residualFill(core?core.items:[]);
+
+  /* Çekirdeksiz çoklu satıcı greedy de dene */
+  residualFill([]);
+
+  /* Hâlâ boşsa: bütçesiz en iyi efektif tek satıcı dilimi */
   if(!bestPack){
-    var all=[];
-    sellerKeys.forEach(function(sk){ all=all.concat(uniqueCheapest(bySeller[sk])); });
-    all=uniqueCheapest(all).slice(0,n);
-    if(all.length) bestPack=packCost(all);
+    sellerKeys.forEach(function(sk){
+      var list=bySeller[sk];
+      var pk=optPackFromItems(list.slice(0, Math.min(n, list.length)));
+      if(pk) consider(pk);
+    });
   }
   return bestPack;
 }
@@ -2246,6 +2297,8 @@ function optRoll(){
     budget:B,
     total:pack.ev.total,
     sellers:pack.ev.n,
+    epm:pack.epm,
+    ml:pack.ev.ml,
     short:OPT.want.length<n
   };
   optSave(); optChips();
@@ -2392,6 +2445,8 @@ function optShow(){
     else {
       h+='<p class="opt-n">Keşif seçimi: havuzda <b>'+ri.pool+'</b> hedef boya uygun koku vardı; bütçe'+(ri.budget?' '+tl(ri.budget):' sınırı olmadan')+' ve kargo gözetilerek <b>'+ri.picked+'</b> tanesi seçildi';
       if(ri.total!=null) h+=' tahmini sepet <b>'+tl(ri.total)+'</b> ('+ri.sellers+' satıcı)';
+      if(ri.epm!=null && isFinite(ri.epm)) h+=' · efektif <b>'+f2(ri.epm)+' TL/ml</b>';
+      if(ri.ml) h+=' · '+mlf(ri.ml);
       if(ri.short) h+=' · istenen adede bütçe yetmediği için daha az ürün alındı';
       h+='. Yeniden karıştırmak için listeyi temizleyip tekrar Hesapla.</p>';
     }
@@ -2529,5 +2584,5 @@ connectDb();
 })();
 </script>
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.12</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.13</footer>
 </body></html>
