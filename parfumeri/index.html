@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.20">
+<meta name="app-version" content="1.0.21">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2076,7 +2076,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.20';
+var APP_VERSION='1.0.21';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -3261,13 +3261,15 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
   function positionDesktop(rect) {
     var cardWidth = card.offsetWidth || 340;
     var cardHeight = card.offsetHeight || 380;
-    var pad = 12;
+    var pad = 14;
+    var gap = 10;
     var vw = window.innerWidth;
     var vh = window.innerHeight;
-    var left = rect.right + pad;
-    if (left + cardWidth > vw - pad) left = rect.left - cardWidth - pad;
-    if (left < pad) left = pad;
-    var top = rect.top - 10;
+    /* önce sağa; sığmazsa sola; o da sığmazsa altına */
+    var left = rect.right + gap;
+    if (left + cardWidth > vw - pad) left = rect.left - cardWidth - gap;
+    if (left < pad) left = Math.min(vw - cardWidth - pad, Math.max(pad, rect.left));
+    var top = rect.top;
     if (top + cardHeight > vh - pad) top = vh - cardHeight - pad;
     if (top < pad) top = pad;
     card.style.left = Math.round(left) + 'px';
@@ -3290,35 +3292,95 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
     portal.classList.remove('active');
     portal.setAttribute('aria-hidden', 'true');
     currentTrigger = null;
+    overCard = false;
+    overTrigger = false;
+    clearTimeout(hideTimer);
+    clearTimeout(hoverTimer);
   }
 
   var SEL = '[data-fragrance], .ci .nm b, .ucard .m b, .pcard h3, .opt-chip, .pzc-n b';
+  var hideTimer = null;
+  var overCard = false;
+  var overTrigger = false;
+
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () {
+      if (!overCard && !overTrigger) hideCard();
+    }, 280);
+  }
+  function cancelHide() {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
 
   document.addEventListener('mouseover', function (e) {
     if (isTouch) return;
-    var trigger = e.target.closest && e.target.closest(SEL);
+    var t = e.target;
+    if (card.contains(t)) {
+      overCard = true;
+      cancelHide();
+      return;
+    }
+    var trigger = t.closest && t.closest(SEL);
     if (!trigger) return;
+    overTrigger = true;
+    cancelHide();
     var key = trigger.getAttribute('data-fragrance') || trigger.textContent;
     var data = findFragrance(key);
     if (!data) return;
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(function () { showCard(data, trigger); }, 180);
+    hoverTimer = setTimeout(function () { showCard(data, trigger); }, 160);
   });
 
   document.addEventListener('mouseout', function (e) {
     if (isTouch) return;
-    var trigger = e.target.closest && e.target.closest(SEL);
+    var t = e.target;
+    var to = e.relatedTarget;
+    if (card.contains(t)) {
+      /* karttan çıkış — tetikleyiciye veya kartın çocuğuna gidiyorsa tut */
+      if (to && (card.contains(to) || (currentTrigger && currentTrigger.contains(to)))) {
+        return;
+      }
+      overCard = false;
+      scheduleHide();
+      return;
+    }
+    var trigger = t.closest && t.closest(SEL);
     if (!trigger) return;
+    /* tetikleyiciden karta geçişte kapatma */
+    if (to && (card.contains(to) || trigger.contains(to))) return;
+    overTrigger = false;
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(function () {
-      if (!card.matches(':hover')) hideCard();
-    }, 150);
+    scheduleHide();
   });
 
-  card.addEventListener('mouseleave', function () { if (!isTouch) hideCard(); });
+  card.addEventListener('mouseenter', function () {
+    if (isTouch) return;
+    overCard = true;
+    cancelHide();
+  });
+  card.addEventListener('mouseleave', function (e) {
+    if (isTouch) return;
+    var to = e.relatedTarget;
+    if (to && currentTrigger && currentTrigger.contains(to)) {
+      overCard = false;
+      overTrigger = true;
+      return;
+    }
+    overCard = false;
+    scheduleHide();
+  });
 
   document.addEventListener('click', function (e) {
-    if (!isTouch) return;
+    if (!isTouch) {
+      /* masaüstü: kart dışına tıklayınca kapat */
+      if (portal.classList.contains('active') && !card.contains(e.target)) {
+        var tr = e.target.closest && e.target.closest(SEL);
+        if (!tr) hideCard();
+      }
+      return;
+    }
     var trigger = e.target.closest && e.target.closest(SEL);
     if (!trigger) return;
     var key = trigger.getAttribute('data-fragrance') || trigger.textContent;
@@ -3379,5 +3441,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.20</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.21</footer>
 </body></html>
