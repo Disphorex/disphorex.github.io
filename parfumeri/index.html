@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.16">
+<meta name="app-version" content="1.0.17">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -413,6 +413,125 @@ td small{display:block; color:var(--muted); font-size:14px}
 .pzf-foot{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font:400 13px var(--f-mono); color:var(--muted)}
 .pzf-foot b{color:var(--ink)}
 .pzf-note{grid-column:1/-1;margin:0;color:var(--muted);font:400 12px/1.45 var(--f-mono)}
+
+/* --- Koku önizleme kartı --- */
+#fragrance-preview-portal {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  font-family: var(--f-body, 'EB Garamond', Georgia, serif);
+}
+#fragrance-preview-portal.active { pointer-events: auto; }
+.fc-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(10, 8, 7, 0.65);
+  backdrop-filter: blur(4px);
+  opacity: 0; transition: opacity 0.28s ease;
+  display: none;
+}
+.fc-card {
+  position: absolute;
+  width: min(360px, calc(100vw - 32px));
+  background: var(--surface, #1E1713);
+  color: var(--ink, #EADFC8);
+  border: 1px solid var(--line, #3D3128);
+  border-radius: 12px;
+  padding: 22px 20px 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(201, 164, 92, 0.12);
+  opacity: 0;
+  transform: translateY(8px) scale(0.97);
+  transform-origin: center top;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.fc-card.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.fc-close {
+  position: absolute; top: 10px; right: 12px;
+  width: 30px; height: 30px; border: none; background: transparent;
+  color: var(--muted, #A99A83); font-size: 24px; line-height: 1;
+  cursor: pointer; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+.fc-close:hover { color: var(--ink, #EADFC8); background: rgba(255, 255, 255, 0.06); }
+.fc-header {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; border-bottom: 1px solid var(--line-soft, #2C231C);
+  padding-bottom: 14px;
+}
+.fc-img-wrapper {
+  width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle, rgba(201,164,92,0.15) 0%, rgba(20,16,13,0.4) 70%);
+  border: 1px solid var(--line, #3D3128);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.fc-img-wrapper img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05); }
+.fc-brand {
+  font-family: var(--f-mono, 'Courier Prime', monospace);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent, #C9A45C); margin-bottom: 4px;
+}
+.fc-title {
+  font-family: var(--f-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: 24px; line-height: 1.15; font-weight: 600;
+  margin: 0 0 6px; font-style: italic; color: var(--ink, #EADFC8);
+}
+.fc-meta {
+  font-family: var(--f-mono, 'Courier Prime', monospace);
+  font-size: 11.5px; color: var(--muted, #A99A83);
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: center;
+}
+.fc-sep { color: var(--accent, #C9A45C); opacity: 0.6; }
+.fc-body-grid {
+  display: grid; grid-template-columns: 1fr 1.35fr; gap: 14px; padding-top: 14px;
+}
+.fc-label {
+  display: block; font-family: var(--f-mono, 'Courier Prime', monospace);
+  font-size: 10px; letter-spacing: 0.14em; color: var(--accent, #C9A45C);
+  margin-bottom: 6px; text-transform: uppercase;
+}
+.fc-family-val { margin: 0; font-size: 14.5px; line-height: 1.4; color: var(--ink, #EADFC8); }
+.fc-col-notes { border-left: 1px dotted var(--line, #3D3128); padding-left: 12px; }
+.fc-pyramid-tier { margin-bottom: 6px; }
+.fc-pyramid-tier:last-child { margin-bottom: 0; }
+.fc-tier-title {
+  font-family: var(--f-mono, 'Courier Prime', monospace);
+  font-size: 10px; color: var(--muted, #A99A83); display: block; margin-bottom: 3px;
+}
+.fc-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+.fc-badge {
+  font-family: var(--f-body, Georgia, serif);
+  font-size: 11.5px; line-height: 1.2;
+  background: var(--surface-2, #2A211A); color: var(--ink, #EADFC8);
+  border: 1px solid var(--line-soft, #3D3128); border-radius: 3px;
+  padding: 2px 6px; white-space: nowrap;
+}
+.fc-trigger { cursor: help; border-bottom: 1px dotted transparent; transition: border-color .15s, color .15s; }
+.fc-trigger:hover, .fc-trigger:focus-visible { border-bottom-color: var(--accent); color: var(--accent); }
+@media (hover: none), (max-width: 640px) {
+  .fc-backdrop { display: block; }
+  #fragrance-preview-portal.active .fc-backdrop { opacity: 1; pointer-events: auto; }
+  .fc-card {
+    position: fixed;
+    left: 16px !important; right: 16px !important;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    top: auto !important; width: auto;
+    max-height: 80vh; overflow-y: auto;
+    transform: translateY(100%);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+  }
+  .fc-card.show { transform: translateY(0); }
+  .fc-body-grid { grid-template-columns: 1fr; gap: 12px; }
+  .fc-col-notes {
+    border-left: none; padding-left: 0;
+    border-top: 1px dotted var(--line, #3D3128); padding-top: 10px;
+  }
+}
+
 .pzf select{width:100%}
 
 </style>
@@ -1915,7 +2034,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.16';
+var APP_VERSION='1.0.17';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2806,6 +2925,203 @@ document.addEventListener('keydown', function(e){ if(e.target.id==='opt-q' && e.
 function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($('opt-sellers')) $('opt-sellers').value=OPT.sellers||''; optChips(); }
 
 /* ---------- başlat ---------- */
+
+/* ---------- Koku önizleme kartı ---------- */
+(function initFragrancePreview() {
+  var DB = [
+    {
+      id: 'imagination',
+      aliases: ['louis vuitton imagination', 'imagination', 'imagination muadili'],
+      isim: 'Imagination',
+      marka: 'Louis Vuitton',
+      gorsel_url: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80',
+      cinsiyet: 'Erkek',
+      mevsim: 'İlkbahar / Yaz',
+      kullanim_zamani: 'Gündüz',
+      koku_ailesi: 'Narenciye · Aromatik',
+      notalar: {
+        ust: ['Kalabriya Bergamotu', 'Sicilya Portakalı', 'Ağaç Kavunu'],
+        orta: ['Seylan Çayı', 'Tunus Neroli', 'Zencefil'],
+        alt: ['Ambroksan', 'Guaiac Ağacı', 'Tütsü']
+      }
+    },
+    {
+      id: 'aventus',
+      aliases: ['creed aventus', 'aventus', 'aventus muadili'],
+      isim: 'Aventus',
+      marka: 'Creed',
+      gorsel_url: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=400&q=80',
+      cinsiyet: 'Erkek',
+      mevsim: 'Dört Mevsim',
+      kullanim_zamani: 'Gündüz / Gece',
+      koku_ailesi: 'Şipre · Meyveli',
+      notalar: {
+        ust: ['Ananas', 'Bergamot', 'Siyah Frenk Üzümü'],
+        orta: ['Huş Ağacı', 'Paçuli', 'Fas Yasemini'],
+        alt: ['Misk', 'Meşe Yosunu', 'Vanilya']
+      }
+    },
+    {
+      id: 'oud-wood',
+      aliases: ['tom ford oud wood', 'oud wood', 'oud wood muadili'],
+      isim: 'Oud Wood',
+      marka: 'Tom Ford',
+      gorsel_url: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=400&q=80',
+      cinsiyet: 'Unisex',
+      mevsim: 'Sonbahar / Kış',
+      kullanim_zamani: 'Gece',
+      koku_ailesi: 'Odunsu · Baharatlı',
+      notalar: {
+        ust: ['Gül Ağacı', 'Kakule', 'Çin Biberi'],
+        orta: ['Ud Ağacı', 'Sandal Ağacı', 'Güve Otu'],
+        alt: ['Tonka Fasulyesi', 'Vanilya', 'Kehribar']
+      }
+    }
+  ];
+
+  var portal = document.getElementById('fragrance-preview-portal');
+  var card = document.getElementById('fc-card');
+  var backdrop = document.getElementById('fc-backdrop');
+  var closeBtn = document.getElementById('fc-close');
+  if (!portal || !card) return;
+
+  var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  var hoverTimer = null;
+  var currentTrigger = null;
+
+  function fcNorm(s) {
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/\s+/g, ' ').trim();
+  }
+
+  function findFragrance(query) {
+    if (!query) return null;
+    var nq = fcNorm(query);
+    for (var i = 0; i < DB.length; i++) {
+      if (DB[i].id === query) return DB[i];
+      if (fcNorm(DB[i].isim) === nq) return DB[i];
+      for (var j = 0; j < (DB[i].aliases || []).length; j++) {
+        var al = fcNorm(DB[i].aliases[j]);
+        if (al === nq || nq.indexOf(al) >= 0 || al.indexOf(nq) >= 0) return DB[i];
+      }
+    }
+    return null;
+  }
+
+  function escFc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function renderBadges(containerId, list) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = (list || []).map(function (item) {
+      return '<span class="fc-badge">' + escFc(item) + '</span>';
+    }).join('');
+  }
+
+  function populateCard(f) {
+    var img = document.getElementById('fc-img');
+    if (img) { img.src = f.gorsel_url || ''; img.alt = (f.marka || '') + ' ' + (f.isim || ''); }
+    var set = function (id, t) { var e = document.getElementById(id); if (e) e.textContent = t || '—'; };
+    set('fc-brand', f.marka);
+    set('fc-title', f.isim);
+    set('fc-gender', f.cinsiyet);
+    set('fc-season', f.mevsim);
+    set('fc-time', f.kullanim_zamani);
+    set('fc-family', f.koku_ailesi);
+    renderBadges('fc-top-notes', f.notalar && f.notalar.ust);
+    renderBadges('fc-mid-notes', f.notalar && f.notalar.orta);
+    renderBadges('fc-base-notes', f.notalar && f.notalar.alt);
+  }
+
+  function positionDesktop(rect) {
+    var cardWidth = card.offsetWidth || 340;
+    var cardHeight = card.offsetHeight || 380;
+    var pad = 12;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var left = rect.right + pad;
+    if (left + cardWidth > vw - pad) left = rect.left - cardWidth - pad;
+    if (left < pad) left = pad;
+    var top = rect.top - 10;
+    if (top + cardHeight > vh - pad) top = vh - cardHeight - pad;
+    if (top < pad) top = pad;
+    card.style.left = Math.round(left) + 'px';
+    card.style.top = Math.round(top) + 'px';
+  }
+
+  function showCard(f, triggerEl) {
+    currentTrigger = triggerEl;
+    populateCard(f);
+    portal.classList.add('active');
+    portal.setAttribute('aria-hidden', 'false');
+    if (!isTouch && triggerEl && triggerEl.getBoundingClientRect) {
+      positionDesktop(triggerEl.getBoundingClientRect());
+    }
+    requestAnimationFrame(function () { card.classList.add('show'); });
+  }
+
+  function hideCard() {
+    card.classList.remove('show');
+    portal.classList.remove('active');
+    portal.setAttribute('aria-hidden', 'true');
+    currentTrigger = null;
+  }
+
+  var SEL = '[data-fragrance], .ci .nm b, .ucard .m b, .pcard h3, .opt-chip, .pzc-n b';
+
+  document.addEventListener('mouseover', function (e) {
+    if (isTouch) return;
+    var trigger = e.target.closest && e.target.closest(SEL);
+    if (!trigger) return;
+    var key = trigger.getAttribute('data-fragrance') || trigger.textContent;
+    var data = findFragrance(key);
+    if (!data) return;
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(function () { showCard(data, trigger); }, 180);
+  });
+
+  document.addEventListener('mouseout', function (e) {
+    if (isTouch) return;
+    var trigger = e.target.closest && e.target.closest(SEL);
+    if (!trigger) return;
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(function () {
+      if (!card.matches(':hover')) hideCard();
+    }, 150);
+  });
+
+  card.addEventListener('mouseleave', function () { if (!isTouch) hideCard(); });
+
+  document.addEventListener('click', function (e) {
+    if (!isTouch) return;
+    var trigger = e.target.closest && e.target.closest(SEL);
+    if (!trigger) return;
+    var key = trigger.getAttribute('data-fragrance') || trigger.textContent;
+    var data = findFragrance(key);
+    if (data) {
+      e.preventDefault();
+      showCard(data, trigger);
+    }
+  });
+
+  if (backdrop) backdrop.addEventListener('click', hideCard);
+  if (closeBtn) closeBtn.addEventListener('click', hideCard);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hideCard(); });
+
+  window.FragrancePreview = {
+    show: function (idOrName, targetEl) {
+      var f = findFragrance(idOrName);
+      if (f) showCard(f, targetEl || document.body);
+    },
+    hide: hideCard,
+    addFragrance: function (item) {
+      if (item && item.id) DB.push(item);
+    },
+    db: DB
+  };
+})();
+
 loadLocal();
 lastJSON=JSON.stringify(ser(U));
 if(window.innerWidth<720) $('filters').open=false;
@@ -2815,5 +3131,5 @@ connectDb();
 })();
 </script>
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.16</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.17</footer>
 </body></html>
