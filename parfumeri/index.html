@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.25">
+<meta name="app-version" content="1.0.26">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -287,7 +287,19 @@ td small{display:block; color:var(--muted); font-size:14px}
 .bl.muted{color:var(--muted)}
 .grp h3{display:flex; justify-content:space-between; gap:12px; font-size:24px; padding-bottom:6px; border-bottom:1px solid var(--line)}
 .grp h3 .mono{font-size:14px; align-self:center}
-.ci{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px 14px; padding:12px 0; border-bottom:1px dotted var(--line); align-items:center}
+.ci{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:8px 10px; padding:12px 0; border-bottom:1px dotted var(--line); align-items:center}
+.ci.no-swap{grid-template-columns:minmax(0,1fr) auto}
+.opt-swap,.opt-swap-seller{
+  border:1px solid var(--line); background:var(--surface-2); color:var(--muted);
+  width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:16px; line-height:1;
+  display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  transition:color .15s, border-color .15s, background .15s;
+}
+.opt-swap:hover:not(:disabled),.opt-swap-seller:hover:not(:disabled){color:var(--accent); border-color:var(--accent); background:var(--accent-soft)}
+.opt-swap:disabled,.opt-swap-seller:disabled{opacity:.35; cursor:not-allowed}
+.opt-swap-seller{width:auto; height:auto; border-radius:2px; padding:4px 10px; font:400 12px var(--f-mono); gap:4px}
+.grp h3{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+.grp h3 .mono{margin-left:auto}
 .ci:last-child{border-bottom:0}
 .ci .nm{min-width:0; overflow-wrap:anywhere}
 .ci .nm small{display:block; color:var(--muted); font-size:14.5px}
@@ -2079,11 +2091,11 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.25';
+var APP_VERSION='1.0.26';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
-  return {want:Array.isArray(o.want)?o.want.filter(function(w){ return w&&w.k&&w.n; }):[], goal:o.goal||'kesif', budget:typeof o.budget==='string'?o.budget:'', sellers:typeof o.sellers==='string'?o.sellers:'', gens:o.gens&&typeof o.gens==='object'?o.gens:{}, seas:o.seas&&typeof o.seas==='object'?o.seas:{}, decide:{}, res:null, rollInfo:null};
+  return {want:Array.isArray(o.want)?o.want.filter(function(w){ return w&&w.k&&w.n; }):[], goal:o.goal||'kesif', budget:typeof o.budget==='string'?o.budget:'', sellers:typeof o.sellers==='string'?o.sellers:'', gens:o.gens&&typeof o.gens==='object'?o.gens:{}, seas:o.seas&&typeof o.seas==='object'?o.seas:{}, decide:{}, res:null, rollInfo:null, banSellers:{}, banProducts:{}, softOverage:false};
 })();
 function optSave(){ LS.set(OPT_KEY,{want:OPT.want,goal:OPT.goal,budget:OPT.budget,sellers:OPT.sellers||'',gens:OPT.gens||{},seas:OPT.seas||{}}); }
 var OPT_GOALS={
@@ -2382,7 +2394,9 @@ function optUnderBudget(pk, B){
 function optSellerCands(pool, goal){
   var bySeller={};
   pool.forEach(function(c0){
+    if(OPT.banProducts && OPT.banProducts[c0.key]) return;
     optFilterSellers(c0.sellers).forEach(function(sl0){
+      if(OPT.banSellers && OPT.banSellers[sl0.si]) return;
       var best=null;
       (sl0.vars||[]).forEach(function(v){
         var m=v.ml; if(m==null) m=50;
@@ -2519,7 +2533,10 @@ function optRoll(){
   var n=Math.max(1, Math.min(30, parseInt($('opt-qty').value,10)||1));
   var B=parseFloat(OPT.budget); if(!(B>0)) B=null;
   var goal=OPT_GOALS.kesif;
-  var pool=optShuffle(optPool());
+  var pool=optShuffle(optPool().filter(function(c){
+    if(OPT.banProducts && OPT.banProducts[c.key]) return false;
+    return true;
+  }));
   if(!pool.length){
     OPT.rollInfo={pool:0,picked:0};
     OPT.res={B:B, goal:goal, missing:[], W:[], flags:[], P0:null, poolEmpty:true};
@@ -2765,10 +2782,33 @@ function optEstimateCampNet(cands, freeN){
 }
 
 /* ---------- motor: ekran ---------- */
-function optLinesHTML(ev,W){
+function optCanSwapProd(si, s, key, goal){
+  var cands=optSellerFillCandidates(si, s, 12, goal, [], null);
+  var n=0;
+  cands.forEach(function(cd){
+    if(cd.key===key) return;
+    if(OPT.banProducts && OPT.banProducts[cd.key]) return;
+    if(OPT.want.some(function(w){ return w.k===cd.key; })) return;
+    n++;
+  });
+  return n>0;
+}
+function optNextProdCand(si, s, key, goal){
+  var cands=optSellerFillCandidates(si, s, 24, goal, [], null);
+  for(var i=0;i<cands.length;i++){
+    var cd=cands[i];
+    if(cd.key===key) continue;
+    if(OPT.banProducts && OPT.banProducts[cd.key]) continue;
+    if(OPT.want.some(function(w){ return w.k===cd.key; })) continue;
+    return cd;
+  }
+  return null;
+}
+function optLinesHTML(ev,W,interactive){
+  var goal=(OPT.res&&OPT.res.goal)||OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
   return ev.groups.map(function(G){
     var lines=G.lines.map(function(L){
-      var v=L.o.v, nm=W[L.i].w.n, orig=v.price*L.q, priceHtml;
+      var v=L.o.v, nm=W[L.i].w.n, key=W[L.i].w.k, orig=v.price*L.q, priceHtml;
       if(L.isFree){
         priceHtml='<span style="text-align:right"><s style="color:var(--muted);font-size:13px">'+tl(orig)+'</s><b class="mono" style="color:var(--c-l);display:block">0,00 TL (Bedava)</b></span>';
       } else if(L.discountRatio>0.001){
@@ -2777,7 +2817,12 @@ function optLinesHTML(ev,W){
       } else {
         priceHtml='<b class="mono">'+tl(orig)+'</b>';
       }
-      return '<div class="ci"><div class="nm"><b>'+esc(nm)+'</b><small>'+(v.ml?mlf(v.ml):'hacim belirtilmemiş')+' × '+L.q+' · '+tl(v.price)+(v.ml?' · '+f2(v.price/v.ml)+' TL/ml':'')+'</small></div><div class="rtc">'+priceHtml+'</div></div>';
+      var swap='';
+      if(interactive){
+        var can=optCanSwapProd(G.si, G.s, key, goal);
+        swap='<button type="button" class="opt-swap" data-opt="swap-prod" data-k="'+esc(key)+'" data-si="'+G.si+'" title="Ürünü değiştir"'+(can?'':' disabled')+' aria-label="Ürünü değiştir">↻</button>';
+      }
+      return '<div class="ci'+(interactive?'':' no-swap')+'">'+swap+'<div class="nm"><b>'+esc(nm)+'</b><small>'+(v.ml?mlf(v.ml):'hacim belirtilmemiş')+' × '+L.q+' · '+tl(v.price)+(v.ml?' · '+f2(v.price/v.ml)+' TL/ml':'')+'</small></div><div class="rtc">'+priceHtml+'</div></div>';
     }).join('');
     var foot='';
     if(G.disc>0) foot+='<p class="opt-n ok">Kampanya: '+esc(G.camp.c.label||G.camp.c.type)+' → − '+tl(G.disc)+'</p>';
@@ -2785,14 +2830,109 @@ function optLinesHTML(ev,W){
     else if(G.ship.t==='paid') foot+='<p class="opt-n">Kargo: '+tl(G.ship.cost)+(G.ship.need>0?' · ücretsiz kargoya '+tl(G.ship.need)+' kaldı':'')+'</p>';
     else foot+='<p class="opt-n">Kargo bilgisi yok (hesaba varsayılan 70 TL eklendi)</p>';
     G.gifts.forEach(function(c){ foot+='<p class="opt-n ok">Hediye: '+esc(c.label||'hediye')+(c.n>1?' × '+c.n:'')+'</p>'; });
-    return '<div class="card grp"><h3><span>'+esc(optSn(G.s))+'</span><span class="mono">'+tl(G.total)+'</span></h3>'+lines+foot+'</div>';
+    var sellerBtn='';
+    if(interactive){
+      var canS=optCanSwapSeller(G.si, G.lines.length);
+      sellerBtn='<button type="button" class="opt-swap-seller" data-opt="swap-seller" data-si="'+G.si+'" title="Bu satıcıyı değiştir"'+(canS?'':' disabled')+'>Satıcı değiştir</button>';
+    }
+    return '<div class="card grp"><h3><span>'+esc(optSn(G.s))+'</span>'+sellerBtn+'<span class="mono">'+tl(G.total)+'</span></h3>'+lines+foot+'</div>';
   }).join('');
 }
 function optSum(ev){
   return '<div class="cs"><div><span>Toplam ödeme</span><b>'+tl(ev.total)+'</b></div><div><span>Toplam hacim</span><b>'+mlf(ev.ml)+'</b></div><div><span>Ort. TL/ml</span><b>'+f2(ev.total/Math.max(ev.ml,1))+'</b></div><div><span>Kargo / indirim</span><b>'+nf0.format(ev.ship)+' / '+nf0.format(ev.disc)+' TL</b></div><div><span>Sipariş</span><b>'+ev.n+' satıcı</b></div></div>';
 }
-function optPlanBlock(title,ev,W,open,note){
-  return '<details class="opt-plan"'+(open?' open':'')+'><summary><b>'+title+'</b><span class="mono">'+tl(ev.total)+' · '+mlf(ev.ml)+'</span></summary>'+(note?'<p class="opt-n">'+note+'</p>':'')+optSum(ev)+optLinesHTML(ev,W)+'<div class="row2"><button type="button" class="ghost" data-opt="tocart" data-plan="'+esc(title)+'">Bu planı Pazar sepetine aktar</button></div></details>';
+function optPlanBlock(title,ev,W,open,note,interactive){
+  return '<details class="opt-plan"'+(open?' open':'')+'><summary><b>'+title+'</b><span class="mono">'+tl(ev.total)+' · '+mlf(ev.ml)+'</span></summary>'+(note?'<p class="opt-n">'+note+'</p>':'')+optSum(ev)+optLinesHTML(ev,W,!!interactive)+'<div class="row2"><button type="button" class="ghost" data-opt="tocart" data-plan="'+esc(title)+'">Bu planı Pazar sepetine aktar</button></div></details>';
+}
+/* Satıcı değiştir: ban dışı tek satıcıdan aynı adet paket (önce bütçe içi, yoksa +%50) */
+function optCanSwapSeller(si, needCount){
+  return !!optFindSellerAlt(si, needCount, true);
+}
+function optFindSellerAlt(excludeSi, needCount, probeOnly){
+  var B=parseFloat(OPT.budget); if(!(B>0)) B=null;
+  var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
+  var pool=optPool().filter(function(c){
+    if(OPT.banProducts && OPT.banProducts[c.key]) return false;
+    return true;
+  });
+  var bySeller=optSellerCands(pool, goal);
+  var lim=B>0?B*1.5:null;
+  var inBudget=null, overBudget=null;
+  Object.keys(bySeller).forEach(function(sk){
+    var si=+sk;
+    if(si===excludeSi) return;
+    if(OPT.banSellers && OPT.banSellers[si]) return;
+    var list=bySeller[sk].filter(function(x){
+      if(OPT.banProducts && OPT.banProducts[x.c.key]) return false;
+      if(OPT.want.some(function(w){ return w.k===x.c.key; })) return false;
+      return true;
+    });
+    /* want'taki diğer satıcı ürünleri dışarıda — sadece bu satıcının paketini kur */
+    list=list.filter(function(x){ return true; });
+    if(list.length<needCount) return;
+    list.sort(function(a,b){ return a.o.v.price-b.o.v.price || a.o.upm-b.o.upm; });
+    var take=list.slice(0, needCount);
+    var pk=optPackFromItems(take);
+    if(!pk) return;
+    if(B>0){
+      if(pk.ev.total<=B+0.001){
+        if(!inBudget || pk.epm<inBudget.epm) inBudget={si:si, items:take, pk:pk};
+      } else if(pk.ev.total<=lim+0.001){
+        if(!overBudget || pk.ev.total<overBudget.pk.ev.total) overBudget={si:si, items:take, pk:pk};
+      }
+    } else {
+      if(!inBudget || pk.epm<inBudget.epm) inBudget={si:si, items:take, pk:pk};
+    }
+  });
+  var pick=inBudget||overBudget;
+  if(probeOnly) return pick;
+  return pick;
+}
+function optSwapSeller(si){
+  var R=OPT.res; if(!R||!R.P0) return;
+  var G=null;
+  R.P0.groups.forEach(function(g){ if(g.si===si) G=g; });
+  if(!G) return;
+  var need=0, keys=[];
+  G.lines.forEach(function(L){ need+=L.q; keys.push(R.W[L.i].w.k); });
+  OPT.banSellers=OPT.banSellers||{};
+  OPT.banSellers[si]=1;
+  var alt=optFindSellerAlt(si, need, false);
+  if(!alt){
+    /* geri al ban? hayır — kullanıcı tekrar denemesin diye ban kalsın */
+    optShow(); return;
+  }
+  /* Eski satıcı ürünlerini want'tan çıkar, yenilerini ekle */
+  var drop={}; keys.forEach(function(k){ drop[k]=1; OPT.banProducts[k]=1; });
+  OPT.want=OPT.want.filter(function(w){ return !drop[w.k]; });
+  alt.items.forEach(function(x){
+    OPT.want.push({k:x.c.key, n:x.c.name, q:1});
+  });
+  if(alt.pk.ev.total>(parseFloat(OPT.budget)||0)+0.001) OPT.softOverage=true;
+  OPT.rollInfo=null;
+  optSave(); optChips(); optRun();
+}
+function optSwapProd(key){
+  var R=OPT.res; if(!R||!R.P0) return;
+  var si=null, s=null;
+  R.P0.groups.forEach(function(G){
+    G.lines.forEach(function(L){
+      if(R.W[L.i].w.k===key){ si=G.si; s=G.s; }
+    });
+  });
+  if(si==null||!s) return;
+  var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
+  OPT.banProducts=OPT.banProducts||{};
+  OPT.banProducts[key]=1;
+  var cd=optNextProdCand(si, s, key, goal);
+  if(!cd){ optShow(); return; }
+  var found=false;
+  OPT.want.forEach(function(w){
+    if(w.k===key){ w.k=cd.key; w.n=cd.name; found=true; }
+  });
+  if(!found) OPT.want.push({k:cd.key,n:cd.name,q:1});
+  OPT.rollInfo=null;
+  optSave(); optChips(); optRun();
 }
 /* strateji notları: yeni hedeflerin ana planı ne yaptığını kısaca açıklar */
 function optModeNote(R){
@@ -2849,7 +2989,7 @@ function optShow(){
   if(R.bestEffort) h+='<div class="opt-warn"><b>En yakın plan</b><p>Hedef kısıtlarına tam uyan kombinasyon bulunamadı; en iyi ulaşılabilir sepet gösteriliyor.</p></div>';
   if(!B || R.fits){
     h+='<div class="opt-ok">'+(B?'Plan bütçene sığıyor. Kalan: <b>'+tl(B-P0.total)+'</b>':'Bütçe girmediğin için en ekonomik sepet hesaplandı.')+'</div>';
-    h+=optPlanBlock(reg('Önerilen plan',P0),P0,W,true,optModeNote(R));
+    h+=optPlanBlock(reg('Önerilen plan',P0),P0,W,true,optModeNote(R),true);
     if(R.Peff){ var Pf=R.Peff; h+=optPlanBlock(reg('Alternatif: Kalan bütçeyle verimli plan (TL/ml)',Pf),Pf,W,false,'Bütçenden kalan '+tl(B-P0.total)+' ile ana plana göre <b>'+tl(Pf.total-P0.total)+'</b> daha fazla ödeyip <b>'+mlf(Pf.ml-P0.ml)+'</b> fazla hacim alırsın; ortalama birim fiyat '+f2(optPerMl(P0))+' → <b>'+f2(optPerMl(Pf))+' TL/ml</b> olur (toplam '+tl(Pf.total)+', kalan '+tl(B-Pf.total)+').'); }
   } else {
     /* Bütçe aşımı: planı kilitleme — göster, sepete aktarılabilir bırak */
@@ -2857,10 +2997,10 @@ function optShow(){
     var soft=!!OPT.softOverage || over<=B*0.2+0.001;
     if(soft){
       h+='<div class="opt-warn"><b>Plan bütçeyi '+tl(over)+' aşıyor</b><p>Kampanya tamamı veya seçtiğin ürünler <b>'+tl(P0.total)+'</b> tutuyor (bütçe '+tl(B)+'). Plan kilitlenmedi; aşağıdan sepete aktarabilir veya bütçeni '+tl(over)+' artırabilirsin.</p></div>';
-      h+=optPlanBlock(reg('Önerilen plan (bütçe +'+nf0.format(over)+' TL)',P0),P0,W,true,optModeNote(R));
+      h+=optPlanBlock(reg('Önerilen plan (bütçe +'+nf0.format(over)+' TL)',P0),P0,W,true,optModeNote(R),true);
     } else {
       h+='<div class="opt-bad">İstediğin ürünler hedef boylarda <b>'+tl(P0.total)+'</b> tutuyor; bütçen '+tl(B)+' — <b>'+tl(over)+'</b> yetmiyor.</div>';
-      h+=optPlanBlock(reg('Hesaplanan plan (bütçe dışı)',P0),P0,W,true,'Bütçeyi aşıyor; yine de sepete aktarabilirsin.');
+      h+=optPlanBlock(reg('Hesaplanan plan (bütçe dışı)',P0),P0,W,true,'Bütçeyi aşıyor; yine de sepete aktarabilirsin.',true);
     }
     if(R.F && R.F.total<=B+0.001) h+=optPlanBlock(reg('Alternatif: Hacmi küçülterek bütçeye sığdır',R.F),R.F,W,false,'Ürünler aynı kalır; boylar bütçeye sığacak şekilde küçültüldü'+optShrink(P0,R.F,W)+'. Toplam '+tl(R.F.total)+' · kalan '+tl(B-R.F.total)+'.');
     else if(!soft) h+='<p class="opt-n">En küçük boylarla bile bütçeye sığan alternatif yok; en düşük sepet '+(R.Fmin?'<b>'+tl(R.Fmin.total)+'</b>.':'hesaplanamadı.')+'</p>';
@@ -2995,9 +3135,19 @@ document.addEventListener('click', function(e){
   else if(a==='gen'){ var gv=b.getAttribute('data-v'); OPT.gens=OPT.gens||{}; if(OPT.gens[gv]) delete OPT.gens[gv]; else OPT.gens[gv]=1; OPT.rollInfo=null; }
   else if(a==='sea'){ var sv=b.getAttribute('data-v'); OPT.seas=OPT.seas||{}; if(OPT.seas[sv]) delete OPT.seas[sv]; else OPT.seas[sv]=1; OPT.rollInfo=null; }
   else if(a==='run'){ OPT.decide={}; OPT.rollInfo=null; OPT.softOverage=false; if(!optRoll()){ optSave(); return; } optRun(); return; }
-  else if(a==='clear'){ OPT.want=[]; OPT.decide={}; OPT.rollInfo=null; }
+  else if(a==='clear'){ OPT.want=[]; OPT.decide={}; OPT.rollInfo=null; OPT.banSellers={}; OPT.banProducts={}; OPT.softOverage=false; }
   else if(a==='frompz'){ PZC.forEach(function(e){ var c=optCat()[pzKey(e.n)]; if(!c) return; var f=null; OPT.want.forEach(function(x){ if(x.k===c.key) f=x; }); if(!f) OPT.want.push({k:c.key,n:c.name,q:1}); }); }
   else if(a==='tocart'){ optToCart(OPT_PLANS[b.getAttribute('data-plan')]); return; }
+  else if(a==='swap-seller'){
+    var si=+b.getAttribute('data-si');
+    if(!(si>=0)) return;
+    optSwapSeller(si); return;
+  }
+  else if(a==='swap-prod'){
+    var pk=b.getAttribute('data-k');
+    if(!pk) return;
+    optSwapProd(pk); return;
+  }
   else if(a==='apply-camp'){
     var csi=+b.getAttribute('data-csi');
     var box=$('opt-out'); if(!box) return;
@@ -3508,5 +3658,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.25</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.26</footer>
 </body></html>
