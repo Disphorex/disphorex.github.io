@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.33">
+<meta name="app-version" content="1.0.34">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -295,6 +295,16 @@ td small{display:block; color:var(--muted); font-size:14px}
   display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
 }
 .opt-rm-line:hover{color:var(--danger); border-color:var(--danger); background:rgba(219,124,117,.12)}
+.opt-ml-pick{
+  border:0; border-bottom:1px dashed var(--accent); background:transparent; color:var(--accent);
+  cursor:pointer; font:inherit; padding:0; margin:0;
+}
+.opt-ml-pick:hover{color:var(--ink)}
+.opt-ml-menu{
+  display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 4px; padding:6px 0;
+  border-top:1px dotted var(--line-soft);
+}
+.opt-ml-menu .chip{font-size:12px}
 .opt-swap,.opt-swap-seller{
   border:1px solid var(--line); background:var(--surface-2); color:var(--muted);
   width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:16px; line-height:1;
@@ -758,6 +768,9 @@ td small{display:block; color:var(--muted); font-size:14px}
             <div class="opt-filt-body"><div id="opt-sellers-box"></div></div>
           </details>
           <p class="hint" id="opt-pool" style="margin:8px 0 0"></p>
+          <div class="row2" style="margin-top:8px">
+            <button type="button" class="ghost" data-opt="filt-reset">Filtreleri sıfırla</button>
+          </div>
         </div>
         <div class="row2"><button type="button" class="primary" data-opt="run">Hesapla</button><button type="button" class="ghost" data-opt="frompz">Pazar sepetimden al</button><button type="button" class="ghost" data-opt="clear">Listeyi temizle</button></div>
         <div id="opt-out" aria-live="polite"></div>
@@ -2009,9 +2022,11 @@ function pzcCampaign(g){
     else if(c.type==='seqPercent'){ us=g.units.map(function(x){ return x.p; }).sort(function(a,b){ return b-a; }); for(i=0;i<us.length;i++) d+=us[i]*c.percents[i%c.percents.length]/100; }
     else if(c.type==='amountOff'){ if(g.sub>=(c.min||0)) d=Math.min(c.value,g.sub); }
     else if(c.type==='buyXPayY'){
-      var pool=g.units.filter(function(x){ return !c.ml || c.ml.indexOf(x.ml)>=0; }), sets=[pool];
-      if(c.perMl){ var m={}; sets=[]; pool.forEach(function(x){ (m[x.ml]=m[x.ml]||[]).push(x); }); for(var kk in m) sets.push(m[kk]); }
-      sets.forEach(function(st){ u=st.map(function(x){ return x.p; }).sort(function(a,b){ return a-b; }); free=Math.floor(u.length/c.buy)*(c.buy-c.pay); for(i=0;i<free;i++) d+=u[i]; });
+      /* ml listesi: yalnızca bu hacimler kampanyaya girer; perMl olsa bile tek havuzda say (karışık 5+10 ml birleşir) */
+      var pool=g.units.filter(function(x){ return !c.ml || !c.ml.length || c.ml.indexOf(x.ml)>=0; });
+      u=pool.map(function(x){ return x.p; }).sort(function(a,b){ return a-b; });
+      free=Math.floor(u.length/c.buy)*(c.buy-c.pay);
+      for(i=0;i<free;i++) d+=u[i];
     }
     d=r2(d);
     if(d>0 && (!best||d>best.d)) best={c:c,d:d};
@@ -2152,7 +2167,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.33';
+var APP_VERSION='1.0.34';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2513,7 +2528,13 @@ function optPassDisc(c){
 }
 function optPool(){
   var cat=optCat();
-  return Object.keys(cat).map(function(k){ return cat[k]; }).filter(optPassDisc);
+  var keys=Object.keys(cat);
+  if(!keys.length && PAZAR2 && PAZAR2.length){
+    OPT_CAT=null; OPT_STAMP='';
+    cat=optCat();
+    keys=Object.keys(cat);
+  }
+  return keys.map(function(k){ return cat[k]; }).filter(optPassDisc);
 }
 function optShuffle(a){
   for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; }
@@ -3049,7 +3070,13 @@ function optLinesHTML(ev,W,interactive){
         swap='<button type="button" class="opt-swap" data-opt="swap-prod" data-k="'+esc(key)+'" data-si="'+G.si+'" title="Ürünü değiştir"'+(can?'':' disabled')+' aria-label="Ürünü değiştir">↻</button>';
         rm='<button type="button" class="opt-rm-line" data-opt="rm-line" data-k="'+esc(key)+'" title="Ürünü plandan çıkar" aria-label="Ürünü plandan çıkar">🗑</button>';
       }
-      return '<div class="ci'+(interactive?'':' no-swap')+'">'+swap+'<div class="nm"><b>'+esc(nm)+'</b><small>'+(v.ml?mlf(v.ml):'hacim belirtilmemiş')+' × '+L.q+' · '+tl(v.price)+(v.ml?' · '+f2(v.price/v.ml)+' TL/ml':'')+'</small></div><div class="rtc">'+priceHtml+'</div>'+rm+'</div>';
+      var mlBtn='';
+      if(interactive && v.ml!=null){
+        mlBtn='<button type="button" class="opt-ml-pick" data-opt="pick-vol" data-k="'+esc(key)+'" data-si="'+G.si+'" data-ml="'+v.ml+'" title="Hacim değiştir">'+mlf(v.ml)+'</button>';
+      } else {
+        mlBtn=v.ml?mlf(v.ml):'hacim belirtilmemiş';
+      }
+      return '<div class="ci'+(interactive?'':' no-swap')+'">'+swap+'<div class="nm"><b>'+esc(nm)+'</b><small>'+mlBtn+' × '+L.q+' · '+tl(v.price)+(v.ml?' · '+f2(v.price/v.ml)+' TL/ml':'')+'</small></div><div class="rtc">'+priceHtml+'</div>'+rm+'</div>';
     }).join('');
     var foot='';
     if(G.disc>0) foot+='<p class="opt-n ok">Kampanya: '+esc(G.camp.c.label||G.camp.c.type)+' → − '+tl(G.disc)+'</p>';
@@ -3141,6 +3168,96 @@ function optSetGroupVolume(si, ml){
   OPT.want=newWant;
   OPT.sellerLock={};
   OPT.volLock={};
+  newW.forEach(function(x,i){
+    OPT.sellerLock[x.w.k]=newSel[i].si;
+    OPT.volLock[x.w.k]=newSel[i].m;
+  });
+  OPT.softOverage=Bfull>0 && newP0.total>Bfull+0.001;
+  R.W=newW; R.P0=newP0;
+  R.fits=!(Bfull>0)||newP0.total<=Bfull+0.001;
+  R.B=Bfull>0?Bfull:null;
+  R.campSteps=optCampStepAdvice(newP0, R.goal);
+  R.flags=[]; R.Q=null; R.F=null; R.raise=null;
+  OPT.res=R; OPT.rollInfo=null;
+  optSave(); optChips(); optShow();
+}
+function optToggleLineVolMenu(key, si, btn){
+  var R=OPT.res; if(!R||!R.P0||!R.W) return;
+  var row=btn.closest('.ci'); if(!row) return;
+  var existing=row.parentNode.querySelector('.opt-ml-menu[data-k="'+key+'"]');
+  if(existing){ existing.remove(); return; }
+  /* diğer açık menüleri kapat */
+  Array.prototype.forEach.call(document.querySelectorAll('.opt-ml-menu'), function(el){ el.remove(); });
+  var x=null, o=null;
+  R.P0.groups.forEach(function(G){
+    if(String(G.si)!==String(si)) return;
+    G.lines.forEach(function(L){
+      if(R.W[L.i].w.k===key){ x=R.W[L.i]; o=L.o; }
+    });
+  });
+  if(!x||!x.c) return;
+  var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
+  var sl=null;
+  (x.c.sellers||[]).forEach(function(s){ if(String(s.si)===String(si)) sl=s; });
+  if(!sl) return;
+  var vols=[];
+  (sl.vars||[]).forEach(function(v){
+    var m=v.ml; if(m==null) m=50;
+    if(goal&&goal.test&&!goal.test(m)) return;
+    if(v.price==null) return;
+    vols.push({m:m, price:v.price});
+  });
+  vols.sort(function(a,b){ return a.m-b.m; });
+  if(vols.length<2) return;
+  var menu=document.createElement('div');
+  menu.className='opt-ml-menu';
+  menu.setAttribute('data-k', key);
+  vols.forEach(function(v){
+    var on=o&&Math.abs(o.m-v.m)<0.01;
+    var ch=document.createElement('button');
+    ch.type='button';
+    ch.className='chip';
+    ch.setAttribute('data-opt','set-line-vol');
+    ch.setAttribute('data-k', key);
+    ch.setAttribute('data-si', si);
+    ch.setAttribute('data-ml', String(v.m));
+    ch.setAttribute('aria-pressed', on?'true':'false');
+    ch.textContent=nf0.format(v.m)+' ml · '+tl(v.price);
+    menu.appendChild(ch);
+  });
+  row.parentNode.insertBefore(menu, row.nextSibling);
+}
+function optSetLineVolume(key, si, ml){
+  var R=OPT.res; if(!R||!R.P0||!R.W) return;
+  var newW=[], newSel=[], newWant=[], ok=false;
+  R.P0.groups.forEach(function(g){
+    g.lines.forEach(function(L){
+      var x=R.W[L.i], o=L.o;
+      if(x.w.k===key && String(g.si)===String(si)){
+        var sl=null;
+        (x.c.sellers||[]).forEach(function(s){ if(String(s.si)===String(si)) sl=s; });
+        var hit=null;
+        if(sl){
+          (sl.vars||[]).forEach(function(v){
+            var m=v.ml; if(m==null) m=50;
+            if(Math.abs(m-ml)<0.01) hit=v;
+          });
+        }
+        if(hit){
+          o={si:+si, s:sl.s, v:hit, m:hit.ml==null?ml:hit.ml};
+          ok=true;
+        }
+      }
+      newW.push({w:{k:x.w.k,n:x.w.n,q:L.q}, c:x.c, q:L.q});
+      newSel.push(o);
+      newWant.push({k:x.w.k,n:x.w.n,q:L.q});
+    });
+  });
+  if(!ok) return;
+  var newP0=optEval(newSel, newW);
+  var Bfull=parseFloat(OPT.budget);
+  OPT.want=newWant;
+  OPT.sellerLock={}; OPT.volLock={};
   newW.forEach(function(x,i){
     OPT.sellerLock[x.w.k]=newSel[i].si;
     OPT.volLock[x.w.k]=newSel[i].m;
@@ -3561,6 +3678,10 @@ document.addEventListener('click', function(e){
   else if(a==='rm'||a==='drop'){ OPT.want=OPT.want.filter(function(x){ return x.k!==k; }); delete OPT.decide[k]; }
   else if(a==='keep'){ OPT.decide[k]='keep'; optSave(); optRun(); return; }
   else if(a==='goal'){ OPT.goal=b.getAttribute('data-g'); OPT.rollInfo=null; }
+  else if(a==='filt-reset'){
+    OPT.gens={}; OPT.seas={}; OPT.times={}; OPT.cats={}; OPT.sellerPref={}; OPT.sellers='';
+    OPT.rollInfo=null;
+  }
   else if(a==='gen'){ var gv=b.getAttribute('data-v'); OPT.gens=OPT.gens||{}; if(OPT.gens[gv]) delete OPT.gens[gv]; else OPT.gens[gv]=1; OPT.rollInfo=null; }
   else if(a==='sea'){ var sv=b.getAttribute('data-v'); OPT.seas=OPT.seas||{}; if(OPT.seas[sv]) delete OPT.seas[sv]; else OPT.seas[sv]=1; OPT.rollInfo=null; }
   else if(a==='time'){ var tv=b.getAttribute('data-v'); OPT.times=OPT.times||{}; if(OPT.times[tv]) delete OPT.times[tv]; else OPT.times[tv]=1; OPT.rollInfo=null; }
@@ -3592,6 +3713,16 @@ document.addEventListener('click', function(e){
     var vsi=b.getAttribute('data-si'), vml=parseFloat(b.getAttribute('data-ml'));
     if(vsi==null||!(vml>0)) return;
     optSetGroupVolume(vsi, vml); return;
+  }
+  else if(a==='pick-vol'){
+    var pk=b.getAttribute('data-k'), psi=b.getAttribute('data-si');
+    if(!pk||psi==null) return;
+    optToggleLineVolMenu(pk, psi, b); return;
+  }
+  else if(a==='set-line-vol'){
+    var lk=b.getAttribute('data-k'), lsi=b.getAttribute('data-si'), lml=parseFloat(b.getAttribute('data-ml'));
+    if(!lk||lsi==null||!(lml>0)) return;
+    optSetLineVolume(lk, lsi, lml); return;
   }
   else if(a==='rm-line'){
     var rk=b.getAttribute('data-k');
@@ -4115,5 +4246,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.33</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.34</footer>
 </body></html>
