@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.22">
+<meta name="app-version" content="1.0.23">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2079,7 +2079,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.22';
+var APP_VERSION='1.0.23';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2421,78 +2421,94 @@ function optBudgetPick(pool, n, B, goal){
   var sellerKeys=Object.keys(bySeller);
   if(!sellerKeys.length) return null;
 
+  /* Tüm adaylar — fiyat artan (adet doldurmak için) */
+  var allCands=[];
+  sellerKeys.forEach(function(sk){
+    bySeller[sk].forEach(function(x){ allCands.push(x); });
+  });
+  allCands.sort(function(a,b){ return a.o.v.price-b.o.v.price || a.o.upm-b.o.upm; });
+
   var bestPack=null;
   function consider(pk){
-    if(!optUnderBudget(pk,B)) return;
+    if(!pk || !optUnderBudget(pk,B)) return;
     if(!bestPack){ bestPack=pk; return; }
-    /* 1) daha çok koku  2) daha düşük efektif TL/ml  3) daha düşük toplam */
-    if(pk.items.length>bestPack.items.length){ bestPack=pk; return; }
-    if(pk.items.length<bestPack.items.length) return;
+    var cNew=pk.items.length, cOld=bestPack.items.length;
+    /* 1) Hedef adede daha yakın (daha çok koku) */
+    if(cNew>cOld){ bestPack=pk; return; }
+    if(cNew<cOld) return;
+    /* 2) Aynı adette daha düşük efektif TL/ml */
     if(pk.epm<bestPack.epm-1e-9){ bestPack=pk; return; }
-    if(Math.abs(pk.epm-bestPack.epm)<1e-9 && pk.ev.total<bestPack.ev.total) bestPack=pk;
+    if(pk.epm>bestPack.epm+1e-9) return;
+    /* 3) Bütçeyi daha iyi kullan (aynı adet + benzer epm) */
+    if(B>0 && pk.ev.total>bestPack.ev.total+0.5){ bestPack=pk; return; }
+    if(B>0 && pk.ev.total<bestPack.ev.total-0.5) return;
+    if(pk.ev.total<bestPack.ev.total) bestPack=pk;
   }
 
-  /* Faz 1–2: her satıcıda kampanya eşiği / N adet çekirdek paketleri skorla */
+  /* Faz 1: her satıcıda 1..min(n,stok) paketleri dene (kampanya eşikleri dahil) */
   sellerKeys.forEach(function(sk){
-    var list=bySeller[sk];
+    var list=bySeller[sk].slice().sort(function(a,b){ return a.o.v.price-b.o.v.price; });
     if(!list.length) return;
     var th=optCampThreshold(list[0].o.s);
-    var sizes=[];
-    /* eşik adedi, istenen n, ve ara adetler */
-    sizes.push(Math.min(n, list.length));
-    if(th>1 && th<=list.length) sizes.push(th);
-    if(th>1 && th*2<=list.length && th*2<=n) sizes.push(th*2);
-    for(var q=1;q<=Math.min(n, list.length);q++) sizes.push(q);
-    var seenQ={};
-    sizes.forEach(function(q){
-      q=Math.min(q, list.length, n);
-      if(q<1 || seenQ[q]) return; seenQ[q]=1;
-      var pk=optPackFromItems(list.slice(0,q));
-      consider(pk);
-    });
+    var maxQ=Math.min(n, list.length);
+    for(var q=1;q<=maxQ;q++){
+      consider(optPackFromItems(list.slice(0,q)));
+    }
+    /* çift katmanlı eşik */
+    if(th>1){
+      for(var k=1;k*th<=maxQ;k++) consider(optPackFromItems(list.slice(0,k*th)));
+    }
   });
 
-  /* Faz 3: kalan bütçe ile doldur — mevcut paketten başla veya sıfırdan çoklu satıcı */
-  function residualFill(startItems){
+  /* Faz 2: adet-öncelikli greedy doldurma (en ucuzdan) */
+  function fillMaxCount(startItems){
     var chosen=(startItems||[]).slice();
     var used={}; chosen.forEach(function(x){ used[x.c.key]=1; });
-    /* adaylar: tüm satıcılardan, efektif katkıya göre eklenecek */
     var guard=0;
-    while(chosen.length<n && guard++<n+5){
+    while(chosen.length<n && guard++<n+8){
       var bestAdd=null, bestPk=null;
-      sellerKeys.forEach(function(sk){
-        bySeller[sk].forEach(function(x){
-          if(used[x.c.key]) return;
-          var trial=chosen.concat([x]);
-          var pk=optPackFromItems(trial);
-          if(!optUnderBudget(pk,B)) return;
-          if(!bestAdd){ bestAdd=x; bestPk=pk; return; }
-          /* Önce koku sayısı (zaten +1), sonra efektif TL/ml, sonra toplam */
-          if(pk.epm<bestPk.epm-1e-9){ bestAdd=x; bestPk=pk; return; }
-          if(Math.abs(pk.epm-bestPk.epm)<1e-9 && pk.ev.total<bestPk.ev.total){ bestAdd=x; bestPk=pk; }
-        });
-      });
+      /* önce fiyata göre ucuz adaylar */
+      for(var i=0;i<allCands.length;i++){
+        var x=allCands[i];
+        if(used[x.c.key]) continue;
+        var trial=chosen.concat([x]);
+        var pk=optPackFromItems(trial);
+        if(!optUnderBudget(pk,B)) continue;
+        if(!bestAdd){ bestAdd=x; bestPk=pk; continue; }
+        /* aynı adet artışında: daha düşük epm, sonra daha düşük ek maliyet */
+        if(pk.epm<bestPk.epm-1e-9){ bestAdd=x; bestPk=pk; }
+        else if(Math.abs(pk.epm-bestPk.epm)<1e-9 && pk.ev.total<bestPk.ev.total){ bestAdd=x; bestPk=pk; }
+      }
       if(!bestAdd) break;
       chosen.push(bestAdd);
       used[bestAdd.c.key]=1;
       consider(bestPk);
     }
     if(chosen.length) consider(optPackFromItems(chosen));
+    return chosen;
   }
 
-  /* Çekirdek: en iyi efektif paket (mümkünse kampanya eşiğine yakın) */
   var core=bestPack;
-  residualFill(core?core.items:[]);
+  fillMaxCount(core?core.items:[]);
+  fillMaxCount([]); /* sıfırdan da dene */
 
-  /* Çekirdeksiz çoklu satıcı greedy de dene */
-  residualFill([]);
+  /* Faz 3: global en ucuz N ürün (tek geçiş) */
+  var cheap=[];
+  var seen={};
+  for(var i=0;i<allCands.length && cheap.length<n;i++){
+    var x=allCands[i];
+    if(seen[x.c.key]) continue;
+    var trial=cheap.concat([x]);
+    var pk=optPackFromItems(trial);
+    if(!optUnderBudget(pk,B)) continue;
+    cheap.push(x); seen[x.c.key]=1;
+    consider(pk);
+  }
 
-  /* Hâlâ boşsa: bütçesiz en iyi efektif tek satıcı dilimi */
   if(!bestPack){
     sellerKeys.forEach(function(sk){
       var list=bySeller[sk];
-      var pk=optPackFromItems(list.slice(0, Math.min(n, list.length)));
-      if(pk) consider(pk);
+      consider(optPackFromItems(list.slice(0, Math.min(n, list.length))));
     });
   }
   return bestPack;
@@ -2628,7 +2644,6 @@ function optCampStepAdvice(ev, goal){
   if(!ev || !ev.groups) return out;
   ev.groups.forEach(function(G){
     (G.s.campaigns||[]).forEach(function(c){
-      if(c.type!=='buyXPayY' || !(c.buy>1)) return;
       var cnt=0;
       G.lines.forEach(function(L){
         var m=L.o.m;
@@ -2637,17 +2652,51 @@ function optCampStepAdvice(ev, goal){
         cnt+=L.q;
       });
       if(cnt<1) return;
-      var rem=cnt % c.buy;
-      if(rem===0) return;
-      var need=c.buy-rem;
-      var freeN=c.buy-c.pay;
-      var cands=optSellerFillCandidates(G.si, G.s, need, goal, OPT.want, c.ml||null);
-      out.push({
-        seller:optSn(G.s), si:G.si, buy:c.buy, pay:c.pay,
-        have:cnt, need:need, free:freeN,
-        label:c.label||(c.buy+' al '+c.pay+' öde'),
-        candidates:cands
-      });
+
+      if(c.type==='buyXPayY' && c.buy>1){
+        var rem=cnt % c.buy;
+        if(rem===0) return;
+        var need=c.buy-rem;
+        var freeN=c.buy-c.pay;
+        var cands=optSellerFillCandidates(G.si, G.s, need, goal, OPT.want, c.ml||null);
+        out.push({
+          seller:optSn(G.s), si:G.si, buy:c.buy, pay:c.pay,
+          have:cnt, need:need, free:freeN,
+          label:c.label||(c.buy+' al '+c.pay+' öde'),
+          candidates:cands, kind:'buyXPayY'
+        });
+        return;
+      }
+
+      /* 2. ürüne %X / her N. ürüne indirim — eksik adedi tamamla */
+      if(c.type==='nthPercent' && c.n>1){
+        var rem2=cnt % c.n;
+        if(rem2===0) return; /* tam kat; yine de +n önermek istemiyoruz */
+        var need2=c.n-rem2;
+        var cands2=optSellerFillCandidates(G.si, G.s, need2, goal, OPT.want, c.ml||null);
+        out.push({
+          seller:optSn(G.s), si:G.si, buy:c.n, pay:c.n-1,
+          have:cnt, need:need2, free:0,
+          pct:c.value||0,
+          label:c.label||(c.n+'. ürüne %'+(c.value||0)+' indirim'),
+          candidates:cands2, kind:'nthPercent'
+        });
+        return;
+      }
+
+      if(c.type==='seqPercent' && c.percents && c.percents.length>1){
+        var step=c.percents.length;
+        var rem3=cnt % step;
+        if(rem3===0) return;
+        var need3=step-rem3;
+        var cands3=optSellerFillCandidates(G.si, G.s, need3, goal, OPT.want, null);
+        out.push({
+          seller:optSn(G.s), si:G.si, buy:step, pay:step-1,
+          have:cnt, need:need3, free:0,
+          label:c.label||'Sıralı yüzde indirim',
+          candidates:cands3, kind:'seqPercent'
+        });
+      }
     });
   });
   return out;
@@ -2688,11 +2737,12 @@ function optSellerFillCandidates(si, s, need, goal, want, mlFilter){
 function optResidualFillers(ev, B, goal, want){
   if(!(B>0) || !ev) return [];
   var rem=r2(B-ev.total);
-  if(rem<20) return [];
+  if(rem<15) return [];
   var have={}; (want||[]).forEach(function(w){ have[w.k]=1; });
   var out=[], seen={};
   (ev.groups||[]).forEach(function(G){
-    var cands=optSellerFillCandidates(G.si, G.s, 10, goal, want, null);
+    /* daha geniş havuz: need=20 */
+    var cands=optSellerFillCandidates(G.si, G.s, 20, goal, want, null);
     cands.forEach(function(cd){
       if(seen[cd.key] || have[cd.key]) return;
       if(cd.price>rem+0.001) return;
@@ -2700,10 +2750,9 @@ function optResidualFillers(ev, B, goal, want){
       out.push(cd);
     });
   });
-  out=optShuffle(out);
-  out.sort(function(a,b){ return a.upm-b.upm || a.price-b.price; });
-  var top=out.slice(0, Math.min(12, out.length));
-  return optShuffle(top).sort(function(a,b){ return a.upm-b.upm; }).slice(0, 6);
+  /* ucuzdan pahalıya — kalan bütçeye sığanlar */
+  out.sort(function(a,b){ return a.price-b.price || a.upm-b.upm; });
+  return out.slice(0, 8);
 }
 function optEstimateCampNet(cands, freeN){
   /* buyXPayY: en ucuz freeN adet bedava varsayımı */
@@ -2819,12 +2868,23 @@ function optShow(){
         h+='<div class="opt-warn"><b>Kampanya eşiğine '+cs.need+' ürün kaldı</b><p><b>'+esc(cs.seller)+'</b>: “'+esc(cs.label)+'” için '+cs.need+' adet daha gerekir; katalogda yeterli yeni aday bulunamadı (sepetinde zaten var olanlar elendi).</p></div>';
         return;
       }
-      var net=optEstimateCampNet(cands, cs.free>0?1:0);
+      var net;
+      if(cs.kind==='nthPercent' || cs.kind==='seqPercent'){
+        net=0; cands.forEach(function(cd){ net+=cd.price; });
+        /* nthPercent: yeni eklenenlerden biri indirimli varsay — kaba tahmin */
+        if(cs.pct>0 && cands.length) net=r2(net - cands[0].price*(cs.pct/100));
+      } else {
+        net=optEstimateCampNet(cands, cs.free>0?1:0);
+      }
       h+='<div class="card opt-ok" data-camp-card="'+csi+'"><h3 style="font-size:22px;margin:0 0 6px">Fırsat: '+esc(cs.seller)+' — '+esc(cs.label)+'</h3>';
-      h+='<p class="opt-n">Sepette hedef boyda <b>'+cs.have+'</b> ürün var. Aşağıdaki <b>'+cs.need+'</b> ürünü eklersen kampanya katı tamamlanır; dilimde ~<b>'+cs.free+'</b> ürün bedava sayılır. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
+      if(cs.kind==='nthPercent'){
+        h+='<p class="opt-n">Sepette <b>'+cs.have+'</b> ürün var. <b>'+cs.need+'</b> ürün daha eklersen bir sonraki “%'+nf0.format(cs.pct)+' indirimli” dilim tamamlanır. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
+      } else {
+        h+='<p class="opt-n">Sepette hedef boyda <b>'+cs.have+'</b> ürün var. Aşağıdaki <b>'+cs.need+'</b> ürünü eklersen kampanya katı tamamlanır'+(cs.free?''; dilimde ~<b>'+cs.free+'</b> ürün bedava sayılır':'')+'. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
+      }
       h+='<div class="chips" style="margin:8px 0">';
       cands.forEach(function(cd, idx){
-        var tag=idx===0 && cs.free>0?' · bedava aday':'';
+        var tag=idx===0 && cs.free>0?' · bedava aday':(idx===0 && cs.pct>0?' · %'+nf0.format(cs.pct)+' aday':'');
         var sn=cd.seller||cs.seller||'';
         h+='<label class="chip" style="cursor:pointer"><input type="checkbox" class="opt-camp-check" data-csi="'+csi+'" data-k="'+esc(cd.key)+'" data-name="'+esc(cd.name)+'" checked> <span class="stag">'+esc(sn)+'</span> '+esc(cd.name)+' <small>('+nf0.format(cd.ml)+' ml · '+tl(cd.price)+tag+')</small></label>';
       });
@@ -3439,5 +3499,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.22</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.23</footer>
 </body></html>
