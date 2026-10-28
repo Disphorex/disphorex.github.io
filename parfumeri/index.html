@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.29">
+<meta name="app-version" content="1.0.30">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2101,7 +2101,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.29';
+var APP_VERSION='1.0.30';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2652,6 +2652,26 @@ function optRun(){
   R.optsGoal=optsGoal; R.optsAll=optsAll;
   R.mode=goal.mode||'';
   R.P0=(R.mode==='cheap')?optSearch(optsGoal,W,optCheapScore):optSearch(optsGoal,W,optGoalScore(goal));
+  /* Satıcı/hacim kilitleri varsa seçimi kilide zorla — diğer satıcılar değişmesin */
+  if(OPT.forceLockedSel || (OPT.sellerLock && Object.keys(OPT.sellerLock).length)){
+    var forced=[], fok=true;
+    W.forEach(function(x,i){
+      var opts=optsGoal[i]||[], lock=OPT.sellerLock&&OPT.sellerLock[x.w.k], vol=OPT.volLock&&OPT.volLock[x.w.k], pick=null;
+      opts.forEach(function(o){
+        if(lock!=null && String(o.si)!==String(lock)) return;
+        if(vol!=null && Math.abs(o.m-vol)>0.01) return;
+        if(!pick||o.v.price<pick.v.price) pick=o;
+      });
+      if(!pick && lock!=null){
+        opts.forEach(function(o){ if(String(o.si)===String(lock) && (!pick||o.v.price<pick.v.price)) pick=o; });
+      }
+      if(!pick && opts.length) pick=opts[0];
+      if(!pick) fok=false;
+      forced.push(pick);
+    });
+    if(fok && forced.length===W.length) R.P0=optEval(forced,W);
+    OPT.forceLockedSel=false;
+  }
   if(R.mode==='unit'){
     if(B){
       var Pe=optSearch(optsGoal,W,optEcoFit(B));
@@ -2980,6 +3000,7 @@ function optSetGroupVolume(si, ml){
   });
   if(!ok) return;
   OPT.rollInfo=null;
+  OPT.forceLockedSel=true;
   optSave(); optChips(); optRun();
 }
 function optSum(ev){
@@ -3054,14 +3075,21 @@ function optSwapSeller(si){
   var G=null;
   R.P0.groups.forEach(function(g){ if(String(g.si)===String(si)) G=g; });
   if(!G) return;
-  var need=0, keys=[], keepLocks={};
+  var need=0, keys=[];
   G.lines.forEach(function(L){ need+=L.q; keys.push(R.W[L.i].w.k); });
-  /* Önce TÜM mevcut satırları kilitle — optRun başka satıcıya kaydırmasın */
+
+  /* Korunan satırlar: satıcı + hacim kilidi (birebir aynı kalsın) */
+  OPT.sellerLock={};
+  OPT.volLock=OPT.volLock||{};
   R.P0.groups.forEach(function(g){
+    if(String(g.si)===String(si)) return;
     g.lines.forEach(function(L){
-      keepLocks[R.W[L.i].w.k]=g.si;
+      var k=R.W[L.i].w.k;
+      OPT.sellerLock[k]=g.si;
+      OPT.volLock[k]=L.o.m;
     });
   });
+
   var otherTotal=r2(R.P0.total-G.total);
   var Bfull=parseFloat(OPT.budget);
   var budgetForAlt=(Bfull>0)?r2(Bfull-otherTotal):null;
@@ -3069,7 +3097,6 @@ function optSwapSeller(si){
 
   OPT.banSellers=OPT.banSellers||{};
   OPT.banSellers[String(si)]=1;
-  OPT.sellerLock=OPT.sellerLock||{};
 
   var alt=optFindSellerAlt(si, need, false, budgetForAlt, optPlanOtherSellers(si));
   if(!alt){
@@ -3077,42 +3104,46 @@ function optSwapSeller(si){
   }
 
   var drop={};
-  keys.forEach(function(k){ drop[k]=1; OPT.banProducts[k]=1; });
-  /* want: sadece bu satıcının ürünlerini değiştir; diğerleri aynen */
-  var newWant=[];
-  OPT.want.forEach(function(w){
-    if(drop[w.k]) return;
-    newWant.push(w);
-    /* korunan ürünler eski satıcısına kilitli */
-    OPT.sellerLock[w.k]=keepLocks[w.k]!=null?keepLocks[w.k]:OPT.sellerLock[w.k];
+  keys.forEach(function(k){ drop[k]=1; OPT.banProducts[k]=1; delete OPT.volLock[k]; });
+
+  /* want sırası: önce korunanlar (eski sıra), sonra yeni satıcı ürünleri */
+  var kept=[], seen={};
+  R.W.forEach(function(x){
+    if(drop[x.w.k]||seen[x.w.k]) return;
+    seen[x.w.k]=1;
+    kept.push({k:x.w.k, n:x.w.n, q:x.q||1});
   });
   alt.items.forEach(function(x){
-    newWant.push({k:x.c.key, n:x.c.name, q:1});
+    kept.push({k:x.c.key, n:x.c.name, q:1});
     OPT.sellerLock[x.c.key]=alt.si;
+    if(x.o&&x.o.m!=null) OPT.volLock[x.c.key]=x.o.m;
   });
-  OPT.want=newWant;
+  OPT.want=kept;
   if(Bfull>0 && (otherTotal+alt.pk.ev.total)>Bfull+0.001) OPT.softOverage=true;
   OPT.rollInfo=null;
+  OPT.forceLockedSel=true;
   optSave(); optChips(); optRun();
 }
 function optSwapProd(key){
   var R=OPT.res; if(!R||!R.P0) return;
-  var si=null, s=null;
+  var si=null, s=null, curM=null;
   R.P0.groups.forEach(function(G){
     G.lines.forEach(function(L){
-      if(R.W[L.i].w.k===key){ si=G.si; s=G.s; }
+      if(R.W[L.i].w.k===key){ si=G.si; s=G.s; curM=L.o.m; }
     });
   });
   if(si==null||!s) return;
   var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
   OPT.banProducts=OPT.banProducts||{};
   OPT.banProducts[key]=1;
-  OPT.sellerLock=OPT.sellerLock||{};
-  /* plandaki tüm satırların satıcı kilidini koru */
+  OPT.sellerLock={};
+  OPT.volLock=OPT.volLock||{};
   R.P0.groups.forEach(function(G){
     G.lines.forEach(function(L){
       var k=R.W[L.i].w.k;
-      if(k!==key) OPT.sellerLock[k]=G.si;
+      if(k===key) return;
+      OPT.sellerLock[k]=G.si;
+      OPT.volLock[k]=L.o.m;
     });
   });
   var cd=optNextProdCand(si, s, key, goal);
@@ -3122,9 +3153,12 @@ function optSwapProd(key){
     if(w.k===key){ w.k=cd.key; w.n=cd.name; found=true; }
   });
   if(!found) OPT.want.push({k:cd.key,n:cd.name,q:1});
-  delete OPT.sellerLock[key];
   OPT.sellerLock[cd.key]=si;
+  if(cd.ml!=null) OPT.volLock[cd.key]=cd.ml;
+  else if(curM!=null) OPT.volLock[cd.key]=curM;
+  delete OPT.volLock[key];
   OPT.rollInfo=null;
+  OPT.forceLockedSel=true;
   optSave(); optChips(); optRun();
 }
 /* strateji notları: yeni hedeflerin ana planı ne yaptığını kısaca açıklar */
@@ -3868,5 +3902,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.29</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.30</footer>
 </body></html>
