@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.18">
+<meta name="app-version" content="1.0.20">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -779,6 +779,48 @@ td small{display:block; color:var(--muted); font-size:14px}
   <div id="pzc-body"></div>
 </div></div>
 <script src="aliasMap.js"></script>
+<div id="fragrance-preview-portal" aria-hidden="true">
+  <div class="fc-backdrop" id="fc-backdrop"></div>
+  <div class="fc-card" id="fc-card" role="dialog" aria-modal="true" aria-label="Koku Önizleme">
+    <button type="button" class="fc-close" id="fc-close" aria-label="Kapat">×</button>
+    <div class="fc-header">
+      <div class="fc-img-wrapper">
+        <img id="fc-img" src="" alt="Parfüm Görseli" loading="lazy" />
+      </div>
+      <span class="fc-brand" id="fc-brand"></span>
+      <h3 class="fc-title" id="fc-title"></h3>
+      <div class="fc-meta" id="fc-meta">
+        <span id="fc-gender"></span>
+        <span class="fc-sep">•</span>
+        <span id="fc-season"></span>
+        <span class="fc-sep">•</span>
+        <span id="fc-time"></span>
+      </div>
+    </div>
+    <div class="fc-body-grid">
+      <div class="fc-col-family">
+        <span class="fc-label">KOKU AİLESİ</span>
+        <p class="fc-family-val" id="fc-family"></p>
+      </div>
+      <div class="fc-col-notes">
+        <span class="fc-label">PİRAMİT NOTALARI</span>
+        <div class="fc-pyramid-tier">
+          <span class="fc-tier-title">Üst:</span>
+          <div class="fc-badges" id="fc-top-notes"></div>
+        </div>
+        <div class="fc-pyramid-tier">
+          <span class="fc-tier-title">Orta:</span>
+          <div class="fc-badges" id="fc-mid-notes"></div>
+        </div>
+        <div class="fc-pyramid-tier">
+          <span class="fc-tier-title">Alt:</span>
+          <div class="fc-badges" id="fc-base-notes"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
 'use strict';
@@ -2034,7 +2076,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.18';
+var APP_VERSION='1.0.20';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2928,6 +2970,7 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
 
 /* ---------- Koku önizleme kartı + products.json köprüsü ---------- */
 (function initFragrancePreview() {
+  function start() {
   var DB = [
     {
       id: 'imagination',
@@ -2967,7 +3010,10 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
   var card = document.getElementById('fc-card');
   var backdrop = document.getElementById('fc-backdrop');
   var closeBtn = document.getElementById('fc-close');
-  if (!portal || !card) return;
+  if (!portal || !card) {
+    if (window.console) console.warn('[FragrancePreview] portal HTML bulunamadı');
+    return;
+  }
 
   var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
   var hoverTimer = null;
@@ -3315,6 +3361,12 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
     db: DB,
     metaCount: function () { rebuildFromPazar(); return META_LIST.length; }
   };
+  } /* end start */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
 })();
 
 loadLocal();
@@ -3326,5 +3378,6 @@ connectDb();
 })();
 </script>
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.18</footer>
+
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.20</footer>
 </body></html>
