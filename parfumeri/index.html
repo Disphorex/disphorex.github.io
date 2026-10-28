@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.23">
+<meta name="app-version" content="1.0.24">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2079,7 +2079,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.23';
+var APP_VERSION='1.0.24';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2871,16 +2871,17 @@ function optShow(){
       var net;
       if(cs.kind==='nthPercent' || cs.kind==='seqPercent'){
         net=0; cands.forEach(function(cd){ net+=cd.price; });
-        /* nthPercent: yeni eklenenlerden biri indirimli varsay — kaba tahmin */
         if(cs.pct>0 && cands.length) net=r2(net - cands[0].price*(cs.pct/100));
       } else {
         net=optEstimateCampNet(cands, cs.free>0?1:0);
       }
       h+='<div class="card opt-ok" data-camp-card="'+csi+'"><h3 style="font-size:22px;margin:0 0 6px">Fırsat: '+esc(cs.seller)+' — '+esc(cs.label)+'</h3>';
       if(cs.kind==='nthPercent'){
-        h+='<p class="opt-n">Sepette <b>'+cs.have+'</b> ürün var. <b>'+cs.need+'</b> ürün daha eklersen bir sonraki “%'+nf0.format(cs.pct)+' indirimli” dilim tamamlanır. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
+        h+='<p class="opt-n">Sepette <b>'+cs.have+'</b> ürün var. <b>'+cs.need+'</b> ürün daha eklersen bir sonraki indirim dilimi tamamlanır. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
+      } else if(cs.free){
+        h+='<p class="opt-n">Sepette hedef boyda <b>'+cs.have+'</b> ürün var. Aşağıdaki <b>'+cs.need+'</b> ürünü eklersen kampanya katı tamamlanır; dilimde yaklaşık <b>'+cs.free+'</b> ürün bedava sayılır. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
       } else {
-        h+='<p class="opt-n">Sepette hedef boyda <b>'+cs.have+'</b> ürün var. Aşağıdaki <b>'+cs.need+'</b> ürünü eklersen kampanya katı tamamlanır'+(cs.free?''; dilimde ~<b>'+cs.free+'</b> ürün bedava sayılır':'')+'. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
+        h+='<p class="opt-n">Sepette hedef boyda <b>'+cs.have+'</b> ürün var. Aşağıdaki <b>'+cs.need+'</b> ürünü eklersen kampanya katı tamamlanır. Tahmini net ek: <b>'+tl(net)+'</b>.</p>';
       }
       h+='<div class="chips" style="margin:8px 0">';
       cands.forEach(function(cd, idx){
@@ -3499,5 +3500,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.23</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.24</footer>
 </body></html>
