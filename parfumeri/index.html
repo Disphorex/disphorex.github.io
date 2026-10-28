@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.34">
+<meta name="app-version" content="1.0.35">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -350,6 +350,12 @@ td small{display:block; color:var(--muted); font-size:14px}
 
 .grp h3{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
 .grp h3 .mono{margin-left:auto}
+.opt-seller-meta{
+  display:flex; flex-wrap:wrap; gap:8px 16px; margin:4px 0 10px;
+  font:400 13px var(--f-body); color:var(--muted);
+}
+.opt-seller-meta b{color:var(--ink); font-weight:600}
+.opt-seller-meta .mono{font-family:var(--f-mono); font-size:12px}
 .ci:last-child{border-bottom:0}
 .ci .nm{min-width:0; overflow-wrap:anywhere}
 .ci .nm small{display:block; color:var(--muted); font-size:14.5px}
@@ -2167,7 +2173,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.34';
+var APP_VERSION='1.0.35';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -3099,7 +3105,16 @@ function optLinesHTML(ev,W,interactive){
         volRow+='</div></div>';
       }
     }
-    return '<div class="card grp"><h3><span>'+esc(optSn(G.s))+'</span>'+sellerBtn+'<span class="mono">'+tl(G.total)+'</span></h3>'+volRow+lines+foot+'</div>';
+    var unitCount=0, sellerMl=0;
+    G.lines.forEach(function(L){ unitCount+=L.q; sellerMl+=(L.o.m||0)*L.q; });
+    var sellerUpm=sellerMl>0?(G.total/sellerMl):0;
+    var sellerMeta='<div class="opt-seller-meta">'
+      +'<span><b>'+unitCount+'</b> ürün</span>'
+      +'<span>Ödeme <b class="mono">'+tl(G.total)+'</b></span>'
+      +'<span>Hacim <b class="mono">'+mlf(sellerMl)+'</b></span>'
+      +'<span>Ort. <b class="mono">'+f2(sellerUpm)+'</b> TL/ml</span>'
+      +'</div>';
+    return '<div class="card grp"><h3><span>'+esc(optSn(G.s))+'</span>'+sellerBtn+'<span class="mono">'+tl(G.total)+'</span></h3>'+sellerMeta+volRow+lines+foot+'</div>';
   }).join('');
 }
 /* Grupta satıcının sunduğu hedef-boy hacimleri */
@@ -4246,5 +4261,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.34</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.35</footer>
 </body></html>
