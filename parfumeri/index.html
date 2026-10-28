@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.17">
+<meta name="app-version" content="1.0.18">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2034,7 +2034,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.17';
+var APP_VERSION='1.0.18';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2926,58 +2926,42 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
 
 /* ---------- başlat ---------- */
 
-/* ---------- Koku önizleme kartı ---------- */
+/* ---------- Koku önizleme kartı + products.json köprüsü ---------- */
 (function initFragrancePreview() {
   var DB = [
     {
       id: 'imagination',
       aliases: ['louis vuitton imagination', 'imagination', 'imagination muadili'],
-      isim: 'Imagination',
-      marka: 'Louis Vuitton',
+      isim: 'Imagination', marka: 'Louis Vuitton',
       gorsel_url: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80',
-      cinsiyet: 'Erkek',
-      mevsim: 'İlkbahar / Yaz',
-      kullanim_zamani: 'Gündüz',
+      cinsiyet: 'Erkek', mevsim: 'İlkbahar / Yaz', kullanim_zamani: 'Gündüz',
       koku_ailesi: 'Narenciye · Aromatik',
-      notalar: {
-        ust: ['Kalabriya Bergamotu', 'Sicilya Portakalı', 'Ağaç Kavunu'],
-        orta: ['Seylan Çayı', 'Tunus Neroli', 'Zencefil'],
-        alt: ['Ambroksan', 'Guaiac Ağacı', 'Tütsü']
-      }
+      notalar: { ust: ['Kalabriya Bergamotu', 'Sicilya Portakalı', 'Ağaç Kavunu'], orta: ['Seylan Çayı', 'Tunus Neroli', 'Zencefil'], alt: ['Ambroksan', 'Guaiac Ağacı', 'Tütsü'] }
     },
     {
       id: 'aventus',
       aliases: ['creed aventus', 'aventus', 'aventus muadili'],
-      isim: 'Aventus',
-      marka: 'Creed',
+      isim: 'Aventus', marka: 'Creed',
       gorsel_url: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=400&q=80',
-      cinsiyet: 'Erkek',
-      mevsim: 'Dört Mevsim',
-      kullanim_zamani: 'Gündüz / Gece',
+      cinsiyet: 'Erkek', mevsim: 'Dört Mevsim', kullanim_zamani: 'Gündüz / Gece',
       koku_ailesi: 'Şipre · Meyveli',
-      notalar: {
-        ust: ['Ananas', 'Bergamot', 'Siyah Frenk Üzümü'],
-        orta: ['Huş Ağacı', 'Paçuli', 'Fas Yasemini'],
-        alt: ['Misk', 'Meşe Yosunu', 'Vanilya']
-      }
+      notalar: { ust: ['Ananas', 'Bergamot', 'Siyah Frenk Üzümü'], orta: ['Huş Ağacı', 'Paçuli', 'Fas Yasemini'], alt: ['Misk', 'Meşe Yosunu', 'Vanilya'] }
     },
     {
       id: 'oud-wood',
       aliases: ['tom ford oud wood', 'oud wood', 'oud wood muadili'],
-      isim: 'Oud Wood',
-      marka: 'Tom Ford',
+      isim: 'Oud Wood', marka: 'Tom Ford',
       gorsel_url: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=400&q=80',
-      cinsiyet: 'Unisex',
-      mevsim: 'Sonbahar / Kış',
-      kullanim_zamani: 'Gece',
+      cinsiyet: 'Unisex', mevsim: 'Sonbahar / Kış', kullanim_zamani: 'Gece',
       koku_ailesi: 'Odunsu · Baharatlı',
-      notalar: {
-        ust: ['Gül Ağacı', 'Kakule', 'Çin Biberi'],
-        orta: ['Ud Ağacı', 'Sandal Ağacı', 'Güve Otu'],
-        alt: ['Tonka Fasulyesi', 'Vanilya', 'Kehribar']
-      }
+      notalar: { ust: ['Gül Ağacı', 'Kakule', 'Çin Biberi'], orta: ['Ud Ağacı', 'Sandal Ağacı', 'Güve Otu'], alt: ['Tonka Fasulyesi', 'Vanilya', 'Kehribar'] }
     }
   ];
+
+  /* products.json / _master indeksı */
+  var META_BY_KEY = {};
+  var META_LIST = [];
+  var META_STAMP = '';
 
   var portal = document.getElementById('fragrance-preview-portal');
   var card = document.getElementById('fc-card');
@@ -2990,38 +2974,232 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
   var currentTrigger = null;
 
   function fcNorm(s) {
-    return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/\s+/g, ' ').trim();
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+  function fcKey(s) { return fcNorm(s).replace(/\s+/g, ''); }
+  function asArr(v) {
+    if (v == null || v === '') return [];
+    if (Array.isArray(v)) return v.filter(function (x) { return x != null && String(x).trim(); }).map(String);
+    return [String(v)];
+  }
+  function joinMeta(v, sep) {
+    var a = asArr(v);
+    return a.length ? a.join(sep || ' / ') : '';
+  }
+  function escFc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* notalar: nesne {ust,orta,alt} | {top,heart,base} | string | dizi */
+  function parseNotes(raw) {
+    var out = { ust: [], orta: [], alt: [] };
+    if (!raw) return out;
+    if (typeof raw === 'string') {
+      var parts = raw.split(/[|;/·•]+|\s+[-–]\s+/).map(function (x) { return x.trim(); }).filter(Boolean);
+      if (parts.length <= 3) {
+        out.ust = parts.slice(0, 1);
+        out.orta = parts.slice(1, 2);
+        out.alt = parts.slice(2, 3);
+      } else {
+        var n = parts.length;
+        out.ust = parts.slice(0, Math.ceil(n / 3));
+        out.orta = parts.slice(Math.ceil(n / 3), Math.ceil((2 * n) / 3));
+        out.alt = parts.slice(Math.ceil((2 * n) / 3));
+      }
+      return out;
+    }
+    if (Array.isArray(raw)) {
+      out.ust = raw.map(String);
+      return out;
+    }
+    if (typeof raw === 'object') {
+      out.ust = asArr(raw.ust || raw.top || raw.top_notes || raw.ust_notalar || raw.head);
+      out.orta = asArr(raw.orta || raw.heart || raw.middle || raw.mid || raw.orta_notalar || raw.kalp);
+      out.alt = asArr(raw.alt || raw.base || raw.base_notes || raw.alt_notalar || raw.fond);
+    }
+    return out;
+  }
+
+  function productToFragrance(src, nameHint) {
+    if (!src) return null;
+    var m = src._master || src;
+    var name = m.name || m.title || m.product || nameHint || src[0] || '';
+    if (!name) return null;
+    var brand = m.brand || m.marka || '';
+    var gender = m.gender || m.cinsiyet || '';
+    var season = joinMeta(m.season || m.mevsim, ' / ');
+    var time = joinMeta(m.time || m.kullanim_zamani || m.usage, ' / ');
+    var family = joinMeta(m.category || m.koku_ailesi || m.family, ' · ');
+    var notes = parseNotes(m.notes || m.notalar || m.pyramid || m.note_pyramid || src.notes);
+    var img = m.image || m.gorsel_url || m.img || m.photo || m.image_url || '';
+    var id = String(m.id != null ? m.id : fcKey(name));
+    var aliases = [name, brand + ' ' + name];
+    if (m.aliases) asArr(m.aliases).forEach(function (a) { aliases.push(a); });
+    if (nameHint && nameHint !== name) aliases.push(nameHint);
+    /* muadil adları */
+    aliases.push(name + ' muadili');
+    aliases.push(name + ' Muadili');
+    return {
+      id: id,
+      aliases: aliases,
+      isim: String(name),
+      marka: String(brand || '—'),
+      gorsel_url: img,
+      cinsiyet: String(gender || '—'),
+      mevsim: season || '—',
+      kullanim_zamani: time || '—',
+      koku_ailesi: family || '—',
+      notalar: notes,
+      _fromMeta: true
+    };
+  }
+
+  function indexFragrance(f) {
+    if (!f || !f.isim) return;
+    META_LIST.push(f);
+    var keys = [fcKey(f.isim), fcKey(f.id)];
+    (f.aliases || []).forEach(function (a) { keys.push(fcKey(a)); });
+    keys.forEach(function (k) {
+      if (k && !META_BY_KEY[k]) META_BY_KEY[k] = f;
+    });
+  }
+
+  function clearMetaIndex() {
+    META_BY_KEY = {};
+    META_LIST = [];
+  }
+
+  /** products.json dizisi veya {products:[...]} */
+  function ingestProducts(data) {
+    var list = [];
+    if (!data) return 0;
+    if (Array.isArray(data)) list = data;
+    else if (Array.isArray(data.products)) list = data.products;
+    else if (data.items && Array.isArray(data.items)) list = data.items;
+    var n = 0;
+    list.forEach(function (p) {
+      var f = productToFragrance(p);
+      if (f) { indexFragrance(f); n++; }
+    });
+    return n;
+  }
+
+  /** PAZAR2 satırlarındaki _master alanlarından indeks */
+  function rebuildFromPazar() {
+    try {
+      if (typeof PAZAR2 === 'undefined' || !PAZAR2 || !PAZAR2.length) return 0;
+      var stamp = PAZAR2.length + ':' + PAZAR2.reduce(function (a, s) { return a + ((s.items && s.items.length) || 0); }, 0);
+      if (stamp === META_STAMP && META_LIST.length) return META_LIST.length;
+      META_STAMP = stamp;
+      /* seed static DB'yi koru — sadece meta katmanını yenile */
+      var keepStatic = META_LIST.filter(function (f) { return !f._fromMeta; });
+      clearMetaIndex();
+      keepStatic.forEach(indexFragrance);
+      DB.forEach(function (f) { if (!META_BY_KEY[fcKey(f.isim)]) indexFragrance(f); });
+      var n = 0;
+      PAZAR2.forEach(function (s) {
+        (s.items || []).forEach(function (p) {
+          if (p && p._master) {
+            var f = productToFragrance(p, p[0]);
+            if (f) { indexFragrance(f); n++; }
+          } else if (p && p[0]) {
+            /* master yoksa en azından isim + cinsiyet satırından zayıf kart */
+            var weak = productToFragrance({ name: p[0], gender: p[8] || '', brand: (s.name || '') }, p[0]);
+            if (weak) { weak._weak = true; indexFragrance(weak); n++; }
+          }
+        });
+      });
+      /* U.perfumes notları */
+      try {
+        if (typeof U !== 'undefined' && U.perfumes) {
+          U.perfumes.forEach(function (p) {
+            if (!p || !p.name) return;
+            var k = fcKey(p.name);
+            if (META_BY_KEY[k] && !META_BY_KEY[k]._weak) return;
+            var f = productToFragrance({ name: p.name, notes: p.notes, brand: '' }, p.name);
+            if (f) indexFragrance(f);
+          });
+        }
+      } catch (e1) {}
+      return n;
+    } catch (e) { return 0; }
+  }
+
+  function tryFetchProductsJson() {
+    var urls = ['data/products.json', 'products.json', './data/products.json'];
+    urls.forEach(function (url) {
+      try {
+        fetch(url).then(function (r) { return r.ok ? r.json() : null; }).then(function (data) {
+          if (!data) return;
+          var n = ingestProducts(data);
+          if (n && window.console) console.info('[FragrancePreview] products.json: ' + n + ' koku indekslendi (' + url + ')');
+        }).catch(function () {});
+      } catch (e) {}
+    });
   }
 
   function findFragrance(query) {
     if (!query) return null;
+    rebuildFromPazar();
     var nq = fcNorm(query);
+    var k = fcKey(query);
+    if (META_BY_KEY[k]) return META_BY_KEY[k];
+    /* static DB */
     for (var i = 0; i < DB.length; i++) {
       if (DB[i].id === query) return DB[i];
-      if (fcNorm(DB[i].isim) === nq) return DB[i];
+      if (fcKey(DB[i].isim) === k) return DB[i];
       for (var j = 0; j < (DB[i].aliases || []).length; j++) {
         var al = fcNorm(DB[i].aliases[j]);
         if (al === nq || nq.indexOf(al) >= 0 || al.indexOf(nq) >= 0) return DB[i];
       }
     }
-    return null;
-  }
-
-  function escFc(s) {
-    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    /* meta fuzzy: sorgu içinde isim veya tersi */
+    var best = null, bestScore = 0;
+    META_LIST.forEach(function (f) {
+      var nk = fcNorm(f.isim);
+      if (!nk) return;
+      var score = 0;
+      if (nq === nk) score = 100;
+      else if (nq.indexOf(nk) >= 0) score = 80 + Math.min(nk.length, 20);
+      else if (nk.indexOf(nq) >= 0 && nq.length >= 4) score = 60 + Math.min(nq.length, 20);
+      else {
+        (f.aliases || []).forEach(function (a) {
+          var ak = fcNorm(a);
+          if (ak === nq) score = Math.max(score, 95);
+          else if (nq.indexOf(ak) >= 0) score = Math.max(score, 70);
+        });
+      }
+      if (score > bestScore) { bestScore = score; best = f; }
+    });
+    return bestScore >= 60 ? best : null;
   }
 
   function renderBadges(containerId, list) {
     var el = document.getElementById(containerId);
     if (!el) return;
-    el.innerHTML = (list || []).map(function (item) {
+    var arr = list || [];
+    if (!arr.length) {
+      el.innerHTML = '<span class="fc-badge" style="opacity:.6">—</span>';
+      return;
+    }
+    el.innerHTML = arr.map(function (item) {
       return '<span class="fc-badge">' + escFc(item) + '</span>';
     }).join('');
   }
 
   function populateCard(f) {
     var img = document.getElementById('fc-img');
-    if (img) { img.src = f.gorsel_url || ''; img.alt = (f.marka || '') + ' ' + (f.isim || ''); }
+    if (img) {
+      if (f.gorsel_url) {
+        img.style.display = '';
+        img.src = f.gorsel_url;
+        img.alt = (f.marka || '') + ' ' + (f.isim || '');
+      } else {
+        img.removeAttribute('src');
+        img.alt = '';
+        img.style.display = 'none';
+      }
+    }
     var set = function (id, t) { var e = document.getElementById(id); if (e) e.textContent = t || '—'; };
     set('fc-brand', f.marka);
     set('fc-title', f.isim);
@@ -3109,6 +3287,12 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
   if (closeBtn) closeBtn.addEventListener('click', hideCard);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hideCard(); });
 
+  /* seed + async products.json */
+  DB.forEach(indexFragrance);
+  tryFetchProductsJson();
+  setTimeout(function () { rebuildFromPazar(); }, 800);
+  setTimeout(function () { rebuildFromPazar(); }, 2500);
+
   window.FragrancePreview = {
     show: function (idOrName, targetEl) {
       var f = findFragrance(idOrName);
@@ -3116,9 +3300,20 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
     },
     hide: hideCard,
     addFragrance: function (item) {
-      if (item && item.id) DB.push(item);
+      if (item && (item.id || item.isim)) {
+        var f = item.isim ? item : productToFragrance(item);
+        if (f) indexFragrance(f);
+      }
     },
-    db: DB
+    ingestProducts: function (data) {
+      return ingestProducts(data);
+    },
+    rebuild: function () {
+      META_STAMP = '';
+      return rebuildFromPazar();
+    },
+    db: DB,
+    metaCount: function () { rebuildFromPazar(); return META_LIST.length; }
   };
 })();
 
@@ -3131,5 +3326,5 @@ connectDb();
 })();
 </script>
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.17</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.18</footer>
 </body></html>
