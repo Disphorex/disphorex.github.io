@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.30">
+<meta name="app-version" content="1.0.31">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2101,7 +2101,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.30';
+var APP_VERSION='1.0.31';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -2887,11 +2887,13 @@ function optCanSwapProd(si, s, key, goal){
 }
 function optNextProdCand(si, s, key, goal){
   var cands=optSellerFillCandidates(si, s, 24, goal, [], null);
+  var cat=optCat();
   for(var i=0;i<cands.length;i++){
     var cd=cands[i];
     if(cd.key===key) continue;
     if(OPT.banProducts && OPT.banProducts[cd.key]) continue;
     if(OPT.want.some(function(w){ return w.k===cd.key; })) continue;
+    cd.c=cat[cd.key]||null;
     return cd;
   }
   return null;
@@ -2970,38 +2972,55 @@ function optDominantMl(G){
 }
 /* Seçilen hacme güncelle: aynı satıcı + aynı ürün, vars varsa */
 function optSetGroupVolume(si, ml){
-  var R=OPT.res; if(!R||!R.P0) return;
+  var R=OPT.res; if(!R||!R.P0||!R.W) return;
   var G=null;
   R.P0.groups.forEach(function(g){ if(String(g.si)===String(si)) G=g; });
   if(!G) return;
   var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
   if(goal&&goal.test&&!goal.test(ml)) return;
-  OPT.sellerLock=OPT.sellerLock||{};
-  /* tüm plan satırlarını kilitle */
+
+  var newW=[], newSel=[], newWant=[], ok=0;
   R.P0.groups.forEach(function(g){
-    g.lines.forEach(function(L){ OPT.sellerLock[R.W[L.i].w.k]=g.si; });
-  });
-  var ok=0;
-  G.lines.forEach(function(L){
-    var key=R.W[L.i].w.k, c=R.W[L.i].c;
-    var sl=null;
-    (c.sellers||[]).forEach(function(s){ if(String(s.si)===String(si)) sl=s; });
-    if(!sl) return;
-    var hit=null;
-    (sl.vars||[]).forEach(function(v){
-      var m=v.ml; if(m==null) m=50;
-      if(Math.abs(m-ml)<0.01) hit=v;
+    g.lines.forEach(function(L){
+      var x=R.W[L.i], o=L.o;
+      if(String(g.si)===String(si)){
+        var sl=null;
+        (x.c.sellers||[]).forEach(function(s){ if(String(s.si)===String(si)) sl=s; });
+        var hit=null;
+        if(sl){
+          (sl.vars||[]).forEach(function(v){
+            var m=v.ml; if(m==null) m=50;
+            if(Math.abs(m-ml)<0.01) hit=v;
+          });
+        }
+        if(hit){
+          o={si:si, s:sl.s, v:hit, m:hit.ml==null?ml:hit.ml};
+          ok++;
+        }
+      }
+      newW.push({w:{k:x.w.k,n:x.w.n,q:L.q}, c:x.c, q:L.q});
+      newSel.push(o);
+      newWant.push({k:x.w.k,n:x.w.n,q:L.q});
     });
-    if(hit) ok++;
-    OPT.sellerLock[key]=si;
-    /* hacim tercihini lock yanında sakla */
-    OPT.volLock=OPT.volLock||{};
-    OPT.volLock[key]=ml;
   });
   if(!ok) return;
-  OPT.rollInfo=null;
-  OPT.forceLockedSel=true;
-  optSave(); optChips(); optRun();
+  var newP0=optEval(newSel, newW);
+  var Bfull=parseFloat(OPT.budget);
+  OPT.want=newWant;
+  OPT.sellerLock={};
+  OPT.volLock={};
+  newW.forEach(function(x,i){
+    OPT.sellerLock[x.w.k]=newSel[i].si;
+    OPT.volLock[x.w.k]=newSel[i].m;
+  });
+  OPT.softOverage=Bfull>0 && newP0.total>Bfull+0.001;
+  R.W=newW; R.P0=newP0;
+  R.fits=!(Bfull>0)||newP0.total<=Bfull+0.001;
+  R.B=Bfull>0?Bfull:null;
+  R.campSteps=optCampStepAdvice(newP0, R.goal);
+  R.flags=[]; R.Q=null; R.F=null; R.raise=null;
+  OPT.res=R; OPT.rollInfo=null;
+  optSave(); optChips(); optShow();
 }
 function optSum(ev){
   return '<div class="cs"><div><span>Toplam ödeme</span><b>'+tl(ev.total)+'</b></div><div><span>Toplam hacim</span><b>'+mlf(ev.ml)+'</b></div><div><span>Ort. TL/ml</span><b>'+f2(ev.total/Math.max(ev.ml,1))+'</b></div><div><span>Kargo / indirim</span><b>'+nf0.format(ev.ship)+' / '+nf0.format(ev.disc)+' TL</b></div><div><span>Sipariş</span><b>'+ev.n+' satıcı</b></div></div>';
@@ -3071,25 +3090,13 @@ function optFindSellerAlt(excludeSi, needCount, probeOnly, budgetCap, alsoExclud
   return inBudget||overBudget||null;
 }
 function optSwapSeller(si){
-  var R=OPT.res; if(!R||!R.P0) return;
-  var G=null;
-  R.P0.groups.forEach(function(g){ if(String(g.si)===String(si)) G=g; });
-  if(!G) return;
-  var need=0, keys=[];
-  G.lines.forEach(function(L){ need+=L.q; keys.push(R.W[L.i].w.k); });
+  var R=OPT.res; if(!R||!R.P0||!R.W) return;
+  var G=null, gi=-1;
+  R.P0.groups.forEach(function(g, idx){ if(String(g.si)===String(si)){ G=g; gi=idx; } });
+  if(!G||gi<0) return;
 
-  /* Korunan satırlar: satıcı + hacim kilidi (birebir aynı kalsın) */
-  OPT.sellerLock={};
-  OPT.volLock=OPT.volLock||{};
-  R.P0.groups.forEach(function(g){
-    if(String(g.si)===String(si)) return;
-    g.lines.forEach(function(L){
-      var k=R.W[L.i].w.k;
-      OPT.sellerLock[k]=g.si;
-      OPT.volLock[k]=L.o.m;
-    });
-  });
-
+  var need=0;
+  G.lines.forEach(function(L){ need+=L.q; });
   var otherTotal=r2(R.P0.total-G.total);
   var Bfull=parseFloat(OPT.budget);
   var budgetForAlt=(Bfull>0)?r2(Bfull-otherTotal):null;
@@ -3097,69 +3104,107 @@ function optSwapSeller(si){
 
   OPT.banSellers=OPT.banSellers||{};
   OPT.banSellers[String(si)]=1;
+  OPT.banProducts=OPT.banProducts||{};
 
   var alt=optFindSellerAlt(si, need, false, budgetForAlt, optPlanOtherSellers(si));
-  if(!alt){
-    optShow(); return;
-  }
+  if(!alt||!alt.items||!alt.items.length){ optShow(); return; }
 
-  var drop={};
-  keys.forEach(function(k){ drop[k]=1; OPT.banProducts[k]=1; delete OPT.volLock[k]; });
+  /* Eski grup ürünlerini banla (tekrar gelmesin) */
+  G.lines.forEach(function(L){ OPT.banProducts[R.W[L.i].w.k]=1; });
 
-  /* want sırası: önce korunanlar (eski sıra), sonra yeni satıcı ürünleri */
-  var kept=[], seen={};
-  R.W.forEach(function(x){
-    if(drop[x.w.k]||seen[x.w.k]) return;
-    seen[x.w.k]=1;
-    kept.push({k:x.w.k, n:x.w.n, q:x.q||1});
+  /* --- Cerrahi yeniden kurulum: diğer gruplara DOKUNMA --- */
+  var newW=[], newSel=[], newWant=[];
+  R.P0.groups.forEach(function(g){
+    if(String(g.si)===String(si)){
+      /* yerine yeni satıcı kalemleri */
+      alt.items.forEach(function(x){
+        var q=1;
+        newW.push({w:{k:x.c.key,n:x.c.name,q:q}, c:x.c, q:q});
+        newSel.push(x.o);
+        newWant.push({k:x.c.key,n:x.c.name,q:q});
+      });
+    } else {
+      /* birebir koru */
+      g.lines.forEach(function(L){
+        var x=R.W[L.i];
+        newW.push({w:{k:x.w.k,n:x.w.n,q:L.q}, c:x.c, q:L.q});
+        newSel.push(L.o);
+        newWant.push({k:x.w.k,n:x.w.n,q:L.q});
+      });
+    }
   });
-  alt.items.forEach(function(x){
-    kept.push({k:x.c.key, n:x.c.name, q:1});
-    OPT.sellerLock[x.c.key]=alt.si;
-    if(x.o&&x.o.m!=null) OPT.volLock[x.c.key]=x.o.m;
+
+  var newP0=optEval(newSel, newW);
+  OPT.want=newWant;
+  OPT.sellerLock={};
+  OPT.volLock={};
+  newW.forEach(function(x,i){
+    OPT.sellerLock[x.w.k]=newSel[i].si;
+    OPT.volLock[x.w.k]=newSel[i].m;
   });
-  OPT.want=kept;
-  if(Bfull>0 && (otherTotal+alt.pk.ev.total)>Bfull+0.001) OPT.softOverage=true;
+  if(Bfull>0 && newP0.total>Bfull+0.001) OPT.softOverage=true;
+  else OPT.softOverage=false;
+
+  R.W=newW;
+  R.P0=newP0;
+  R.fits=!(Bfull>0) || newP0.total<=Bfull+0.001;
+  R.B=Bfull>0?Bfull:null;
+  R.campSteps=optCampStepAdvice(newP0, R.goal);
+  R.flags=[];
+  R.Q=null; R.F=null; R.raise=null; R.Peff=null;
+  OPT.res=R;
   OPT.rollInfo=null;
-  OPT.forceLockedSel=true;
-  optSave(); optChips(); optRun();
+  optSave();
+  optChips();
+  optShow();
 }
 function optSwapProd(key){
-  var R=OPT.res; if(!R||!R.P0) return;
-  var si=null, s=null, curM=null;
+  var R=OPT.res; if(!R||!R.P0||!R.W) return;
+  var si=null, s=null, curM=null, lineRef=null, groupRef=null;
   R.P0.groups.forEach(function(G){
     G.lines.forEach(function(L){
-      if(R.W[L.i].w.k===key){ si=G.si; s=G.s; curM=L.o.m; }
+      if(R.W[L.i].w.k===key){ si=G.si; s=G.s; curM=L.o.m; lineRef=L; groupRef=G; }
     });
   });
-  if(si==null||!s) return;
+  if(si==null||!s||!lineRef) return;
   var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
   OPT.banProducts=OPT.banProducts||{};
   OPT.banProducts[key]=1;
-  OPT.sellerLock={};
-  OPT.volLock=OPT.volLock||{};
-  R.P0.groups.forEach(function(G){
-    G.lines.forEach(function(L){
-      var k=R.W[L.i].w.k;
-      if(k===key) return;
-      OPT.sellerLock[k]=G.si;
-      OPT.volLock[k]=L.o.m;
-    });
-  });
   var cd=optNextProdCand(si, s, key, goal);
   if(!cd){ optShow(); return; }
-  var found=false;
-  OPT.want.forEach(function(w){
-    if(w.k===key){ w.k=cd.key; w.n=cd.name; found=true; }
+
+  var newW=[], newSel=[], newWant=[];
+  R.P0.groups.forEach(function(g){
+    g.lines.forEach(function(L){
+      var x=R.W[L.i], o=L.o, w={k:x.w.k,n:x.w.n,q:L.q}, c=x.c;
+      if(x.w.k===key){
+        w={k:cd.key,n:cd.name,q:L.q};
+        c=cd.c||optCat()[cd.key]||x.c;
+        o={si:si, s:s, v:cd.v||{price:cd.price,ml:cd.ml,p:[cd.name]}, m:cd.ml!=null?cd.ml:curM};
+        if(cd.v) o.v=cd.v;
+        else o.v={price:cd.price, ml:cd.ml, p:[cd.name], id:String(cd.ml)};
+      }
+      newW.push({w:w, c:c, q:L.q});
+      newSel.push(o);
+      newWant.push(w);
+    });
   });
-  if(!found) OPT.want.push({k:cd.key,n:cd.name,q:1});
-  OPT.sellerLock[cd.key]=si;
-  if(cd.ml!=null) OPT.volLock[cd.key]=cd.ml;
-  else if(curM!=null) OPT.volLock[cd.key]=curM;
-  delete OPT.volLock[key];
-  OPT.rollInfo=null;
-  OPT.forceLockedSel=true;
-  optSave(); optChips(); optRun();
+  var newP0=optEval(newSel, newW);
+  var Bfull=parseFloat(OPT.budget);
+  OPT.want=newWant;
+  OPT.sellerLock={}; OPT.volLock={};
+  newW.forEach(function(x,i){
+    OPT.sellerLock[x.w.k]=newSel[i].si;
+    OPT.volLock[x.w.k]=newSel[i].m;
+  });
+  OPT.softOverage=Bfull>0 && newP0.total>Bfull+0.001;
+  R.W=newW; R.P0=newP0;
+  R.fits=!(Bfull>0)||newP0.total<=Bfull+0.001;
+  R.B=Bfull>0?Bfull:null;
+  R.campSteps=optCampStepAdvice(newP0, R.goal);
+  R.flags=[]; R.Q=null; R.F=null; R.raise=null;
+  OPT.res=R; OPT.rollInfo=null;
+  optSave(); optChips(); optShow();
 }
 /* strateji notları: yeni hedeflerin ana planı ne yaptığını kısaca açıklar */
 function optModeNote(R){
@@ -3902,5 +3947,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.30</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.31</footer>
 </body></html>
