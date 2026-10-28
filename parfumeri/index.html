@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.0.21">
+<meta name="app-version" content="1.0.22">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -416,13 +416,15 @@ td small{display:block; color:var(--muted); font-size:14px}
 
 /* --- Koku önizleme kartı --- */
 #fragrance-preview-portal {
-  pointer-events: none;
+  pointer-events: none; /* asla tam ekran yakalama — hover'ı öldürür */
   position: fixed;
   inset: 0;
   z-index: 9999;
   font-family: var(--f-body, 'EB Garamond', Georgia, serif);
 }
-#fragrance-preview-portal.active { pointer-events: auto; }
+#fragrance-preview-portal.active { pointer-events: none; }
+#fragrance-preview-portal .fc-card { pointer-events: none; }
+#fragrance-preview-portal .fc-card.show { pointer-events: auto; }
 .fc-backdrop {
   position: fixed; inset: 0;
   background: rgba(10, 8, 7, 0.65);
@@ -514,6 +516,7 @@ td small{display:block; color:var(--muted); font-size:14px}
 .fc-trigger:hover, .fc-trigger:focus-visible { border-bottom-color: var(--accent); color: var(--accent); }
 @media (hover: none), (max-width: 640px) {
   .fc-backdrop { display: block; }
+  #fragrance-preview-portal.active { pointer-events: auto; }
   #fragrance-preview-portal.active .fc-backdrop { opacity: 1; pointer-events: auto; }
   .fc-card {
     position: fixed;
@@ -2076,7 +2079,7 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !$('pzc-panel').hidden) pzcOpen(false); });
 
 /* ---------- plan: optimizasyon motoru ---------- */
-var APP_VERSION='1.0.21';
+var APP_VERSION='1.0.22';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
@@ -3276,108 +3279,103 @@ function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; if($
     card.style.top = Math.round(top) + 'px';
   }
 
+  var SEL = '[data-fragrance], .ci .nm b, .ucard .m b, .pcard h3, .opt-chip, .pzc-n b';
+  var hideTimer = null;
+  var openKey = '';
+
+  function clearHideTimer() {
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  }
+
   function showCard(f, triggerEl) {
-    currentTrigger = triggerEl;
+    currentTrigger = triggerEl || null;
+    openKey = f && f.isim ? String(f.isim) : '';
     populateCard(f);
     portal.classList.add('active');
     portal.setAttribute('aria-hidden', 'false');
+    /* önce görünür ölçü al, sonra konumla */
+    card.classList.add('show');
     if (!isTouch && triggerEl && triggerEl.getBoundingClientRect) {
       positionDesktop(triggerEl.getBoundingClientRect());
     }
-    requestAnimationFrame(function () { card.classList.add('show'); });
+    clearHideTimer();
   }
 
   function hideCard() {
+    clearHideTimer();
+    clearTimeout(hoverTimer);
     card.classList.remove('show');
     portal.classList.remove('active');
     portal.setAttribute('aria-hidden', 'true');
     currentTrigger = null;
-    overCard = false;
-    overTrigger = false;
-    clearTimeout(hideTimer);
-    clearTimeout(hoverTimer);
+    openKey = '';
   }
 
-  var SEL = '[data-fragrance], .ci .nm b, .ucard .m b, .pcard h3, .opt-chip, .pzc-n b';
-  var hideTimer = null;
-  var overCard = false;
-  var overTrigger = false;
-
-  function scheduleHide() {
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(function () {
-      if (!overCard && !overTrigger) hideCard();
-    }, 280);
+  function isInsideTrigger(el) {
+    return !!(el && el.closest && el.closest(SEL));
   }
-  function cancelHide() {
-    clearTimeout(hideTimer);
-    hideTimer = null;
+  function isInsideCard(el) {
+    return !!(el && card.contains(el));
   }
 
-  document.addEventListener('mouseover', function (e) {
+  /* mouseenter/leave benzeri: sadece SEL tetikleyicilerinde */
+  document.addEventListener('pointerover', function (e) {
     if (isTouch) return;
-    var t = e.target;
-    if (card.contains(t)) {
-      overCard = true;
-      cancelHide();
+    if (isInsideCard(e.target)) {
+      clearHideTimer();
       return;
     }
-    var trigger = t.closest && t.closest(SEL);
+    var trigger = e.target.closest && e.target.closest(SEL);
     if (!trigger) return;
-    overTrigger = true;
-    cancelHide();
     var key = trigger.getAttribute('data-fragrance') || trigger.textContent;
     var data = findFragrance(key);
     if (!data) return;
+    clearHideTimer();
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(function () { showCard(data, trigger); }, 160);
-  });
-
-  document.addEventListener('mouseout', function (e) {
-    if (isTouch) return;
-    var t = e.target;
-    var to = e.relatedTarget;
-    if (card.contains(t)) {
-      /* karttan çıkış — tetikleyiciye veya kartın çocuğuna gidiyorsa tut */
-      if (to && (card.contains(to) || (currentTrigger && currentTrigger.contains(to)))) {
-        return;
-      }
-      overCard = false;
-      scheduleHide();
+    /* aynı kart zaten açıksa yeniden tetikleme */
+    if (portal.classList.contains('active') && openKey && data.isim === openKey) {
+      currentTrigger = trigger;
       return;
     }
-    var trigger = t.closest && t.closest(SEL);
-    if (!trigger) return;
-    /* tetikleyiciden karta geçişte kapatma */
-    if (to && (card.contains(to) || trigger.contains(to))) return;
-    overTrigger = false;
-    clearTimeout(hoverTimer);
-    scheduleHide();
-  });
+    hoverTimer = setTimeout(function () {
+      showCard(data, trigger);
+    }, 200);
+  }, true);
 
-  card.addEventListener('mouseenter', function () {
+  document.addEventListener('pointerout', function (e) {
     if (isTouch) return;
-    overCard = true;
-    cancelHide();
-  });
-  card.addEventListener('mouseleave', function (e) {
-    if (isTouch) return;
+    var from = e.target;
     var to = e.relatedTarget;
-    if (to && currentTrigger && currentTrigger.contains(to)) {
-      overCard = false;
-      overTrigger = true;
+    /* kart içinde gezinme */
+    if (isInsideCard(from) && isInsideCard(to)) return;
+    /* tetikleyiciden karta */
+    if (isInsideTrigger(from) && isInsideCard(to)) {
+      clearHideTimer();
       return;
     }
-    overCard = false;
-    scheduleHide();
-  });
+    /* karttan tetikleyiciye */
+    if (isInsideCard(from) && isInsideTrigger(to)) {
+      clearHideTimer();
+      return;
+    }
+    /* tetikleyici içinde alt elemente geçiş */
+    if (isInsideTrigger(from) && isInsideTrigger(to)) {
+      var tFrom = from.closest(SEL);
+      var tTo = to && to.closest ? to.closest(SEL) : null;
+      if (tFrom && tTo && tFrom === tTo) return;
+    }
+    /* gerçekten dışarı */
+    if (isInsideTrigger(from) || isInsideCard(from)) {
+      clearTimeout(hoverTimer);
+      clearHideTimer();
+      hideTimer = setTimeout(function () { hideCard(); }, 320);
+    }
+  }, true);
 
   document.addEventListener('click', function (e) {
     if (!isTouch) {
-      /* masaüstü: kart dışına tıklayınca kapat */
-      if (portal.classList.contains('active') && !card.contains(e.target)) {
-        var tr = e.target.closest && e.target.closest(SEL);
-        if (!tr) hideCard();
+      if (portal.classList.contains('active') && !isInsideCard(e.target) && !isInsideTrigger(e.target)) {
+        hideCard();
       }
       return;
     }
@@ -3441,5 +3439,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.0.21</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.22</footer>
 </body></html>
