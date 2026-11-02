@@ -195,13 +195,70 @@ button:disabled{opacity:.45;cursor:default}
     }
     return 1-dp[n]/Math.max(m,n);
   }
-  function pairScore(a,b){
-    var na=a.name||'', nb=b.name||'';
+  /* Marka adını isimden çıkar — benzerlik yalnızca model/koku adına bakmalı */
+  function nameCore(name, brand){
+    var n=String(name||'').trim();
+    if(!n) return '';
+    var brands=[];
+    if(brand) brands.push(String(brand));
+    /* İsim içindeki "Parfums de Marly Haltane" gibi marka öneklerini de yakala */
+    var known=[
+      'parfums de marly','maison francis kurkdjian','xerjoff','tom ford','creed',
+      'giorgio armani','acqua di parma','byredo','diptyque','initio','amouage',
+      'memo paris','nishane','nasomatto','ortofarma','orto parisi','serge lutens',
+      'yves saint laurent','y.s.l','ysl','chanel','dior','guerlain','hermes',
+      'carolina herrera','paco rabanne','jean paul gaultier','j.p.g','jpg',
+      'montblanc','mont blanc','m.b','dolce & gabbana','d&g','d.g',
+      'louis vuitton','roja','roja dove','kilian','frederic malle','le labo',
+      'atelier cologne','jo malone','penhaligon','bond no 9','bond no. 9',
+      'emre boslu','parfum mutfagi','parfüm mutfağı'
+    ];
+    brands.forEach(function(b){ if(b) known.push(norm(b)); });
+    var nn=norm(n);
+    known.sort(function(a,b){ return b.length-a.length; });
+    for(var i=0;i<known.length;i++){
+      var k=norm(known[i]);
+      if(!k || k.length<2) continue;
+      if(nn.indexOf(k)===0){
+        nn=nn.slice(k.length).replace(/^\s+/,'').trim();
+        break;
+      }
+      /* marka ortada/başta ayrı token grubu olarak */
+      var re=new RegExp('(?:^|\s)'+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?=\s|$)');
+      if(re.test(nn)){
+        nn=nn.replace(re,' ').replace(/\s+/g,' ').trim();
+        break;
+      }
+    }
+    /* "de/di/the/parfum/extrait" gibi zayıf kelimeleri skor dışı bırak */
+    var stop={de:1,di:1,the:1,a:1,of:1,and:1,parfum:1,perfume:1,extrait:1,eau:1,for:1,homme:1,femme:1,man:1,woman:1,men:1,women:1,unisex:1,intense:1,intensely:1};
+    var parts=nn.split(' ').filter(function(t){ return t && !stop[t] && t.length>1; });
+    return parts.join(' ')||nn||norm(n);
+  }
+  function nameScore(na, nb){
+    if(!na||!nb) return 0;
+    if(na===nb) return 1;
     var j=jaccard(na,nb), e=lev(na,nb);
-    var score=Math.max(j,e)*0.55+(j+e)/2*0.45;
-    /* alias boost */
-    (a.aliases||[]).forEach(function(al){ score=Math.max(score, jaccard(al,nb), lev(al,nb)); });
-    (b.aliases||[]).forEach(function(al){ score=Math.max(score, jaccard(na,al), lev(na,al)); });
+    return Math.max(j,e)*0.55+(j+e)/2*0.45;
+  }
+  function pairScore(a,b){
+    var ca=nameCore(a.name, a.brand), cb=nameCore(b.name, b.brand);
+    /* Çekirdek ad çok kısaysa (yalnız marka kalmış gibi) düşük güven */
+    if(!ca || !cb) return 0;
+    if(ca.length<3 || cb.length<3) return Math.min(0.4, nameScore(ca,cb));
+    var score=nameScore(ca,cb);
+    /* alias — markasız çekirdek ile */
+    (a.aliases||[]).forEach(function(al){
+      score=Math.max(score, nameScore(nameCore(al,a.brand), cb));
+    });
+    (b.aliases||[]).forEach(function(al){
+      score=Math.max(score, nameScore(ca, nameCore(al,b.brand)));
+    });
+    /* Aynı marka + tamamen farklı çekirdek → cezalandır */
+    if(a.brand && b.brand && norm(a.brand)===norm(b.brand) && score<0.85){
+      /* Haltane vs Oriana gibi */
+      if(jaccard(ca,cb)<0.35 && lev(ca,cb)<0.55) score*=0.55;
+    }
     return score;
   }
 
@@ -585,10 +642,14 @@ button:disabled{opacity:.45;cursor:default}
   }
   function catalogSuggest(clean, excludeId){
     if(!clean||clean.length<2) return [];
+    var core=nameCore(clean, null);
     return state.products.map(function(p){
       if(excludeId!=null && String(p.id)===String(excludeId)) return null;
-      var sc=Math.max(jaccard(clean,p.name), lev(clean,p.name));
-      (p.aliases||[]).forEach(function(al){ sc=Math.max(sc, jaccard(clean,al), lev(clean,al)); });
+      var pc=nameCore(p.name, p.brand);
+      var sc=Math.max(nameScore(core,pc), nameScore(clean,p.name));
+      (p.aliases||[]).forEach(function(al){
+        sc=Math.max(sc, nameScore(core, nameCore(al,p.brand)), nameScore(clean,al));
+      });
       return {p:p,sc:sc};
     }).filter(function(x){ return x && x.sc>=0.42; })
       .sort(function(a,b){ return b.sc-a.sc; })
