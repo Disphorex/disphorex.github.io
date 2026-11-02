@@ -63,9 +63,11 @@ button:disabled{opacity:.45;cursor:default}
       <button type="button" class="primary" id="btn-load-gh">GitHub’dan yükle (katalog + satıcılar)</button>
       <label class="grow">products.json <input type="file" id="f-products" accept=".json,application/json"></label>
       <label class="grow">Satıcı JSON (çoklu) <input type="file" id="f-sellers" accept=".json,application/json" multiple></label>
-      <button type="button" class="ghost" id="btn-dl">Güncel products.json indir</button>
+      <button type="button" class="primary" id="btn-save-gh">GitHub’a kaydet</button>
+      <button type="button" class="ghost" id="btn-dl">JSON indir</button>
     </div>
     <p class="status" id="src-status">Dosya bekleniyor… Önce GitHub’dan yükle veya dosya seç.</p>
+    <p class="status" id="save-status"></p>
   </div>
 
   <div class="tabs" role="tablist">
@@ -208,8 +210,20 @@ button:disabled{opacity:.45;cursor:default}
     var arr=Array.isArray(data)?data:(data.products||[]);
     state.products=arr.map(function(p){ return Object.assign({},p); });
     state.raw=data;
+    state.productsDirty=false;
     $('src-status').textContent='Katalog: '+state.products.length+' ürün'+(Object.keys(state.sellers).length?' · '+Object.keys(state.sellers).length+' satıcı dosyası':'');
     updateSkipN();
+    updateSaveStatus();
+  }
+  function markProductsDirty(){ state.productsDirty=true; updateSaveStatus(); }
+  function markSellerDirty(fn){ if(state.sellers[fn]) state.sellers[fn].dirty=true; updateSaveStatus(); }
+  function updateSaveStatus(){
+    var el=$('save-status'); if(!el) return;
+    var n=0;
+    if(state.productsDirty) n++;
+    Object.keys(state.sellers).forEach(function(fn){ if(state.sellers[fn].dirty) n++; });
+    el.textContent=n? (n+' dosya kaydedilmeyi bekliyor') : '';
+    var b=$('btn-save-gh'); if(b) b.disabled=!n;
   }
   $('f-products').onchange=function(){
     var f=this.files&&this.files[0]; if(!f) return;
@@ -295,6 +309,21 @@ button:disabled{opacity:.45;cursor:default}
       }
       fillSellerPick();
       var nSell=Object.keys(state.sellers).length;
+      state.productsDirty=false;
+      Object.keys(state.sellers).forEach(function(fn){ state.sellers[fn].dirty=false; });
+      try{
+        var cfg=JSON.parse(localStorage.getItem('op_adm_cfg')||'{}');
+        var tok=localStorage.getItem('op_adm_tok')||'';
+        state.gh={
+          cfg:cfg,
+          tok:tok,
+          dir:(cfg.dir||'parfumeri/data').replace(/^\/|\/$/g,''),
+          owner:cfg.owner,
+          repo:cfg.repo,
+          branch:cfg.branch||'main'
+        };
+      }catch(e){ state.gh=null; }
+      updateSaveStatus();
       $('src-status').textContent='Katalog: '+state.products.length+' ürün · '+nSell+' satıcı'+(failed?' · '+failed+' hata':'');
       $('seller-status').textContent=nSell
         ? ('Listeden satıcı seçip Tara’ya bas ('+nSell+' hazır).')
@@ -416,11 +445,14 @@ button:disabled{opacity:.45;cursor:default}
     if(!master.brand && other.brand) master.brand=other.brand;
     /* seller product_id remap in memory */
     Object.keys(state.sellers).forEach(function(fn){
+      var changed=false;
       (state.sellers[fn].items||[]).forEach(function(it){
-        if(String(it.product_id)===String(otherId)) it.product_id=master.id|0;
+        if(String(it.product_id)===String(otherId)){ it.product_id=master.id|0; changed=true; }
       });
+      if(changed) markSellerDirty(fn);
     });
     state.products=state.products.filter(function(p){ return String(p.id)!==String(otherId); });
+    markProductsDirty();
     delete state.skip[pairKey(masterId,otherId)];
     saveSkip();
     state.pairs=state.pairs.filter(function(p){
@@ -530,8 +562,9 @@ button:disabled{opacity:.45;cursor:default}
       p.brand=$('e-brand').value.trim();
       p.aliases=$('e-al').value.split(',').map(function(x){ return x.trim(); }).filter(Boolean);
       p.do_not_merge=$('e-dnm').value==='1';
+      markProductsDirty();
       $('modal').hidden=true;
-      toast('Kaydedildi (bellek — JSON indir)');
+      toast('Kaydedildi (bellekte — GitHub’a kaydet ile kalıcı yap)');
       if(state.tab==='search') runSearch();
       if(state.tab==='sim') renderPairs();
     };
@@ -677,7 +710,14 @@ button:disabled{opacity:.45;cursor:default}
           if(nm && p.aliases.indexOf(nm)<0 && norm(nm)!==norm(p.name)) p.aliases.push(nm);
         });
       }
-      toast('product_id → #'+pid+' (bellek; JSON indir)');
+      if(r.it){
+        /* hangi satıcı dosyası */
+        Object.keys(state.sellers).forEach(function(fn){
+          if((state.sellers[fn].items||[]).indexOf(r.it)>=0) markSellerDirty(fn);
+        });
+      }
+      markProductsDirty();
+      toast('product_id → #'+pid+' (bellekte)');
       map.closest('.item').style.opacity='0.55';
     }
     if(ren){
@@ -689,10 +729,111 @@ button:disabled{opacity:.45;cursor:default}
       cp.aliases=cp.aliases||[];
       if(old && cp.aliases.indexOf(old)<0) cp.aliases.push(old);
       cp.name=r2.clean;
-      toast('Katalog adı: "'+old+'" → "'+r2.clean+'" (JSON indir)');
+      markProductsDirty();
+      toast('Katalog adı güncellendi (bellekte)');
       ren.closest('.item').style.opacity='0.55';
     }
   };
+
+
+  function ghCfg(){
+    try{
+      var cfg=JSON.parse(localStorage.getItem('op_adm_cfg')||'{}');
+      var tok=localStorage.getItem('op_adm_tok')||'';
+      if(!cfg.owner||!cfg.repo||!tok) return null;
+      return {
+        owner:cfg.owner, repo:cfg.repo, branch:cfg.branch||'main',
+        dir:(cfg.dir||'parfumeri/data').replace(/^\/|\/$/g,''),
+        tok:tok
+      };
+    }catch(e){ return null; }
+  }
+  function repoPath(c){ return '/repos/'+encodeURIComponent(c.owner)+'/'+encodeURIComponent(c.repo); }
+  async function ghApi(c, path, opts){
+    opts=opts||{};
+    var res=await fetch('https://api.github.com'+path,{
+      method:opts.method||'GET', cache:'no-store',
+      headers:{
+        Authorization:'Bearer '+c.tok,
+        Accept:'application/vnd.github+json',
+        'X-GitHub-Api-Version':'2022-11-28',
+        'Content-Type':'application/json'
+      },
+      body:opts.body?JSON.stringify(opts.body):undefined
+    });
+    var x=await res.json().catch(function(){ return {}; });
+    if(!res.ok) throw new Error('GitHub '+res.status+': '+(x.message||res.statusText));
+    return x;
+  }
+  function productsPayload(){
+    if(state.raw && !Array.isArray(state.raw) && typeof state.raw==='object'){
+      var o=Object.assign({}, state.raw);
+      o.products=state.products;
+      return o;
+    }
+    return { schema_version:1, products:state.products };
+  }
+  async function commitToGithub(){
+    var c=ghCfg();
+    if(!c){
+      toast('Admin paneline girip token kaydet (Pazar yönetimi)');
+      return;
+    }
+    var files=[];
+    if(state.productsDirty) files.push({ name:'products.json', data:productsPayload() });
+    Object.keys(state.sellers).forEach(function(fn){
+      if(!state.sellers[fn].dirty) return;
+      var s=state.sellers[fn];
+      var data=s.data||{};
+      data.items=s.items;
+      data.name=s.name||data.name;
+      files.push({ name:fn, data:data });
+    });
+    if(!files.length){ toast('Kaydedilecek değişiklik yok'); return; }
+    if(!confirm(files.length+' dosya GitHub’a yazılacak:\n'+files.map(function(f){ return c.dir+'/'+f.name; }).join('\n')+'\n\nDevam?')) return;
+    $('save-status').textContent='Commit hazırlanıyor…';
+    try{
+      var ref=await ghApi(c, repoPath(c)+'/git/ref/heads/'+encodeURIComponent(c.branch));
+      var parent=ref.object.sha;
+      var commit=await ghApi(c, repoPath(c)+'/git/commits/'+parent);
+      var tree=await ghApi(c, repoPath(c)+'/git/trees', {
+        method:'POST',
+        body:{
+          base_tree:commit.tree.sha,
+          tree:files.map(function(f){
+            return {
+              path:c.dir+'/'+f.name,
+              mode:'100644',
+              type:'blob',
+              content:JSON.stringify(f.data,null,2)+'\n'
+            };
+          })
+        }
+      });
+      var created=await ghApi(c, repoPath(c)+'/git/commits', {
+        method:'POST',
+        body:{
+          message:'Gelişmiş veri editörü: katalog/satıcı güncelleme',
+          tree:tree.sha,
+          parents:[parent]
+        }
+      });
+      await ghApi(c, repoPath(c)+'/git/refs/heads/'+encodeURIComponent(c.branch), {
+        method:'PATCH',
+        body:{ sha:created.sha, force:false }
+      });
+      state.productsDirty=false;
+      Object.keys(state.sellers).forEach(function(fn){ state.sellers[fn].dirty=false; });
+      updateSaveStatus();
+      $('save-status').textContent='Kaydedildi · '+created.sha.slice(0,7)+' (Pages 1–2 dk)';
+      toast('GitHub’a kaydedildi');
+    }catch(e){
+      console.error(e);
+      $('save-status').textContent='Hata: '+(e.message||e);
+      toast(String(e.message||e));
+    }
+  }
+  $('btn-save-gh').onclick=function(){ commitToGithub(); };
 
   /* modal backdrop */
   $('modal').onclick=function(e){ if(e.target===this) this.hidden=true; };
@@ -700,6 +841,7 @@ button:disabled{opacity:.45;cursor:default}
   updateSkipN();
   renderChips();
   runSearch();
+  updateSaveStatus();
 })();
 </script>
 </body>
