@@ -2,7 +2,7 @@
 <style id="app-version-style">.app-version{display:block;position:static;margin:14px 12px 8px auto;width:max-content;color:#526056;background:rgba(255,255,255,.82);border:1px solid rgba(95,112,100,.28);border-radius:12px;padding:2px 7px;font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}</style>
 </head><body>
 <title>Muadil Parfüm Fiyat Panosu</title>
-<meta name="app-version" content="1.1">
+<meta name="app-version" content="1.0.35">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -777,6 +777,24 @@ td small{display:block; color:var(--muted); font-size:14px}
           <div class="row2" style="margin-top:8px">
             <button type="button" class="ghost" data-opt="filt-reset">Filtreleri sıfırla</button>
           </div>
+          <details class="opt-filt-block" open>
+            <summary>Kampanya tanımla</summary>
+            <div class="opt-filt-body">
+              <p class="hint" style="margin:0 0 8px">Dönemsel satıcı kampanyası. Seçilen satıcıda kalıcı JSON indirimi yerine bu kural uygulanır; <b>kargo</b> ve <b>hediye</b> kuralları değişmez.</p>
+              <div class="opt-row" style="gap:8px;flex-wrap:wrap;align-items:flex-end">
+                <label class="field grow" style="min-width:140px"><span>Satıcı</span><select id="opt-camp-seller"></select></label>
+                <label class="field grow" style="min-width:160px"><span>Hazır kampanya</span>
+                  <select id="opt-camp-tpl">
+                    <option value="buy3pay2">3 Al 2 Öde</option>
+                    <option value="nth2pct50">2. ürüne %50 indirim</option>
+                    <option value="nth2tl1">2. ürün 1 TL</option>
+                  </select>
+                </label>
+                <button type="button" class="ghost" data-opt="camp-add">Uygula</button>
+              </div>
+              <div id="opt-camp-list" style="margin-top:10px"></div>
+            </div>
+          </details>
         </div>
         <div class="row2"><button type="button" class="primary" data-opt="run">Hesapla</button><button type="button" class="ghost" data-opt="frompz">Pazar sepetimden al</button><button type="button" class="ghost" data-opt="clear">Listeyi temizle</button></div>
         <div id="opt-out" aria-live="polite"></div>
@@ -2020,13 +2038,20 @@ function pzcFind(e){
 function r2(x){ return Math.round(x*100)/100; }
 function pzcCampaign(g){
   var best=null;
-  (g.s.campaigns||[]).forEach(function(c){
+  var camps=(typeof optEffectiveCampaigns==='function')?optEffectiveCampaigns(g.s):(g.s.campaigns||[]);
+  camps.forEach(function(c){
     var d=0, u, free, i;
     var qn=g.units.length, us;
     if(c.type==='percent'){ if(g.sub>=(c.min||0) && !(c.maxQty && qn>c.maxQty) && !(c.minQty && qn<c.minQty)) d=g.sub*c.value/100; }
     else if(c.type==='nthPercent'){ us=g.units.map(function(x){ return x.p; }).sort(function(a,b){ return b-a; }); for(i=c.n-1;i<us.length;i+=c.n) d+=us[i]*c.value/100; }
     else if(c.type==='seqPercent'){ us=g.units.map(function(x){ return x.p; }).sort(function(a,b){ return b-a; }); for(i=0;i<us.length;i++) d+=us[i]*c.percents[i%c.percents.length]/100; }
     else if(c.type==='amountOff'){ if(g.sub>=(c.min||0)) d=Math.min(c.value,g.sub); }
+    else if(c.type==='nthFixed'){
+      /* her N. (ucuzdan) ürün c.price TL'ye iner — örn. 2. ürün 1 TL */
+      us=g.units.map(function(x){ return x.p; }).sort(function(a,b){ return a-b; });
+      var fixed=typeof c.price==='number'?c.price:1;
+      for(i=(c.n||2)-1;i<us.length;i+=(c.n||2)) d+=Math.max(0, us[i]-fixed);
+    }
     else if(c.type==='buyXPayY'){
       /* ml listesi: yalnızca bu hacimler kampanyaya girer; perMl olsa bile tek havuzda say (karışık 5+10 ml birleşir) */
       var pool=g.units.filter(function(x){ return !c.ml || !c.ml.length || c.ml.indexOf(x.ml)>=0; });
@@ -2177,9 +2202,24 @@ var APP_VERSION='1.0.35';
 var OPT_KEY='optstate1', OPT_LIM=60000;
 var OPT=(function(){
   var o=LS.get(OPT_KEY); if(!o||typeof o!=='object') o={};
-  return {want:Array.isArray(o.want)?o.want.filter(function(w){ return w&&w.k&&w.n; }):[], goal:o.goal||'kesif', budget:typeof o.budget==='string'?o.budget:'', sellers:typeof o.sellers==='string'?o.sellers:'', sellerPref:o.sellerPref&&typeof o.sellerPref==='object'?o.sellerPref:{}, gens:o.gens&&typeof o.gens==='object'?o.gens:{}, seas:o.seas&&typeof o.seas==='object'?o.seas:{}, times:o.times&&typeof o.times==='object'?o.times:{}, cats:o.cats&&typeof o.cats==='object'?o.cats:{}, decide:{}, res:null, rollInfo:null, banSellers:{}, banProducts:{}, sellerLock:{}, volLock:{}, softOverage:false};
+  return {want:Array.isArray(o.want)?o.want.filter(function(w){ return w&&w.k&&w.n; }):[], goal:o.goal||'kesif', budget:typeof o.budget==='string'?o.budget:'', sellers:typeof o.sellers==='string'?o.sellers:'', sellerPref:o.sellerPref&&typeof o.sellerPref==='object'?o.sellerPref:{}, gens:o.gens&&typeof o.gens==='object'?o.gens:{}, seas:o.seas&&typeof o.seas==='object'?o.seas:{}, times:o.times&&typeof o.times==='object'?o.times:{}, cats:o.cats&&typeof o.cats==='object'?o.cats:{}, campOverrides:o.campOverrides&&typeof o.campOverrides==='object'?o.campOverrides:{}, decide:{}, res:null, rollInfo:null, banSellers:{}, banProducts:{}, sellerLock:{}, volLock:{}, softOverage:false};
 })();
-function optSave(){ LS.set(OPT_KEY,{want:OPT.want,goal:OPT.goal,budget:OPT.budget,sellers:OPT.sellers||'',sellerPref:OPT.sellerPref||{},gens:OPT.gens||{},seas:OPT.seas||{},times:OPT.times||{},cats:OPT.cats||{}}); }
+function optSave(){ LS.set(OPT_KEY,{want:OPT.want,goal:OPT.goal,budget:OPT.budget,sellers:OPT.sellers||'',sellerPref:OPT.sellerPref||{},gens:OPT.gens||{},seas:OPT.seas||{},times:OPT.times||{},cats:OPT.cats||{},campOverrides:OPT.campOverrides||{}}); }
+/* Dönemsel kampanya şablonları (JSON satıcı kampanyasının yerine geçer; kargo/hediye dokunulmaz) */
+var OPT_CAMP_TPL={
+  buy3pay2:{type:'buyXPayY',buy:3,pay:2,label:'3 Al 2 Öde'},
+  nth2pct50:{type:'nthPercent',n:2,value:50,label:'2. ürüne %50 indirim'},
+  nth2tl1:{type:'nthFixed',n:2,price:1,label:'2. ürün 1 TL'}
+};
+function optSellerKey(s){ return String((s&& (s.name||brandFromUrl(s.base)||s.base))||'').trim().toLowerCase(); }
+function optEffectiveCampaigns(s){
+  var base=(s&&s.campaigns)?s.campaigns.slice():[];
+  var key=optSellerKey(s);
+  var ov=OPT.campOverrides&&OPT.campOverrides[key];
+  if(!ov) return base;
+  var gifts=base.filter(function(c){ return c&&c.type==='gift'; });
+  return gifts.concat([ov]);
+}
 var OPT_GOALS={
   kesif:{name:'Yeni kokular keşfetmek',desc:'30 ml altı deneme boyları (3–25 ml), çok çeşit, efektif TL/ml',test:function(m){ return m>0 && m<30; },ref:10},
   ucuz:{name:'Mutlak ucuzluk',desc:'Hacim gözetmeden en az nakit: en küçük boylar, en çok çeşidi en az parayla dene',test:function(){ return true; },ref:5,mode:'cheap'},
@@ -2312,6 +2352,27 @@ function optAnnotateLineDiscounts(G){
       L.discountRatio=ratio;
       L.pay=r2(L.o.v.price*L.q*(1-ratio));
       if(ratio>=0.999) L.isFree=true;
+    });
+  } else if(c.type==='nthFixed'){
+    var units=[];
+    G.lines.forEach(function(L){
+      for(var i=0;i<L.q;i++) units.push({L:L, price:L.o.v.price});
+    });
+    units.sort(function(a,b){ return a.price-b.price; });
+    var fixed=typeof c.price==='number'?c.price:1;
+    var discAmt={};
+    for(var i=(c.n||2)-1;i<units.length;i+=(c.n||2)){
+      var L=units[i].L;
+      var cut=Math.max(0, units[i].price-fixed);
+      discAmt[L.i]=(discAmt[L.i]||0)+cut;
+    }
+    G.lines.forEach(function(L){
+      var cut=discAmt[L.i]||0;
+      if(cut<=0) return;
+      var orig=L.o.v.price*L.q;
+      L.pay=r2(Math.max(0, orig-cut));
+      L.discountRatio=orig>0?Math.min(1, cut/orig):0;
+      if(L.pay<=0.01) L.isFree=true;
     });
   } else if(c.type==='percent' || c.type==='amountOff'){
     var ratio=G.sub>0?G.disc/G.sub:0;
@@ -2600,10 +2661,11 @@ function optSellerCands(pool, goal){
 }
 /* Kampanya eşiği: buyXPayY → buy; aksi halde 1 */
 function optCampThreshold(s){
-  var t=1, camps=s.campaigns||[];
+  var t=1, camps=optEffectiveCampaigns(s);
   camps.forEach(function(c){
     if(c.type==='buyXPayY' && c.buy>t) t=c.buy;
     if(c.type==='nthPercent' && c.n>t) t=c.n;
+    if(c.type==='nthFixed' && c.n>t) t=c.n;
   });
   return t;
 }
@@ -2911,7 +2973,7 @@ function optCampStepAdvice(ev, goal){
   var out=[];
   if(!ev || !ev.groups) return out;
   ev.groups.forEach(function(G){
-    (G.s.campaigns||[]).forEach(function(c){
+    optEffectiveCampaigns(G.s).forEach(function(c){
       var cnt=0;
       G.lines.forEach(function(L){
         var m=L.o.m;
@@ -2948,6 +3010,21 @@ function optCampStepAdvice(ev, goal){
           pct:c.value||0,
           label:c.label||(c.n+'. ürüne %'+(c.value||0)+' indirim'),
           candidates:cands2, kind:'nthPercent'
+        });
+        return;
+      }
+
+      if(c.type==='nthFixed' && c.n>1){
+        var remF=cnt % c.n;
+        if(remF===0) return;
+        var needF=c.n-remF;
+        var candsF=optSellerFillCandidates(G.si, G.s, needF, goal, OPT.want, c.ml||null);
+        out.push({
+          seller:optSn(G.s), si:G.si, buy:c.n, pay:c.n-1,
+          have:cnt, need:needF, free:0,
+          fixed:c.price||1,
+          label:c.label||(c.n+'. ürün '+(c.price||1)+' TL'),
+          candidates:candsF, kind:'nthFixed'
         });
         return;
       }
@@ -3662,6 +3739,33 @@ function optDiscUI(){
     if(!sellersReady) pool.textContent='Havuz: veri yükleniyor… (satıcı dosyaları okununca güncellenir)';
     else pool.textContent='Havuz: '+n+' koku · satıcı '+sellersReady+' · +'+pref+' · −'+ban+(err?' · hata: '+err:'');
   }
+  optCampUI();
+}
+function optCampUI(){
+  var sel=$('opt-camp-seller'), list=$('opt-camp-list');
+  if(sel){
+    var cur=sel.value;
+    var opts=['<option value="">— satıcı seç —</option>'];
+    (PAZAR2||[]).forEach(function(s){
+      if(!s||!s.items||!s.items.length) return;
+      var key=optSellerKey(s), nm=optSn(s);
+      opts.push('<option value="'+esc(key)+'">'+esc(nm)+'</option>');
+    });
+    sel.innerHTML=opts.join('');
+    if(cur) sel.value=cur;
+  }
+  if(!list) return;
+  var ov=OPT.campOverrides||{}, keys=Object.keys(ov);
+  if(!keys.length){
+    list.innerHTML='<span class="muted">Aktif dönemsel kampanya yok — satıcı JSON kampanyası kullanılır.</span>';
+    return;
+  }
+  list.innerHTML=keys.map(function(key){
+    var c=ov[key];
+    return '<div class="chip" style="display:inline-flex;align-items:center;gap:6px;margin:4px 4px 0 0">'
+      +'<b>'+esc(key)+'</b> · '+esc(c.label||c.type)
+      +'<button type="button" data-opt="camp-rm" data-camp-key="'+esc(key)+'" aria-label="Kaldır" title="Kaldır">×</button></div>';
+  }).join('');
 }
 function optChips(){
   var el=$('opt-chips'); if(!el) return;
@@ -3696,6 +3800,27 @@ document.addEventListener('click', function(e){
   else if(a==='filt-reset'){
     OPT.gens={}; OPT.seas={}; OPT.times={}; OPT.cats={}; OPT.sellerPref={}; OPT.sellers='';
     OPT.rollInfo=null;
+  }
+  else if(a==='camp-add'){
+    var sk=($('opt-camp-seller')&&$('opt-camp-seller').value)||'';
+    var tid=($('opt-camp-tpl')&&$('opt-camp-tpl').value)||'';
+    var tpl=OPT_CAMP_TPL[tid];
+    if(!sk){ alert('Önce satıcı seç.'); return; }
+    if(!tpl){ alert('Kampanya şablonu seç.'); return; }
+    OPT.campOverrides=OPT.campOverrides||{};
+    OPT.campOverrides[sk]={type:tpl.type,buy:tpl.buy,pay:tpl.pay,n:tpl.n,value:tpl.value,price:tpl.price,label:tpl.label};
+    OPT.rollInfo=null;
+    optSave(); optCampUI();
+    if(OPT.want.length||OPT.res) optRun();
+    return;
+  }
+  else if(a==='camp-rm'){
+    var ck=b.getAttribute('data-camp-key');
+    if(ck&&OPT.campOverrides) delete OPT.campOverrides[ck];
+    OPT.rollInfo=null;
+    optSave(); optCampUI();
+    if(OPT.want.length||OPT.res) optRun();
+    return;
   }
   else if(a==='gen'){ var gv=b.getAttribute('data-v'); OPT.gens=OPT.gens||{}; if(OPT.gens[gv]) delete OPT.gens[gv]; else OPT.gens[gv]=1; OPT.rollInfo=null; }
   else if(a==='sea'){ var sv=b.getAttribute('data-v'); OPT.seas=OPT.seas||{}; if(OPT.seas[sv]) delete OPT.seas[sv]; else OPT.seas[sv]=1; OPT.rollInfo=null; }
@@ -4261,5 +4386,5 @@ connectDb();
 </script>
 
 
-<footer class="app-version" aria-label="Uygulama sürümü">v1.1</footer>
+<footer class="app-version" aria-label="Uygulama sürümü">v1.0.35</footer>
 </body></html>
