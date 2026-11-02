@@ -31,7 +31,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 150,
@@ -42,7 +43,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 39,
@@ -53,7 +55,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 429,
@@ -64,7 +67,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Amouage Interlude 53 Man",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 115,
@@ -75,7 +79,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 941,
@@ -86,7 +91,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 84,
@@ -97,7 +103,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 568,
@@ -108,7 +115,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 171,
@@ -119,7 +127,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 917,
@@ -130,7 +139,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 157,
@@ -141,7 +151,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 552,
@@ -152,7 +163,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 70,
@@ -163,7 +175,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 942,
@@ -174,7 +187,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 116,
@@ -185,7 +199,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 166,
@@ -196,7 +211,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Burberry Burberry for Women / Classic",
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 258,
@@ -207,7 +223,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Burberry Burberry Men / Classic",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 36,
@@ -218,7 +235,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 943,
@@ -229,7 +247,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 176,
@@ -240,7 +259,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 890,
@@ -251,7 +271,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Burberry My Burberry",
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 401,
@@ -262,7 +283,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 602,
@@ -273,7 +295,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 944,
@@ -284,7 +307,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 55,
@@ -295,7 +319,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 146,
@@ -306,7 +331,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 426,
@@ -317,7 +343,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 945,
@@ -328,7 +355,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 946,
@@ -339,7 +367,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 71,
@@ -350,7 +379,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 396,
@@ -361,7 +391,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 169,
@@ -372,7 +403,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 172,
@@ -383,7 +415,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 885,
@@ -394,7 +427,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 191,
@@ -405,7 +439,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 478,
@@ -416,7 +451,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 172,
@@ -427,7 +463,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Carolina Herrera 212 VIP Men",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 415,
@@ -438,7 +475,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 37,
@@ -449,7 +487,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 947,
@@ -460,7 +499,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 384,
@@ -471,7 +511,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 18,
@@ -482,7 +523,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 155,
@@ -493,7 +535,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 948,
@@ -504,7 +547,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 201,
@@ -515,7 +559,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Chanel N°5",
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 147,
@@ -526,7 +571,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 195,
@@ -537,7 +583,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Chloé Love, Chloé",
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 949,
@@ -548,7 +595,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 19,
@@ -559,7 +607,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 950,
@@ -570,7 +619,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 1,
@@ -581,7 +631,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 303,
@@ -592,7 +643,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 143,
@@ -603,7 +655,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Diesel Fuel for Life Homme",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 207,
@@ -614,7 +667,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 951,
@@ -625,7 +679,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 236,
@@ -636,7 +691,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Dior Dior Homme Intense",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 242,
@@ -647,7 +703,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 44,
@@ -658,7 +715,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 243,
@@ -669,7 +727,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 90,
@@ -680,7 +739,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 895,
@@ -691,7 +751,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 418,
@@ -702,7 +763,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 952,
@@ -713,7 +775,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Emporio Armani Emporio Armani She",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 953,
@@ -724,7 +787,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 954,
@@ -735,7 +799,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 955,
@@ -746,7 +811,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 956,
@@ -757,7 +823,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 22,
@@ -768,7 +835,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 142,
@@ -779,7 +847,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 21,
@@ -790,7 +859,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 32,
@@ -801,7 +871,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 957,
@@ -812,7 +883,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 332,
@@ -823,7 +895,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 352,
@@ -834,7 +907,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 259,
@@ -845,7 +919,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 813,
@@ -856,7 +931,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 447,
@@ -867,7 +943,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 533,
@@ -878,7 +955,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Giorgio Armani Armani Code",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 958,
@@ -889,7 +967,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Giorgio Armani Armani Code for Women",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 959,
@@ -900,7 +979,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Giorgio Armani Armani He",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 13,
@@ -911,7 +991,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 960,
@@ -922,7 +1003,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 68,
@@ -933,7 +1015,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 400,
@@ -944,7 +1027,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 442,
@@ -955,7 +1039,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 211,
@@ -966,7 +1051,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 230,
@@ -977,7 +1063,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 173,
@@ -988,7 +1075,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 961,
@@ -999,7 +1087,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 20,
@@ -1010,7 +1099,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 962,
@@ -1021,7 +1111,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 537,
@@ -1032,7 +1123,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 532,
@@ -1043,7 +1135,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 210,
@@ -1054,7 +1147,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 576,
@@ -1065,7 +1159,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 894,
@@ -1076,7 +1171,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 963,
@@ -1087,7 +1183,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 151,
@@ -1098,7 +1195,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 964,
@@ -1109,7 +1207,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 183,
@@ -1120,7 +1219,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 175,
@@ -1131,7 +1231,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 366,
@@ -1142,7 +1243,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 441,
@@ -1153,7 +1255,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Hugo Boss Boss Bottled",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 256,
@@ -1164,7 +1267,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Hugo Boss Boss Bottled Absolu",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 965,
@@ -1175,7 +1279,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Hugo Boss Boss Intense for Her",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 966,
@@ -1186,7 +1291,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 374,
@@ -1197,7 +1303,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 967,
@@ -1208,7 +1315,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 551,
@@ -1219,7 +1327,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 353,
@@ -1230,7 +1339,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 158,
@@ -1241,7 +1351,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 571,
@@ -1252,7 +1363,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Jean Paul Gaultier Gaultier Divine Elixir",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 200,
@@ -1263,7 +1375,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 180,
@@ -1274,7 +1387,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 56,
@@ -1285,7 +1399,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 91,
@@ -1296,7 +1411,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 91,
@@ -1307,7 +1423,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 178,
@@ -1318,7 +1435,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 915,
@@ -1329,7 +1447,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 189,
@@ -1340,7 +1459,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 968,
@@ -1351,7 +1471,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 302,
@@ -1362,7 +1483,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 969,
@@ -1373,7 +1495,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 970,
@@ -1384,7 +1507,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Kenzo Flower by Kenzo",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 407,
@@ -1395,7 +1519,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Kenzo Kenzo Pour Homme",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 9,
@@ -1406,7 +1531,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Kilian Angels' Share",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 351,
@@ -1417,7 +1543,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Kilian Black Phantom",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 971,
@@ -1428,7 +1555,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Kilian Good Girl Gone Bad Extreme",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 283,
@@ -1439,7 +1567,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Kilian Back to Black",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 920,
@@ -1450,7 +1579,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 209,
@@ -1461,7 +1591,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 404,
@@ -1472,7 +1603,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 972,
@@ -1483,7 +1615,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 973,
@@ -1494,7 +1627,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 161,
@@ -1505,7 +1639,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 51,
@@ -1516,7 +1651,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 888,
@@ -1527,7 +1663,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 133,
@@ -1538,7 +1675,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 336,
@@ -1549,7 +1687,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 96,
@@ -1560,7 +1699,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 974,
@@ -1571,7 +1711,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 49,
@@ -1582,7 +1723,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 74,
@@ -1593,7 +1735,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 359,
@@ -1604,7 +1747,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 42,
@@ -1615,7 +1759,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 76,
@@ -1626,7 +1771,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 354,
@@ -1637,7 +1783,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 975,
@@ -1648,7 +1795,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 38,
@@ -1659,7 +1807,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 77,
@@ -1670,7 +1819,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 373,
@@ -1681,7 +1831,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 314,
@@ -1692,7 +1843,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 260,
@@ -1703,7 +1855,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 282,
@@ -1714,7 +1867,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 34,
@@ -1725,7 +1879,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 102,
@@ -1736,7 +1891,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 107,
@@ -1747,7 +1903,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 62,
@@ -1758,7 +1915,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 276,
@@ -1769,7 +1927,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 976,
@@ -1780,7 +1939,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 10,
@@ -1791,7 +1951,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 356,
@@ -1802,7 +1963,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 597,
@@ -1813,7 +1975,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 214,
@@ -1824,7 +1987,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 170,
@@ -1835,7 +1999,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 170,
@@ -1846,7 +2011,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 378,
@@ -1857,7 +2023,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 377,
@@ -1868,7 +2035,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 40,
@@ -1879,7 +2047,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 680,
@@ -1890,7 +2059,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 485,
@@ -1901,7 +2071,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 369,
@@ -1912,7 +2083,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 130,
@@ -1923,7 +2095,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 220,
@@ -1934,7 +2107,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 198,
@@ -1945,7 +2119,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 977,
@@ -1956,7 +2131,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 196,
@@ -1967,7 +2143,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 8,
@@ -1978,7 +2155,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 382,
@@ -1989,7 +2167,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 41,
@@ -2000,7 +2179,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 452,
@@ -2011,7 +2191,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 341,
@@ -2022,7 +2203,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 490,
@@ -2033,7 +2215,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 106,
@@ -2044,7 +2227,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 978,
@@ -2055,7 +2239,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Paris Hilton Paris Hilton for Women",
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 262,
@@ -2066,7 +2251,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 979,
@@ -2077,7 +2263,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 635,
@@ -2088,7 +2275,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 80,
@@ -2099,7 +2287,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 980,
@@ -2110,7 +2299,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 981,
@@ -2121,7 +2311,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 85,
@@ -2132,7 +2323,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Rochas Rochas Man",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 982,
@@ -2143,7 +2335,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 513,
@@ -2154,7 +2347,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 286,
@@ -2165,7 +2359,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 35,
@@ -2176,7 +2371,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 664,
@@ -2187,7 +2383,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 263,
@@ -2198,7 +2395,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 59,
@@ -2209,7 +2407,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 419,
@@ -2220,7 +2419,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 72,
@@ -2231,7 +2431,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 983,
@@ -2242,7 +2443,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 103,
@@ -2253,7 +2455,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 295,
@@ -2264,7 +2467,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 420,
@@ -2275,7 +2479,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 182,
@@ -2286,7 +2491,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 984,
@@ -2297,7 +2503,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 905,
@@ -2308,7 +2515,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 985,
@@ -2319,7 +2527,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 986,
@@ -2330,7 +2539,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 219,
@@ -2341,7 +2551,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 808,
@@ -2352,7 +2563,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 132,
@@ -2363,7 +2575,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Valentino Valentino Uomo",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 168,
@@ -2374,7 +2587,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 238,
@@ -2385,7 +2599,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 108,
@@ -2396,7 +2611,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 163,
@@ -2407,7 +2623,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 987,
@@ -2418,7 +2635,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 134,
@@ -2429,7 +2647,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 988,
@@ -2440,7 +2659,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 534,
@@ -2451,7 +2671,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 185,
@@ -2462,7 +2683,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 408,
@@ -2473,7 +2695,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 177,
@@ -2484,7 +2707,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 120,
@@ -2495,7 +2719,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 2,
@@ -2506,7 +2731,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 306,
@@ -2517,7 +2743,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 660,
@@ -2528,7 +2755,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 358,
@@ -2539,7 +2767,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 674,
@@ -2550,7 +2779,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 31,
@@ -2561,7 +2791,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 989,
@@ -2572,7 +2803,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 309,
@@ -2583,7 +2815,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 445,
@@ -2594,7 +2827,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 15,
@@ -2605,7 +2839,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 410,
@@ -2616,7 +2851,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 257,
@@ -2627,7 +2863,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 57,
@@ -2638,7 +2875,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 584,
@@ -2649,7 +2887,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Kadın",
+      "volume_prices": []
     },
     {
       "product_id": 253,
@@ -2660,7 +2899,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 883,
@@ -2671,7 +2911,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 499,
@@ -2682,7 +2923,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 340,
@@ -2693,7 +2935,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 990,
@@ -2704,7 +2947,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": null,
+      "volume_prices": []
     },
     {
       "product_id": 991,
@@ -2715,7 +2959,8 @@
       "stock": null,
       "options": "5 × 3 ml",
       "seller_name": null,
-      "legacy_category": "Deneme seti"
+      "legacy_category": "Deneme seti",
+      "volume_prices": []
     },
     {
       "product_id": 992,
@@ -2726,7 +2971,1052 @@
       "stock": null,
       "options": "5 × 15 ml",
       "seller_name": null,
-      "legacy_category": "Kadın"
+      "legacy_category": "Kadın",
+      "volume_prices": []
+    },
+    {
+      "product_id": 995,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 996,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 997,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null,
+      "volume_prices": []
+    },
+    {
+      "product_id": 998,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null,
+      "volume_prices": []
+    },
+    {
+      "product_id": 999,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1000,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1001,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Unisex",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1002,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1003,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1004,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null,
+      "volume_prices": []
+    },
+    {
+      "product_id": 1005,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1006,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null,
+      "volume_prices": []
+    },
+    {
+      "product_id": 1007,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null,
+      "volume_prices": []
+    },
+    {
+      "product_id": 1008,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": null,
+      "volume_prices": []
+    },
+    {
+      "product_id": 1009,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1010,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1011,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1012,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1013,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1014,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1015,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1016,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1017,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1018,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1019,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1020,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1021,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1022,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1023,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1024,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1025,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1026,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1027,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1028,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1029,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1030,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1031,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1032,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1033,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1034,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1035,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1036,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1037,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1038,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Unisex",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1039,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1040,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Unisex",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1041,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1042,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1043,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1044,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1045,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1046,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1047,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1048,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1049,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1050,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1051,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1052,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1053,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1054,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1055,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1056,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1057,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1058,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1059,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1060,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1061,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1062,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1063,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1064,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1065,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1066,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1067,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1068,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1069,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1070,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1071,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1072,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1073,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1074,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1075,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1076,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1077,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1078,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1079,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1080,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
+    },
+    {
+      "product_id": 1081,
+      "price": 600,
+      "old_price": null,
+      "volume_ml": null,
+      "url": "",
+      "stock": null,
+      "options": null,
+      "seller_name": null,
+      "legacy_category": "Erkek",
+      "volume_prices": []
     }
   ],
   "schema_version": 2
