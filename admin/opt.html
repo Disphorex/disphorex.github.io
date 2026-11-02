@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Optimizasyon Motoru · Admin</title>
+<style>
+:root{--bg:#100D0B;--card:#1B1511;--ink:#EADFC8;--mut:#A99A83;--line:#3D3128;--acc:#C9A45C;--acc-ink:#1A130D;--bad:#E07B6A;--ok:#8DBF8A;color-scheme:dark}
+@media (prefers-color-scheme:light){:root{--bg:#F6F1E7;--card:#FFFDF8;--ink:#2A2118;--mut:#6F6252;--line:#D9CDB8;--acc:#8A6A2A;--acc-ink:#fff;--bad:#B3402F;--ok:#3E7A3B;color-scheme:light}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:40px}
+.w{max-width:720px;margin:0 auto;padding:14px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.top a{color:var(--acc);text-decoration:none;font-size:14px}
+h1{font:italic 400 22px/1.2 Georgia,serif;margin:8px 0 4px}
+h2{font-size:16px;margin:18px 0 8px}
+.m{color:var(--mut);font-size:14px;margin:4px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 0}
+input,select,textarea{width:100%;margin-top:4px;padding:11px 12px;font:16px inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:8px}
+.row > *{flex:1;min-width:140px}
+.b{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 16px;border-radius:6px;font:600 14px inherit;cursor:pointer;min-height:44px}
+.b.p{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.b.d{color:var(--bad)}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:6px 10px;margin:4px 4px 0 0;font-size:13px}
+.chip button{border:0;background:transparent;color:var(--bad);cursor:pointer;font-size:16px;line-height:1}
+.ok{color:var(--ok)}.err{color:var(--bad)}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:20px;font-size:14px;display:none;z-index:40}
+pre{white-space:pre-wrap;word-break:break-word;font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;max-height:220px;overflow:auto}
+</style>
+</head>
+<body>
+<div class="top">
+  <span><b>Optimizasyon Motoru*</b> · <a href="index.html">← Pazar yönetimi</a></span>
+  <a href="../index.html#plan">Planım sekmesi ↗</a>
+</div>
+<main class="w">
+  <h1>Optimizasyon Motoru</h1>
+  <p class="m">Dönemsel kampanyalar ve motor ayarları. Burada kaydettiğin kampanyalar ana sitedeki <b>Planım</b> sekmesiyle aynı tarayıcı hafızasını (localStorage) kullanır. Kargo ve hediye kuralları satıcı JSON’undan gelmeye devam eder.</p>
+
+  <div class="card">
+    <h2>Kampanya tanımla</h2>
+    <p class="m">Seçilen satıcıda kalıcı JSON indirimi yerine bu kural uygulanır.</p>
+    <div class="row">
+      <label>Satıcı adı (sitedeki adla aynı yaz)<input id="seller" list="seller-list" placeholder="Örn. Parfüm Mutfağı" autocomplete="off"></label>
+      <datalist id="seller-list"></datalist>
+      <label>Hazır kampanya
+        <select id="tpl">
+          <option value="buy3pay2">3 Al 2 Öde</option>
+          <option value="nth2pct50">2. ürüne %50 indirim</option>
+          <option value="nth2tl1">2. ürün 1 TL</option>
+        </select>
+      </label>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button type="button" class="b p" id="btn-add">Uygula</button>
+      <button type="button" class="b" id="btn-clear">Tümünü temizle</button>
+    </div>
+    <div id="list" style="margin-top:14px"></div>
+  </div>
+
+  <div class="card">
+    <h2>JSON yedek</h2>
+    <p class="m">İstersen kampanya setini dosya olarak indirip saklayabilir veya geri yükleyebilirsin.</p>
+    <pre id="json-out">{}</pre>
+    <div class="row">
+      <button type="button" class="b" id="btn-dl">JSON indir</button>
+      <label class="b" style="text-align:center;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        JSON yükle
+        <input type="file" id="file" accept="application/json,.json" hidden>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Notlar</h2>
+    <ul class="m" style="padding-left:18px;margin:0">
+      <li><b>3 Al 2 Öde</b> — her 3 üründe en ucuz 1 tanesi bedava.</li>
+      <li><b>2. ürüne %50</b> — her 2. (pahalıdan) ürüne %50.</li>
+      <li><b>2. ürün 1 TL</b> — her 2. (ucuzdan) ürün 1 TL’ye iner.</li>
+      <li>Aynı satıcıya yeni şablon uygulamak eskisinin üzerine yazar.</li>
+      <li>Ana sitede Planım → Kampanya tanımla ile de yönetilebilir.</li>
+    </ul>
+  </div>
+</main>
+<div id="toast"></div>
+<script>
+(function(){
+  var OPT_KEY='optstate1';
+  var TPL={
+    buy3pay2:{type:'buyXPayY',buy:3,pay:2,label:'3 Al 2 Öde'},
+    nth2pct50:{type:'nthPercent',n:2,value:50,label:'2. ürüne %50 indirim'},
+    nth2tl1:{type:'nthFixed',n:2,price:1,label:'2. ürün 1 TL'}
+  };
+  function toast(t){
+    var el=document.getElementById('toast');
+    el.textContent=t; el.style.display='block';
+    clearTimeout(toast._t); toast._t=setTimeout(function(){ el.style.display='none'; }, 2200);
+  }
+  function loadState(){
+    try{ return JSON.parse(localStorage.getItem(OPT_KEY)||'{}')||{}; }catch(e){ return {}; }
+  }
+  function saveOverrides(ov){
+    var o=loadState();
+    o.campOverrides=ov||{};
+    localStorage.setItem(OPT_KEY, JSON.stringify(o));
+  }
+  function getOverrides(){
+    var o=loadState();
+    return (o.campOverrides&&typeof o.campOverrides==='object')?o.campOverrides:{};
+  }
+  function keyOf(name){ return String(name||'').trim().toLowerCase(); }
+  function render(){
+    var ov=getOverrides(), keys=Object.keys(ov);
+    var list=document.getElementById('list');
+    if(!keys.length) list.innerHTML='<span class="m">Aktif dönemsel kampanya yok.</span>';
+    else list.innerHTML=keys.map(function(k){
+      var c=ov[k];
+      return '<span class="chip"><b>'+esc(k)+'</b> · '+esc(c.label||c.type)+
+        ' <button type="button" data-rm="'+esc(k)+'" aria-label="Kaldır">×</button></span>';
+    }).join('');
+    document.getElementById('json-out').textContent=JSON.stringify({campOverrides:ov}, null, 2);
+  }
+  function esc(s){
+    return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  document.getElementById('btn-add').onclick=function(){
+    var name=document.getElementById('seller').value.trim();
+    var tid=document.getElementById('tpl').value;
+    var tpl=TPL[tid];
+    if(!name){ toast('Satıcı adı gir'); return; }
+    if(!tpl){ toast('Şablon seç'); return; }
+    var ov=getOverrides();
+    var k=keyOf(name);
+    ov[k]={type:tpl.type,buy:tpl.buy,pay:tpl.pay,n:tpl.n,value:tpl.value,price:tpl.price,label:tpl.label};
+    saveOverrides(ov);
+    render();
+    toast(name+' → '+tpl.label);
+  };
+  document.getElementById('list').onclick=function(e){
+    var b=e.target.closest('[data-rm]'); if(!b) return;
+    var ov=getOverrides();
+    delete ov[b.getAttribute('data-rm')];
+    saveOverrides(ov); render(); toast('Kaldırıldı');
+  };
+  document.getElementById('btn-clear').onclick=function(){
+    if(!confirm('Tüm dönemsel kampanyalar silinsin mi?')) return;
+    saveOverrides({}); render(); toast('Temizlendi');
+  };
+  document.getElementById('btn-dl').onclick=function(){
+    var blob=new Blob([JSON.stringify({campOverrides:getOverrides()},null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='opt-campaigns.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  document.getElementById('file').onchange=function(){
+    var f=this.files&&this.files[0]; if(!f) return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var j=JSON.parse(r.result);
+        var ov=j.campOverrides||j||{};
+        if(typeof ov!=='object') throw new Error('format');
+        saveOverrides(ov); render(); toast('Yüklendi');
+      }catch(e){ toast('Geçersiz JSON'); }
+    };
+    r.readAsText(f); this.value='';
+  };
+  /* Satıcı listesini ana sitedeki cache’ten dene (aynı origin) */
+  try{
+    var keys=['pz_sellers','pazar2','PAZAR2'];
+    /* common pattern: sellers embedded in page only — leave datalist empty unless we find names in opt state */
+  }catch(e){}
+  render();
+})();
+</script>
+</body>
+</html>
