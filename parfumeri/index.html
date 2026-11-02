@@ -770,8 +770,13 @@ td small{display:block; color:var(--muted); font-size:14px}
             <div class="opt-filt-body"><div class="chips" id="opt-cat"></div></div>
           </details>
           <details class="opt-filt-block">
-            <summary>Satıcı (✓ tercih / / nötr / ✕ yasak)</summary>
-            <div class="opt-filt-body"><div id="opt-sellers-box"></div></div>
+            <summary>Satıcı (✓ tercih / – nötr / ✕ yasak)</summary>
+            <div class="opt-filt-body">
+              <div class="row2" style="margin-bottom:8px">
+                <button type="button" class="ghost" data-opt="seller-all-cycle" id="opt-seller-all" title="Tüm satıcıları toplu ayarla">Tümü: nötr</button>
+              </div>
+              <div id="opt-sellers-box"></div>
+            </div>
           </details>
           <p class="hint" id="opt-pool" style="margin:8px 0 0"></p>
           <div class="row2" style="margin-top:8px">
@@ -2822,10 +2827,11 @@ function optUpgradeVolumes(pack, B, goal){
 }
 /* Liste boş + keşif: bütçeye ve hedef boya uyan paket. true = devam et */
 function optRoll(){
-  if(OPT.want.length || OPT.goal!=='kesif') return true;
+  /* Liste boşsa her hedefte adet kadar rastgele koku seç (yalnız keşif değil) */
+  if(OPT.want.length) return true;
   var n=Math.max(1, Math.min(30, parseInt($('opt-qty').value,10)||1));
   var B=parseFloat(OPT.budget); if(!(B>0)) B=null;
-  var goal=OPT_GOALS.kesif;
+  var goal=OPT_GOALS[OPT.goal]||OPT_GOALS.kesif;
   var pool=optShuffle(optPool().filter(function(c){
     if(OPT.banProducts && OPT.banProducts[c.key]) return false;
     return true;
@@ -3583,7 +3589,7 @@ function optShow(){
     }
   }
   R.missing.forEach(function(w){ h+='<div class="opt-red"><b>'+esc(w.n)+'</b> satıcı filtresine uymuyor ya da listede yok. <button type="button" class="link" data-opt="rm" data-k="'+esc(w.k)+'">Listeden çıkar</button></div>'; });
-  if(!R.W.length){ el.innerHTML=h+(R.poolEmpty?'<div class="opt-red">Filtrelere uyan koku yok. Cinsiyet, mevsim veya satıcı filtresini gevşet.</div>':'<p class="empty">Hesaplanacak ürün yok. Yukarıdan parfüm ekle'+(R.goal&&R.goal===OPT_GOALS.kesif?' ya da keşif hedefinde adet yazıp Hesapla.':'')+'.</p>'); return; }
+  if(!R.W.length){ el.innerHTML=h+(R.poolEmpty?'<div class="opt-red">Filtrelere uyan koku yok. Cinsiyet, mevsim veya satıcı filtresini gevşet.</div>':'<p class="empty">Hesaplanacak ürün yok. Yukarıdan parfüm ekle ya da adet yazıp liste boşken Hesapla (rastgele seçim).</p>'); return; }
   if(R.noPlan || !R.P0){
     h+='<div class="opt-red"><b>Uygun plan bulunamadı</b><p>Seçtiğin ürünler ve filtrelerle bir sepet kurulamadı. Filtreleri gevşet veya ürün listesini azaltıp tekrar dene.</p></div>';
     el.innerHTML=h; return;
@@ -3739,6 +3745,11 @@ function optDiscUI(){
     if(!sellersReady) pool.textContent='Havuz: veri yükleniyor… (satıcı dosyaları okununca güncellenir)';
     else pool.textContent='Havuz: '+n+' koku · satıcı '+sellersReady+' · +'+pref+' · −'+ban+(err?' · hata: '+err:'');
   }
+  var allBtn=$('opt-seller-all');
+  if(allBtn){
+    var ph=OPT.sellerAllPhase||'neu';
+    allBtn.textContent=ph==='pos'?'Tümü: tercih ✓':(ph==='neg'?'Tümü: yasak ✕':'Tümü: nötr');
+  }
   optCampUI();
 }
 function optCampUI(){
@@ -3783,10 +3794,17 @@ function optSuggest(){
   return list;
 }
 function optAdd(k){
-  var c=optCat()[k]; if(!c) return; var q=Math.max(1,Math.min(9,parseInt($('opt-qty').value,10)||1));
+  var c=optCat()[k]; if(!c) return;
+  /* isim yazılırken adet 1'e çekilir; elle değiştirilmediyse 1 eklenir */
+  var qEl=$('opt-qty');
+  var q=Math.max(1,Math.min(9, parseInt(qEl&&qEl.value,10)||1));
   var f=null; OPT.want.forEach(function(w){ if(w.k===k) f=w; });
   if(f) f.q=Math.min(9,(f.q||1)+q); else OPT.want.push({k:k,n:c.name,q:q});
-  optSave(); $('opt-q').value=''; $('opt-sug').hidden=true; OPT.res=null; optChips(); optShow();
+  optSave();
+  if($('opt-q')) $('opt-q').value='';
+  if($('opt-sug')) $('opt-sug').hidden=true;
+  if(qEl) qEl.value='1';
+  OPT.res=null; optChips(); optShow();
 }
 document.addEventListener('click', function(e){
   var b=e.target.closest && e.target.closest('[data-opt]'); if(!b) return;
@@ -3799,6 +3817,7 @@ document.addEventListener('click', function(e){
   else if(a==='goal'){ OPT.goal=b.getAttribute('data-g'); OPT.rollInfo=null; }
   else if(a==='filt-reset'){
     OPT.gens={}; OPT.seas={}; OPT.times={}; OPT.cats={}; OPT.sellerPref={}; OPT.sellers='';
+    OPT.sellerAllPhase='neu';
     OPT.rollInfo=null;
   }
   else if(a==='camp-add'){
@@ -3834,6 +3853,23 @@ document.addEventListener('click', function(e){
     else if(cur==='pos') OPT.sellerPref[ssi]='-';
     else delete OPT.sellerPref[ssi];
     OPT.rollInfo=null;
+  }
+  else if(a==='seller-all-cycle'){
+    /* nötr → hepsi tercih(+) → hepsi yasak(-) → nötr */
+    OPT.sellerAllPhase=OPT.sellerAllPhase||'neu';
+    var next=OPT.sellerAllPhase==='neu'?'pos':(OPT.sellerAllPhase==='pos'?'neg':'neu');
+    OPT.sellerAllPhase=next;
+    OPT.sellerPref=OPT.sellerPref||{};
+    (PAZAR2||[]).forEach(function(s,si){
+      if(!s||!s.items||!s.items.length) return;
+      var k=String(si);
+      if(next==='neu') delete OPT.sellerPref[k];
+      else if(next==='pos') OPT.sellerPref[k]='+';
+      else OPT.sellerPref[k]='-';
+    });
+    OPT.rollInfo=null;
+    var lab=$('opt-seller-all');
+    if(lab) lab.textContent=next==='pos'?'Tümü: tercih ✓':(next==='neg'?'Tümü: yasak ✕':'Tümü: nötr');
   }
   else if(a==='run'){ OPT.decide={}; OPT.rollInfo=null; OPT.softOverage=false; OPT.sellerLock={}; OPT.volLock={}; if(!optRoll()){ optSave(); return; } optRun(); return; }
   else if(a==='clear'){ OPT.want=[]; OPT.decide={}; OPT.rollInfo=null; OPT.banSellers={}; OPT.banProducts={}; OPT.sellerLock={}; OPT.volLock={}; OPT.softOverage=false; }
@@ -3912,7 +3948,17 @@ document.addEventListener('click', function(e){
   else return;
   optSave(); optDiscUI(); if(a==='drop'){ OPT.res=null; optChips(); optRun(); return; } OPT.res=null; optChips(); optShow();
 });
-document.addEventListener('input', function(e){ if(e.target.id==='opt-q') optSuggest(); if(e.target.id==='opt-budget'){ OPT.budget=e.target.value; optSave(); } if(e.target.id==='opt-sellers'){ OPT.sellers=e.target.value; optSave(); optDiscUI(); } });
+document.addEventListener('input', function(e){
+  if(e.target.id==='opt-q'){
+    optSuggest();
+    /* parfüm adı yazılınca adet otomatik 1 */
+    if(e.target.value && e.target.value.trim()){
+      var qe=$('opt-qty'); if(qe) qe.value='1';
+    }
+  }
+  if(e.target.id==='opt-budget'){ OPT.budget=e.target.value; optSave(); }
+  if(e.target.id==='opt-sellers'){ OPT.sellers=e.target.value; optSave(); optDiscUI(); }
+});
 document.addEventListener('keydown', function(e){ if(e.target.id==='opt-q' && e.key==='Enter'){ e.preventDefault(); var l=optSuggest(); if(l.length) optAdd(l[0].key); } });
 function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; optChips(); optDiscUI(); }
 
