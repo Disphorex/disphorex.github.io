@@ -5822,12 +5822,20 @@
     {
       "id": 242,
       "name": "Dior Fahrenheit",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -5839,12 +5847,20 @@
     {
       "id": 243,
       "name": "Dior J'adore",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın",
@@ -11124,12 +11140,21 @@
     {
       "id": 472,
       "name": "Parfums de Marly Sedley",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -11140,12 +11165,21 @@
     {
       "id": 473,
       "name": "Amouage Purpose 50",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Niche"
@@ -11155,12 +11189,20 @@
     {
       "id": 474,
       "name": "Matsukita",
-      "brand": "",
+      "brand": "Matsukita",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woods",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Niche"
@@ -11170,12 +11212,20 @@
     {
       "id": 475,
       "name": "Amouage Reflection 45",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -11187,12 +11237,21 @@
     {
       "id": 476,
       "name": "Giorgio Armani Code Profumo",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek · Designer"
@@ -11202,12 +11261,20 @@
     {
       "id": 477,
       "name": "Oud Malaki",
-      "brand": "",
+      "brand": "Oud Malaki",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Designer"
@@ -11217,12 +11284,21 @@
     {
       "id": 478,
       "name": "Carolina Herrera 212 Vip",
-      "brand": "",
+      "brand": "Carolina Herrera",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek",
@@ -11233,12 +11309,21 @@
     {
       "id": 479,
       "name": "Rosendo Mateu No 5",
-      "brand": "",
+      "brand": "Rosendo Mateu",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Niche"
@@ -11248,12 +11333,20 @@
     {
       "id": 480,
       "name": "Matière Première Tubéreuse Astrale",
-      "brand": "",
+      "brand": "Matière Première",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Niche"
@@ -11263,12 +11356,20 @@
     {
       "id": 481,
       "name": "Yves Saint Laurent MYSLF Le Parfum",
-      "brand": "",
+      "brand": "Yves Saint Laurent",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Designer"
@@ -11278,12 +11379,21 @@
     {
       "id": 482,
       "name": "Istanbul",
-      "brand": "",
+      "brand": "Istanbul",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woods",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Designer"
@@ -11293,12 +11403,20 @@
     {
       "id": 483,
       "name": "Hugo Boss Bottled Pacific",
-      "brand": "",
+      "brand": "Hugo Boss",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex · Designer"
@@ -13739,12 +13857,21 @@
     {
       "id": 589,
       "name": "Dior Poison Girl",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13752,12 +13879,19 @@
     {
       "id": 590,
       "name": "Maison Margiela Jazz Club Replica",
-      "brand": "",
+      "brand": "Maison Margiela",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13765,12 +13899,20 @@
     {
       "id": 591,
       "name": "Jean Paul Gaultier Scandal Woman",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13778,12 +13920,20 @@
     {
       "id": 592,
       "name": "Loewe Solo",
-      "brand": "",
+      "brand": "Loewe",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13791,12 +13941,21 @@
     {
       "id": 593,
       "name": "Louis Vuitton Stellar Times",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -13806,12 +13965,20 @@
     {
       "id": 594,
       "name": "Tiziana Terenzi Telea",
-      "brand": "",
+      "brand": "Tiziana Terenzi",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kod S299"
@@ -13821,12 +13988,20 @@
     {
       "id": 595,
       "name": "Hermès Twilly d'Hermès",
-      "brand": "",
+      "brand": "Hermès",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13834,12 +14009,20 @@
     {
       "id": 596,
       "name": "Tiziana Terenzi Tyl Assoluto",
-      "brand": "",
+      "brand": "Tiziana Terenzi",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -13849,12 +14032,19 @@
     {
       "id": 597,
       "name": "Montale Vanilla Cake",
-      "brand": "",
+      "brand": "Montale",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13862,12 +14052,19 @@
     {
       "id": 598,
       "name": "Matière Première Vanilla Powder Extrait",
-      "brand": "",
+      "brand": "Matière Première",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13875,12 +14072,20 @@
     {
       "id": 599,
       "name": "Nishane Wulong Cha X",
-      "brand": "",
+      "brand": "Nishane",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Mossy Woods",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13888,12 +14093,20 @@
     {
       "id": 600,
       "name": "Bourjois Soir de Paris",
-      "brand": "",
+      "brand": "Bourjois",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13901,12 +14114,20 @@
     {
       "id": 602,
       "name": "Bvlgari Aqva Pour Homme",
-      "brand": "",
+      "brand": "Bvlgari",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -13914,12 +14135,20 @@
     {
       "id": 603,
       "name": "Jean Paul Gaultier Scandal Pour Homme Absolu",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -13929,12 +14158,19 @@
     {
       "id": 604,
       "name": "Tonka",
-      "brand": "",
+      "brand": "Tonka",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -15955,12 +16191,19 @@
     {
       "id": 695,
       "name": "Viktor&Rolf Spicebomb Dark Leather",
-      "brand": "",
+      "brand": "Viktor&Rolf",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -15968,12 +16211,21 @@
     {
       "id": 696,
       "name": "Tom Ford Electric Cherry",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Fruity",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -15981,12 +16233,19 @@
     {
       "id": 697,
       "name": "Bvlgari Aqva Amara",
-      "brand": "",
+      "brand": "Bvlgari",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -15994,12 +16253,19 @@
     {
       "id": 698,
       "name": "Guerlain Vanil21",
-      "brand": "",
+      "brand": "Guerlain",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16007,12 +16273,19 @@
     {
       "id": 699,
       "name": "Bogu Maai",
-      "brand": "",
+      "brand": "Bogu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16020,12 +16293,19 @@
     {
       "id": 700,
       "name": "Xerjoff XV Louis",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16033,12 +16313,19 @@
     {
       "id": 701,
       "name": "Nishane Şinanay",
-      "brand": "",
+      "brand": "Nishane",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16046,12 +16333,19 @@
     {
       "id": 702,
       "name": "Clinique Happy",
-      "brand": "",
+      "brand": "Clinique",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16059,12 +16353,19 @@
     {
       "id": 703,
       "name": "Reni Kisses Rain",
-      "brand": "",
+      "brand": "Reni",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16072,12 +16373,19 @@
     {
       "id": 704,
       "name": "Bvlgari Azaran",
-      "brand": "",
+      "brand": "Bvlgari",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16085,12 +16393,20 @@
     {
       "id": 705,
       "name": "Jean Paul Gaultier Flower Edition",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16098,12 +16414,21 @@
     {
       "id": 706,
       "name": "Boadicea the Victorious Blue Sapphire",
-      "brand": "",
+      "brand": "Boadicea the Victorious",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16111,12 +16436,20 @@
     {
       "id": 707,
       "name": "Creed Spice Wood",
-      "brand": "",
+      "brand": "Creed",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16124,12 +16457,21 @@
     {
       "id": 708,
       "name": "Dior Fahrenheit Absolute",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -16137,12 +16479,20 @@
     {
       "id": 709,
       "name": "Dior Oud Ispahan",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17031,12 +17381,21 @@
     {
       "id": 751,
       "name": "Maison Crivelli Tbr Astra",
-      "brand": "",
+      "brand": "Maison Crivelli",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz",
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17044,12 +17403,19 @@
     {
       "id": 752,
       "name": "Tvmvlvs Lydia",
-      "brand": "",
+      "brand": "Tvmvlvs",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17057,12 +17423,19 @@
     {
       "id": 753,
       "name": "Aervm Rome",
-      "brand": "",
+      "brand": "Aervm",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17070,12 +17443,19 @@
     {
       "id": 754,
       "name": "Aqvamare Adriatic",
-      "brand": "",
+      "brand": "Aqvamare",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17083,12 +17463,19 @@
     {
       "id": 755,
       "name": "Lorenzo Pazzaglia Teint",
-      "brand": "",
+      "brand": "Lorenzo Pazzaglia",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17096,12 +17483,19 @@
     {
       "id": 756,
       "name": "Vip Tengiz",
-      "brand": "",
+      "brand": "Vip",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17109,12 +17503,19 @@
     {
       "id": 757,
       "name": "Vip Magnofiscent",
-      "brand": "",
+      "brand": "Vip",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17122,12 +17523,19 @@
     {
       "id": 758,
       "name": "Dolce&Gabbana Light Blue Capri in Love",
-      "brand": "",
+      "brand": "Dolce&Gabbana",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17135,12 +17543,19 @@
     {
       "id": 759,
       "name": "Burlington",
-      "brand": "",
+      "brand": "Burlington",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17148,12 +17563,19 @@
     {
       "id": 760,
       "name": "Vip Diparadise",
-      "brand": "",
+      "brand": "Vip",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17161,12 +17583,20 @@
     {
       "id": 761,
       "name": "Clive Christian Town & Country",
-      "brand": "",
+      "brand": "Clive Christian",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17174,12 +17604,21 @@
     {
       "id": 762,
       "name": "Bond No. 9 The Scent of Peace",
-      "brand": "",
+      "brand": "Bond No. 9",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17187,12 +17626,20 @@
     {
       "id": 763,
       "name": "Dolce&Gabbana The One Parfum",
-      "brand": "",
+      "brand": "Dolce&Gabbana",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17200,12 +17647,21 @@
     {
       "id": 764,
       "name": "Byredo Bal d'Afrique Absolu",
-      "brand": "",
+      "brand": "Byredo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17213,12 +17669,19 @@
     {
       "id": 765,
       "name": "Bond No. 9 New York Nights",
-      "brand": "",
+      "brand": "Bond No. 9",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -17228,12 +17691,20 @@
     {
       "id": 766,
       "name": "Dolce&Gabbana Velvet Infusion",
-      "brand": "",
+      "brand": "Dolce&Gabbana",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17241,12 +17712,21 @@
     {
       "id": 767,
       "name": "Mmo Cappadocia",
-      "brand": "",
+      "brand": "Mmo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17254,12 +17734,21 @@
     {
       "id": 768,
       "name": "EG Old Fashioned",
-      "brand": "",
+      "brand": "EG",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17267,12 +17756,20 @@
     {
       "id": 769,
       "name": "Mancera Amberful",
-      "brand": "",
+      "brand": "Mancera",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17280,12 +17777,20 @@
     {
       "id": 770,
       "name": "Silkwood",
-      "brand": "",
+      "brand": "Silkwood",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17293,12 +17798,20 @@
     {
       "id": 771,
       "name": "VK Infinty",
-      "brand": "",
+      "brand": "VK",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17306,12 +17819,20 @@
     {
       "id": 772,
       "name": "1god OF",
-      "brand": "",
+      "brand": "1god",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17319,12 +17840,21 @@
     {
       "id": 773,
       "name": "Parfums de Marly Greenley",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17332,12 +17862,21 @@
     {
       "id": 774,
       "name": "Acqua di Parma Arancia di Capri",
-      "brand": "",
+      "brand": "Acqua di Parma",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz",
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Citrus",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17345,12 +17884,21 @@
     {
       "id": 775,
       "name": "Byredo Gypsy Water",
-      "brand": "",
+      "brand": "Byredo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17358,12 +17906,21 @@
     {
       "id": 776,
       "name": "Molecul+black Tea",
-      "brand": "",
+      "brand": "Molecul+",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17371,12 +17928,21 @@
     {
       "id": 777,
       "name": "Niş Credo",
-      "brand": "",
+      "brand": "Niş",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17384,12 +17950,21 @@
     {
       "id": 778,
       "name": "Chopard Au Vétiver du Haïti",
-      "brand": "",
+      "brand": "Chopard",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17397,12 +17972,21 @@
     {
       "id": 779,
       "name": "Yves Saint Laurent Y Elixir",
-      "brand": "",
+      "brand": "Yves Saint Laurent",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17412,12 +17996,21 @@
     {
       "id": 780,
       "name": "Bod 9 Clasic",
-      "brand": "",
+      "brand": "Bod",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17425,12 +18018,21 @@
     {
       "id": 781,
       "name": "N.kredool",
-      "brand": "",
+      "brand": "N.kredool",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17438,12 +18040,18 @@
     {
       "id": 782,
       "name": "Savage 18",
-      "brand": "",
+      "brand": "Savage",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17451,12 +18059,18 @@
     {
       "id": 783,
       "name": "Sospiro Opera Grnde",
-      "brand": "",
+      "brand": "Sospiro",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17464,12 +18078,18 @@
     {
       "id": 784,
       "name": "Ak.awakei",
-      "brand": "",
+      "brand": "Ak",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17477,12 +18097,18 @@
     {
       "id": 785,
       "name": "Ak.malty",
-      "brand": "",
+      "brand": "Ak",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17490,12 +18116,18 @@
     {
       "id": 786,
       "name": "AK Haze",
-      "brand": "",
+      "brand": "AK",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17503,12 +18135,18 @@
     {
       "id": 787,
       "name": "Green Pearl",
-      "brand": "",
+      "brand": "Green Pearl",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17516,12 +18154,18 @@
     {
       "id": 788,
       "name": "Rain Essence",
-      "brand": "",
+      "brand": "Rain",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17529,12 +18173,18 @@
     {
       "id": 789,
       "name": "ES Divane Vanilla",
-      "brand": "",
+      "brand": "ES",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17542,12 +18192,18 @@
     {
       "id": 790,
       "name": "T.borelli",
-      "brand": "",
+      "brand": "T. Borelli",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17555,12 +18211,18 @@
     {
       "id": 791,
       "name": "Shine Despite",
-      "brand": "",
+      "brand": "Shine",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17568,12 +18230,18 @@
     {
       "id": 792,
       "name": "Balm Rouge",
-      "brand": "",
+      "brand": "Balm",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17581,12 +18249,18 @@
     {
       "id": 793,
       "name": "Sel Marine",
-      "brand": "",
+      "brand": "Sel",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17594,12 +18268,18 @@
     {
       "id": 794,
       "name": "Amris Extrait Man",
-      "brand": "",
+      "brand": "Amris",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17607,12 +18287,18 @@
     {
       "id": 795,
       "name": "Chocolate Hapy",
-      "brand": "",
+      "brand": "Chocolate",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17620,12 +18306,18 @@
     {
       "id": 796,
       "name": "Parfums de Marly Castley",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17633,12 +18325,21 @@
     {
       "id": 797,
       "name": "Aqua Sekstius",
-      "brand": "",
+      "brand": "Aqua",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17646,12 +18347,21 @@
     {
       "id": 798,
       "name": "Cant Get Enoug",
-      "brand": "",
+      "brand": "Cant",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17659,12 +18369,21 @@
     {
       "id": 799,
       "name": "Memo Paris Madurai",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -17674,12 +18393,21 @@
     {
       "id": 800,
       "name": "Dandy",
-      "brand": "",
+      "brand": "Dandy",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17687,12 +18415,21 @@
     {
       "id": 801,
       "name": "Nico Patchouli Intence",
-      "brand": "",
+      "brand": "Nico",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17700,12 +18437,21 @@
     {
       "id": 802,
       "name": "Nico Oud Sublime",
-      "brand": "",
+      "brand": "Nico",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17713,12 +18459,20 @@
     {
       "id": 803,
       "name": "Nico Amber Oud",
-      "brand": "",
+      "brand": "Nico",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17726,12 +18480,21 @@
     {
       "id": 804,
       "name": "Xerjoff Tony Iommi Monkey",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17741,12 +18504,21 @@
     {
       "id": 805,
       "name": "Louis Vuitton Sur la Route",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17756,12 +18528,21 @@
     {
       "id": 806,
       "name": "Nishane Hacivat X",
-      "brand": "",
+      "brand": "Nishane",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17769,12 +18550,21 @@
     {
       "id": 807,
       "name": "Crash 10 ME",
-      "brand": "",
+      "brand": "Crash",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17782,12 +18572,21 @@
     {
       "id": 808,
       "name": "Valentino Donna Born in Roma Extradose",
-      "brand": "",
+      "brand": "Valentino",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -17797,12 +18596,22 @@
     {
       "id": 809,
       "name": "Giorgio Armani Acqua di Giò Elixir",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17810,12 +18619,21 @@
     {
       "id": 810,
       "name": "Burberry Hero Parfum",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17823,12 +18641,21 @@
     {
       "id": 811,
       "name": "Carolina Herrera Bad Boy Cobalt",
-      "brand": "",
+      "brand": "Carolina Herrera",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17836,12 +18663,19 @@
     {
       "id": 812,
       "name": "Prada Luna Rossa Ocean EDP",
-      "brand": "",
+      "brand": "Prada",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17849,12 +18683,19 @@
     {
       "id": 813,
       "name": "Giorgio Armani Acqua di Giò Profondo",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17864,12 +18705,19 @@
     {
       "id": 814,
       "name": "Bvlgari Aqva Marine",
-      "brand": "",
+      "brand": "Bvlgari",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17879,12 +18727,19 @@
     {
       "id": 815,
       "name": "Roja Parfums Enigma",
-      "brand": "",
+      "brand": "Roja Parfums",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -17894,12 +18749,19 @@
     {
       "id": 816,
       "name": "Valentino Donna Born in Roma Coral Fantasy",
-      "brand": "",
+      "brand": "Valentino",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17907,12 +18769,19 @@
     {
       "id": 817,
       "name": "Valentino Uomo Born in Roma Yellow Dream",
-      "brand": "",
+      "brand": "Valentino",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17920,12 +18789,19 @@
     {
       "id": 818,
       "name": "Tommy Hilfiger Impact",
-      "brand": "",
+      "brand": "Tommy Hilfiger",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17935,12 +18811,19 @@
     {
       "id": 819,
       "name": "Bos Trump Elixir",
-      "brand": "",
+      "brand": "Bos",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17948,12 +18831,19 @@
     {
       "id": 820,
       "name": "Nautica Voyage",
-      "brand": "",
+      "brand": "Nautica",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -17963,12 +18853,19 @@
     {
       "id": 821,
       "name": "Escentric Molecules Escentric 02",
-      "brand": "",
+      "brand": "Escentric Molecules",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17976,12 +18873,19 @@
     {
       "id": 822,
       "name": "Vip Darwaza",
-      "brand": "",
+      "brand": "Vip",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -17989,12 +18893,19 @@
     {
       "id": 823,
       "name": "Blue Les Exc",
-      "brand": "",
+      "brand": "Blue",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18002,12 +18913,19 @@
     {
       "id": 824,
       "name": "Zengi",
-      "brand": "",
+      "brand": "Zengi",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18015,12 +18933,19 @@
     {
       "id": 825,
       "name": "EG Zeng1",
-      "brand": "",
+      "brand": "EG",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18028,12 +18953,19 @@
     {
       "id": 826,
       "name": "Hazar",
-      "brand": "",
+      "brand": "Hazar",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18041,12 +18973,18 @@
     {
       "id": 827,
       "name": "Enigmatik Essence",
-      "brand": "",
+      "brand": "Enigmatic",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18054,12 +18992,19 @@
     {
       "id": 828,
       "name": "EG Ephesus",
-      "brand": "",
+      "brand": "EG",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18067,12 +19012,18 @@
     {
       "id": 829,
       "name": "Indonesian Patchouli",
-      "brand": "",
+      "brand": "Indonesian Patchouli",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18080,12 +19031,19 @@
     {
       "id": 830,
       "name": "Wild Rush",
-      "brand": "",
+      "brand": "Wild Rush",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18093,12 +19051,18 @@
     {
       "id": 831,
       "name": "Tauer Perfumes 02 L'air Du Desert",
-      "brand": "",
+      "brand": "Tauer Perfumes",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18108,12 +19072,18 @@
     {
       "id": 832,
       "name": "Xerjoff 40 Knots Extrait Unisex Parfum",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18123,12 +19093,18 @@
     {
       "id": 833,
       "name": "Maison Francis Kurkdjian A La Rose Extrait Kadın",
-      "brand": "",
+      "brand": "Maison Francis Kurkdjian",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18138,12 +19114,18 @@
     {
       "id": 834,
       "name": "Mugler Alien Women",
-      "brand": "",
+      "brand": "Mugler",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18153,12 +19135,18 @@
     {
       "id": 835,
       "name": "Louis Vuitton Apogee",
-      "brand": "",
+      "brand": "Louis Vuitton",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18168,12 +19156,19 @@
     {
       "id": 836,
       "name": "Tom Ford Beau De Jour",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18183,12 +19178,18 @@
     {
       "id": 837,
       "name": "Tom Ford Black Orchid 2020",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18198,12 +19199,18 @@
     {
       "id": 838,
       "name": "Clive Christian X Erkek",
-      "brand": "",
+      "brand": "Clive Christian",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18213,12 +19220,19 @@
     {
       "id": 839,
       "name": "Hermès D'hermes",
-      "brand": "",
+      "brand": "Hermès",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18228,12 +19242,18 @@
     {
       "id": 840,
       "name": "Memo Paris Eau De Memo",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18243,12 +19263,18 @@
     {
       "id": 841,
       "name": "Hermès Elixir Des Merveilles",
-      "brand": "",
+      "brand": "Hermès",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18258,12 +19284,21 @@
     {
       "id": 842,
       "name": "Amouage Interlude Black Iris",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18273,12 +19308,20 @@
     {
       "id": 843,
       "name": "Frédéric Malle Irısh Poudre",
-      "brand": "",
+      "brand": "Frédéric Malle",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Soft Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18288,12 +19331,21 @@
     {
       "id": 844,
       "name": "Creed Jardin D'amalfi",
-      "brand": "",
+      "brand": "Creed",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18303,12 +19355,21 @@
     {
       "id": 845,
       "name": "Issey Miyake L'eau D'Issey",
-      "brand": "",
+      "brand": "Issey Miyake",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Water",
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18318,12 +19379,21 @@
     {
       "id": 846,
       "name": "Yves Saint Laurent La Nuit De L'homme Le Parfum Extrait",
-      "brand": "",
+      "brand": "Yves Saint Laurent",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18333,12 +19403,21 @@
     {
       "id": 847,
       "name": "Tiziana Terenzi Luna Libra",
-      "brand": "",
+      "brand": "Tiziana Terenzi",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18348,12 +19427,21 @@
     {
       "id": 848,
       "name": "Prada Luna Rossa Black",
-      "brand": "",
+      "brand": "Prada",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18363,12 +19451,21 @@
     {
       "id": 849,
       "name": "Amouage Lyric",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18376,12 +19473,20 @@
     {
       "id": 850,
       "name": "Orto Parisi Megamare Premium",
-      "brand": "",
+      "brand": "Orto Parisi",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18391,12 +19496,21 @@
     {
       "id": 851,
       "name": "Memo Paris Eau De",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18406,12 +19520,21 @@
     {
       "id": 852,
       "name": "Dior Miss Dior 2024",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18421,12 +19544,21 @@
     {
       "id": 853,
       "name": "Guerlain Mon",
-      "brand": "",
+      "brand": "Guerlain",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18436,12 +19568,21 @@
     {
       "id": 854,
       "name": "Narciso Rodriguez Narciso For Her",
-      "brand": "",
+      "brand": "Narciso Rodriguez",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18451,12 +19592,21 @@
     {
       "id": 855,
       "name": "Emre Boslu Narcotic Elixir",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete",
@@ -18466,12 +19616,20 @@
     {
       "id": 856,
       "name": "Prada Ocean Luna Rossa",
-      "brand": "",
+      "brand": "Prada",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18481,12 +19639,23 @@
     {
       "id": 857,
       "name": "Emre Boslu Penta Vanil",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Soft Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18494,12 +19663,23 @@
     {
       "id": 858,
       "name": "Emre Boslu Spice Leather",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete",
@@ -18509,12 +19689,23 @@
     {
       "id": 859,
       "name": "Emre Boslu Noir Extrait",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Mossy Woods",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18524,12 +19715,23 @@
     {
       "id": 860,
       "name": "Emre Boslu The Scent Intense Extrait",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18539,12 +19741,23 @@
     {
       "id": 861,
       "name": "Emre Boslu Guidance 46",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18554,12 +19767,23 @@
     {
       "id": 862,
       "name": "Emre Boslu Bright Crystal",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18569,12 +19793,23 @@
     {
       "id": 863,
       "name": "Emre Boslu Le Beau Paradise Garden Extrait",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18584,12 +19819,23 @@
     {
       "id": 864,
       "name": "Emre Boslu Goddess",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18599,12 +19845,23 @@
     {
       "id": 865,
       "name": "Emre Boslu Yevm Premium",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18614,12 +19871,23 @@
     {
       "id": 866,
       "name": "Emre Boslu Stronger With You Absolutely Premium",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18627,12 +19895,23 @@
     {
       "id": 867,
       "name": "Emre Boslu Uomo Premium",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18640,12 +19919,23 @@
     {
       "id": 868,
       "name": "Emre Boslu Hibiscus Mahajad Premium",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18653,12 +19943,23 @@
     {
       "id": 869,
       "name": "Emre Boslu Kenzo Pour Homme Extrait",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18666,12 +19967,23 @@
     {
       "id": 870,
       "name": "Emre Boslu Interlude Man",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18681,12 +19993,23 @@
     {
       "id": 871,
       "name": "Emre Boslu Electric Cherry",
-      "brand": "",
+      "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fruity",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18696,12 +20019,23 @@
     {
       "id": 872,
       "name": "Ambre Levant",
-      "brand": "",
+      "brand": "Ambre Levant",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18711,12 +20045,23 @@
     {
       "id": 873,
       "name": "Abercrombie & Fitch Fierce",
-      "brand": "",
+      "brand": "Abercrombie & Fitch",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18726,12 +20071,23 @@
     {
       "id": 874,
       "name": "Magenta Tanzanite",
-      "brand": "",
+      "brand": "Magenta",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18741,12 +20097,23 @@
     {
       "id": 875,
       "name": "Parfums de Marly Safanad",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18756,12 +20123,22 @@
     {
       "id": 876,
       "name": "İmza Koku deneme seti (5 × 10 ml)",
-      "brand": "",
+      "brand": "İmza Koku",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -18769,12 +20146,22 @@
     {
       "id": 877,
       "name": "Hao",
-      "brand": "",
+      "brand": "Hao",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18784,12 +20171,22 @@
     {
       "id": 878,
       "name": "2'li Parfüm Seti | Erkek + Erkek",
-      "brand": "",
+      "brand": "Unknown",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18799,12 +20196,23 @@
     {
       "id": 879,
       "name": "2'li Parfüm Seti | Kadın + Erkek",
-      "brand": "",
+      "brand": "Unknown",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın + Erkek"
@@ -18814,12 +20222,22 @@
     {
       "id": 880,
       "name": "2'li Parfüm Seti | Kadın + Kadın",
-      "brand": "",
+      "brand": "Unknown",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18829,12 +20247,23 @@
     {
       "id": 881,
       "name": "Constantinople",
-      "brand": "",
+      "brand": "Constantinople",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18844,12 +20273,23 @@
     {
       "id": 882,
       "name": "Parfums de Marly Halley",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18859,12 +20299,23 @@
     {
       "id": 883,
       "name": "Yves Saint Laurent Paris",
-      "brand": "",
+      "brand": "Yves Saint Laurent",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18874,12 +20325,23 @@
     {
       "id": 884,
       "name": "Emporio Armani Stronger With You Parfum",
-      "brand": "",
+      "brand": "Emporio Armani",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18889,12 +20351,23 @@
     {
       "id": 885,
       "name": "Carolina Herrera 212 Sexy",
-      "brand": "",
+      "brand": "Carolina Herrera",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18904,12 +20377,23 @@
     {
       "id": 886,
       "name": "Montblanc Explorer",
-      "brand": "",
+      "brand": "Montblanc",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz",
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18919,12 +20403,20 @@
     {
       "id": 887,
       "name": "Dior Miss Dior",
-      "brand": "",
+      "brand": "Dior",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18934,12 +20426,20 @@
     {
       "id": 888,
       "name": "Lancôme Miracle",
-      "brand": "",
+      "brand": "Lancôme",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18949,12 +20449,20 @@
     {
       "id": 889,
       "name": "Maison Margiela Replica Jazz Club",
-      "brand": "",
+      "brand": "Maison Margiela",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -18964,12 +20472,20 @@
     {
       "id": 890,
       "name": "Burberry My",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -18979,12 +20495,20 @@
     {
       "id": 891,
       "name": "Clive Christian No1",
-      "brand": "",
+      "brand": "Clive Christian",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -18994,12 +20518,20 @@
     {
       "id": 892,
       "name": "Amouage Reflection Woman",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19009,12 +20541,20 @@
     {
       "id": 893,
       "name": "Burberry London",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19024,12 +20564,20 @@
     {
       "id": 894,
       "name": "Gucci Rush",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19039,12 +20587,20 @@
     {
       "id": 895,
       "name": "DKNY Be Delicious",
-      "brand": "",
+      "brand": "DKNY",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19054,12 +20610,20 @@
     {
       "id": 896,
       "name": "Parfums de Marly Palatine",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -19069,12 +20633,20 @@
     {
       "id": 897,
       "name": "Jean Paul Gaultier Divine",
-      "brand": "",
+      "brand": "Jean Paul Gaultier",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19084,12 +20656,20 @@
     {
       "id": 898,
       "name": "Atkinsons 24 Old Bond Street",
-      "brand": "",
+      "brand": "Atkinsons",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19099,12 +20679,20 @@
     {
       "id": 899,
       "name": "Parfums de Marly Sedbury",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19114,12 +20702,20 @@
     {
       "id": 900,
       "name": "Parfums de Marly Meliora",
-      "brand": "",
+      "brand": "Parfums de Marly",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19129,12 +20725,20 @@
     {
       "id": 901,
       "name": "Yves Saint Laurent Libre Le Parfum",
-      "brand": "",
+      "brand": "Yves Saint Laurent",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19144,12 +20748,21 @@
     {
       "id": 902,
       "name": "Nishane Papilefiko",
-      "brand": "",
+      "brand": "Nishane",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -19159,12 +20772,19 @@
     {
       "id": 903,
       "name": "Shiseido Zen",
-      "brand": "",
+      "brand": "Shiseido",
       "variant": "",
-      "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -19174,12 +20794,19 @@
     {
       "id": 904,
       "name": "Paco Rabanne Million Gold",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19189,12 +20816,21 @@
     {
       "id": 905,
       "name": "Tom Ford White Patchouli",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -19204,12 +20840,20 @@
     {
       "id": 906,
       "name": "Paco Rabanne Invictus Victory",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19219,12 +20863,19 @@
     {
       "id": 907,
       "name": "Attıtude",
-      "brand": "",
+      "brand": "Attitude",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19234,12 +20885,21 @@
     {
       "id": 908,
       "name": "Issey Miyake Nuit d'Issey",
-      "brand": "",
+      "brand": "Issey Miyake",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19249,12 +20909,19 @@
     {
       "id": 909,
       "name": "Forever",
-      "brand": "",
+      "brand": "Forever",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19264,12 +20931,20 @@
     {
       "id": 910,
       "name": "Prada Luna Rossa Ocean Le Parfum",
-      "brand": "",
+      "brand": "Prada",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19279,12 +20954,19 @@
     {
       "id": 911,
       "name": "Chic",
-      "brand": "",
+      "brand": "Chic",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19294,12 +20976,20 @@
     {
       "id": 912,
       "name": "Paco Rabanne Invictus Aqua",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19309,12 +20999,21 @@
     {
       "id": 913,
       "name": "Gucci Guilty Intense",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19324,12 +21023,20 @@
     {
       "id": 914,
       "name": "Dolce&Gabbana The One Sport",
-      "brand": "",
+      "brand": "Dolce & Gabbana",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19339,12 +21046,20 @@
     {
       "id": 915,
       "name": "Jil Sander Sun Men",
-      "brand": "",
+      "brand": "Jil Sander",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19354,12 +21069,21 @@
     {
       "id": 916,
       "name": "Ermenegildo Zegna Intenso",
-      "brand": "",
+      "brand": "Ermenegildo Zegna",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19369,12 +21093,19 @@
     {
       "id": 917,
       "name": "Azzaro Wanted",
-      "brand": "",
+      "brand": "Azzaro",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19384,12 +21115,20 @@
     {
       "id": 918,
       "name": "Dolce&Gabbana Light Blue Intense",
-      "brand": "",
+      "brand": "Dolce & Gabbana",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19399,12 +21138,19 @@
     {
       "id": 919,
       "name": "Montblanc Explorer Ultra Blue",
-      "brand": "",
+      "brand": "Montblanc",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19414,12 +21160,19 @@
     {
       "id": 920,
       "name": "Lacoste Essential",
-      "brand": "",
+      "brand": "Lacoste",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19429,12 +21182,20 @@
     {
       "id": 921,
       "name": "Dark Temptation",
-      "brand": "",
+      "brand": "Azzaro",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19444,12 +21205,19 @@
     {
       "id": 922,
       "name": "Comme des Garçons Wonderwood",
-      "brand": "",
+      "brand": "Comme des Garçons",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19459,12 +21227,19 @@
     {
       "id": 923,
       "name": "Paco Rabanne 1 Million Royal",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19474,12 +21249,19 @@
     {
       "id": 924,
       "name": "Gucci Pour Homme II",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19489,12 +21271,20 @@
     {
       "id": 925,
       "name": "Coffee Whiskey",
-      "brand": "",
+      "brand": "Azzaro",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19502,12 +21292,19 @@
     {
       "id": 926,
       "name": "Leader",
-      "brand": "",
+      "brand": "Leader",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19515,12 +21312,18 @@
     {
       "id": 927,
       "name": "Safran Musc",
-      "brand": "",
+      "brand": "Safran",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19528,12 +21331,19 @@
     {
       "id": 928,
       "name": "Night Dream",
-      "brand": "",
+      "brand": "Night Dream",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Mossy Woods",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19541,12 +21351,19 @@
     {
       "id": 929,
       "name": "Labyrinthe",
-      "brand": "",
+      "brand": "Labyrinthe",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19554,12 +21371,19 @@
     {
       "id": 930,
       "name": "Seijaku",
-      "brand": "",
+      "brand": "Seijaku",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19567,12 +21391,18 @@
     {
       "id": 931,
       "name": "Deluxe keşif seti (4'lü)",
-      "brand": "",
+      "brand": "Deluxe",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Deneme seti"
@@ -19582,12 +21412,19 @@
     {
       "id": 932,
       "name": "Burberry Hero Eau de Parfum",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19597,12 +21434,19 @@
     {
       "id": 933,
       "name": "Chanel Égoïste",
-      "brand": "",
+      "brand": "Chanel",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19612,12 +21456,19 @@
     {
       "id": 934,
       "name": "Roja Parfums Oligarch",
-      "brand": "",
+      "brand": "Roja Parfums",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19627,12 +21478,19 @@
     {
       "id": 935,
       "name": "Opulent Shaik Classic No 77",
-      "brand": "",
+      "brand": "Opulent Shaik",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -19642,12 +21500,19 @@
     {
       "id": 936,
       "name": "Antonio Banderas Blue Seduction",
-      "brand": "",
+      "brand": "Antonio Banderas",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19657,12 +21522,19 @@
     {
       "id": 937,
       "name": "Giorgio Armani Acqua di Giò EDP",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -19672,12 +21544,19 @@
     {
       "id": 938,
       "name": "Lattafa Fakhar",
-      "brand": "",
+      "brand": "Lattafa",
       "variant": "",
-      "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -19687,12 +21566,19 @@
     {
       "id": 939,
       "name": "Deluxe My Land",
-      "brand": "",
+      "brand": "Deluxe",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19700,12 +21586,19 @@
     {
       "id": 940,
       "name": "Abercrombie & Fitch Classic",
-      "brand": "",
+      "brand": "Abercrombie & Fitch",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19713,12 +21606,19 @@
     {
       "id": 941,
       "name": "Amouage Memoir Man",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19726,12 +21626,19 @@
     {
       "id": 942,
       "name": "Bond No. 9 Signature",
-      "brand": "",
+      "brand": "Bond No. 9",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19739,12 +21646,19 @@
     {
       "id": 943,
       "name": "Burberry Her Elixir",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19752,12 +21666,19 @@
     {
       "id": 944,
       "name": "Bvlgari Jasmin Noir",
-      "brand": "",
+      "brand": "Bvlgari",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19765,12 +21686,19 @@
     {
       "id": 945,
       "name": "Byredo Oud Immortel",
-      "brand": "",
+      "brand": "Byredo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19778,12 +21706,19 @@
     {
       "id": 946,
       "name": "Cacharel Amor Amor",
-      "brand": "",
+      "brand": "Cacharel",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19791,12 +21726,19 @@
     {
       "id": 947,
       "name": "Carolina Herrera La Bomba",
-      "brand": "",
+      "brand": "Carolina Herrera",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19804,12 +21746,18 @@
     {
       "id": 948,
       "name": "Chanel Coco",
-      "brand": "",
+      "brand": "Chanel",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19817,12 +21765,18 @@
     {
       "id": 949,
       "name": "Chopard Casmir",
-      "brand": "",
+      "brand": "Chopard",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19830,12 +21784,18 @@
     {
       "id": 950,
       "name": "Costume National Scent Intense",
-      "brand": "",
+      "brand": "Costume National",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19843,12 +21803,19 @@
     {
       "id": 951,
       "name": "Diesel Only The Brave Tattoo",
-      "brand": "",
+      "brand": "Diesel",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19856,12 +21823,19 @@
     {
       "id": 952,
       "name": "Emporio Armani She",
-      "brand": "",
+      "brand": "Emporio Armani",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19869,12 +21843,18 @@
     {
       "id": 953,
       "name": "Emporio Armani Stronger With You Only",
-      "brand": "",
+      "brand": "Emporio Armani",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19882,12 +21862,19 @@
     {
       "id": 954,
       "name": "Escada Collection",
-      "brand": "",
+      "brand": "Escada",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19895,12 +21882,19 @@
     {
       "id": 955,
       "name": "Escada Graffiti",
-      "brand": "",
+      "brand": "Escada",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19908,12 +21902,18 @@
     {
       "id": 956,
       "name": "Escada Magnetism",
-      "brand": "",
+      "brand": "Escada",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19921,12 +21921,19 @@
     {
       "id": 957,
       "name": "Ex Nihilo Outcast Blue",
-      "brand": "",
+      "brand": "Ex Nihilo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19934,12 +21941,18 @@
     {
       "id": 958,
       "name": "Giorgio Armani Code for Women",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19947,12 +21960,19 @@
     {
       "id": 959,
       "name": "Giorgio Armani He",
-      "brand": "",
+      "brand": "Giorgio Armani",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19960,12 +21980,18 @@
     {
       "id": 960,
       "name": "Giorgio Armani Emporio Armani Stronger With You Absolutely",
-      "brand": "",
+      "brand": "Emporio Armani",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19973,12 +21999,19 @@
     {
       "id": 961,
       "name": "Gucci Bamboo",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19986,12 +22019,20 @@
     {
       "id": 962,
       "name": "Gucci Envy Me",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -19999,12 +22040,19 @@
     {
       "id": 963,
       "name": "Gucci Rush 2",
-      "brand": "",
+      "brand": "Gucci",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20012,12 +22060,19 @@
     {
       "id": 964,
       "name": "Guerlain L'Instant de Guerlain pour Homme",
-      "brand": "",
+      "brand": "Guerlain",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20025,12 +22080,20 @@
     {
       "id": 965,
       "name": "Hugo Boss Intense for Her",
-      "brand": "",
+      "brand": "Hugo Boss",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20038,12 +22101,19 @@
     {
       "id": 966,
       "name": "Hugo Boss Hugo",
-      "brand": "",
+      "brand": "Hugo Boss",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20051,12 +22121,20 @@
     {
       "id": 967,
       "name": "Initio Oud for Happiness",
-      "brand": "",
+      "brand": "Initio",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20064,12 +22142,19 @@
     {
       "id": 968,
       "name": "Kajal Dahab",
-      "brand": "",
+      "brand": "Kajal",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20077,12 +22162,19 @@
     {
       "id": 969,
       "name": "Kenzo Amour",
-      "brand": "",
+      "brand": "Kenzo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20090,12 +22182,20 @@
     {
       "id": 970,
       "name": "Kenzo Flower by",
-      "brand": "",
+      "brand": "Kenzo",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20103,12 +22203,19 @@
     {
       "id": 971,
       "name": "By Kilian Good Girl Gone Bad Extreme",
-      "brand": "",
+      "brand": "By Kilian",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20116,12 +22223,20 @@
     {
       "id": 972,
       "name": "Lacoste Touch of Pink",
-      "brand": "",
+      "brand": "Lacoste",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20129,12 +22244,20 @@
     {
       "id": 973,
       "name": "Lalique White",
-      "brand": "",
+      "brand": "Lalique",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20142,12 +22265,19 @@
     {
       "id": 974,
       "name": "Lorenzo Pazzaglia Sun Gria",
-      "brand": "",
+      "brand": "Lorenzo Pazzaglia",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20155,12 +22285,20 @@
     {
       "id": 975,
       "name": "Maison Francis Kurkdjian Gentle Fluidity Gold",
-      "brand": "",
+      "brand": "Maison Francis Kurkdjian",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20168,12 +22306,19 @@
     {
       "id": 976,
       "name": "Michael Kors Sexy Amber",
-      "brand": "",
+      "brand": "Michael Kors",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20181,12 +22326,19 @@
     {
       "id": 977,
       "name": "Paco Rabanne Ultraviolet",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20194,12 +22346,19 @@
     {
       "id": 978,
       "name": "Paris Hilton for Women",
-      "brand": "",
+      "brand": "Paris Hilton",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20207,12 +22366,19 @@
     {
       "id": 979,
       "name": "Prada Candy",
-      "brand": "",
+      "brand": "Prada",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fruity",
+        "Soft Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20220,12 +22386,19 @@
     {
       "id": 980,
       "name": "Ralph Lauren Polo Blue",
-      "brand": "",
+      "brand": "Ralph Lauren",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20233,12 +22406,19 @@
     {
       "id": 981,
       "name": "Roberto Cavalli Roberto Cavalli",
-      "brand": "",
+      "brand": "Roberto Cavalli",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20246,12 +22426,19 @@
     {
       "id": 982,
       "name": "Roja Parfums A Goodnight Kiss",
-      "brand": "",
+      "brand": "Roja Parfums",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Floral Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20259,12 +22446,19 @@
     {
       "id": 983,
       "name": "Tom Ford Oud Wood Intense",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20272,12 +22466,19 @@
     {
       "id": 984,
       "name": "Tom Ford Venetian Bergamot",
-      "brand": "",
+      "brand": "Tom Ford",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Citrus",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20285,12 +22486,19 @@
     {
       "id": 985,
       "name": "Unique'e Luxury Crush On Me",
-      "brand": "",
+      "brand": "Unique'e",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fruity",
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20298,12 +22506,19 @@
     {
       "id": 986,
       "name": "Vakko Vakko",
-      "brand": "",
+      "brand": "Vakko",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20311,12 +22526,19 @@
     {
       "id": 987,
       "name": "Vertus Amber Elixir",
-      "brand": "",
+      "brand": "Vertus",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20324,12 +22546,19 @@
     {
       "id": 988,
       "name": "Victoria's Secret Scandalous",
-      "brand": "",
+      "brand": "Victoria's Secret",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Kadın",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Soft Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20337,12 +22566,19 @@
     {
       "id": 989,
       "name": "Xerjoff La Capitale",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20350,12 +22586,19 @@
     {
       "id": 990,
       "name": "Zadig&Voltaire This Is Us!",
-      "brand": "",
+      "brand": "Zadig & Voltaire",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20363,12 +22606,18 @@
     {
       "id": 991,
       "name": "Deneme seti (5 × 3 ml)",
-      "brand": "",
+      "brand": "Deneme seti",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Deneme seti"
@@ -20378,12 +22627,21 @@
     {
       "id": 992,
       "name": "Kadın deneme seti (5 × 15 ml)",
-      "brand": "",
+      "brand": "Deneme",
       "variant": "",
       "gender": "Kadın",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Kadın"
@@ -20393,12 +22651,21 @@
     {
       "id": 993,
       "name": "Versace Boksik",
-      "brand": "",
+      "brand": "Versace",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20408,12 +22675,21 @@
     {
       "id": 994,
       "name": "Deneme",
-      "brand": "",
+      "brand": "Deneme",
       "variant": "",
-      "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar",
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20423,12 +22699,21 @@
     {
       "id": 995,
       "name": "E-153 A. You Intensely Erkek Parfüm",
-      "brand": "",
+      "brand": "E-153",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20438,12 +22723,21 @@
     {
       "id": 996,
       "name": "E-500 İ.Absolute Aphrodisiac Erkek Parfüm",
-      "brand": "",
+      "brand": "E-500",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20453,12 +22747,21 @@
     {
       "id": 997,
       "name": "E-151 Z. Voltaire This Is Him Parfüm",
-      "brand": "",
+      "brand": "E-151",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20466,12 +22769,21 @@
     {
       "id": 998,
       "name": "E-13 V. Uomo Parfüm",
-      "brand": "",
+      "brand": "E-13",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20479,12 +22791,21 @@
     {
       "id": 999,
       "name": "E-145 C.K One Man Erkek Parfüm",
-      "brand": "",
+      "brand": "E-145",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20494,12 +22815,21 @@
     {
       "id": 1000,
       "name": "E-138 T.F Velvet Orchid Erkek Parfüm",
-      "brand": "",
+      "brand": "E-138",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20509,12 +22839,21 @@
     {
       "id": 1001,
       "name": "E-139 T.F Bitter Peach Unisex Parfüm",
-      "brand": "",
+      "brand": "T.F",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus",
+        "Fruity"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -20524,12 +22863,19 @@
     {
       "id": 1002,
       "name": "E-141 P. Luna Rosaa Erkek Parfüm",
-      "brand": "",
+      "brand": "P. Luna",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20539,12 +22885,20 @@
     {
       "id": 1003,
       "name": "E-140 B. NO 9 Signature Erkek Parfüm",
-      "brand": "",
+      "brand": "B. NO 9",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20554,12 +22908,20 @@
     {
       "id": 1004,
       "name": "E-137 M. Vanilla Cake",
-      "brand": "",
+      "brand": "M.",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Soft Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20567,12 +22929,20 @@
     {
       "id": 1005,
       "name": "E-136 Arabic Çikolata Erkek Parfüm",
-      "brand": "",
+      "brand": "Arabic",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20582,12 +22952,20 @@
     {
       "id": 1006,
       "name": "E-135 T.F. Vanille Fatale",
-      "brand": "",
+      "brand": "T.F.",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Unisex",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Soft Floral",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20595,12 +22973,19 @@
     {
       "id": 1007,
       "name": "E-134 T.F. Venetian Bergamot",
-      "brand": "",
+      "brand": "T.F.",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20608,12 +22993,19 @@
     {
       "id": 1008,
       "name": "E-133 T.F. Tuscan Leather",
-      "brand": "",
+      "brand": "T.F.",
       "variant": "",
-      "gender": "",
-      "season": "",
-      "time": "",
-      "category": "",
+      "gender": "Erkek",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
@@ -20621,12 +23013,19 @@
     {
       "id": 1009,
       "name": "E-122 T.F. Neroli Portofino Erkek Parfüm",
-      "brand": "",
+      "brand": "T.F.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20636,12 +23035,19 @@
     {
       "id": 1010,
       "name": "E-116 T.F. Oud Wood Intense Erkek Parfüm",
-      "brand": "",
+      "brand": "T.F.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20651,12 +23057,19 @@
     {
       "id": 1011,
       "name": "E-115 T.F. Lost Cherry Erkek Parfüm",
-      "brand": "",
+      "brand": "T.F.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fruity",
+        "Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20666,12 +23079,21 @@
     {
       "id": 1012,
       "name": "E-113 A. Wanted By Night Erkek Parfüm",
-      "brand": "",
+      "brand": "E-113",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20681,12 +23103,21 @@
     {
       "id": 1013,
       "name": "E-112 E.A. S.With You Only Erkek Parfüm",
-      "brand": "",
+      "brand": "E-112",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20696,12 +23127,21 @@
     {
       "id": 1014,
       "name": "E-107 M.B. Explorer Erkek Parfüm",
-      "brand": "",
+      "brand": "E-107",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20711,12 +23151,21 @@
     {
       "id": 1015,
       "name": "E-102 O.Million Lucky Erkek Parfüm",
-      "brand": "",
+      "brand": "E-102",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20726,12 +23175,21 @@
     {
       "id": 1016,
       "name": "E-45 T. T. Hermes Erkek Parfüm",
-      "brand": "",
+      "brand": "E-45",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20741,12 +23199,21 @@
     {
       "id": 1017,
       "name": "E-38 C. H. 212 Men Erkek Parfüm",
-      "brand": "",
+      "brand": "E-38",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20756,12 +23223,21 @@
     {
       "id": 1018,
       "name": "E-101 D. Marly Pegasus Erkek Parfüm",
-      "brand": "",
+      "brand": "E-101",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20771,12 +23247,21 @@
     {
       "id": 1019,
       "name": "E-99 C.H Bad Boy Erkek Parfüm",
-      "brand": "",
+      "brand": "E-99",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20786,12 +23271,22 @@
     {
       "id": 1020,
       "name": "E-97 Amouage Interlude Erkek Parfüm",
-      "brand": "",
+      "brand": "Amouage",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20801,12 +23296,21 @@
     {
       "id": 1021,
       "name": "E-95 G. Guilty Man Erkek Parfüm",
-      "brand": "",
+      "brand": "G",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar",
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20816,12 +23320,20 @@
     {
       "id": 1022,
       "name": "E-94 L. White Erkek Parfüm",
-      "brand": "",
+      "brand": "E-94 L. White",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20831,12 +23343,20 @@
     {
       "id": 1023,
       "name": "E-93 J.P.G Ultra Male Erkek Parfüm",
-      "brand": "",
+      "brand": "E-93 J.P.G Ultra Male",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20846,12 +23366,20 @@
     {
       "id": 1024,
       "name": "E-91 Y.S.L La Nuit De L'Homme Erkek Parfüm",
-      "brand": "",
+      "brand": "E-91 Y.S.L La Nuit De L'Homme",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20861,12 +23389,20 @@
     {
       "id": 1025,
       "name": "E-90 B. Le Gemme Tygar Erkek Parfüm",
-      "brand": "",
+      "brand": "E-90 B. Le Gemme Tygar",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20876,12 +23412,20 @@
     {
       "id": 1026,
       "name": "E-89 C. Allure Homme Sport Erkek Parfüm",
-      "brand": "",
+      "brand": "E-89 C. Allure Homme Sport",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20891,12 +23435,20 @@
     {
       "id": 1027,
       "name": "E-88 Parfums de Marly Layton Erkek Parfüm",
-      "brand": "",
+      "brand": "E-88 Parfums de Marly Layton",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20906,12 +23458,20 @@
     {
       "id": 1028,
       "name": "E-86 C.H. 212 Sexy Men Erkek Parfüm",
-      "brand": "",
+      "brand": "E-86 C.H. 212 Sexy Men",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20921,12 +23481,20 @@
     {
       "id": 1029,
       "name": "E-85 B. Man In Black Erkek Parfüm",
-      "brand": "",
+      "brand": "E-85 B. Man In Black",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20936,12 +23504,20 @@
     {
       "id": 1030,
       "name": "E-84 L. Essential Erkek Parfüm",
-      "brand": "",
+      "brand": "E-84 L. Essential",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Green"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20951,12 +23527,20 @@
     {
       "id": 1031,
       "name": "E-83 Armani He Erkek Parfüm",
-      "brand": "",
+      "brand": "E-83 Armani He",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20966,12 +23550,20 @@
     {
       "id": 1032,
       "name": "E-81 Abercrombie & Fitch Classic Erkek Parfüm",
-      "brand": "",
+      "brand": "E-81 Abercrombie & Fitch Classic",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20981,12 +23573,20 @@
     {
       "id": 1033,
       "name": "E-80 V. Dylan Blue Erkek Parfüm",
-      "brand": "",
+      "brand": "E-80 V. Dylan Blue",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -20996,12 +23596,20 @@
     {
       "id": 1034,
       "name": "E-79 T.F. Tobacco Vanille Erkek Parfüm",
-      "brand": "",
+      "brand": "E-79 T.F. Tobacco Vanille",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21011,12 +23619,20 @@
     {
       "id": 1035,
       "name": "E-78 V.R. Spicebomb Erkek Parfüm",
-      "brand": "",
+      "brand": "E-78 V.R. Spicebomb",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21026,12 +23642,20 @@
     {
       "id": 1036,
       "name": "E-64 T.F Ombre Leather Erkek Parfüm",
-      "brand": "",
+      "brand": "E-64 T.F Ombre Leather",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21041,12 +23665,20 @@
     {
       "id": 1037,
       "name": "E-74 Memo Marfa Erkek Parfüm",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21056,12 +23688,19 @@
     {
       "id": 1038,
       "name": "E-71 Memo African Leather Unisex Parfüm",
-      "brand": "",
+      "brand": "Memo Paris",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -21071,12 +23710,19 @@
     {
       "id": 1039,
       "name": "E-66 A. Gio Profumo Erkek Parfüm",
-      "brand": "",
+      "brand": "Acqua di Gio",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21086,12 +23732,20 @@
     {
       "id": 1040,
       "name": "E-65 Xerjoff More Than Words Unisex Parfüm",
-      "brand": "",
+      "brand": "Xerjoff",
       "variant": "",
       "gender": "Unisex",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral Amber",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Unisex"
@@ -21101,12 +23755,19 @@
     {
       "id": 1041,
       "name": "E-87 Fleur Narcotique Erkek Parfüm",
-      "brand": "",
+      "brand": "Fleur Narcotique",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "İlkbahar"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Floral",
+        "Soft Floral"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21116,12 +23777,20 @@
     {
       "id": 1042,
       "name": "E-63 A. Wanted For Men Erkek Parfüm",
-      "brand": "",
+      "brand": "A. Wanted",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21131,12 +23800,20 @@
     {
       "id": 1043,
       "name": "E-61 D. Onyl The Brave Tattoo Erkek Parfüm",
-      "brand": "",
+      "brand": "D. Onyl",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Dry Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21146,12 +23823,19 @@
     {
       "id": 1044,
       "name": "E-60 I. M. L'Eau d'Issey Pour Homme Erkek Parfüm",
-      "brand": "",
+      "brand": "Issey Miyake",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21161,12 +23845,20 @@
     {
       "id": 1045,
       "name": "E-59 T.F Noir Extreme Erkek Parfüm",
-      "brand": "",
+      "brand": "T.F. Noir",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Amber",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21176,12 +23868,20 @@
     {
       "id": 1046,
       "name": "E-58 Y.S.L. L'Homme Erkek Parfüm",
-      "brand": "",
+      "brand": "YSL",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21191,12 +23891,19 @@
     {
       "id": 1047,
       "name": "E-5 H. Boss Boss Erkek Parfüm",
-      "brand": "",
+      "brand": "Hugo Boss",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21206,12 +23913,19 @@
     {
       "id": 1048,
       "name": "E-47 G. Ultra Marine Erkek Parfüm",
-      "brand": "",
+      "brand": "G. Ultra Marine",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21221,12 +23935,20 @@
     {
       "id": 1049,
       "name": "E-46 P. R. One Million Erkek Parfüm",
-      "brand": "",
+      "brand": "Paco Rabanne",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Sonbahar"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21236,12 +23958,20 @@
     {
       "id": 1050,
       "name": "E-44 L. Red Erkek Parfüm",
-      "brand": "",
+      "brand": "L. Red",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Kış"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21251,12 +23981,19 @@
     {
       "id": 1051,
       "name": "E-43 C. H. 212 Vip Men Erkek Parfüm",
-      "brand": "",
+      "brand": "212 VIP Men",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21266,12 +24003,20 @@
     {
       "id": 1052,
       "name": "E-42 G. A. Acqua Di Gio Erkek Parfüm",
-      "brand": "",
+      "brand": "Acqua di Gio",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21281,12 +24026,20 @@
     {
       "id": 1053,
       "name": "E-41 T. F. Black Orchid Erkek Parfüm",
-      "brand": "",
+      "brand": "Black Orchid",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Amber Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21296,12 +24049,19 @@
     {
       "id": 1054,
       "name": "E-40 Vakko Erkek Parfüm",
-      "brand": "",
+      "brand": "Vakko",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21311,12 +24071,20 @@
     {
       "id": 1055,
       "name": "E-39 P. R. Invictus Erkek Parfüm",
-      "brand": "",
+      "brand": "Invictus",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21326,12 +24094,20 @@
     {
       "id": 1056,
       "name": "E-30 R. L. Polo Blue Erkek Parfüm",
-      "brand": "",
+      "brand": "Polo Blue",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Water"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21341,12 +24117,19 @@
     {
       "id": 1057,
       "name": "E-29 Burberry Classic Erkek Parfüm",
-      "brand": "",
+      "brand": "Burberry",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21356,12 +24139,20 @@
     {
       "id": 1058,
       "name": "E-28 V. Eros Flame Erkek Parfüm",
-      "brand": "",
+      "brand": "Eros Flame",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Floral",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21371,12 +24162,20 @@
     {
       "id": 1059,
       "name": "E-27 C. Chanel Blu de Chanel Erkek Parfüm",
-      "brand": "",
+      "brand": "Blu de Chanel",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21386,12 +24185,20 @@
     {
       "id": 1060,
       "name": "E-26 C.D. Dior Homme Intense Erkek Parfüm",
-      "brand": "",
+      "brand": "Dior Homme Intense",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21401,12 +24208,20 @@
     {
       "id": 1061,
       "name": "E-25 G. Pi Erkek Parfüm",
-      "brand": "",
+      "brand": "Pi",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Mossy Woods"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21416,12 +24231,20 @@
     {
       "id": 1062,
       "name": "E-24 A. Chrome Erkek Parfüm",
-      "brand": "",
+      "brand": "Chrome",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Fresh",
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21431,12 +24254,20 @@
     {
       "id": 1063,
       "name": "E-23 H. Boss Hugo Erkek Parfüm",
-      "brand": "",
+      "brand": "Boss Hugo",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21446,12 +24277,20 @@
     {
       "id": 1064,
       "name": "E-22 A. Black Code Erkek Parfüm",
-      "brand": "",
+      "brand": "Black Code",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21461,12 +24300,20 @@
     {
       "id": 1065,
       "name": "E-21 J.P.G Le Male Erkek Parfüm",
-      "brand": "",
+      "brand": "Le Male",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21476,12 +24323,20 @@
     {
       "id": 1066,
       "name": "E-20 G. Gentleman Erkek Parfüm",
-      "brand": "",
+      "brand": "Gentleman",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz",
+        "Gece"
+      ],
+      "category": [
+        "Woody",
+        "Amber"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21491,12 +24346,18 @@
     {
       "id": 1067,
       "name": "E-18 Rochas Erkek Parfüm",
-      "brand": "",
+      "brand": "Rochas",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21506,12 +24367,18 @@
     {
       "id": 1068,
       "name": "E-16 Kenzo Pour Homme Erkek Parfüm",
-      "brand": "",
+      "brand": "Kenzo",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21521,12 +24388,18 @@
     {
       "id": 1069,
       "name": "E-15 D. Fuel For Life Erkek Parfüm",
-      "brand": "",
+      "brand": "D. Fuel For Life",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21536,12 +24409,18 @@
     {
       "id": 1070,
       "name": "E-14 D. Only The Brave Erkek Parfüm",
-      "brand": "",
+      "brand": "D. Only The Brave",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21551,12 +24430,18 @@
     {
       "id": 1071,
       "name": "E-12 J. Sander Sun Men Erkek Parfüm",
-      "brand": "",
+      "brand": "J. Sander",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Citrus"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21566,12 +24451,18 @@
     {
       "id": 1072,
       "name": "E-11 E.A. Stronger With You Erkek Parfüm",
-      "brand": "",
+      "brand": "E.A.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21581,12 +24472,18 @@
     {
       "id": 1073,
       "name": "E-10- V. Eros Erkek Parfüm",
-      "brand": "",
+      "brand": "V. Eros",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21596,12 +24493,18 @@
     {
       "id": 1074,
       "name": "E-9 C. Herrera Erkek Parfüm",
-      "brand": "",
+      "brand": "C. Herrera",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21611,12 +24514,18 @@
     {
       "id": 1075,
       "name": "E-7 C. Aventus Erkek Parfüm",
-      "brand": "",
+      "brand": "C. Aventus",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21626,12 +24535,18 @@
     {
       "id": 1076,
       "name": "E-6 Joop Home Erkek Parfüm",
-      "brand": "",
+      "brand": "Joop",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21641,12 +24556,18 @@
     {
       "id": 1077,
       "name": "E-4 C. K. Euphoria Erkek Parfüm",
-      "brand": "",
+      "brand": "C. K.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21656,12 +24577,18 @@
     {
       "id": 1078,
       "name": "E-3 T. Terenzi Kirke Erkek Parfüm",
-      "brand": "",
+      "brand": "T. Terenzi",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21671,12 +24598,18 @@
     {
       "id": 1079,
       "name": "E-2 B. Aqua Erkek Parfüm",
-      "brand": "",
+      "brand": "B. Aqua",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Fresh"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21686,12 +24619,18 @@
     {
       "id": 1080,
       "name": "E-1 D.G The One Erkek Parfüm",
-      "brand": "",
+      "brand": "D.G.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
@@ -21701,12 +24640,18 @@
     {
       "id": 1081,
       "name": "E-8 C. D. Sauvage Erkek Parfüm",
-      "brand": "",
+      "brand": "C. D.",
       "variant": "",
       "gender": "Erkek",
-      "season": "",
-      "time": "",
-      "category": "",
+      "season": [
+        "Yaz"
+      ],
+      "time": [
+        "Gündüz"
+      ],
+      "category": [
+        "Woody"
+      ],
       "aliases": [],
       "legacy_categories": [
         "Erkek"
