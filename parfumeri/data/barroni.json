@@ -953,7 +953,7 @@
       ]
     },
     {
-      "product_id": 26,
+      "product_id": 195,
       "price": 790,
       "old_price": 1300,
       "volume_ml": 50,
@@ -3761,7 +3761,7 @@
       ]
     },
     {
-      "product_id": 104,
+      "product_id": 309,
       "price": 790,
       "old_price": 1300,
       "volume_ml": 50,
@@ -4149,7 +4149,7 @@
       "legacy_category": "Kadın"
     },
     {
-      "product_id": 118,
+      "product_id": 300,
       "price": 125,
       "old_price": 250,
       "volume_ml": 5,
