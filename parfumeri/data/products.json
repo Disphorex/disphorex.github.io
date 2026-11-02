@@ -7147,7 +7147,9 @@
         "Water",
         "Citrus"
       ],
-      "aliases": [],
+      "aliases": [
+        "Creed Virgin Island"
+      ],
       "legacy_categories": [
         "Kod N133",
         "Unisex",
@@ -13670,7 +13672,9 @@
         "Woody",
         "Amber"
       ],
-      "aliases": [],
+      "aliases": [
+        "Penhaligon's Mister Sam"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
@@ -14374,29 +14378,6 @@
       "aliases": [],
       "legacy_categories": [
         "Kod E530"
-      ],
-      "review_status": "metadata_incomplete"
-    },
-    {
-      "id": 622,
-      "name": "Penhaligon's Mister Sam",
-      "brand": "Penhaligon's",
-      "variant": "",
-      "gender": "Erkek",
-      "season": [
-        "Yaz",
-        "Sonbahar"
-      ],
-      "time": [
-        "Gündüz"
-      ],
-      "category": [
-        "Woody",
-        "Fresh"
-      ],
-      "aliases": [],
-      "legacy_categories": [
-        "Kod N275"
       ],
       "review_status": "metadata_incomplete"
     },
@@ -16641,27 +16622,6 @@
       "category": [
         "Woody",
         "Citrus"
-      ],
-      "aliases": [],
-      "legacy_categories": [],
-      "review_status": "metadata_incomplete"
-    },
-    {
-      "id": 727,
-      "name": "Creed Virgin Island",
-      "brand": "Creed",
-      "variant": "",
-      "gender": "Unisex",
-      "season": [
-        "Yaz"
-      ],
-      "time": [
-        "Gündüz"
-      ],
-      "category": [
-        "Fresh",
-        "Citrus",
-        "Fruity"
       ],
       "aliases": [],
       "legacy_categories": [],
