@@ -53,19 +53,19 @@ button:disabled{opacity:.45;cursor:default}
 <body>
 <header>
   <h1>Gelişmiş Veri Editörü</h1>
-  <p>Benzerlik havuzu · çok terimli arama · satıcı ön ek / kod temizliği · <a href="parfum-veri-editoru.html">← Klasik katalog</a></p>
+  <p>Benzerlik havuzu · çok terimli arama · satıcı ön ek / kod temizliği · <a href="/parfum-veri-editoru.html">← Klasik katalog</a> · <a href="/parfum-veri-editoru.html?v=2">klasik (önbellek kır)</a></p>
 </header>
 <div class="wrap">
   <div class="box">
     <h2>Veri kaynağı</h2>
-    <p class="hint">products.json yükle. İsteğe bağlı satıcı JSON’ları (Emre Boslu, Parfüm Mutfağı vb.) ön ek/kod taraması için.</p>
+    <p class="hint"><b>GitHub’dan yükle</b> = products + tüm satıcı JSON’ları. Elle yüklemek istersen: products.json + satıcı dosyaları (çoklu seç).</p>
     <div class="row">
+      <button type="button" class="primary" id="btn-load-gh">GitHub’dan yükle (katalog + satıcılar)</button>
       <label class="grow">products.json <input type="file" id="f-products" accept=".json,application/json"></label>
       <label class="grow">Satıcı JSON (çoklu) <input type="file" id="f-sellers" accept=".json,application/json" multiple></label>
-      <button type="button" class="primary" id="btn-load-gh">GitHub’dan yükle</button>
-      <button type="button" class="primary" id="btn-dl">Güncel products.json indir</button>
+      <button type="button" class="ghost" id="btn-dl">Güncel products.json indir</button>
     </div>
-    <p class="status" id="src-status">Dosya bekleniyor…</p>
+    <p class="status" id="src-status">Dosya bekleniyor… Önce GitHub’dan yükle veya dosya seç.</p>
   </div>
 
   <div class="tabs" role="tablist">
@@ -108,17 +108,17 @@ button:disabled{opacity:.45;cursor:default}
   <!-- TAB 3 -->
   <section class="box" id="tab-seller" hidden>
     <h2>Satıcı önek / kod temizliği</h2>
-    <p class="hint">Ürün adının başındaki satıcı adı veya <code>E-87</code> gibi kodları ayırır; kalan isimle katalog eşleşmesi önerir.</p>
+    <p class="hint">Önce üstten <b>GitHub’dan yükle</b> (veya satıcı JSON seç). Listeden satıcıyı seç → <b>Tara</b>. Önek ve <code>E-87</code> kodları ayrılır; kalan isim katalogla eşleştirilir.</p>
     <div class="row">
       <label class="grow">Satıcı dosyası
-        <select id="seller-pick"><option value="">— yüklenen satıcılar —</option></select>
+        <select id="seller-pick"><option value="">— önce veri yükle —</option></select>
       </label>
-      <label>Önek (otomatik de olabilir)<input id="seller-prefix" placeholder="Emre Boslu"></label>
+      <label>Önek<input id="seller-prefix" placeholder="Emre Boslu"></label>
       <label><input type="checkbox" id="seller-code" checked> Kod deseni (E-12, E-87…)</label>
       <button type="button" class="primary" id="btn-seller-scan">Tara</button>
     </div>
-    <p class="status" id="seller-status"></p>
-    <div class="list" id="seller-list"></div>
+    <p class="status" id="seller-status">Satıcı listesi boşsa veri henüz yüklenmemiş demektir.</p>
+    <div class="list" id="seller-list"><div class="item muted">1) GitHub’dan yükle · 2) Satıcı seç · 3) Tara</div></div>
   </section>
 </div>
 
@@ -238,27 +238,79 @@ button:disabled{opacity:.45;cursor:default}
   };
   function fillSellerPick(){
     var sel=$('seller-pick');
-    sel.innerHTML='<option value="">— seç —</option>'+Object.keys(state.sellers).map(function(fn){
+    var keys=Object.keys(state.sellers);
+    if(!keys.length){
+      sel.innerHTML='<option value="">— önce veri yükle —</option>';
+      return;
+    }
+    sel.innerHTML='<option value="">— satıcı seç ('+keys.length+') —</option>'+keys.map(function(fn){
       return '<option value="'+esc(fn)+'">'+esc(state.sellers[fn].name)+' ('+state.sellers[fn].items.length+')</option>';
     }).join('');
   }
 
+  var PUBLIC_BASE='https://disphorex.github.io/parfumeri/data';
+
+  async function fetchJson(url){
+    var res=await fetch(url,{cache:'no-store'});
+    if(!res.ok) throw new Error(url+' → HTTP '+res.status);
+    return res.json();
+  }
+
+  function isSellerFile(fn){
+    if(!fn || !/\.json$/i.test(fn)) return false;
+    return !/^(products|index|merge_rules)\.json$/i.test(fn) && !/\.schema\.json$/i.test(fn);
+  }
+
+  function ingestSeller(fn,d){
+    if(!d || typeof d!=='object') return false;
+    var items=Array.isArray(d.items)?d.items:[];
+    state.sellers[fn]={ name:d.name||fn.replace(/\.json$/i,''), data:d, items:items };
+    return true;
+  }
+
   $('btn-load-gh').onclick=async function(){
     try{
-      var cfg=JSON.parse(localStorage.getItem('op_adm_cfg')||'{}');
-      var tok=localStorage.getItem('op_adm_tok')||'';
-      if(!cfg.owner||!cfg.repo||!tok){ toast('Admin ayarı/token yok (op_adm_cfg / op_adm_tok)'); return; }
-      var dir=(cfg.dir||'parfumeri/data').replace(/^\/|\/$/g,'');
-      var path=dir+'/products.json';
-      var url='https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+path+'?ref='+encodeURIComponent(cfg.branch||'main');
-      var res=await fetch(url,{headers:{Authorization:'Bearer '+tok,Accept:'application/vnd.github+json'}});
-      if(!res.ok) throw new Error('GitHub '+res.status);
-      var j=await res.json();
-      var text=decodeURIComponent(escape(atob(j.content.replace(/\n/g,''))));
-      setProducts(JSON.parse(text));
-      state.gh={sha:j.sha,path:path,cfg:cfg,tok:tok};
-      toast('GitHub products yüklendi');
-    }catch(e){ toast(String(e.message||e)); }
+      $('src-status').textContent='Canlı siteden yükleniyor (token gerekmez)…';
+      toast('Yükleniyor…');
+      state.sellers={};
+
+      var prod=await fetchJson(PUBLIC_BASE+'/products.json');
+      setProducts(prod);
+
+      var files=[];
+      try{
+        var idx=await fetchJson(PUBLIC_BASE+'/index.json');
+        files=idx.files||[];
+      }catch(e){ console.warn('index',e); }
+
+      var loaded=0, failed=0;
+      for(var i=0;i<files.length;i++){
+        var fn=files[i];
+        if(!isSellerFile(fn)) continue;
+        try{
+          var d=await fetchJson(PUBLIC_BASE+'/'+encodeURIComponent(fn).replace(/%2F/g,'/'));
+          if(ingestSeller(fn,d)) loaded++; else failed++;
+          $('src-status').textContent='Katalog: '+state.products.length+' · satıcı '+loaded+'/'+files.length;
+        }catch(err){ failed++; console.warn(fn,err); }
+      }
+      fillSellerPick();
+      var nSell=Object.keys(state.sellers).length;
+      $('src-status').textContent='Katalog: '+state.products.length+' ürün · '+nSell+' satıcı'+(failed?' · '+failed+' hata':'');
+      $('seller-status').textContent=nSell
+        ? ('Listeden satıcı seçip Tara’ya bas ('+nSell+' hazır).')
+        : 'Satıcı 0 — sayfayı sert yenile veya elle JSON yükle.';
+      toast(nSell?('Yüklendi: '+state.products.length+' ürün, '+nSell+' satıcı'):'Ürünler geldi, satıcı gelmedi');
+    }catch(e){
+      console.error(e);
+      toast(String(e.message||e));
+      $('src-status').textContent='Hata: '+(e.message||e);
+    }
+  };
+
+  /* satıcı seçilince önek kutusunu doldur */
+  $('seller-pick').onchange=function(){
+    var fn=this.value;
+    if(fn && state.sellers[fn]) $('seller-prefix').value=state.sellers[fn].name||'';
   };
 
   $('btn-dl').onclick=function(){
@@ -511,8 +563,12 @@ button:disabled{opacity:.45;cursor:default}
 
   $('btn-seller-scan').onclick=function(){
     var fn=$('seller-pick').value;
-    if(!fn||!state.sellers[fn]){ toast('Satıcı seç'); return; }
-    if(!state.products.length){ toast('products yükle'); return; }
+    if(!Object.keys(state.sellers).length){
+      toast('Önce üstten “GitHub’dan yükle” veya satıcı JSON seç');
+      return;
+    }
+    if(!fn||!state.sellers[fn]){ toast('Açılır listeden satıcı seç'); return; }
+    if(!state.products.length){ toast('Önce products yükle'); return; }
     var s=state.sellers[fn];
     var prefix=($('seller-prefix').value.trim()||s.name||'').trim();
     var useCode=$('seller-code').checked;
