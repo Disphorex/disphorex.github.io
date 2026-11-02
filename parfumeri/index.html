@@ -3795,21 +3795,40 @@ function optSuggest(){
 }
 function optAdd(k){
   var c=optCat()[k]; if(!c) return;
-  /* isim yazılırken adet 1'e çekilir; elle değiştirilmediyse 1 eklenir */
   var qEl=$('opt-qty');
   var q=Math.max(1,Math.min(9, parseInt(qEl&&qEl.value,10)||1));
   var f=null; OPT.want.forEach(function(w){ if(w.k===k) f=w; });
   if(f) f.q=Math.min(9,(f.q||1)+q); else OPT.want.push({k:k,n:c.name,q:q});
+  OPT.pendingKey=null;
   optSave();
   if($('opt-q')) $('opt-q').value='';
   if($('opt-sug')) $('opt-sug').hidden=true;
   if(qEl) qEl.value='1';
   OPT.res=null; optChips(); optShow();
 }
+/* Öneri tıklanınca hemen ekleme — sadece seç; adet ayarlanıp Ekle ile eklenir */
+function optSelectPending(k){
+  var c=optCat()[k]; if(!c) return;
+  OPT.pendingKey=k;
+  if($('opt-q')) $('opt-q').value=c.name;
+  if($('opt-sug')) $('opt-sug').hidden=true;
+  var qEl=$('opt-qty');
+  if(qEl && !(parseInt(qEl.value,10)>0)) qEl.value='1';
+  if(qEl) try{ qEl.focus(); qEl.select(); }catch(err){}
+}
 document.addEventListener('click', function(e){
   var b=e.target.closest && e.target.closest('[data-opt]'); if(!b) return;
   var a=b.getAttribute('data-opt'), k=b.getAttribute('data-k'), w=null; OPT.want.forEach(function(x){ if(x.k===k) w=x; });
-  if(a==='pick'||a==='add'){ if(a==='pick') optAdd(k); else { var l=optSuggest(); if(l.length) optAdd(l[0].key); } return; }
+  if(a==='pick'){ optSelectPending(k); return; }
+  if(a==='add'){
+    var addKey=OPT.pendingKey;
+    if(!addKey){
+      var l=optSuggest();
+      if(l.length) addKey=l[0].key;
+    }
+    if(addKey) optAdd(addKey);
+    return;
+  }
   if(a==='inc'&&w){ w.q=Math.min(9,(w.q||1)+1); }
   else if(a==='dec'&&w){ w.q=Math.max(1,(w.q||1)-1); }
   else if(a==='rm'||a==='drop'){ OPT.want=OPT.want.filter(function(x){ return x.k!==k; }); delete OPT.decide[k]; }
@@ -3950,6 +3969,8 @@ document.addEventListener('click', function(e){
 });
 document.addEventListener('input', function(e){
   if(e.target.id==='opt-q'){
+    /* yazı değişince önceki öneri seçimini bırak */
+    OPT.pendingKey=null;
     optSuggest();
     /* parfüm adı yazılınca adet otomatik 1 */
     if(e.target.value && e.target.value.trim()){
@@ -3959,7 +3980,15 @@ document.addEventListener('input', function(e){
   if(e.target.id==='opt-budget'){ OPT.budget=e.target.value; optSave(); }
   if(e.target.id==='opt-sellers'){ OPT.sellers=e.target.value; optSave(); optDiscUI(); }
 });
-document.addEventListener('keydown', function(e){ if(e.target.id==='opt-q' && e.key==='Enter'){ e.preventDefault(); var l=optSuggest(); if(l.length) optAdd(l[0].key); } });
+document.addEventListener('keydown', function(e){
+  if(e.target.id==='opt-q' && e.key==='Enter'){
+    e.preventDefault();
+    /* Enter: öneriyi seç (ekleme); adet ayarlanıp Ekle ile eklenir */
+    if(OPT.pendingKey){ var qe=$('opt-qty'); if(qe) try{ qe.focus(); }catch(err){} return; }
+    var l=optSuggest();
+    if(l.length) optSelectPending(l[0].key);
+  }
+});
 function optInit(){ if(!$('opt')) return; $('opt-budget').value=OPT.budget; optChips(); optDiscUI(); }
 
 /* ---------- başlat ---------- */
