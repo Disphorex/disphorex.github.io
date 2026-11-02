@@ -108,7 +108,7 @@ button:disabled{opacity:.45;cursor:default}
   <!-- TAB 3 -->
   <section class="box" id="tab-seller" hidden>
     <h2>Satıcı önek / kod temizliği</h2>
-    <p class="hint">Önce üstten <b>GitHub’dan yükle</b> (veya satıcı JSON seç). Listeden satıcıyı seç → <b>Tara</b>. Önek ve <code>E-87</code> kodları ayrılır; kalan isim katalogla eşleştirilir.</p>
+    <p class="hint">Önce <b>GitHub’dan yükle</b>. Satıcı seç → Tara. Satıcı satırları + bu satıcıya bağlı <b>katalog adları</b> taranır (seller_name boşsa product_id ile isim alınır). Önek kutusuna satıcı adı yaz (Emre Boslu); kod için kutuyu E-42 yapma — “Kod deseni” yeterli.</p>
     <div class="row">
       <label class="grow">Satıcı dosyası
         <select id="seller-pick"><option value="">— önce veri yükle —</option></select>
@@ -541,24 +541,34 @@ button:disabled{opacity:.45;cursor:default}
   var CODE_RE=/^\s*(E[-\s]?\d{1,4})\b[\s\-–.]*/i;
   function stripPrefix(name, prefix){
     var n=String(name||'');
-    if(prefix){
-      var re=new RegExp('^\\s*'+prefix.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*[-–:]?\\s*','i');
+    /* Önek alanı yanlışlıkla E-42 gibi kod ise önek sayma; kod RE zaten yakalar */
+    if(prefix && !/^e[-\s]?\d{1,4}$/i.test(prefix.trim())){
+      var re=new RegExp('^\\s*'+prefix.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*[-–:·.]?\\s*','i');
       n=n.replace(re,'');
     }
     var code=null, m=n.match(CODE_RE);
     if(m){ code=m[1].replace(/\s+/g,''); n=n.slice(m[0].length); }
-    return {clean:n.trim(), code:code};
+    return {clean:n.trim().replace(/^[-–:·.\s]+/,''), code:code};
   }
-  function catalogSuggest(clean){
+  function catalogSuggest(clean, excludeId){
     if(!clean||clean.length<2) return [];
-    var nc=norm(clean);
     return state.products.map(function(p){
+      if(excludeId!=null && String(p.id)===String(excludeId)) return null;
       var sc=Math.max(jaccard(clean,p.name), lev(clean,p.name));
       (p.aliases||[]).forEach(function(al){ sc=Math.max(sc, jaccard(clean,al), lev(clean,al)); });
       return {p:p,sc:sc};
-    }).filter(function(x){ return x.sc>=0.45; })
+    }).filter(function(x){ return x && x.sc>=0.42; })
       .sort(function(a,b){ return b.sc-a.sc; })
-      .slice(0,5);
+      .slice(0,6);
+  }
+  function resolveItemName(it){
+    if(it.seller_name && String(it.seller_name).trim()) return String(it.seller_name).trim();
+    if(it.name && String(it.name).trim()) return String(it.name).trim();
+    if(it.product_id!=null){
+      var p=findP(it.product_id);
+      if(p && p.name) return p.name;
+    }
+    return '';
   }
 
   $('btn-seller-scan').onclick=function(){
@@ -572,62 +582,115 @@ button:disabled{opacity:.45;cursor:default}
     var s=state.sellers[fn];
     var prefix=($('seller-prefix').value.trim()||s.name||'').trim();
     var useCode=$('seller-code').checked;
-    var rows=[];
-    (s.items||[]).forEach(function(it,idx){
-      var sn=it.seller_name||it.name||'';
-      if(!sn) return;
-      var st=stripPrefix(sn, prefix);
+    var rows=[], seen={};
+
+    function pushRow(src, rawName, it, idx, pid){
+      if(!rawName) return;
+      var st=stripPrefix(rawName, prefix);
       if(!useCode) st.code=null;
-      if(!st.code && norm(st.clean)===norm(sn)) return; /* değişmedi */
-      var sug=catalogSuggest(st.clean);
-      rows.push({idx:idx, it:it, seller_name:sn, clean:st.clean, code:st.code, sug:sug});
+      /* değişiklik yoksa atla */
+      if(!st.code && norm(st.clean)===norm(rawName)) return;
+      if(!st.clean) return;
+      var key=norm(rawName)+'|'+String(pid||'');
+      if(seen[key]) return;
+      seen[key]=1;
+      rows.push({
+        src:src, idx:idx, it:it, pid:pid,
+        seller_name:rawName, clean:st.clean, code:st.code,
+        sug:catalogSuggest(st.clean, pid)
+      });
+    }
+
+    /* A) satıcı items */
+    (s.items||[]).forEach(function(it,idx){
+      var sn=resolveItemName(it);
+      pushRow('seller', sn, it, idx, it.product_id);
     });
-    $('seller-status').textContent=rows.length+' satır (önek/kod ayrıldı)';
+
+    /* B) bu satıcıya bağlı katalog ürünleri (seller_name null olsa bile E- kodlu adlar) */
+    var linked={};
+    (s.items||[]).forEach(function(it){ if(it.product_id!=null) linked[String(it.product_id)]=1; });
+    state.products.forEach(function(p){
+      if(!linked[String(p.id)]) return;
+      pushRow('catalog', p.name, null, -1, p.id);
+    });
+
+    /* C) önek satıcı adıysa: katalogda "Emre Boslu …" geçen tüm ürünler (bağlı olmasa da) */
+    if(prefix && !/^e[-\s]?\d/i.test(prefix) && norm(prefix).length>=4){
+      var pn=norm(prefix);
+      state.products.forEach(function(p){
+        if(linked[String(p.id)]) return;
+        var nm=norm(p.name||'');
+        if(nm.indexOf(pn)===0 || nm.indexOf(pn)>=0){
+          var st=stripPrefix(p.name, prefix);
+          if(norm(st.clean)!==norm(p.name) || st.code)
+            pushRow('catalog-prefix', p.name, null, -1, p.id);
+        }
+      });
+    }
+
+    /* D) kod deseni açık ve satıcıda az satır çıktıysa: katalogdaki tüm E- kodlu adlar (Parfüm Mutfağı senaryosu) */
+    if(useCode && rows.length<5){
+      state.products.forEach(function(p){
+        if(!CODE_RE.test(p.name||'')) return;
+        pushRow('catalog-code', p.name, null, -1, p.id);
+      });
+    }
+
+    $('seller-status').textContent=rows.length+' satır (önek/kod ayrıldı) · satıcı kalemi '+(s.items||[]).length;
     var el=$('seller-list');
-    if(!rows.length){ el.innerHTML='<div class="item muted">Ayrıştırılacak kayıt yok.</div>'; return; }
-    el.innerHTML=rows.map(function(r){
+    if(!rows.length){
+      el.innerHTML='<div class="item muted">Ayrıştırılacak kayıt yok. Önek olarak satıcı adını dene (Emre Boslu). Kod için “Kod deseni” işaretli olsun; E-42’yi önek kutusuna yazma.</div>';
+      return;
+    }
+    el.innerHTML=rows.map(function(r,ri){
       var opts=r.sug.map(function(x){
-        return '<button type="button" data-map="'+r.idx+'" data-pid="'+esc(x.p.id)+'">'
+        return '<button type="button" data-map-row="'+ri+'" data-pid="'+esc(x.p.id)+'">'
           +esc(x.p.name)+' <span class="badge">'+(x.sc*100|0)+'%</span> #'+esc(x.p.id)+'</button>';
       }).join(' ')||'<span class="muted">katalog eşleşmesi yok</span>';
       return '<div class="item">'
-        +'<div><b>'+esc(r.seller_name)+'</b></div>'
+        +'<div><b>'+esc(r.seller_name)+'</b> <span class="badge">'+esc(r.src)+'</span></div>'
         +'<div class="meta">Temiz: <b>'+esc(r.clean)+'</b>'
         +(r.code?' · kod <span class="badge">'+esc(r.code)+'</span>':'')
-        +' · product_id: '+(r.it.product_id!=null?r.it.product_id:'—')+'</div>'
+        +(r.pid!=null?' · id #'+esc(r.pid):'')
+        +'</div>'
         +'<div class="acts">'+opts
-        +'<button type="button" data-rename="'+r.idx+'" data-clean="'+esc(r.clean)+'">seller_name ← temiz ad</button>'
+        +'<button type="button" data-rename-cat="'+ri+'">Katalog adını temizle</button>'
         +'</div></div>';
     }).join('');
     el._rows=rows;
   };
 
   $('seller-list').onclick=function(e){
-    var map=e.target.closest('[data-map]');
-    var ren=e.target.closest('[data-rename]');
+    var map=e.target.closest('[data-map-row]');
+    var ren=e.target.closest('[data-rename-cat]');
     var rows=$('seller-list')._rows||[];
     if(map){
-      var r=rows[+map.getAttribute('data-map')];
+      var r=rows[+map.getAttribute('data-map-row')];
       var pid=map.getAttribute('data-pid');
       if(!r) return;
-      r.it.product_id=+pid;
-      /* alias ekle */
+      if(r.it) r.it.product_id=+pid;
       var p=findP(pid);
       if(p){
         p.aliases=p.aliases||[];
-        if(r.seller_name && p.aliases.indexOf(r.seller_name)<0 && norm(r.seller_name)!==norm(p.name))
-          p.aliases.push(r.seller_name);
-        if(r.clean && p.aliases.indexOf(r.clean)<0 && norm(r.clean)!==norm(p.name))
-          p.aliases.push(r.clean);
+        [r.seller_name, r.clean].forEach(function(nm){
+          if(nm && p.aliases.indexOf(nm)<0 && norm(nm)!==norm(p.name)) p.aliases.push(nm);
+        });
       }
-      toast('product_id → #'+pid+' (bellek; satıcı JSON’u ayrıca kaydet)');
+      toast('product_id → #'+pid+' (bellek; JSON indir)');
       map.closest('.item').style.opacity='0.55';
     }
     if(ren){
-      var r2=rows[+ren.getAttribute('data-rename')];
-      if(!r2) return;
-      r2.it.seller_name=ren.getAttribute('data-clean');
-      toast('seller_name güncellendi (bellek)');
+      var r2=rows[+ren.getAttribute('data-rename-cat')];
+      if(!r2 || r2.pid==null){ toast('Katalog id yok'); return; }
+      var cp=findP(r2.pid);
+      if(!cp){ toast('Ürün bulunamadı'); return; }
+      var old=cp.name;
+      cp.aliases=cp.aliases||[];
+      if(old && cp.aliases.indexOf(old)<0) cp.aliases.push(old);
+      cp.name=r2.clean;
+      toast('Katalog adı: "'+old+'" → "'+r2.clean+'" (JSON indir)');
+      ren.closest('.item').style.opacity='0.55';
     }
   };
 
