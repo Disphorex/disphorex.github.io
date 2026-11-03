@@ -126,7 +126,7 @@
 {"name":"Bleu de Chanel","house":"Chanel","score":2,"season":["Geçiş Mevsimi"],"line":"Maskülen","occ":["İş / Formal","Günlük"],"essay":{"open":"Narenciye ve nane, tanıdık ve temiz.","last":"Orta.","feel":"Güvenli ve ruhsuz."}},
 {"name":"Megamare","house":"Orto Parisi","score":2,"season":["Yazlık"],"line":"Unisex","occ":["Günlük"]},
 {"name":"Cashmeran","house":"Kimyager Ahmet","score":2},
-{"name":"Spicebomb Metallic Musk","house":"Viktor&Rolf","score":2},
+{"name":"Spicebomb Metallic Musk","house":"Viktor&Rolf","score":6,"season":["Kışlık"],"line":"Maskülen","occ":["Günlük"]},
 {"name":"Musc Ravageur","house":"Frédéric Malle","score":2,"season":["Kışlık"],"line":"Unisex","occ":["Randevu Gecesi"]},
 {"name":"Oud Satin Mood","house":"Maison Francis Kurkdjian","score":2,"season":["Kışlık"],"line":"Unisex","occ":["Randevu Gecesi"]},
 {"name":"Scandal Pour Homme","house":"Jean Paul Gaultier","score":2,"season":["Kışlık","Geçiş Mevsimi"],"line":"Maskülen","occ":["Randevu Gecesi"]},
