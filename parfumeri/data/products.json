@@ -22383,7 +22383,7 @@
     },
     {
       "id": 1009,
-      "name": "E-122 T.F. Neroli Portofino Erkek Parfüm",
+      "name": "T.F. Neroli Portofino Erkek Parfüm",
       "brand": "T.F.",
       "variant": "",
       "gender": "Erkek",
@@ -22397,7 +22397,9 @@
         "Fresh",
         "Citrus"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-122 T.F. Neroli Portofino Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -22557,7 +22559,7 @@
     },
     {
       "id": 1016,
-      "name": "E-45 T. T. Hermes Erkek Parfüm",
+      "name": "T. T. Hermes Erkek Parfüm",
       "brand": "E-45",
       "variant": "",
       "gender": "Erkek",
@@ -22573,7 +22575,9 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-45 T. T. Hermes Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23327,7 +23331,7 @@
     },
     {
       "id": 1047,
-      "name": "E-5 H. Boss Boss Erkek Parfüm",
+      "name": "H. Boss Boss Erkek Parfüm",
       "brand": "Hugo Boss",
       "variant": "",
       "gender": "Erkek",
@@ -23341,7 +23345,9 @@
         "Fresh",
         "Citrus"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-5 H. Boss Boss Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23349,7 +23355,7 @@
     },
     {
       "id": 1048,
-      "name": "E-47 G. Ultra Marine Erkek Parfüm",
+      "name": "G. Ultra Marine Erkek Parfüm",
       "brand": "G. Ultra Marine",
       "variant": "",
       "gender": "Erkek",
@@ -23363,7 +23369,9 @@
         "Fresh",
         "Water"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-47 G. Ultra Marine Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23495,7 +23503,7 @@
     },
     {
       "id": 1054,
-      "name": "E-40 Vakko Erkek Parfüm",
+      "name": "Vakko Erkek Parfüm",
       "brand": "Vakko",
       "variant": "",
       "gender": "Erkek",
@@ -23509,7 +23517,9 @@
       "category": [
         "Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-40 Vakko Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23567,7 +23577,7 @@
     },
     {
       "id": 1057,
-      "name": "E-29 Burberry Classic Erkek Parfüm",
+      "name": "Burberry Classic Erkek Parfüm",
       "brand": "Burberry",
       "variant": "",
       "gender": "Erkek",
@@ -23581,7 +23591,9 @@
       "category": [
         "Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-29 Burberry Classic Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23641,7 +23653,7 @@
     },
     {
       "id": 1060,
-      "name": "E-26 C.D. Dior Homme Intense Erkek Parfüm",
+      "name": "C.D. Dior Homme Intense Erkek Parfüm",
       "brand": "Dior Homme Intense",
       "variant": "",
       "gender": "Erkek",
@@ -23656,7 +23668,9 @@
         "Woody",
         "Amber"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-26 C.D. Dior Homme Intense Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
