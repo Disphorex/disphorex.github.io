@@ -1295,7 +1295,7 @@
       "volume_prices": []
     },
     {
-      "product_id": 374,
+      "product_id": 75,
       "price": 1350,
       "old_price": null,
       "volume_ml": 100,
@@ -1331,7 +1331,7 @@
       "volume_prices": []
     },
     {
-      "product_id": 353,
+      "product_id": 94,
       "price": 1350,
       "old_price": null,
       "volume_ml": 100,
@@ -3083,7 +3083,7 @@
       "volume_prices": []
     },
     {
-      "product_id": 1004,
+      "product_id": 597,
       "price": 600,
       "old_price": null,
       "volume_ml": null,
