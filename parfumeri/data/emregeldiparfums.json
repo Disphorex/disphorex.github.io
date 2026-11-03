@@ -26,7 +26,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Sauvage Extrait",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 756,
@@ -37,7 +38,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 444,
@@ -48,7 +50,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Figue Erotique",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -73,7 +75,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 555,
@@ -84,7 +87,8 @@
       "stock": null,
       "options": null,
       "seller_name": "Black Sea",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 758,
@@ -95,7 +99,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Light Blue Capri In Love",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -120,7 +124,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Y Ice",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -145,7 +149,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -170,7 +174,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 761,
@@ -181,7 +186,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Town Country",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -206,7 +211,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Scent of Peace",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -231,7 +236,7 @@
       "stock": null,
       "options": null,
       "seller_name": "The One Parfum",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -256,7 +261,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Libre Berry Crush",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -281,7 +286,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Powerfull",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -298,7 +303,7 @@
       ]
     },
     {
-      "product_id": 192,
+      "product_id": 81,
       "price": 600,
       "old_price": null,
       "volume_ml": 50,
@@ -306,7 +311,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -331,7 +336,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Summer Hammer",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -356,7 +361,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Vanilla Powder",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -381,7 +386,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Blue Talisman Extrait",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -406,7 +411,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Spice Metalic Musk",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -431,7 +436,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Musk Terapi",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -456,7 +461,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Scent Elixir Woman",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -481,7 +486,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BALAFRIK ABS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -506,7 +511,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PRD L. HOME",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -531,7 +536,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TRIUMPH OF BACCHUS ARGOS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -556,7 +561,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NEW YORK NIGHT",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -581,7 +586,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ANI",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -606,7 +611,7 @@
       "stock": null,
       "options": null,
       "seller_name": "DG VELVET INFUSION",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -631,7 +636,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -656,7 +661,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LEMALE ELIXIR ABSOLU",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -681,7 +686,7 @@
       "stock": null,
       "options": null,
       "seller_name": "UDEN",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -706,7 +711,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLUE MOON GINGER DASH",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -731,7 +736,7 @@
       "stock": null,
       "options": null,
       "seller_name": "JAZZ CLUB",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -756,7 +761,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLUE TALISMAN",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -781,7 +786,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MORE THAN WORD",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -806,7 +811,7 @@
       "stock": null,
       "options": null,
       "seller_name": "CLIVE HEDONISTIC 2021",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -831,7 +836,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GIO PARFUME 2023",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -856,7 +861,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -881,7 +886,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ERBA PURA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -906,7 +911,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NARCOTIC DELIGHT",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -931,7 +936,7 @@
       "stock": null,
       "options": null,
       "seller_name": "DELINA",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -956,7 +961,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BACARAT ROUGE 540",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -981,7 +986,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MANC. AMBERFUL",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1006,7 +1011,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1031,7 +1036,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLACK PHANTOM",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1056,7 +1061,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLACK AFGANO",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1081,7 +1086,7 @@
       "stock": null,
       "options": null,
       "seller_name": "FRENCH RIVIERA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1106,7 +1111,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LOST CHERY",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1131,7 +1136,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LAYTONS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1156,7 +1161,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GRANDE SOIR",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1181,7 +1186,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ERBA GOLD",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1206,7 +1211,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LIRA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1231,7 +1236,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NARKOTIK",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1256,7 +1261,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MARFA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1281,7 +1286,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TOBACCO VANILLA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1306,7 +1311,7 @@
       "stock": null,
       "options": null,
       "seller_name": "SIDE EFEK",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1331,7 +1336,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MFK GENTLE FLUDITY SILVER",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1356,7 +1361,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MONTOBACCO INTENSIVO",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1381,7 +1386,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AMG REFLECTION",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1406,7 +1411,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1431,7 +1436,7 @@
       "stock": null,
       "options": null,
       "seller_name": "WCHA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1456,7 +1461,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PEGASUS",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1481,7 +1486,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LE BEAU LE PARFUM",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1506,7 +1511,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NOIR EXTREME",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1531,7 +1536,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1556,7 +1561,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PDM SEDLEY",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1581,7 +1586,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TORINO 21",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1606,7 +1611,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PDM PERCIVAL",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1631,7 +1636,7 @@
       "stock": null,
       "options": null,
       "seller_name": "INT: PARAGON",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1656,7 +1661,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PDM GREENLY",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1681,7 +1686,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TF VANIL SEV",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1706,7 +1711,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NAXOSKÜP",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1731,7 +1736,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ANGEL SARE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1756,7 +1761,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLACK ORCHIDE EDP",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1781,7 +1786,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GUILTY ELIXIR MAN",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1806,7 +1811,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ALTHAIRS",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1831,7 +1836,7 @@
       "stock": null,
       "options": null,
       "seller_name": "KIRKEI OVERD0SE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1856,7 +1861,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ARANCIA DI CAPRI",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1881,7 +1886,7 @@
       "stock": null,
       "options": null,
       "seller_name": "CEDRAT BOISE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1906,7 +1911,7 @@
       "stock": null,
       "options": null,
       "seller_name": "VANILLE FATALE 2024",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1931,7 +1936,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GYPSY WATER",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1956,7 +1961,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -1981,7 +1986,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ITALICA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2006,7 +2011,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BACARAT ROUGE 540 EXTRAIT",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2031,7 +2036,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2056,7 +2061,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLAZING MR SAM",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2081,7 +2086,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PATTIALA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2106,7 +2111,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MEPHISTO",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2131,7 +2136,7 @@
       "stock": null,
       "options": null,
       "seller_name": "CHOPRD AU VETIVER DU HAITI",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2156,7 +2161,7 @@
       "stock": null,
       "options": null,
       "seller_name": "OMBRE LEATHER",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2181,7 +2186,7 @@
       "stock": null,
       "options": null,
       "seller_name": "YLS Y ELIXR",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2206,7 +2211,7 @@
       "stock": null,
       "options": null,
       "seller_name": "INT. REHAB",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2231,7 +2236,7 @@
       "stock": null,
       "options": null,
       "seller_name": "JM WOOD SAGEY",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2256,7 +2261,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2281,7 +2286,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLAKPAHNTOM",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2306,7 +2311,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2331,7 +2336,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BDK GIRISCHNRL",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2356,7 +2361,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2381,7 +2386,7 @@
       "stock": null,
       "options": null,
       "seller_name": "JM MURTONKA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2406,7 +2411,7 @@
       "stock": null,
       "options": null,
       "seller_name": "SOS OPERA GRNDE",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2431,7 +2436,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2456,7 +2461,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2481,7 +2486,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2506,7 +2511,7 @@
       "stock": null,
       "options": null,
       "seller_name": "KIRKE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2531,7 +2536,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2556,7 +2561,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2581,7 +2586,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2606,7 +2611,7 @@
       "stock": null,
       "options": null,
       "seller_name": "A PARMA FICO AMALFİ",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2631,7 +2636,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2656,7 +2661,7 @@
       "stock": null,
       "options": null,
       "seller_name": "DECISION",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2681,7 +2686,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2706,7 +2711,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2727,11 +2732,11 @@
       "price": 790,
       "old_price": null,
       "volume_ml": 50,
-      "url": "",
+      "url": "/urun/emre-geldi-sel-marine",
       "stock": null,
-      "options": null,
+      "options": "100 ml",
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2756,7 +2761,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2781,7 +2786,7 @@
       "stock": null,
       "options": null,
       "seller_name": "IL PADRI",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2806,7 +2811,7 @@
       "stock": null,
       "options": null,
       "seller_name": "VALAYA EX",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2831,7 +2836,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2856,7 +2861,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PDM CASTLEY",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2881,7 +2886,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GUIDANCE 46",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2906,7 +2911,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AQUA DI SALE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2931,7 +2936,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AMG OUTHLANDS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2956,7 +2961,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BOSS BOTTLED ABSOLU 2024",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -2981,7 +2986,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3006,7 +3011,7 @@
       "stock": null,
       "options": null,
       "seller_name": "QUATRO PIZZI",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3031,7 +3036,7 @@
       "stock": null,
       "options": null,
       "seller_name": "KARAGOZ",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3056,7 +3061,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GOD OF FIRE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3081,7 +3086,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AFRODİZYAK ABSOLU",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3106,7 +3111,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AFRICAN LEATHER",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3131,7 +3136,7 @@
       "stock": null,
       "options": null,
       "seller_name": "OUD FOR GREATNES",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3156,7 +3161,7 @@
       "stock": null,
       "options": null,
       "seller_name": "SAUVAGE ELIXIR",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3181,7 +3186,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ALEXANDRİA II",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3206,7 +3211,7 @@
       "stock": null,
       "options": null,
       "seller_name": "SOS. VIBRATO",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3231,7 +3236,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BITER PEACH",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3256,7 +3261,7 @@
       "stock": null,
       "options": null,
       "seller_name": "OUD SATEN MOD",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3281,7 +3286,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BOIS IMP",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3306,7 +3311,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ARABIC TONKA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3331,7 +3336,7 @@
       "stock": null,
       "options": null,
       "seller_name": "METEOR",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3356,7 +3361,7 @@
       "stock": null,
       "options": null,
       "seller_name": "1LIMENSI01",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3381,7 +3386,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLONDE AMBER",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3406,7 +3411,7 @@
       "stock": null,
       "options": null,
       "seller_name": "XERJOF ACENTO",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3431,7 +3436,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GANYMEDE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3456,7 +3461,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BLUE DE CHANNEL EDP",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3481,7 +3486,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TYGAR",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3506,7 +3511,7 @@
       "stock": null,
       "options": null,
       "seller_name": "CRED SILVER MOUNTAIN WATER",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3531,7 +3536,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AVENTUS ABS",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3556,7 +3561,7 @@
       "stock": null,
       "options": null,
       "seller_name": "OUD MARACUJA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3581,7 +3586,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GRISCHARNEL EXT",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3606,7 +3611,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AVENTUS 2018",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3631,7 +3636,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AFTERNON SWIM",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3656,7 +3661,7 @@
       "stock": null,
       "options": null,
       "seller_name": "M.HYBISCUS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3681,7 +3686,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TRAGEDY OF LORD GHEORGHE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3706,7 +3711,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3731,7 +3736,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3756,7 +3761,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MADURAI",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3781,7 +3786,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PORTRAIT OF A LADY",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3806,7 +3811,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3831,7 +3836,7 @@
       "stock": null,
       "options": null,
       "seller_name": "IOMMI DEIFIED",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3856,7 +3861,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LV LOVERS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3881,7 +3886,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ASTRAL TUBEROSE",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3906,7 +3911,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3931,7 +3936,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3956,7 +3961,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -3981,7 +3986,7 @@
       "stock": null,
       "options": null,
       "seller_name": "OMBRE NOMADE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4006,7 +4011,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BARONDA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4031,7 +4036,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ACCENTO",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4056,7 +4061,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ROJ ELYISUM",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4081,7 +4086,7 @@
       "stock": null,
       "options": null,
       "seller_name": "IMAGINATIO1",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4106,7 +4111,7 @@
       "stock": null,
       "options": null,
       "seller_name": "CREED VIW",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4131,7 +4136,7 @@
       "stock": null,
       "options": null,
       "seller_name": "VIRGIN ISLAND WATER",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4156,7 +4161,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BIANCO LATTE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4181,7 +4186,7 @@
       "stock": null,
       "options": null,
       "seller_name": "IOMMI MONKEY",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4206,7 +4211,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LUI SUR LE ROTIE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4231,7 +4236,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BARAONDA",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4256,7 +4261,7 @@
       "stock": null,
       "options": null,
       "seller_name": "METORE",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4281,7 +4286,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PASIFIC CHILL",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4306,7 +4311,7 @@
       "stock": null,
       "options": null,
       "seller_name": "HAGI X",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4331,7 +4336,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4356,7 +4361,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MYSLF ABS",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4381,7 +4386,7 @@
       "stock": null,
       "options": null,
       "seller_name": "YOU ABSOLU",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4406,7 +4411,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BORN IN ROMA EXTRADOSE",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4431,7 +4436,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GIO ELIXIR",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4456,7 +4461,7 @@
       "stock": null,
       "options": null,
       "seller_name": "HERO PARFUM 2024",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4481,7 +4486,7 @@
       "stock": null,
       "options": null,
       "seller_name": "DYLAN BLUE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4506,7 +4511,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LE SEL D’ISSEY",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4531,7 +4536,7 @@
       "stock": null,
       "options": null,
       "seller_name": "SCANDAL ABSOLU",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4556,7 +4561,7 @@
       "stock": null,
       "options": null,
       "seller_name": "YOU",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4581,7 +4586,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BAD BOY COBALT",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4606,7 +4611,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PRD OCEAN EDP",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4631,7 +4636,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BOS SCENT ELX",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4656,7 +4661,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BOSS BOTTLE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4681,7 +4686,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ULTRA MALE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4706,7 +4711,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TERRE D HERMES 2006",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4731,7 +4736,7 @@
       "stock": null,
       "options": null,
       "seller_name": "MYSLF EDP",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4756,7 +4761,7 @@
       "stock": null,
       "options": null,
       "seller_name": "Y EDP",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4781,7 +4786,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LE MALE LE PARFÜM",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4806,7 +4811,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BORN ROMA İNTENSE MAN",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4831,7 +4836,7 @@
       "stock": null,
       "options": null,
       "seller_name": "WITH YOU INTENSELY",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4856,7 +4861,7 @@
       "stock": null,
       "options": null,
       "seller_name": "1MILION LUCKY",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4881,7 +4886,7 @@
       "stock": null,
       "options": null,
       "seller_name": "INVCTS VICTORY ELIXR",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4906,7 +4911,7 @@
       "stock": null,
       "options": null,
       "seller_name": "INVICTUS",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4931,7 +4936,7 @@
       "stock": null,
       "options": null,
       "seller_name": "FAHRINHEIT",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4956,7 +4961,7 @@
       "stock": null,
       "options": null,
       "seller_name": "AQUA CIO PROFONDO",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -4981,7 +4986,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GIO PROFUMO",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5006,7 +5011,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ACQUA GIO",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5031,7 +5036,7 @@
       "stock": null,
       "options": null,
       "seller_name": "PARADISE GARDEN",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5056,7 +5061,7 @@
       "stock": null,
       "options": null,
       "seller_name": "VRSC EROS",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5081,7 +5086,7 @@
       "stock": null,
       "options": null,
       "seller_name": "GVNCH INSENSE MARINE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5106,7 +5111,7 @@
       "stock": null,
       "options": null,
       "seller_name": "K.MARINE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5131,7 +5136,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ALLURE HOME SPORT",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5156,7 +5161,7 @@
       "stock": null,
       "options": null,
       "seller_name": "LE MALE ELIXIR",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5181,7 +5186,7 @@
       "stock": null,
       "options": null,
       "seller_name": "K HOME INDIGO",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5206,7 +5211,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NAJIM",
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5231,7 +5236,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BORN IN ROMA CORAL FANTASY",
-      "legacy_category": null,
+      "legacy_category": "Kadın",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5256,7 +5261,7 @@
       "stock": null,
       "options": null,
       "seller_name": "EROS ENERGY MAN",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5281,7 +5286,7 @@
       "stock": null,
       "options": null,
       "seller_name": "UOMO BORN IN ROMA YELLOW DREAM",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5306,7 +5311,7 @@
       "stock": null,
       "options": null,
       "seller_name": "TONI IMPACT",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5331,7 +5336,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5356,7 +5361,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BVG MAN IN BLACK",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5381,7 +5386,7 @@
       "stock": null,
       "options": null,
       "seller_name": "BOSS BOTTLED ELIXIR",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5406,7 +5411,7 @@
       "stock": null,
       "options": null,
       "seller_name": "ARM.CODE 2022",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5431,7 +5436,7 @@
       "stock": null,
       "options": null,
       "seller_name": "DYOR HOME INTSE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5456,7 +5461,7 @@
       "stock": null,
       "options": null,
       "seller_name": "NAU VOYAGE",
-      "legacy_category": null,
+      "legacy_category": "Erkek",
       "volume_prices": [
         {
           "volume_ml": 50,
@@ -5481,7 +5486,8 @@
       "stock": null,
       "options": null,
       "seller_name": "GIO PROFUMO ÖZEL",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 90,
@@ -5492,7 +5498,8 @@
       "stock": null,
       "options": null,
       "seller_name": "SAUVAGE EXTRAIT",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 680,
@@ -5503,7 +5510,8 @@
       "stock": null,
       "options": null,
       "seller_name": "NIS MEANT TBS",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 348,
@@ -5514,7 +5522,8 @@
       "stock": null,
       "options": null,
       "seller_name": "AVENTUS VIP 2013",
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 22,
@@ -5525,7 +5534,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP BOIS IMPERIAL EXTRAIT",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 821,
@@ -5536,7 +5546,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP ESENTRIC 02",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 49,
@@ -5547,7 +5558,8 @@
       "stock": null,
       "options": null,
       "seller_name": "IMAGINATI VIP",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 822,
@@ -5558,7 +5570,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 40,
@@ -5569,7 +5582,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP HACIVAT",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 102,
@@ -5580,7 +5594,8 @@
       "stock": null,
       "options": null,
       "seller_name": "TILIA VIP",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 369,
@@ -5591,7 +5606,8 @@
       "stock": null,
       "options": null,
       "seller_name": "MEGAMAR",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 48,
@@ -5602,7 +5618,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP 1LIMENSI01",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 262,
@@ -5613,7 +5630,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP HALFETI",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 598,
@@ -5624,7 +5642,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP VANILLIA POWDER EXTRAIT",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 359,
@@ -5635,7 +5654,8 @@
       "stock": null,
       "options": null,
       "seller_name": "VIP SEMPONI",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 823,
@@ -5646,7 +5666,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 824,
@@ -5657,7 +5678,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 825,
@@ -5668,7 +5690,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 826,
@@ -5679,7 +5702,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Erkek",
+      "volume_prices": []
     },
     {
       "product_id": 827,
@@ -5690,7 +5714,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 828,
@@ -5701,7 +5726,8 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 829,
@@ -5712,7 +5738,8 @@
       "stock": null,
       "options": null,
       "seller_name": "INDONESIA PATCULI",
-      "legacy_category": null
+      "legacy_category": "Unisex",
+      "volume_prices": []
     },
     {
       "product_id": 830,
@@ -5723,7 +5750,7 @@
       "stock": null,
       "options": null,
       "seller_name": null,
-      "legacy_category": null,
+      "legacy_category": "Unisex",
       "volume_prices": [
         {
           "volume_ml": 50,

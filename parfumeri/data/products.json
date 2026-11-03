@@ -2067,7 +2067,9 @@
         "Citrus",
         "Green"
       ],
-      "aliases": [],
+      "aliases": [
+        "Power of You"
+      ],
       "legacy_categories": [
         "Kadın"
       ],
@@ -4595,30 +4597,6 @@
       "aliases": [],
       "legacy_categories": [
         "Erkek"
-      ],
-      "review_status": "metadata_incomplete"
-    },
-    {
-      "id": 192,
-      "name": "Power of You",
-      "brand": "Power of You",
-      "variant": "",
-      "gender": "Unisex",
-      "season": [
-        "İlkbahar",
-        "Yaz"
-      ],
-      "time": [
-        "Gündüz",
-        "Gece"
-      ],
-      "category": [
-        "Floral",
-        "Fresh"
-      ],
-      "aliases": [],
-      "legacy_categories": [
-        "Unisex · Designer"
       ],
       "review_status": "metadata_incomplete"
     },
@@ -11460,28 +11438,6 @@
       "review_status": "metadata_incomplete"
     },
     {
-      "id": 494,
-      "name": "Patchouli Intense",
-      "brand": "Patchouli Intense",
-      "variant": "",
-      "gender": "Unisex",
-      "season": [
-        "Kış"
-      ],
-      "time": [
-        "Gece"
-      ],
-      "category": [
-        "Mossy Woods",
-        "Dry Woods"
-      ],
-      "aliases": [],
-      "legacy_categories": [
-        "Unisex · Niche"
-      ],
-      "review_status": "metadata_incomplete"
-    },
-    {
       "id": 495,
       "name": "Boccanera",
       "brand": "Boccanera",
@@ -17897,7 +17853,7 @@
     },
     {
       "id": 793,
-      "name": "Sel Marine",
+      "name": "James Heeley Sel Marin",
       "brand": "Sel",
       "variant": "",
       "gender": "Unisex",
@@ -18079,7 +18035,9 @@
         "Woody",
         "Mossy Woods"
       ],
-      "aliases": [],
+      "aliases": [
+        "Patchouli Intense"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
