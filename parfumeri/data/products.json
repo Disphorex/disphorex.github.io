@@ -22339,7 +22339,7 @@
     },
     {
       "id": 1007,
-      "name": "E-134 T.F. Venetian Bergamot",
+      "name": "T.F. Venetian Bergamot",
       "brand": "T.F.",
       "variant": "",
       "gender": "Erkek",
@@ -22353,13 +22353,15 @@
         "Fresh",
         "Citrus"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-134 T.F. Venetian Bergamot"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
     {
       "id": 1008,
-      "name": "E-133 T.F. Tuscan Leather",
+      "name": "T.F. Tuscan Leather",
       "brand": "T.F.",
       "variant": "",
       "gender": "Erkek",
@@ -22373,7 +22375,9 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-133 T.F. Tuscan Leather"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
@@ -22577,7 +22581,7 @@
     },
     {
       "id": 1017,
-      "name": "E-38 C. H. 212 Men Erkek Parfüm",
+      "name": "C. H. 212 Men Erkek Parfüm",
       "brand": "E-38",
       "variant": "",
       "gender": "Erkek",
@@ -22593,7 +22597,9 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-38 C. H. 212 Men Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -22601,7 +22607,7 @@
     },
     {
       "id": 1018,
-      "name": "E-101 D. Marly Pegasus Erkek Parfüm",
+      "name": "D. Marly Pegasus Erkek Parfüm",
       "brand": "E-101",
       "variant": "",
       "gender": "Erkek",
@@ -22617,7 +22623,9 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-101 D. Marly Pegasus Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -22925,7 +22933,7 @@
     },
     {
       "id": 1031,
-      "name": "E-83 Armani He Erkek Parfüm",
+      "name": "Armani He Erkek Parfüm",
       "brand": "E-83 Armani He",
       "variant": "",
       "gender": "Erkek",
@@ -22940,7 +22948,9 @@
         "Woody",
         "Amber"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-83 Armani He Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23171,7 +23181,7 @@
     },
     {
       "id": 1041,
-      "name": "E-87 Fleur Narcotique Erkek Parfüm",
+      "name": "Fleur Narcotique Erkek Parfüm",
       "brand": "Fleur Narcotique",
       "variant": "",
       "gender": "Erkek",
@@ -23185,7 +23195,9 @@
         "Floral",
         "Soft Floral"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-87 Fleur Narcotique Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23384,7 +23396,7 @@
     },
     {
       "id": 1050,
-      "name": "E-44 L. Red Erkek Parfüm",
+      "name": "L. Red Erkek Parfüm",
       "brand": "L. Red",
       "variant": "",
       "gender": "Erkek",
@@ -23399,7 +23411,9 @@
         "Woody",
         "Amber"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-44 L. Red Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23456,7 +23470,7 @@
     },
     {
       "id": 1053,
-      "name": "E-41 T. F. Black Orchid Erkek Parfüm",
+      "name": "T. F. Black Orchid Erkek Parfüm",
       "brand": "Black Orchid",
       "variant": "",
       "gender": "Erkek",
@@ -23471,7 +23485,9 @@
         "Floral",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-41 T. F. Black Orchid Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23648,7 +23664,7 @@
     },
     {
       "id": 1061,
-      "name": "E-25 G. Pi Erkek Parfüm",
+      "name": "G. Pi Erkek Parfüm",
       "brand": "Pi",
       "variant": "",
       "gender": "Erkek",
@@ -23663,7 +23679,9 @@
         "Woody",
         "Mossy Woods"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-25 G. Pi Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23671,7 +23689,7 @@
     },
     {
       "id": 1062,
-      "name": "E-24 A. Chrome Erkek Parfüm",
+      "name": "A. Chrome Erkek Parfüm",
       "brand": "Chrome",
       "variant": "",
       "gender": "Erkek",
@@ -23686,7 +23704,9 @@
         "Fresh",
         "Citrus"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-24 A. Chrome Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -23979,7 +23999,7 @@
     },
     {
       "id": 1075,
-      "name": "E-7 C. Aventus Erkek Parfüm",
+      "name": "C. Aventus Erkek Parfüm",
       "brand": "C. Aventus",
       "variant": "",
       "gender": "Erkek",
@@ -23992,7 +24012,9 @@
       "category": [
         "Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-7 C. Aventus Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -24000,7 +24022,7 @@
     },
     {
       "id": 1076,
-      "name": "E-6 Joop Home Erkek Parfüm",
+      "name": "Joop Home Erkek Parfüm",
       "brand": "Joop",
       "variant": "",
       "gender": "Erkek",
@@ -24013,7 +24035,9 @@
       "category": [
         "Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-6 Joop Home Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -24021,7 +24045,7 @@
     },
     {
       "id": 1077,
-      "name": "E-4 C. K. Euphoria Erkek Parfüm",
+      "name": "C. K. Euphoria Erkek Parfüm",
       "brand": "C. K.",
       "variant": "",
       "gender": "Erkek",
@@ -24034,7 +24058,9 @@
       "category": [
         "Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "E-4 C. K. Euphoria Erkek Parfüm"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
