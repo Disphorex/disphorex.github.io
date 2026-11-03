@@ -2800,7 +2800,7 @@
     },
     {
       "id": 115,
-      "name": "Amouage Interlude Man",
+      "name": "İnterlude",
       "brand": "Amouage",
       "variant": "",
       "gender": "Erkek",
@@ -2814,7 +2814,8 @@
         "Amber"
       ],
       "aliases": [
-        "Emre Boslu Interlude Man"
+        "Emre Boslu Interlude Man",
+        "Amouage Interlude Man"
       ],
       "legacy_categories": [
         "Erkek",
@@ -12553,7 +12554,7 @@
     },
     {
       "id": 543,
-      "name": "Emre Boslu Narcotic",
+      "name": "Narcotic",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -12570,7 +12571,9 @@
         "Woody",
         "Amber"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Narcotic"
+      ],
       "legacy_categories": [
         "Erkek",
         "Unisex · Niche"
@@ -19131,7 +19134,7 @@
     },
     {
       "id": 855,
-      "name": "Emre Boslu Narcotic Elixir",
+      "name": "Narcotic Elixir",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19147,7 +19150,9 @@
         "Amber",
         "Mossy Woods"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Narcotic Elixir"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete",
       "do_not_merge": true,
@@ -19155,7 +19160,7 @@
     },
     {
       "id": 857,
-      "name": "Emre Boslu Penta Vanil",
+      "name": "Penta Vanil",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19173,13 +19178,15 @@
         "Amber",
         "Soft Amber"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Penta Vanil"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
     {
       "id": 858,
-      "name": "Emre Boslu Spice Leather",
+      "name": "Spice Leather",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19197,7 +19204,9 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Spice Leather"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete",
       "do_not_merge": true,
@@ -19205,7 +19214,7 @@
     },
     {
       "id": 859,
-      "name": "Emre Boslu Noir Extrait",
+      "name": "Noir Extrait",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19223,7 +19232,9 @@
         "Mossy Woods",
         "Dry Woods"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Noir Extrait"
+      ],
       "legacy_categories": [
         "Unisex"
       ],
@@ -19231,7 +19242,7 @@
     },
     {
       "id": 860,
-      "name": "Emre Boslu The Scent Intense Extrait",
+      "name": "The Scent Intense Extrait",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19249,7 +19260,9 @@
         "Fresh",
         "Citrus"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu The Scent Intense Extrait"
+      ],
       "legacy_categories": [
         "Erkek"
       ],
@@ -19283,7 +19296,7 @@
     },
     {
       "id": 866,
-      "name": "Emre Boslu Stronger With You Absolutely Premium",
+      "name": "Stronger With You Absolutely Premium",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19301,13 +19314,15 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Stronger With You Absolutely Premium"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
     {
       "id": 867,
-      "name": "Emre Boslu Uomo Premium",
+      "name": "Uomo Premium",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19325,13 +19340,15 @@
         "Woody",
         "Amber Woody"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Uomo Premium"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
     {
       "id": 868,
-      "name": "Emre Boslu Hibiscus Mahajad Premium",
+      "name": "Hibiscus Mahajad Premium",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19349,13 +19366,15 @@
         "Floral",
         "Soft Floral"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Hibiscus Mahajad Premium"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
     {
       "id": 869,
-      "name": "Emre Boslu Kenzo Pour Homme Extrait",
+      "name": "Kenzo Pour Homme Extrait",
       "brand": "Emre Boslu",
       "variant": "",
       "gender": "Unisex",
@@ -19373,7 +19392,9 @@
         "Woody",
         "Fresh"
       ],
-      "aliases": [],
+      "aliases": [
+        "Emre Boslu Kenzo Pour Homme Extrait"
+      ],
       "legacy_categories": [],
       "review_status": "metadata_incomplete"
     },
