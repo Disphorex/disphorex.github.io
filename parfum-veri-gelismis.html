@@ -166,6 +166,10 @@ button:disabled{opacity:.45;cursor:default}
   function norm(s){
     s=String(s||'').toLowerCase();
     s=s.replace(/[’'`´]/g,"'");
+    /* Türkçe harfler ASCII’ye (ı/İ NFD ile düşmesin) */
+    s=s.replace(/ı/g,'i').replace(/İ/g,'i').replace(/ş/g,'s').replace(/Ş/g,'s')
+       .replace(/ğ/g,'g').replace(/Ğ/g,'g').replace(/ü/g,'u').replace(/Ü/g,'u')
+       .replace(/ö/g,'o').replace(/Ö/g,'o').replace(/ç/g,'c').replace(/Ç/g,'c');
     s=s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
     s=s.replace(/&/g,' and ');
     s=s.replace(/[^a-z0-9.]+/g,' ').replace(/\s+/g,' ').trim();
@@ -230,8 +234,23 @@ button:disabled{opacity:.45;cursor:default}
         break;
       }
     }
-    /* "de/di/the/parfum/extrait" gibi zayıf kelimeleri skor dışı bırak */
-    var stop={de:1,di:1,the:1,a:1,of:1,and:1,parfum:1,perfume:1,extrait:1,eau:1,for:1,homme:1,femme:1,man:1,woman:1,men:1,women:1,unisex:1,intense:1,intensely:1};
+    /* Cinsiyet + parfüm kalıpları eşleşmeye girmez (Erkek Parfüm, Kadın Parfüm…)
+       ama tek başına "parfum", "eau de parfum", "edp" benzerlikte kalır */
+    var genderPhrases=[
+      'erkek parfum','kadin parfum','unisex parfum',
+      'erkek perfume','kadin perfume','unisex perfume',
+      'for men','for women','for him','for her',
+      'pour homme','pour femme','pour lui','pour elle'
+    ];
+    genderPhrases.sort(function(a,b){ return b.length-a.length; });
+    nn=' '+nn+' ';
+    for(var gi=0;gi<genderPhrases.length;gi++){
+      var gp=' '+genderPhrases[gi]+' ';
+      while(nn.indexOf(gp)>=0) nn=nn.split(gp).join(' ');
+    }
+    nn=nn.replace(/\s+/g,' ').trim();
+    /* Bağlaç / cinsiyet tekil kelimeleri at; konsantrasyon (parfum, edp, extrait) kalsın */
+    var stop={de:1,di:1,the:1,a:1,of:1,and:1,for:1,homme:1,femme:1,man:1,woman:1,men:1,women:1,unisex:1,erkek:1,kadin:1,her:1,him:1};
     var parts=nn.split(' ').filter(function(t){ return t && !stop[t] && t.length>1; });
     return parts.join(' ')||nn||norm(n);
   }
