@@ -100,7 +100,7 @@
 {"name":"African Leather","house":"Memo Paris","score":6,"season":["Geçiş Mevsimi","Kışlık"],"line":"Unisex","occ":["Randevu Gecesi"]},
 {"name":"Reflection Man","house":"Amouage","score":6,"season":["Geçiş Mevsimi"],"line":"Maskülen","occ":["İş / Formal"]},
 {"name":"Ganymede","house":"Marc-Antoine Barrois","score":6,"season":["Geçiş Mevsimi","Kışlık"],"line":"Unisex","occ":["Randevu Gecesi"]},
-{"name":"Torino 21","house":"","score":6,"season":["Yazlık","Geçiş Mevsimi"],"line":"Unisex","occ":["Günlük"]},
+{"name":"Torino 21","house":"Xerjoff","score":6,"season":["Yazlık","Geçiş Mevsimi"],"line":"Unisex","occ":["Günlük"],"notes":{"open":"Keskin nane, serin bir açılış yapıyor.","last":"Oldukça kalıcı zaten baskın bir koku etrafında şekillenen bir kompozisyon.","feel":"Ferah, temiz ama bayıcı.","free":"Dünyanın dört bir yanında çakmalarıyla adını duyurmadığı cenah kalmayan Sergio Momo, o yakışıklı şişelerin içerisine sonunada güzel bir koku sığdırabilmiş. Torino 21 kokladığım ve beğendiğim ilk ve tek xerjoff kokusu, güzel bir nane yorumu, fresh olmasına karşın bayıcı olduğu için dikkatli kullanılmalı nane limon gibi kokmanız herkes tarafından olumlu karşılanmayabilir."}},
 {"name":"Side Effect","house":"Initio","score":6,"season":["Kışlık"],"line":"Unisex","occ":["Randevu Gecesi"]},
 {"name":"İstanbul","house":"Rebul","score":6},
 {"name":"Alexandria II","house":"Xerjoff","score":5,"season":["Kışlık"],"line":"Unisex","occ":["Randevu Gecesi"]},
